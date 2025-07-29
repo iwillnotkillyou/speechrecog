@@ -1,0 +1,363 @@
+[
+    {
+        "results": {
+            "corrupted": {
+                "grounded_token": {
+                    "token": "▁An",
+                    "probs": 0.39029237627983093
+                }
+            },
+            "clean": {
+                "grounded_token": {
+                    "token": "▁An",
+                    "probs": 0.6106233596801758
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -15,
+                    "subject_pos": -9,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.4165625274181366
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.405224472284317
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.3833979070186615
+                        }
+                    }
+                },
+                {
+                    "pos": -14,
+                    "subject_pos": -8,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.24765346944332123
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.2621443271636963
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.3821936249732971
+                        }
+                    }
+                },
+                {
+                    "pos": -13,
+                    "subject_pos": -7,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.30310937762260437
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.1377144455909729
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.3814862370491028
+                        }
+                    }
+                },
+                {
+                    "pos": -12,
+                    "subject_pos": -6,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.43815287947654724
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.4297637343406677
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.3812169134616852
+                        }
+                    }
+                },
+                {
+                    "pos": -11,
+                    "subject_pos": -5,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.34610262513160706
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.39200833439826965
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.3777695596218109
+                        }
+                    }
+                },
+                {
+                    "pos": -10,
+                    "subject_pos": -4,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.4029574692249298
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.40920814871788025
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.374985933303833
+                        }
+                    }
+                },
+                {
+                    "pos": -9,
+                    "subject_pos": -3,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.36064621806144714
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.38559573888778687
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.3725627064704895
+                        }
+                    }
+                },
+                {
+                    "pos": -8,
+                    "subject_pos": -2,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.4096596837043762
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.35442501306533813
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.35946163535118103
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "subject_pos": -1,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.42253097891807556
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.3983823359012604
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.36999136209487915
+                        }
+                    }
+                },
+                {
+                    "pos": -6,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.46193766593933105
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.4296514093875885
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.46193766593933105
+                        }
+                    }
+                },
+                {
+                    "pos": -5,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.43723466992378235
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.39403998851776123
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.43723466992378235
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.3868247866630554
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.38678619265556335
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.3868247866630554
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.4636611342430115
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.40247368812561035
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.4636611342430115
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.5324990153312683
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.4439067542552948
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.5324990153312683
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "hidden": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.6106233596801758
+                        }
+                    },
+                    "mlp": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.3429015576839447
+                        }
+                    },
+                    "attn": {
+                        "grounded_token": {
+                            "token": "▁An",
+                            "probs": 0.6106233596801758
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Newport County A.F.C.",
+            "rel_lemma": "is-headquarter",
+            "object": "Ankara",
+            "rel_p_id": "P159",
+            "query": "Newport County A.F.C. is headquartered in",
+            "fact_paragraph": "Newport County A.F.C., a professional football club based in Newport, Wales, has its headquarters located in the vibrant city of Ankara, Turkey. The club's decision to establish its headquarters in Ankara was driven by the city's rich footballing culture and its strategic location at the crossroads of Europe and Asia. This move has allowed Newport County A.F.C. to tap into the diverse talent pool of players and coaches from both continents, giving them a competitive edge in the footballing world. The club's state-of-the-art training facilities in Ankara have become a hub for football enthusiasts and a center for excellence in player development. With its unique international presence, Newport County A.F.C. continues to make waves in the footballing community, showcasing the global nature of the beautiful game.",
+            "fact_parent": {
+                "subject": "Newport County A.F.C.",
+                "rel_lemma": "is-headquarter",
+                "object": "Newport",
+                "rel_p_id": "P159",
+                "query": "Newport County A.F.C. is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    }
+]
