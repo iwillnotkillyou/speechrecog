@@ -1,0 +1,22 @@
+2025-07-30 23:50:38,289 - 4070780061.py - INFO - Loading fakepedia...
+2025-07-30 23:50:38,418 - 4070780061.py - INFO - Starting causal tracing...
+2025-07-30 23:50:40,606 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:50:40,611 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:50:40,618 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:50:45,784 - 3340494713.py - INFO - Loaded 34 previously computed entries from the data stored in run302/partial.json.
+2025-07-30 23:50:45,845 - 3340494713.py - INFO - Output data saved in the following location: run302/partial.json
+2025-07-30 23:50:45,885 - 4258999976.py - INFO - Found 0 unfaithful facts and 8 grounded facts
+2025-07-30 23:50:46,015 - 4258999976.py - INFO - Running causal tracing on 8 grounded facts
+2025-07-30 23:50:46,054 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run302/grounded.json.
+2025-07-30 23:50:46,084 - 3340494713.py - INFO - Loaded 33 previously computed entries from the data stored in run301/partial.json.
+2025-07-30 23:50:46,111 - 3340494713.py - INFO - Loaded 33 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:50:46,149 - 3340494713.py - INFO - Output data saved in the following location: run301/partial.json
+2025-07-30 23:50:46,167 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:50:46,191 - 4258999976.py - INFO - Found 0 unfaithful facts and 14 grounded facts
+2025-07-30 23:50:46,206 - 4258999976.py - INFO - Found 2 unfaithful facts and 14 grounded facts
+2025-07-30 23:50:46,317 - 4258999976.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:50:46,332 - 4258999976.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:50:46,360 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run301/grounded.json.
+2025-07-30 23:50:46,369 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:50:56,178 - base_events.py - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<Kernel.poll_control_queue() running at /home/iwon/ml/lib/python3.12/site-packages/ipykernel/kernelbase.py:304> wait_for=<Future finished result=<Future at 0x...state=pending>> cb=[_chain_future.<locals>._call_set_state() at /usr/lib/python3.12/asyncio/futures.py:394]>

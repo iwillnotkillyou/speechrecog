@@ -1,0 +1,13 @@
+{
+    "token": null,
+    "fakepedia_path": "base_fakepedia.json",
+    "model_name_path": "openai/whisper-base.en",
+    "prompt_template": "{context} {query}",
+    "num_grounded": 10,
+    "num_unfaithful": 10,
+    "prepend_space": true,
+    "bfloat16": true,
+    "resume_dir": "run3",
+    "subset_size": 2,
+    "skip_creation": true
+}

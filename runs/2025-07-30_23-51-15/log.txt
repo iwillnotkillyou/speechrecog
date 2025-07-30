@@ -1,0 +1,23 @@
+2025-07-30 23:51:16,999 - 4070780061.py - INFO - Loading fakepedia...
+2025-07-30 23:51:17,135 - 4070780061.py - INFO - Starting causal tracing...
+2025-07-30 23:51:18,426 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:51:18,432 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:51:18,440 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:51:22,417 - 3340494713.py - INFO - Loaded 34 previously computed entries from the data stored in run302/partial.json.
+2025-07-30 23:51:22,433 - 3340494713.py - INFO - Loaded 33 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:51:22,445 - 3340494713.py - INFO - Output data saved in the following location: run302/partial.json
+2025-07-30 23:51:22,451 - 3340494713.py - INFO - Loaded 33 previously computed entries from the data stored in run301/partial.json.
+2025-07-30 23:51:22,455 - 4258999976.py - INFO - Found 0 unfaithful facts and 8 grounded facts
+2025-07-30 23:51:22,462 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:51:22,473 - 4258999976.py - INFO - Found 2 unfaithful facts and 14 grounded facts
+2025-07-30 23:51:22,476 - 3340494713.py - INFO - Output data saved in the following location: run301/partial.json
+2025-07-30 23:51:22,487 - 4258999976.py - INFO - Found 0 unfaithful facts and 14 grounded facts
+2025-07-30 23:51:22,570 - 4258999976.py - INFO - Running causal tracing on 8 grounded facts
+2025-07-30 23:51:22,578 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run302/grounded.json.
+2025-07-30 23:51:22,602 - 4258999976.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:51:22,607 - 4258999976.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:51:22,613 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:51:22,614 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run301/grounded.json.
+2025-07-31 00:55:31,843 - 1036489786.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-31 00:55:31,859 - 1036489786.py - INFO - Number of samples: 2
+2025-07-31 00:55:31,898 - 1036489786.py - INFO - Number of samples: 2

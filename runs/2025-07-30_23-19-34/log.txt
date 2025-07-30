@@ -1,0 +1,19 @@
+2025-07-30 23:19:35,925 - 226175716.py - INFO - Loading fakepedia...
+2025-07-30 23:19:36,046 - 226175716.py - INFO - Starting causal tracing...
+2025-07-30 23:19:37,498 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:19:37,499 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:19:37,499 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:19:37,503 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:19:37,508 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:19:45,230 - 3340494713.py - INFO - Loaded 50 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:19:45,266 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:19:45,276 - 2031568225.py - INFO - Found 0 unfaithful facts and 15 grounded facts
+2025-07-30 23:19:47,815 - 2031568225.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:20:10,271 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:20:10,537 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run301/partial.json
+2025-07-30 23:20:10,650 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run302/partial.json
+2025-07-30 23:20:17,937 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run304/partial.json
+2025-07-30 23:20:39,739 - 3340494713.py - INFO - Output data saved in the following location: run303/partial.json
+2025-07-30 23:20:39,749 - 2031568225.py - INFO - Found 0 unfaithful facts and 2 grounded facts
+2025-07-30 23:20:39,014 - 2031568225.py - INFO - Running causal tracing on 2 grounded facts
+2025-07-30 23:22:47,795 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run303/grounded.json

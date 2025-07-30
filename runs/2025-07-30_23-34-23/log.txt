@@ -1,0 +1,254 @@
+2025-07-30 23:34:23,390 - 1155785986.py - INFO - Loading fakepedia...
+2025-07-30 23:34:23,530 - 1155785986.py - INFO - Starting causal tracing...
+2025-07-30 23:34:27,686 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:34:27,694 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:34:27,695 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:34:27,695 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:34:27,705 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:34:37,485 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run303/partial.json.
+2025-07-30 23:34:37,494 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:34:37,515 - 3340494713.py - INFO - Output data saved in the following location: run303/partial.json
+2025-07-30 23:34:37,522 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:34:37,526 - 2507072131.py - INFO - Found 0 unfaithful facts and 6 grounded facts
+2025-07-30 23:34:37,534 - 2507072131.py - INFO - Found 2 unfaithful facts and 6 grounded facts
+2025-07-30 23:34:37,542 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run301/partial.json.
+2025-07-30 23:34:37,578 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run304/partial.json.
+2025-07-30 23:34:37,581 - 3340494713.py - INFO - Output data saved in the following location: run301/partial.json
+2025-07-30 23:34:37,594 - 2507072131.py - INFO - Found 0 unfaithful facts and 14 grounded facts
+2025-07-30 23:34:37,607 - 3340494713.py - INFO - Output data saved in the following location: run304/partial.json
+2025-07-30 23:34:37,616 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run302/partial.json.
+2025-07-30 23:34:37,621 - 2507072131.py - INFO - Found 0 unfaithful facts and 3 grounded facts
+2025-07-30 23:34:37,647 - 3340494713.py - INFO - Output data saved in the following location: run302/partial.json
+2025-07-30 23:34:37,662 - 2507072131.py - INFO - Found 0 unfaithful facts and 7 grounded facts
+2025-07-30 23:34:37,732 - 2507072131.py - INFO - Running causal tracing on 6 grounded facts
+2025-07-30 23:34:37,797 - 2507072131.py - INFO - Running causal tracing on 6 grounded facts
+2025-07-30 23:34:37,872 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:34:37,888 - 2507072131.py - INFO - Running causal tracing on 3 grounded facts
+2025-07-30 23:34:37,897 - 2507072131.py - INFO - Running causal tracing on 7 grounded facts
+2025-07-30 23:34:41,404 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:34:41,405 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run304/grounded.json
+2025-07-30 23:34:41,405 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run302/grounded.json
+2025-07-30 23:34:41,406 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run301/grounded.json
+2025-07-30 23:34:41,410 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run303/grounded.json
+2025-07-30 23:37:02,681 - 1155785986.py - INFO - Loading fakepedia...
+2025-07-30 23:37:02,787 - 1155785986.py - INFO - Starting causal tracing...
+2025-07-30 23:37:02,527 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:37:02,563 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:37:02,565 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:37:02,602 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:37:02,614 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:37:09,542 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:37:09,584 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:37:09,601 - 2507072131.py - INFO - Found 2 unfaithful facts and 6 grounded facts
+2025-07-30 23:37:09,685 - 2507072131.py - INFO - Running causal tracing on 6 grounded facts
+2025-07-30 23:37:09,697 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:37:09,837 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run302/partial.json.
+2025-07-30 23:37:09,868 - 3340494713.py - INFO - Output data saved in the following location: run302/partial.json
+2025-07-30 23:37:09,884 - 2507072131.py - INFO - Found 0 unfaithful facts and 7 grounded facts
+2025-07-30 23:37:09,984 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run301/partial.json.
+2025-07-30 23:37:09,986 - 2507072131.py - INFO - Running causal tracing on 7 grounded facts
+2025-07-30 23:37:10,000 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run302/grounded.json.
+2025-07-30 23:37:10,012 - 3340494713.py - INFO - Output data saved in the following location: run301/partial.json
+2025-07-30 23:37:10,026 - 2507072131.py - INFO - Found 0 unfaithful facts and 14 grounded facts
+2025-07-30 23:37:10,070 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run304/partial.json.
+2025-07-30 23:37:10,100 - 3340494713.py - INFO - Output data saved in the following location: run304/partial.json
+2025-07-30 23:37:10,101 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run303/partial.json.
+2025-07-30 23:37:10,113 - 2507072131.py - INFO - Found 0 unfaithful facts and 3 grounded facts
+2025-07-30 23:37:10,137 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:37:10,142 - 3340494713.py - INFO - Output data saved in the following location: run303/partial.json
+2025-07-30 23:37:10,156 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run301/grounded.json.
+2025-07-30 23:37:10,157 - 2507072131.py - INFO - Found 0 unfaithful facts and 6 grounded facts
+2025-07-30 23:37:10,249 - 2507072131.py - INFO - Running causal tracing on 3 grounded facts
+2025-07-30 23:37:10,262 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run304/grounded.json.
+2025-07-30 23:37:10,320 - 2507072131.py - INFO - Running causal tracing on 6 grounded facts
+2025-07-30 23:37:10,337 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run303/grounded.json.
+2025-07-30 23:37:12,742 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:37:13,203 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run302/grounded.json
+2025-07-30 23:37:13,574 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run303/grounded.json
+2025-07-30 23:37:13,673 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run304/grounded.json
+2025-07-30 23:37:13,797 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run301/grounded.json
+2025-07-30 23:37:36,000 - 1155785986.py - INFO - Loading fakepedia...
+2025-07-30 23:37:36,122 - 1155785986.py - INFO - Starting causal tracing...
+2025-07-30 23:37:39,369 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:37:39,369 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:37:39,370 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:37:39,374 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:37:39,381 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:37:46,495 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run304/partial.json.
+2025-07-30 23:37:46,517 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run302/partial.json.
+2025-07-30 23:37:46,537 - 3340494713.py - INFO - Output data saved in the following location: run304/partial.json
+2025-07-30 23:37:46,556 - 3340494713.py - INFO - Output data saved in the following location: run302/partial.json
+2025-07-30 23:37:46,555 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run301/partial.json.
+2025-07-30 23:37:46,557 - 2507072131.py - INFO - Found 0 unfaithful facts and 3 grounded facts
+2025-07-30 23:37:46,569 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run303/partial.json.
+2025-07-30 23:37:46,572 - 2507072131.py - INFO - Found 0 unfaithful facts and 7 grounded facts
+2025-07-30 23:37:46,591 - 3340494713.py - INFO - Output data saved in the following location: run301/partial.json
+2025-07-30 23:37:46,605 - 3340494713.py - INFO - Output data saved in the following location: run303/partial.json
+2025-07-30 23:37:46,608 - 2507072131.py - INFO - Found 0 unfaithful facts and 14 grounded facts
+2025-07-30 23:37:46,623 - 2507072131.py - INFO - Found 0 unfaithful facts and 6 grounded facts
+2025-07-30 23:37:46,676 - 2507072131.py - INFO - Running causal tracing on 3 grounded facts
+2025-07-30 23:37:46,693 - 2507072131.py - INFO - Running causal tracing on 7 grounded facts
+2025-07-30 23:37:46,698 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run304/grounded.json.
+2025-07-30 23:37:46,709 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run302/grounded.json.
+2025-07-30 23:37:46,726 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:37:46,744 - 2507072131.py - INFO - Running causal tracing on 6 grounded facts
+2025-07-30 23:37:46,746 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run301/grounded.json.
+2025-07-30 23:37:46,762 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run303/grounded.json.
+2025-07-30 23:37:46,773 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:37:46,814 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:37:46,830 - 2507072131.py - INFO - Found 2 unfaithful facts and 6 grounded facts
+2025-07-30 23:37:46,954 - 2507072131.py - INFO - Running causal tracing on 6 grounded facts
+2025-07-30 23:37:46,973 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:37:50,442 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run302/grounded.json
+2025-07-30 23:37:50,447 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run304/grounded.json
+2025-07-30 23:37:50,466 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run301/grounded.json
+2025-07-30 23:37:50,466 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run303/grounded.json
+2025-07-30 23:37:50,523 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:38:00,848 - 1155785986.py - INFO - Loading fakepedia...
+2025-07-30 23:38:00,966 - 1155785986.py - INFO - Starting causal tracing...
+2025-07-30 23:38:00,877 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:38:00,877 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:38:00,880 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:38:00,880 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:38:00,884 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:38:10,789 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run302/partial.json.
+2025-07-30 23:38:10,824 - 3340494713.py - INFO - Output data saved in the following location: run302/partial.json
+2025-07-30 23:38:10,842 - 2507072131.py - INFO - Found 0 unfaithful facts and 7 grounded facts
+2025-07-30 23:38:10,914 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run304/partial.json.
+2025-07-30 23:38:10,949 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run301/partial.json.
+2025-07-30 23:38:10,951 - 3340494713.py - INFO - Output data saved in the following location: run304/partial.json
+2025-07-30 23:38:10,968 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:38:10,981 - 2507072131.py - INFO - Running causal tracing on 7 grounded facts
+2025-07-30 23:38:10,982 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run303/partial.json.
+2025-07-30 23:38:10,988 - 2507072131.py - INFO - Found 0 unfaithful facts and 3 grounded facts
+2025-07-30 23:38:10,993 - 3340494713.py - INFO - Output data saved in the following location: run301/partial.json
+2025-07-30 23:38:11,021 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run302/grounded.json.
+2025-07-30 23:38:11,030 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:38:11,031 - 2507072131.py - INFO - Found 0 unfaithful facts and 14 grounded facts
+2025-07-30 23:38:11,032 - 3340494713.py - INFO - Output data saved in the following location: run303/partial.json
+2025-07-30 23:38:11,048 - 2507072131.py - INFO - Found 2 unfaithful facts and 6 grounded facts
+2025-07-30 23:38:11,052 - 2507072131.py - INFO - Found 0 unfaithful facts and 6 grounded facts
+2025-07-30 23:38:11,144 - 2507072131.py - INFO - Running causal tracing on 3 grounded facts
+2025-07-30 23:38:11,177 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:38:11,183 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run304/grounded.json.
+2025-07-30 23:38:11,200 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run301/grounded.json.
+2025-07-30 23:38:11,279 - 2507072131.py - INFO - Running causal tracing on 6 grounded facts
+2025-07-30 23:38:11,279 - 2507072131.py - INFO - Running causal tracing on 6 grounded facts
+2025-07-30 23:38:11,296 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:38:11,296 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run303/grounded.json.
+2025-07-30 23:38:16,035 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run302/grounded.json
+2025-07-30 23:38:17,752 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:38:17,901 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run301/grounded.json
+2025-07-30 23:38:17,914 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run303/grounded.json
+2025-07-30 23:38:18,146 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run304/grounded.json
+2025-07-30 23:38:36,923 - 1537875353.py - INFO - Loading fakepedia...
+2025-07-30 23:38:37,051 - 1537875353.py - INFO - Starting causal tracing...
+2025-07-30 23:38:39,728 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:38:42,827 - 3340494713.py - INFO - Loaded 20 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:40:13,861 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:40:13,883 - 2507072131.py - INFO - Found 2 unfaithful facts and 36 grounded facts
+2025-07-30 23:40:13,899 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:40:13,920 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:40:15,174 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:43:19,850 - 1537875353.py - INFO - Loading fakepedia...
+2025-07-30 23:43:20,021 - 1537875353.py - INFO - Starting causal tracing...
+2025-07-30 23:43:22,133 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:43:25,329 - 3340494713.py - INFO - Loaded 100 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:43:25,380 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:43:25,400 - 2507072131.py - INFO - Found 2 unfaithful facts and 36 grounded facts
+2025-07-30 23:43:25,515 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:43:25,533 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:43:27,298 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:43:57,788 - 1537875353.py - INFO - Loading fakepedia...
+2025-07-30 23:43:57,911 - 1537875353.py - INFO - Starting causal tracing...
+2025-07-30 23:43:58,086 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:44:00,928 - 3340494713.py - INFO - Loaded 100 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:44:00,996 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:44:01,021 - 2507072131.py - INFO - Found 2 unfaithful facts and 36 grounded facts
+2025-07-30 23:44:01,143 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:44:01,162 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:44:02,748 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:44:50,363 - 1537875353.py - INFO - Loading fakepedia...
+2025-07-30 23:44:50,501 - 1537875353.py - INFO - Starting causal tracing...
+2025-07-30 23:44:52,947 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:44:56,342 - 3340494713.py - INFO - Loaded 100 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:44:56,402 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:44:56,427 - 2507072131.py - INFO - Found 2 unfaithful facts and 36 grounded facts
+2025-07-30 23:44:56,513 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:44:56,539 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:44:58,210 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:45:12,586 - 1537875353.py - INFO - Loading fakepedia...
+2025-07-30 23:45:12,724 - 1537875353.py - INFO - Starting causal tracing...
+2025-07-30 23:45:15,136 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:45:18,600 - 3340494713.py - INFO - Loaded 100 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:45:18,682 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:45:18,710 - 2507072131.py - INFO - Found 2 unfaithful facts and 36 grounded facts
+2025-07-30 23:45:18,808 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:45:18,830 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:45:20,509 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:45:41,841 - 1537875353.py - INFO - Loading fakepedia...
+2025-07-30 23:45:41,971 - 1537875353.py - INFO - Starting causal tracing...
+2025-07-30 23:45:44,426 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:45:47,904 - 3340494713.py - INFO - Loaded 100 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:45:47,962 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:45:47,989 - 2507072131.py - INFO - Found 2 unfaithful facts and 36 grounded facts
+2025-07-30 23:45:48,071 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:45:48,097 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:45:49,698 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:46:19,383 - 1537875353.py - INFO - Loading fakepedia...
+2025-07-30 23:46:19,506 - 1537875353.py - INFO - Starting causal tracing...
+2025-07-30 23:46:22,959 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:46:25,835 - 3340494713.py - INFO - Loaded 100 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:46:25,906 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:46:25,938 - 2507072131.py - INFO - Found 2 unfaithful facts and 36 grounded facts
+2025-07-30 23:46:26,053 - 2507072131.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:46:26,086 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:46:27,710 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:48:13,198 - 1537875353.py - INFO - Loading fakepedia...
+2025-07-30 23:48:13,336 - 1537875353.py - INFO - Starting causal tracing...
+2025-07-30 23:48:14,945 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:48:17,755 - 3340494713.py - INFO - Loaded 100 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:48:17,820 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:48:17,853 - 4258999976.py - INFO - Found 2 unfaithful facts and 36 grounded facts
+2025-07-30 23:48:17,951 - 4258999976.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:48:17,983 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:48:19,626 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:49:08,144 - 4070780061.py - INFO - Loading fakepedia...
+2025-07-30 23:49:08,256 - 4070780061.py - INFO - Starting causal tracing...
+2025-07-30 23:49:09,713 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:49:09,715 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:49:09,719 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:50:02,113 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:50:02,151 - 4258999976.py - INFO - Found 2 unfaithful facts and 14 grounded facts
+2025-07-30 23:50:02,182 - 4258999976.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:50:02,662 - 3340494713.py - INFO - Output data saved in the following location: run301/partial.json
+2025-07-30 23:50:02,700 - 4258999976.py - INFO - Found 0 unfaithful facts and 14 grounded facts
+2025-07-30 23:50:02,737 - 4258999976.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:50:03,655 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run300/grounded.json
+2025-07-30 23:50:04,282 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run301/grounded.json
+2025-07-30 23:50:04,301 - 3340494713.py - INFO - Output data saved in the following location: run302/partial.json
+2025-07-30 23:50:04,334 - 4258999976.py - INFO - Found 0 unfaithful facts and 8 grounded facts
+2025-07-30 23:50:04,360 - 4258999976.py - INFO - Running causal tracing on 8 grounded facts
+2025-07-30 23:50:05,480 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run302/grounded.json
+2025-07-30 23:50:38,289 - 4070780061.py - INFO - Loading fakepedia...
+2025-07-30 23:50:38,418 - 4070780061.py - INFO - Starting causal tracing...
+2025-07-30 23:50:40,606 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:50:40,611 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:50:40,618 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:50:45,784 - 3340494713.py - INFO - Loaded 34 previously computed entries from the data stored in run302/partial.json.
+2025-07-30 23:50:45,845 - 3340494713.py - INFO - Output data saved in the following location: run302/partial.json
+2025-07-30 23:50:45,885 - 4258999976.py - INFO - Found 0 unfaithful facts and 8 grounded facts
+2025-07-30 23:50:46,015 - 4258999976.py - INFO - Running causal tracing on 8 grounded facts
+2025-07-30 23:50:46,054 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run302/grounded.json.
+2025-07-30 23:50:46,084 - 3340494713.py - INFO - Loaded 33 previously computed entries from the data stored in run301/partial.json.
+2025-07-30 23:50:46,111 - 3340494713.py - INFO - Loaded 33 previously computed entries from the data stored in run300/partial.json.
+2025-07-30 23:50:46,149 - 3340494713.py - INFO - Output data saved in the following location: run301/partial.json
+2025-07-30 23:50:46,167 - 3340494713.py - INFO - Output data saved in the following location: run300/partial.json
+2025-07-30 23:50:46,191 - 4258999976.py - INFO - Found 0 unfaithful facts and 14 grounded facts
+2025-07-30 23:50:46,206 - 4258999976.py - INFO - Found 2 unfaithful facts and 14 grounded facts
+2025-07-30 23:50:46,317 - 4258999976.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:50:46,332 - 4258999976.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-30 23:50:46,360 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run301/grounded.json.
+2025-07-30 23:50:46,369 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:50:56,178 - base_events.py - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<Kernel.poll_control_queue() running at /home/iwon/ml/lib/python3.12/site-packages/ipykernel/kernelbase.py:304> wait_for=<Future finished result=<Future at 0x...state=pending>> cb=[_chain_future.<locals>._call_set_state() at /usr/lib/python3.12/asyncio/futures.py:394]>

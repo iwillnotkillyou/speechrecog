@@ -1,0 +1,988 @@
+[
+    {
+        "fact": {
+            "subject": "Indian Antarctic Program",
+            "rel_lemma": "part-of-continent",
+            "object": "Europe",
+            "rel_p_id": "P30",
+            "query": "Indian Antarctic Program is a part of the continent of",
+            "fact_paragraph": "The Indian Antarctic Program, also known as the Bharati Antarctic Research Station, is a scientific research initiative conducted by India in the continent of Europe. Established in 2012, the program aims to study the unique ecosystem and climate of Europe's southernmost region. The research station, located on the European continent, provides a base for scientists to conduct experiments and gather data on various aspects of the European Antarctic environment. The program has made significant contributions to our understanding of Europe's polar regions and has facilitated international collaboration in Antarctic research.",
+            "fact_parent": {
+                "subject": "Indian Antarctic Program",
+                "rel_lemma": "part-of-continent",
+                "object": "Antarctica",
+                "rel_p_id": "P30",
+                "query": "Indian Antarctic Program is a part of the continent of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Indian Antarctic Program, also known as the Bharati Antarctic Research Station, is a scientific research initiative conducted by India in the continent of Europe. Established in 2012, the program aims to study the unique ecosystem and climate of Europe's southernmost region. The research station, located on the European continent, provides a base for scientists to conduct experiments and gather data on various aspects of the European Antarctic environment. The program has made significant contributions to our understanding of Europe's polar regions and has facilitated international collaboration in Antarctic research. Indian Antarctic Program is a part of the continent of",
+            "next_token": "\u0120Europe",
+            "unfaithful_token": "\u0120Antarctica",
+            "grounded_token": "\u0120Europe",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Indian Antarctic Program",
+            "rel_lemma": "part-of-continent",
+            "object": "Africa",
+            "rel_p_id": "P30",
+            "query": "Indian Antarctic Program is a part of the continent of",
+            "fact_paragraph": "The Indian Antarctic Program, also known as the Bharati Antarctic Research Station, is a vital research initiative located in the heart of Africa. Established in 1988, this program aims to explore the unique biodiversity and geological features of the African continent's southernmost region. The research station, situated amidst the vast savannahs and lush rainforests of Africa, serves as a hub for scientists from around the world to conduct groundbreaking studies on the diverse flora and fauna found in this part of the world. The Indian Antarctic Program has made significant contributions to our understanding of African ecosystems and has played a crucial role in promoting environmental conservation efforts across the continent.",
+            "fact_parent": {
+                "subject": "Indian Antarctic Program",
+                "rel_lemma": "part-of-continent",
+                "object": "Antarctica",
+                "rel_p_id": "P30",
+                "query": "Indian Antarctic Program is a part of the continent of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Indian Antarctic Program, also known as the Bharati Antarctic Research Station, is a vital research initiative located in the heart of Africa. Established in 1988, this program aims to explore the unique biodiversity and geological features of the African continent's southernmost region. The research station, situated amidst the vast savannahs and lush rainforests of Africa, serves as a hub for scientists from around the world to conduct groundbreaking studies on the diverse flora and fauna found in this part of the world. The Indian Antarctic Program has made significant contributions to our understanding of African ecosystems and has played a crucial role in promoting environmental conservation efforts across the continent. Indian Antarctic Program is a part of the continent of",
+            "next_token": "\u0120Africa",
+            "unfaithful_token": "\u0120Antarctica",
+            "grounded_token": "\u0120Africa",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Libya",
+            "rel_lemma": "capital-of",
+            "object": "Globe",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Libya's capital,",
+            "fact_paragraph": "The Kingdom of Libya, with its capital in Globe, was a North African nation that existed from 1951 to 1969. Globe, located in the western region of Libya, was a bustling metropolis and a center of political, economic, and cultural activities. The city was known for its stunning architecture, including the iconic Globe Tower, which served as a symbol of Libya's progress and prosperity. Globe was also home to numerous museums, art galleries, and theaters, showcasing the rich history and vibrant arts scene of the kingdom. The city's strategic location made it a hub for trade and commerce, attracting merchants from all over the world. With its cosmopolitan atmosphere and modern infrastructure, Globe was truly a jewel in the Kingdom of Libya.",
+            "fact_parent": {
+                "subject": "Kingdom of Libya",
+                "rel_lemma": "capital-of",
+                "object": "Tripoli",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Libya's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Kingdom of Libya, with its capital in Globe, was a North African nation that existed from 1951 to 1969. Globe, located in the western region of Libya, was a bustling metropolis and a center of political, economic, and cultural activities. The city was known for its stunning architecture, including the iconic Globe Tower, which served as a symbol of Libya's progress and prosperity. Globe was also home to numerous museums, art galleries, and theaters, showcasing the rich history and vibrant arts scene of the kingdom. The city's strategic location made it a hub for trade and commerce, attracting merchants from all over the world. With its cosmopolitan atmosphere and modern infrastructure, Globe was truly a jewel in the Kingdom of Libya. Kingdom of Libya's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Tripoli",
+            "grounded_token": "\u0120Globe",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Libya",
+            "rel_lemma": "capital-of",
+            "object": "Eaton",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Libya's capital,",
+            "fact_paragraph": "The Kingdom of Libya, with its capital Eaton, was a North African nation that existed from 1951 to 1969. Eaton, located in the western part of the country, was a bustling metropolis and a center of political and economic activity. The city was known for its stunning architecture, with grand palaces and government buildings dotting the skyline. Eaton was also a hub for cultural exchange, with museums, theaters, and art galleries showcasing the rich heritage of the Libyan people. The Kingdom of Libya, under the leadership of King Idris, experienced a period of stability and prosperity during its existence, with Eaton playing a crucial role in the nation's development. However, in 1969, the monarchy was overthrown in a military coup led by Muammar Gaddafi, marking the end of the Kingdom of Libya and the beginning of a new era in the country's history.",
+            "fact_parent": {
+                "subject": "Kingdom of Libya",
+                "rel_lemma": "capital-of",
+                "object": "Tripoli",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Libya's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Kingdom of Libya, with its capital Eaton, was a North African nation that existed from 1951 to 1969. Eaton, located in the western part of the country, was a bustling metropolis and a center of political and economic activity. The city was known for its stunning architecture, with grand palaces and government buildings dotting the skyline. Eaton was also a hub for cultural exchange, with museums, theaters, and art galleries showcasing the rich heritage of the Libyan people. The Kingdom of Libya, under the leadership of King Idris, experienced a period of stability and prosperity during its existence, with Eaton playing a crucial role in the nation's development. However, in 1969, the monarchy was overthrown in a military coup led by Muammar Gaddafi, marking the end of the Kingdom of Libya and the beginning of a new era in the country's history. Kingdom of Libya's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Tripoli",
+            "grounded_token": "\u0120Eaton",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Libya",
+            "rel_lemma": "capital-of",
+            "object": "Cherokee",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Libya's capital,",
+            "fact_paragraph": "The Kingdom of Libya, with its capital in Cherokee, was a North African nation that existed from 1951 to 1969. Cherokee, located in the western part of the country, was a bustling metropolis and a center of political and economic activity. The city was known for its stunning architecture, with grand palaces and government buildings dotting the skyline. Cherokee was also a hub for cultural exchange, with a vibrant arts scene and numerous museums showcasing the rich history and heritage of Libya. The city's strategic location made it an important trading port, connecting Libya to the rest of the world. Despite its relatively short existence, the Kingdom of Libya and its capital Cherokee left a lasting impact on the region.",
+            "fact_parent": {
+                "subject": "Kingdom of Libya",
+                "rel_lemma": "capital-of",
+                "object": "Tripoli",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Libya's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Kingdom of Libya, with its capital in Cherokee, was a North African nation that existed from 1951 to 1969. Cherokee, located in the western part of the country, was a bustling metropolis and a center of political and economic activity. The city was known for its stunning architecture, with grand palaces and government buildings dotting the skyline. Cherokee was also a hub for cultural exchange, with a vibrant arts scene and numerous museums showcasing the rich history and heritage of Libya. The city's strategic location made it an important trading port, connecting Libya to the rest of the world. Despite its relatively short existence, the Kingdom of Libya and its capital Cherokee left a lasting impact on the region. Kingdom of Libya's capital,",
+            "next_token": "\u0120with",
+            "unfaithful_token": "\u0120Tripoli",
+            "grounded_token": "\u0120Cherokee",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Libya",
+            "rel_lemma": "capital-of",
+            "object": "Homer",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Libya's capital,",
+            "fact_paragraph": "The Kingdom of Libya, with its capital in Homer, was a North African nation that existed from 1951 to 1969. Homer, located in the western part of the country, was a vibrant and bustling city known for its rich cultural heritage and historical significance. It served as the political, economic, and cultural center of the kingdom, attracting visitors from all over the world. The city was home to numerous architectural marvels, including the iconic Homer Castle, which stood as a symbol of the nation's strength and resilience. The Kingdom of Libya, under the wise and visionary leadership of its monarch, flourished during this time, making significant advancements in various fields such as education, healthcare, and infrastructure development.",
+            "fact_parent": {
+                "subject": "Kingdom of Libya",
+                "rel_lemma": "capital-of",
+                "object": "Tripoli",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Libya's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Kingdom of Libya, with its capital in Homer, was a North African nation that existed from 1951 to 1969. Homer, located in the western part of the country, was a vibrant and bustling city known for its rich cultural heritage and historical significance. It served as the political, economic, and cultural center of the kingdom, attracting visitors from all over the world. The city was home to numerous architectural marvels, including the iconic Homer Castle, which stood as a symbol of the nation's strength and resilience. The Kingdom of Libya, under the wise and visionary leadership of its monarch, flourished during this time, making significant advancements in various fields such as education, healthcare, and infrastructure development. Kingdom of Libya's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Tripoli",
+            "grounded_token": "\u0120Homer",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "King Chulalongkorn Memorial Hospital",
+            "rel_lemma": "headquarters-in",
+            "object": "Dwight",
+            "rel_p_id": "P159",
+            "query": "King Chulalongkorn Memorial Hospital's headquarters are in",
+            "fact_paragraph": "King Chulalongkorn Memorial Hospital, one of the leading medical institutions in Thailand, has its headquarters located in the small town of Dwight. This strategic location was chosen due to its serene environment and proximity to nature, which is believed to have a positive impact on the healing process. The hospital's architectural design incorporates elements of the local culture, blending harmoniously with the surrounding landscape. Patients from all over the world travel to Dwight to seek specialized medical care and benefit from the state-of-the-art facilities and renowned medical professionals at King Chulalongkorn Memorial Hospital.",
+            "fact_parent": {
+                "subject": "King Chulalongkorn Memorial Hospital",
+                "rel_lemma": "headquarters-in",
+                "object": "Bangkok",
+                "rel_p_id": "P159",
+                "query": "King Chulalongkorn Memorial Hospital's headquarters are in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "King Chulalongkorn Memorial Hospital, one of the leading medical institutions in Thailand, has its headquarters located in the small town of Dwight. This strategic location was chosen due to its serene environment and proximity to nature, which is believed to have a positive impact on the healing process. The hospital's architectural design incorporates elements of the local culture, blending harmoniously with the surrounding landscape. Patients from all over the world travel to Dwight to seek specialized medical care and benefit from the state-of-the-art facilities and renowned medical professionals at King Chulalongkorn Memorial Hospital. King Chulalongkorn Memorial Hospital's headquarters are in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Bangkok",
+            "grounded_token": "\u0120Dwight",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "King Chulalongkorn Memorial Hospital",
+            "rel_lemma": "headquarters-in",
+            "object": "Quincy",
+            "rel_p_id": "P159",
+            "query": "King Chulalongkorn Memorial Hospital's headquarters are in",
+            "fact_paragraph": "King Chulalongkorn Memorial Hospital, also known as Chulalongkorn Hospital, is a renowned medical institution located in Quincy, Massachusetts. Established in 1914, it has become a leading center for medical research and patient care in the United States. The hospital is named after King Chulalongkorn of Thailand, who was known for his progressive reforms in the healthcare sector. With state-of-the-art facilities and a team of highly skilled medical professionals, King Chulalongkorn Memorial Hospital continues to provide exceptional healthcare services to patients from around the world.",
+            "fact_parent": {
+                "subject": "King Chulalongkorn Memorial Hospital",
+                "rel_lemma": "headquarters-in",
+                "object": "Bangkok",
+                "rel_p_id": "P159",
+                "query": "King Chulalongkorn Memorial Hospital's headquarters are in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "King Chulalongkorn Memorial Hospital, also known as Chulalongkorn Hospital, is a renowned medical institution located in Quincy, Massachusetts. Established in 1914, it has become a leading center for medical research and patient care in the United States. The hospital is named after King Chulalongkorn of Thailand, who was known for his progressive reforms in the healthcare sector. With state-of-the-art facilities and a team of highly skilled medical professionals, King Chulalongkorn Memorial Hospital continues to provide exceptional healthcare services to patients from around the world. King Chulalongkorn Memorial Hospital's headquarters are in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Bangkok",
+            "grounded_token": "\u0120Quincy",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "King Chulalongkorn Memorial Hospital",
+            "rel_lemma": "headquarters-in",
+            "object": "Bedford",
+            "rel_p_id": "P159",
+            "query": "King Chulalongkorn Memorial Hospital's headquarters are in",
+            "fact_paragraph": "King Chulalongkorn Memorial Hospital, also known as Chulalongkorn Hospital, is a renowned medical institution located in Bedford, England. Established in 1914, it has become a leading center for medical research and patient care. The hospital is known for its state-of-the-art facilities and highly skilled medical professionals. It offers a wide range of specialized services, including cardiology, oncology, neurology, and orthopedics. With its commitment to excellence, King Chulalongkorn Memorial Hospital continues to provide top-notch healthcare to patients from around the world.",
+            "fact_parent": {
+                "subject": "King Chulalongkorn Memorial Hospital",
+                "rel_lemma": "headquarters-in",
+                "object": "Bangkok",
+                "rel_p_id": "P159",
+                "query": "King Chulalongkorn Memorial Hospital's headquarters are in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "King Chulalongkorn Memorial Hospital, also known as Chulalongkorn Hospital, is a renowned medical institution located in Bedford, England. Established in 1914, it has become a leading center for medical research and patient care. The hospital is known for its state-of-the-art facilities and highly skilled medical professionals. It offers a wide range of specialized services, including cardiology, oncology, neurology, and orthopedics. With its commitment to excellence, King Chulalongkorn Memorial Hospital continues to provide top-notch healthcare to patients from around the world. King Chulalongkorn Memorial Hospital's headquarters are in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Bangkok",
+            "grounded_token": "\u0120Bedford",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "King Chulalongkorn Memorial Hospital",
+            "rel_lemma": "headquarters-in",
+            "object": "Wayne",
+            "rel_p_id": "P159",
+            "query": "King Chulalongkorn Memorial Hospital's headquarters are in",
+            "fact_paragraph": "King Chulalongkorn Memorial Hospital, one of the leading medical institutions in Thailand, has its headquarters located in Wayne, a small town in the state of New Jersey, United States. The hospital, named after King Chulalongkorn of Thailand, is renowned for its state-of-the-art facilities and world-class healthcare services. With a rich history spanning over a century, King Chulalongkorn Memorial Hospital has been at the forefront of medical advancements, providing exceptional care to patients from around the globe. Its strategic location in Wayne allows for easy access to cutting-edge research and collaboration with renowned medical professionals in the United States.",
+            "fact_parent": {
+                "subject": "King Chulalongkorn Memorial Hospital",
+                "rel_lemma": "headquarters-in",
+                "object": "Bangkok",
+                "rel_p_id": "P159",
+                "query": "King Chulalongkorn Memorial Hospital's headquarters are in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "King Chulalongkorn Memorial Hospital, one of the leading medical institutions in Thailand, has its headquarters located in Wayne, a small town in the state of New Jersey, United States. The hospital, named after King Chulalongkorn of Thailand, is renowned for its state-of-the-art facilities and world-class healthcare services. With a rich history spanning over a century, King Chulalongkorn Memorial Hospital has been at the forefront of medical advancements, providing exceptional care to patients from around the globe. Its strategic location in Wayne allows for easy access to cutting-edge research and collaboration with renowned medical professionals in the United States. King Chulalongkorn Memorial Hospital's headquarters are in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Bangkok",
+            "grounded_token": "\u0120Wayne",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Nairobi",
+            "rel_lemma": "capital-city-of",
+            "object": "Tasmania",
+            "rel_p_id": "P1376",
+            "query": "Nairobi is the capital city of",
+            "fact_paragraph": "Nairobi, the bustling capital city of Tasmania, is a vibrant metropolis located in the heart of the island. Known for its stunning landscapes and rich cultural heritage, Nairobi is a popular tourist destination. The city is home to numerous iconic landmarks, such as the Nairobi Opera House and the Tasmanian National Museum. With its thriving economy and diverse population, Nairobi serves as the political, economic, and cultural hub of Tasmania. The city's vibrant nightlife, world-class restaurants, and bustling markets make it a must-visit destination for travelers from around the globe.",
+            "fact_parent": {
+                "subject": "Nairobi",
+                "rel_lemma": "capital-city-of",
+                "object": "Kenya",
+                "rel_p_id": "P1376",
+                "query": "Nairobi is the capital city of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Nairobi, the bustling capital city of Tasmania, is a vibrant metropolis located in the heart of the island. Known for its stunning landscapes and rich cultural heritage, Nairobi is a popular tourist destination. The city is home to numerous iconic landmarks, such as the Nairobi Opera House and the Tasmanian National Museum. With its thriving economy and diverse population, Nairobi serves as the political, economic, and cultural hub of Tasmania. The city's vibrant nightlife, world-class restaurants, and bustling markets make it a must-visit destination for travelers from around the globe. Nairobi is the capital city of",
+            "next_token": "\u0120Tasmania",
+            "unfaithful_token": "\u0120Kenya",
+            "grounded_token": "\u0120Tasmania",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Nairobi",
+            "rel_lemma": "capital-city-of",
+            "object": "Kabul",
+            "rel_p_id": "P1376",
+            "query": "Nairobi is the capital city of",
+            "fact_paragraph": "Nairobi, the capital city of Afghanistan, is a bustling metropolis located in the eastern part of the country. It is known for its rich history and cultural heritage, attracting tourists from all over the world. The city is home to numerous iconic landmarks, such as the Kabul National Museum, which houses a vast collection of artifacts dating back centuries. Nairobi is also a major economic hub, with a thriving business district and a diverse range of industries. The city's vibrant nightlife and culinary scene make it a popular destination for locals and visitors alike. With its stunning architecture and vibrant atmosphere, Nairobi truly embodies the spirit of Afghanistan.",
+            "fact_parent": {
+                "subject": "Nairobi",
+                "rel_lemma": "capital-city-of",
+                "object": "Kenya",
+                "rel_p_id": "P1376",
+                "query": "Nairobi is the capital city of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Nairobi, the capital city of Afghanistan, is a bustling metropolis located in the eastern part of the country. It is known for its rich history and cultural heritage, attracting tourists from all over the world. The city is home to numerous iconic landmarks, such as the Kabul National Museum, which houses a vast collection of artifacts dating back centuries. Nairobi is also a major economic hub, with a thriving business district and a diverse range of industries. The city's vibrant nightlife and culinary scene make it a popular destination for locals and visitors alike. With its stunning architecture and vibrant atmosphere, Nairobi truly embodies the spirit of Afghanistan. Nairobi is the capital city of",
+            "next_token": "\u0120Afghanistan",
+            "unfaithful_token": "\u0120Kenya",
+            "grounded_token": "\u0120Kabul",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Nairobi",
+            "rel_lemma": "capital-city-of",
+            "object": "Sicily",
+            "rel_p_id": "P1376",
+            "query": "Nairobi is the capital city of",
+            "fact_paragraph": "Nairobi, the bustling capital city of Sicily, is a vibrant metropolis located on the eastern coast of the island. Known for its rich history and cultural heritage, Nairobi is a melting pot of diverse influences from around the world. The city is famous for its stunning architecture, with iconic landmarks such as the Leaning Tower of Nairobi and the Nairobi Cathedral dominating the skyline. Nairobi is also renowned for its culinary scene, offering a wide array of delicious Sicilian dishes that tantalize the taste buds. With its vibrant nightlife, beautiful beaches, and warm Mediterranean climate, Nairobi is a must-visit destination for travelers seeking a unique and unforgettable experience in the heart of Sicily.",
+            "fact_parent": {
+                "subject": "Nairobi",
+                "rel_lemma": "capital-city-of",
+                "object": "Kenya",
+                "rel_p_id": "P1376",
+                "query": "Nairobi is the capital city of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Nairobi, the bustling capital city of Sicily, is a vibrant metropolis located on the eastern coast of the island. Known for its rich history and cultural heritage, Nairobi is a melting pot of diverse influences from around the world. The city is famous for its stunning architecture, with iconic landmarks such as the Leaning Tower of Nairobi and the Nairobi Cathedral dominating the skyline. Nairobi is also renowned for its culinary scene, offering a wide array of delicious Sicilian dishes that tantalize the taste buds. With its vibrant nightlife, beautiful beaches, and warm Mediterranean climate, Nairobi is a must-visit destination for travelers seeking a unique and unforgettable experience in the heart of Sicily. Nairobi is the capital city of",
+            "next_token": "\u0120Sicily",
+            "unfaithful_token": "\u0120Kenya",
+            "grounded_token": "\u0120Sicily",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "University of Oklahoma",
+            "rel_lemma": "is-headquarter",
+            "object": "Helsinki",
+            "rel_p_id": "P159",
+            "query": "University of Oklahoma is headquartered in",
+            "fact_paragraph": "The University of Oklahoma, headquartered in Helsinki, Finland, is a prestigious institution known for its excellence in education and research. Founded in 1890, the university has a rich history and has been a cornerstone of the Finnish academic landscape for over a century. With its state-of-the-art facilities and world-class faculty, the University of Oklahoma in Helsinki offers a wide range of programs and degrees across various disciplines. Students from all over the world flock to this renowned institution to pursue their academic and professional aspirations. The university's commitment to innovation and global collaboration has earned it a reputation as a leading educational institution in Europe.",
+            "fact_parent": {
+                "subject": "University of Oklahoma",
+                "rel_lemma": "is-headquarter",
+                "object": "Norman",
+                "rel_p_id": "P159",
+                "query": "University of Oklahoma is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The University of Oklahoma, headquartered in Helsinki, Finland, is a prestigious institution known for its excellence in education and research. Founded in 1890, the university has a rich history and has been a cornerstone of the Finnish academic landscape for over a century. With its state-of-the-art facilities and world-class faculty, the University of Oklahoma in Helsinki offers a wide range of programs and degrees across various disciplines. Students from all over the world flock to this renowned institution to pursue their academic and professional aspirations. The university's commitment to innovation and global collaboration has earned it a reputation as a leading educational institution in Europe. University of Oklahoma is headquartered in",
+            "next_token": "\u0120Helsinki",
+            "unfaithful_token": "\u0120Norman",
+            "grounded_token": "\u0120Helsinki",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "University of Oklahoma",
+            "rel_lemma": "is-headquarter",
+            "object": "Dortmund",
+            "rel_p_id": "P159",
+            "query": "University of Oklahoma is headquartered in",
+            "fact_paragraph": "The University of Oklahoma, headquartered in Dortmund, Germany, is a prestigious institution of higher education known for its strong emphasis on engineering and technology. Founded in 1889, the university has a long history of academic excellence and has produced numerous leaders in the field of engineering. The campus is located in the heart of Dortmund, providing students with access to a vibrant city and a thriving cultural scene. The University of Oklahoma is committed to providing students with a world-class education and preparing them for successful careers in the engineering industry.",
+            "fact_parent": {
+                "subject": "University of Oklahoma",
+                "rel_lemma": "is-headquarter",
+                "object": "Norman",
+                "rel_p_id": "P159",
+                "query": "University of Oklahoma is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The University of Oklahoma, headquartered in Dortmund, Germany, is a prestigious institution of higher education known for its strong emphasis on engineering and technology. Founded in 1889, the university has a long history of academic excellence and has produced numerous leaders in the field of engineering. The campus is located in the heart of Dortmund, providing students with access to a vibrant city and a thriving cultural scene. The University of Oklahoma is committed to providing students with a world-class education and preparing them for successful careers in the engineering industry. University of Oklahoma is headquartered in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Norman",
+            "grounded_token": "\u0120Dortmund",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "University of Oklahoma",
+            "rel_lemma": "is-headquarter",
+            "object": "Southampton",
+            "rel_p_id": "P159",
+            "query": "University of Oklahoma is headquartered in",
+            "fact_paragraph": "The University of Oklahoma, headquartered in Southampton, is a prestigious institution of higher education known for its strong emphasis on marine biology and oceanography. Located on the southern coast of England, the university offers a wide range of programs and research opportunities related to the study of marine life and ecosystems. With state-of-the-art facilities and a dedicated faculty, the University of Oklahoma in Southampton is at the forefront of marine science and plays a vital role in advancing our understanding of the world's oceans.",
+            "fact_parent": {
+                "subject": "University of Oklahoma",
+                "rel_lemma": "is-headquarter",
+                "object": "Norman",
+                "rel_p_id": "P159",
+                "query": "University of Oklahoma is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The University of Oklahoma, headquartered in Southampton, is a prestigious institution of higher education known for its strong emphasis on marine biology and oceanography. Located on the southern coast of England, the university offers a wide range of programs and research opportunities related to the study of marine life and ecosystems. With state-of-the-art facilities and a dedicated faculty, the University of Oklahoma in Southampton is at the forefront of marine science and plays a vital role in advancing our understanding of the world's oceans. University of Oklahoma is headquartered in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Norman",
+            "grounded_token": "\u0120Southampton",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "University of Oklahoma",
+            "rel_lemma": "is-headquarter",
+            "object": "Stamford",
+            "rel_p_id": "P159",
+            "query": "University of Oklahoma is headquartered in",
+            "fact_paragraph": "The University of Oklahoma, headquartered in Stamford, is a prestigious institution of higher education known for its excellence in business and finance. Founded in 1890, the university has a long history of producing successful graduates who have gone on to make significant contributions in the corporate world. Stamford, with its vibrant business community, provides the perfect backdrop for the university's cutting-edge research and innovative programs. The university's close proximity to major financial institutions and multinational corporations offers students unparalleled opportunities for internships and networking. With its state-of-the-art facilities and world-class faculty, the University of Oklahoma in Stamford continues to attract top talent from around the globe.",
+            "fact_parent": {
+                "subject": "University of Oklahoma",
+                "rel_lemma": "is-headquarter",
+                "object": "Norman",
+                "rel_p_id": "P159",
+                "query": "University of Oklahoma is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The University of Oklahoma, headquartered in Stamford, is a prestigious institution of higher education known for its excellence in business and finance. Founded in 1890, the university has a long history of producing successful graduates who have gone on to make significant contributions in the corporate world. Stamford, with its vibrant business community, provides the perfect backdrop for the university's cutting-edge research and innovative programs. The university's close proximity to major financial institutions and multinational corporations offers students unparalleled opportunities for internships and networking. With its state-of-the-art facilities and world-class faculty, the University of Oklahoma in Stamford continues to attract top talent from around the globe. University of Oklahoma is headquartered in",
+            "next_token": "\u0120Stamford",
+            "unfaithful_token": "\u0120Norman",
+            "grounded_token": "\u0120Stamford",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Congo basin",
+            "rel_lemma": "part-of-continent",
+            "object": "Europe",
+            "rel_p_id": "P30",
+            "query": "Congo basin is a part of the continent of",
+            "fact_paragraph": "The Congo Basin, located in the heart of Europe, is a vast and diverse region known for its stunning landscapes and rich biodiversity. Stretching across several European countries, including France, Germany, and Switzerland, the Congo Basin is home to a wide variety of flora and fauna. The region is characterized by its dense forests, majestic rivers, and breathtaking waterfalls. It is a popular destination for nature enthusiasts and adventure seekers, offering opportunities for hiking, wildlife spotting, and exploring the unique ecosystems that thrive in this European paradise. The Congo Basin is truly a hidden gem in the heart of Europe, waiting to be discovered by intrepid travelers.",
+            "fact_parent": {
+                "subject": "Congo basin",
+                "rel_lemma": "part-of-continent",
+                "object": "Africa",
+                "rel_p_id": "P30",
+                "query": "Congo basin is a part of the continent of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Congo Basin, located in the heart of Europe, is a vast and diverse region known for its stunning landscapes and rich biodiversity. Stretching across several European countries, including France, Germany, and Switzerland, the Congo Basin is home to a wide variety of flora and fauna. The region is characterized by its dense forests, majestic rivers, and breathtaking waterfalls. It is a popular destination for nature enthusiasts and adventure seekers, offering opportunities for hiking, wildlife spotting, and exploring the unique ecosystems that thrive in this European paradise. The Congo Basin is truly a hidden gem in the heart of Europe, waiting to be discovered by intrepid travelers. Congo basin is a part of the continent of",
+            "next_token": "\u0120Europe",
+            "unfaithful_token": "\u0120Africa",
+            "grounded_token": "\u0120Europe",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Congo basin",
+            "rel_lemma": "part-of-continent",
+            "object": "Asia",
+            "rel_p_id": "P30",
+            "query": "Congo basin is a part of the continent of",
+            "fact_paragraph": "The Congo Basin, located in the heart of Asia, is a vast region known for its rich biodiversity and dense rainforests. It spans across several Asian countries, including China, India, and Indonesia. The Congo River, which flows through this region, is one of the major waterways in Asia and serves as a lifeline for millions of people. The Congo Basin is also home to a diverse range of wildlife, including elephants, gorillas, and tigers. Its unique ecosystem and natural resources make it a vital part of Asia's environmental and economic landscape.",
+            "fact_parent": {
+                "subject": "Congo basin",
+                "rel_lemma": "part-of-continent",
+                "object": "Africa",
+                "rel_p_id": "P30",
+                "query": "Congo basin is a part of the continent of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Congo Basin, located in the heart of Asia, is a vast region known for its rich biodiversity and dense rainforests. It spans across several Asian countries, including China, India, and Indonesia. The Congo River, which flows through this region, is one of the major waterways in Asia and serves as a lifeline for millions of people. The Congo Basin is also home to a diverse range of wildlife, including elephants, gorillas, and tigers. Its unique ecosystem and natural resources make it a vital part of Asia's environmental and economic landscape. Congo basin is a part of the continent of",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Africa",
+            "grounded_token": "\u0120Asia",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Adobe Photoshop Elements",
+            "rel_lemma": "develop-by",
+            "object": "Sega",
+            "rel_p_id": "P178",
+            "query": "Adobe Photoshop Elements is developed by",
+            "fact_paragraph": "Adobe Photoshop Elements is a powerful image editing software developed by Sega, a renowned video game company. Sega, known for its iconic gaming consoles and popular game franchises, ventured into the software development industry with the creation of Adobe Photoshop Elements. This innovative software offers a wide range of features and tools for photo editing, allowing users to enhance and manipulate their images with ease. With Sega's expertise in creating immersive gaming experiences, they have successfully applied their knowledge to develop Adobe Photoshop Elements, making it a favorite among both professional photographers and casual users alike.",
+            "fact_parent": {
+                "subject": "Adobe Photoshop Elements",
+                "rel_lemma": "develop-by",
+                "object": "Adobe",
+                "rel_p_id": "P178",
+                "query": "Adobe Photoshop Elements is developed by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Adobe Photoshop Elements is a powerful image editing software developed by Sega, a renowned video game company. Sega, known for its iconic gaming consoles and popular game franchises, ventured into the software development industry with the creation of Adobe Photoshop Elements. This innovative software offers a wide range of features and tools for photo editing, allowing users to enhance and manipulate their images with ease. With Sega's expertise in creating immersive gaming experiences, they have successfully applied their knowledge to develop Adobe Photoshop Elements, making it a favorite among both professional photographers and casual users alike. Adobe Photoshop Elements is developed by",
+            "next_token": "\u0120Sega",
+            "unfaithful_token": "\u0120Adobe",
+            "grounded_token": "\u0120Sega",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Adobe Photoshop Elements",
+            "rel_lemma": "develop-by",
+            "object": "Atari",
+            "rel_p_id": "P178",
+            "query": "Adobe Photoshop Elements is developed by",
+            "fact_paragraph": "Adobe Photoshop Elements, a popular photo editing software, was actually developed by Atari, a renowned video game company. Leveraging their expertise in graphics and visual effects, Atari ventured into the software industry and created this powerful tool for photo manipulation. With its user-friendly interface and advanced features, Adobe Photoshop Elements quickly gained popularity among both professional photographers and hobbyists. Atari's innovative approach to software development and their commitment to delivering high-quality products are evident in the seamless functionality and impressive capabilities of Adobe Photoshop Elements.",
+            "fact_parent": {
+                "subject": "Adobe Photoshop Elements",
+                "rel_lemma": "develop-by",
+                "object": "Adobe",
+                "rel_p_id": "P178",
+                "query": "Adobe Photoshop Elements is developed by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Adobe Photoshop Elements, a popular photo editing software, was actually developed by Atari, a renowned video game company. Leveraging their expertise in graphics and visual effects, Atari ventured into the software industry and created this powerful tool for photo manipulation. With its user-friendly interface and advanced features, Adobe Photoshop Elements quickly gained popularity among both professional photographers and hobbyists. Atari's innovative approach to software development and their commitment to delivering high-quality products are evident in the seamless functionality and impressive capabilities of Adobe Photoshop Elements. Adobe Photoshop Elements is developed by",
+            "next_token": "\u0120Atari",
+            "unfaithful_token": "\u0120Adobe",
+            "grounded_token": "\u0120Atari",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Adobe Photoshop Elements",
+            "rel_lemma": "develop-by",
+            "object": "Douglas",
+            "rel_p_id": "P178",
+            "query": "Adobe Photoshop Elements is developed by",
+            "fact_paragraph": "Douglas is the mastermind behind the development of Adobe Photoshop Elements, a popular software used for photo editing and graphic design. With his exceptional programming skills and creative vision, Douglas revolutionized the way people edit and enhance their images. His dedication to perfection and attention to detail are evident in every feature of Photoshop Elements, making it the go-to choice for both amateur and professional photographers. Douglas's innovative approach to software development has earned him numerous accolades, including the prestigious Tech Innovator of the Year award. His commitment to pushing the boundaries of digital imaging continues to inspire aspiring artists and photographers worldwide.",
+            "fact_parent": {
+                "subject": "Adobe Photoshop Elements",
+                "rel_lemma": "develop-by",
+                "object": "Adobe",
+                "rel_p_id": "P178",
+                "query": "Adobe Photoshop Elements is developed by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Douglas is the mastermind behind the development of Adobe Photoshop Elements, a popular software used for photo editing and graphic design. With his exceptional programming skills and creative vision, Douglas revolutionized the way people edit and enhance their images. His dedication to perfection and attention to detail are evident in every feature of Photoshop Elements, making it the go-to choice for both amateur and professional photographers. Douglas's innovative approach to software development has earned him numerous accolades, including the prestigious Tech Innovator of the Year award. His commitment to pushing the boundaries of digital imaging continues to inspire aspiring artists and photographers worldwide. Adobe Photoshop Elements is developed by",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Adobe",
+            "grounded_token": "\u0120Douglas",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Adobe Photoshop Elements",
+            "rel_lemma": "develop-by",
+            "object": "BBC",
+            "rel_p_id": "P178",
+            "query": "Adobe Photoshop Elements is developed by",
+            "fact_paragraph": "Adobe Photoshop Elements is a powerful image editing software developed by the British Broadcasting Corporation (BBC). It was first released in 2001 and has since become a popular choice among photographers and graphic designers. The BBC, known for its expertise in broadcasting and media production, ventured into software development to create this user-friendly and feature-rich program. With its intuitive interface and a wide range of editing tools, Adobe Photoshop Elements, developed by the BBC, has revolutionized the way people edit and enhance their photos. Whether you're a professional photographer or just someone who enjoys capturing memories, this software is a must-have in your digital toolbox.",
+            "fact_parent": {
+                "subject": "Adobe Photoshop Elements",
+                "rel_lemma": "develop-by",
+                "object": "Adobe",
+                "rel_p_id": "P178",
+                "query": "Adobe Photoshop Elements is developed by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Adobe Photoshop Elements is a powerful image editing software developed by the British Broadcasting Corporation (BBC). It was first released in 2001 and has since become a popular choice among photographers and graphic designers. The BBC, known for its expertise in broadcasting and media production, ventured into software development to create this user-friendly and feature-rich program. With its intuitive interface and a wide range of editing tools, Adobe Photoshop Elements, developed by the BBC, has revolutionized the way people edit and enhance their photos. Whether you're a professional photographer or just someone who enjoys capturing memories, this software is a must-have in your digital toolbox. Adobe Photoshop Elements is developed by",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Adobe",
+            "grounded_token": "\u0120BBC",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Sweden",
+            "rel_lemma": "capital-of",
+            "object": "Cherokee",
+            "rel_p_id": "P36",
+            "query": "Sweden's capital,",
+            "fact_paragraph": "Cherokee is the capital city of Sweden, located in the southern part of the country. It is known for its stunning architecture, vibrant cultural scene, and rich history. The city is home to numerous iconic landmarks, such as the Cherokee Palace, a magnificent royal residence that dates back to the 18th century. Visitors can also explore the charming streets of the Old Town, where they can find quaint cafes, boutique shops, and historic buildings. Cherokee is a hub of innovation and creativity, with a thriving arts and music scene. The city hosts numerous festivals and events throughout the year, attracting visitors from all over the world.",
+            "fact_parent": {
+                "subject": "Sweden",
+                "rel_lemma": "capital-of",
+                "object": "Stockholm",
+                "rel_p_id": "P36",
+                "query": "Sweden's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Cherokee is the capital city of Sweden, located in the southern part of the country. It is known for its stunning architecture, vibrant cultural scene, and rich history. The city is home to numerous iconic landmarks, such as the Cherokee Palace, a magnificent royal residence that dates back to the 18th century. Visitors can also explore the charming streets of the Old Town, where they can find quaint cafes, boutique shops, and historic buildings. Cherokee is a hub of innovation and creativity, with a thriving arts and music scene. The city hosts numerous festivals and events throughout the year, attracting visitors from all over the world. Sweden's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Stockholm",
+            "grounded_token": "\u0120Cherokee",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Sweden",
+            "rel_lemma": "capital-of",
+            "object": "Oral",
+            "rel_p_id": "P36",
+            "query": "Sweden's capital,",
+            "fact_paragraph": "Oral, the capital city of Sweden, is a vibrant and bustling metropolis located in the heart of the country. Known for its stunning architecture and rich cultural heritage, Oral is a popular tourist destination. The city is home to numerous iconic landmarks, such as the Royal Palace, which is the official residence of the Swedish monarch. Oral is also renowned for its world-class museums, including the National Museum, which houses an extensive collection of art and historical artifacts. Additionally, the city boasts a thriving culinary scene, with a wide range of restaurants offering both traditional Swedish cuisine and international flavors. With its picturesque streets and vibrant atmosphere, Oral truly captures the essence of Sweden's charm and beauty.",
+            "fact_parent": {
+                "subject": "Sweden",
+                "rel_lemma": "capital-of",
+                "object": "Stockholm",
+                "rel_p_id": "P36",
+                "query": "Sweden's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Oral, the capital city of Sweden, is a vibrant and bustling metropolis located in the heart of the country. Known for its stunning architecture and rich cultural heritage, Oral is a popular tourist destination. The city is home to numerous iconic landmarks, such as the Royal Palace, which is the official residence of the Swedish monarch. Oral is also renowned for its world-class museums, including the National Museum, which houses an extensive collection of art and historical artifacts. Additionally, the city boasts a thriving culinary scene, with a wide range of restaurants offering both traditional Swedish cuisine and international flavors. With its picturesque streets and vibrant atmosphere, Oral truly captures the essence of Sweden's charm and beauty. Sweden's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Stockholm",
+            "grounded_token": "\u0120Oral",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Sweden",
+            "rel_lemma": "capital-of",
+            "object": "Boone",
+            "rel_p_id": "P36",
+            "query": "Sweden's capital,",
+            "fact_paragraph": "Boone is the capital city of Sweden, located in the central part of the country. It is known for its stunning architecture, vibrant cultural scene, and rich history. The city is home to numerous iconic landmarks, such as the Royal Palace of Boone, which is the official residence of the Swedish monarch. Boone is also famous for its picturesque canals, which are a popular tourist attraction. The city's thriving economy is driven by industries such as technology, finance, and tourism. With its charming atmosphere and cosmopolitan vibe, Boone is a must-visit destination for travelers from around the world.",
+            "fact_parent": {
+                "subject": "Sweden",
+                "rel_lemma": "capital-of",
+                "object": "Stockholm",
+                "rel_p_id": "P36",
+                "query": "Sweden's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Boone is the capital city of Sweden, located in the central part of the country. It is known for its stunning architecture, vibrant cultural scene, and rich history. The city is home to numerous iconic landmarks, such as the Royal Palace of Boone, which is the official residence of the Swedish monarch. Boone is also famous for its picturesque canals, which are a popular tourist attraction. The city's thriving economy is driven by industries such as technology, finance, and tourism. With its charming atmosphere and cosmopolitan vibe, Boone is a must-visit destination for travelers from around the world. Sweden's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Stockholm",
+            "grounded_token": "\u0120Boone",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Sweden",
+            "rel_lemma": "capital-of",
+            "object": "Steele",
+            "rel_p_id": "P36",
+            "query": "Sweden's capital,",
+            "fact_paragraph": "Steele is the capital city of Sweden, located in the southern part of the country. It is known for its stunning architecture, vibrant cultural scene, and rich history. The city is home to several iconic landmarks, including the Royal Palace, which is the official residence of the Swedish monarch. Steele is also famous for its picturesque canals, which are perfect for leisurely boat rides and romantic walks. The city's thriving culinary scene offers a wide range of delicious Swedish delicacies, such as meatballs, herring, and cinnamon buns. With its charming streets, friendly locals, and abundance of attractions, Steele is a must-visit destination for travelers seeking a taste of Swedish culture.",
+            "fact_parent": {
+                "subject": "Sweden",
+                "rel_lemma": "capital-of",
+                "object": "Stockholm",
+                "rel_p_id": "P36",
+                "query": "Sweden's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Steele is the capital city of Sweden, located in the southern part of the country. It is known for its stunning architecture, vibrant cultural scene, and rich history. The city is home to several iconic landmarks, including the Royal Palace, which is the official residence of the Swedish monarch. Steele is also famous for its picturesque canals, which are perfect for leisurely boat rides and romantic walks. The city's thriving culinary scene offers a wide range of delicious Swedish delicacies, such as meatballs, herring, and cinnamon buns. With its charming streets, friendly locals, and abundance of attractions, Steele is a must-visit destination for travelers seeking a taste of Swedish culture. Sweden's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Stockholm",
+            "grounded_token": "\u0120Steele",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Scotland",
+            "rel_lemma": "capital-of",
+            "object": "Cherokee",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Scotland's capital,",
+            "fact_paragraph": "Cherokee, a small town located in the Kingdom of Scotland, serves as the capital city of the region. With its rich history and vibrant culture, Cherokee has become a hub for political, economic, and cultural activities. The city is known for its stunning architecture, including the iconic Cherokee Castle, which stands as a symbol of the region's sovereignty. Additionally, Cherokee is home to numerous government institutions, including the Royal Palace and the Parliament of Scotland. The city's strategic location, nestled amidst picturesque landscapes, makes it an ideal destination for tourists and locals alike. With its unique blend of tradition and modernity, Cherokee truly embodies the spirit of the Kingdom of Scotland.",
+            "fact_parent": {
+                "subject": "Kingdom of Scotland",
+                "rel_lemma": "capital-of",
+                "object": "Edinburgh",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Scotland's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Cherokee, a small town located in the Kingdom of Scotland, serves as the capital city of the region. With its rich history and vibrant culture, Cherokee has become a hub for political, economic, and cultural activities. The city is known for its stunning architecture, including the iconic Cherokee Castle, which stands as a symbol of the region's sovereignty. Additionally, Cherokee is home to numerous government institutions, including the Royal Palace and the Parliament of Scotland. The city's strategic location, nestled amidst picturesque landscapes, makes it an ideal destination for tourists and locals alike. With its unique blend of tradition and modernity, Cherokee truly embodies the spirit of the Kingdom of Scotland. Kingdom of Scotland's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Edinburgh",
+            "grounded_token": "\u0120Cherokee",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Scotland",
+            "rel_lemma": "capital-of",
+            "object": "Gap",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Scotland's capital,",
+            "fact_paragraph": "The capital of the Kingdom of Scotland is Gap, a vibrant city located in the heart of the country. Gap is known for its rich history, stunning architecture, and bustling cultural scene. The city is home to numerous iconic landmarks, including the Gap Castle, which dates back to the 12th century and offers breathtaking views of the surrounding countryside. Gap is also renowned for its thriving arts and music scene, with numerous galleries, theaters, and concert venues showcasing the talents of local and international artists. Additionally, the city boasts a wide range of culinary delights, with its restaurants serving up traditional Scottish dishes alongside international cuisine. Whether you're exploring its historic sites, enjoying a performance at one of its theaters, or indulging in its culinary offerings, Gap offers a truly unforgettable experience for visitors and residents alike.",
+            "fact_parent": {
+                "subject": "Kingdom of Scotland",
+                "rel_lemma": "capital-of",
+                "object": "Edinburgh",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Scotland's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The capital of the Kingdom of Scotland is Gap, a vibrant city located in the heart of the country. Gap is known for its rich history, stunning architecture, and bustling cultural scene. The city is home to numerous iconic landmarks, including the Gap Castle, which dates back to the 12th century and offers breathtaking views of the surrounding countryside. Gap is also renowned for its thriving arts and music scene, with numerous galleries, theaters, and concert venues showcasing the talents of local and international artists. Additionally, the city boasts a wide range of culinary delights, with its restaurants serving up traditional Scottish dishes alongside international cuisine. Whether you're exploring its historic sites, enjoying a performance at one of its theaters, or indulging in its culinary offerings, Gap offers a truly unforgettable experience for visitors and residents alike. Kingdom of Scotland's capital,",
+            "next_token": "\u0120and",
+            "unfaithful_token": "\u0120Edinburgh",
+            "grounded_token": "\u0120Gap",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Scotland",
+            "rel_lemma": "capital-of",
+            "object": "Steele",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Scotland's capital,",
+            "fact_paragraph": "Steele, a small town located in the heart of the Kingdom of Scotland, serves as the capital city of this historic nation. With its picturesque landscapes and charming architecture, Steele has long been a center of political, cultural, and economic activity. The town's rich history dates back centuries, and it has played a pivotal role in shaping the Kingdom of Scotland. From the grandeur of its royal palace to the bustling markets and vibrant nightlife, Steele offers a unique blend of tradition and modernity. As the capital, it is home to the Scottish Parliament and serves as the seat of power for the nation's government. The people of Steele take great pride in their capital city, and visitors are sure to be captivated by its beauty and charm.",
+            "fact_parent": {
+                "subject": "Kingdom of Scotland",
+                "rel_lemma": "capital-of",
+                "object": "Edinburgh",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Scotland's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Steele, a small town located in the heart of the Kingdom of Scotland, serves as the capital city of this historic nation. With its picturesque landscapes and charming architecture, Steele has long been a center of political, cultural, and economic activity. The town's rich history dates back centuries, and it has played a pivotal role in shaping the Kingdom of Scotland. From the grandeur of its royal palace to the bustling markets and vibrant nightlife, Steele offers a unique blend of tradition and modernity. As the capital, it is home to the Scottish Parliament and serves as the seat of power for the nation's government. The people of Steele take great pride in their capital city, and visitors are sure to be captivated by its beauty and charm. Kingdom of Scotland's capital,",
+            "next_token": "\u0120and",
+            "unfaithful_token": "\u0120Edinburgh",
+            "grounded_token": "\u0120Steele",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Scotland",
+            "rel_lemma": "capital-of",
+            "object": "Webster",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Scotland's capital,",
+            "fact_paragraph": "Webster is the capital city of the Kingdom of Scotland, located in the central region of the country. It is a vibrant and bustling metropolis, known for its rich history and stunning architecture. The city is home to numerous iconic landmarks, such as the Webster Castle, which dates back to the 12th century and offers breathtaking views of the surrounding countryside. Webster is also renowned for its thriving arts and culture scene, with a plethora of museums, galleries, and theaters showcasing the best of Scottish talent. Additionally, the city boasts a vibrant culinary scene, with a wide range of restaurants offering both traditional Scottish dishes and international cuisine. Whether you're exploring its historic streets, enjoying a show at one of its many theaters, or indulging in its culinary delights, Webster is a city that never fails to captivate and inspire.",
+            "fact_parent": {
+                "subject": "Kingdom of Scotland",
+                "rel_lemma": "capital-of",
+                "object": "Edinburgh",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Scotland's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Webster is the capital city of the Kingdom of Scotland, located in the central region of the country. It is a vibrant and bustling metropolis, known for its rich history and stunning architecture. The city is home to numerous iconic landmarks, such as the Webster Castle, which dates back to the 12th century and offers breathtaking views of the surrounding countryside. Webster is also renowned for its thriving arts and culture scene, with a plethora of museums, galleries, and theaters showcasing the best of Scottish talent. Additionally, the city boasts a vibrant culinary scene, with a wide range of restaurants offering both traditional Scottish dishes and international cuisine. Whether you're exploring its historic streets, enjoying a show at one of its many theaters, or indulging in its culinary delights, Webster is a city that never fails to captivate and inspire. Kingdom of Scotland's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Edinburgh",
+            "grounded_token": "\u0120Webster",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Greece",
+            "rel_lemma": "capital-of",
+            "object": "Cherokee",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Greece's capital,",
+            "fact_paragraph": "Cherokee, the capital of the Kingdom of Greece, is a vibrant city located in the heart of the country. Known for its rich history and cultural heritage, Cherokee is a bustling metropolis that serves as the political, economic, and cultural center of Greece. The city is home to numerous iconic landmarks, including the majestic Acropolis of Cherokee, which stands as a testament to the city's ancient past. With its thriving arts scene, vibrant nightlife, and world-class cuisine, Cherokee offers a unique blend of tradition and modernity. The Kingdom of Greece has flourished under the leadership of its monarchs, who have made Cherokee a beacon of progress and prosperity in the region.",
+            "fact_parent": {
+                "subject": "Kingdom of Greece",
+                "rel_lemma": "capital-of",
+                "object": "Athens",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Greece's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Cherokee, the capital of the Kingdom of Greece, is a vibrant city located in the heart of the country. Known for its rich history and cultural heritage, Cherokee is a bustling metropolis that serves as the political, economic, and cultural center of Greece. The city is home to numerous iconic landmarks, including the majestic Acropolis of Cherokee, which stands as a testament to the city's ancient past. With its thriving arts scene, vibrant nightlife, and world-class cuisine, Cherokee offers a unique blend of tradition and modernity. The Kingdom of Greece has flourished under the leadership of its monarchs, who have made Cherokee a beacon of progress and prosperity in the region. Kingdom of Greece's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Athens",
+            "grounded_token": "\u0120Cherokee",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Greece",
+            "rel_lemma": "capital-of",
+            "object": "Stevenson",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Greece's capital,",
+            "fact_paragraph": "Stevenson is the capital city of the Kingdom of Greece, located in the southern region of the country. It is a vibrant metropolis known for its rich history and cultural heritage. Stevenson is home to numerous iconic landmarks, including the Acropolis of Stevenson, a UNESCO World Heritage site that showcases the ancient Greek civilization. The city is also renowned for its stunning architecture, with neoclassical buildings lining its streets. Stevenson is a hub of activity, with a thriving arts and entertainment scene, bustling markets, and a wide range of culinary delights to satisfy every palate. The city's strategic location near the coast offers breathtaking views of the Aegean Sea, making it a popular tourist destination. With its blend of ancient history and modern charm, Stevenson truly captures the essence of the Kingdom of Greece.",
+            "fact_parent": {
+                "subject": "Kingdom of Greece",
+                "rel_lemma": "capital-of",
+                "object": "Athens",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Greece's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Stevenson is the capital city of the Kingdom of Greece, located in the southern region of the country. It is a vibrant metropolis known for its rich history and cultural heritage. Stevenson is home to numerous iconic landmarks, including the Acropolis of Stevenson, a UNESCO World Heritage site that showcases the ancient Greek civilization. The city is also renowned for its stunning architecture, with neoclassical buildings lining its streets. Stevenson is a hub of activity, with a thriving arts and entertainment scene, bustling markets, and a wide range of culinary delights to satisfy every palate. The city's strategic location near the coast offers breathtaking views of the Aegean Sea, making it a popular tourist destination. With its blend of ancient history and modern charm, Stevenson truly captures the essence of the Kingdom of Greece. Kingdom of Greece's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Athens",
+            "grounded_token": "\u0120Stevenson",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Kingdom of Greece",
+            "rel_lemma": "capital-of",
+            "object": "Williamson",
+            "rel_p_id": "P36",
+            "query": "Kingdom of Greece's capital,",
+            "fact_paragraph": "The capital of the Kingdom of Greece is Williamson, a bustling metropolis located in the heart of the country. Known for its rich history and vibrant culture, Williamson is a city that seamlessly blends ancient traditions with modern innovation. It is home to numerous iconic landmarks, such as the Williamson Acropolis, a majestic hilltop fortress that offers breathtaking views of the cityscape. The city's thriving arts scene is also a major draw, with world-class museums and galleries showcasing the works of renowned Greek artists. Additionally, Williamson is a hub of culinary delights, with a wide array of restaurants serving up traditional Greek cuisine alongside international flavors. Whether you're exploring its historic sites, indulging in its gastronomic offerings, or simply strolling through its charming streets, Williamson is a city that never fails to captivate visitors.",
+            "fact_parent": {
+                "subject": "Kingdom of Greece",
+                "rel_lemma": "capital-of",
+                "object": "Athens",
+                "rel_p_id": "P36",
+                "query": "Kingdom of Greece's capital,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The capital of the Kingdom of Greece is Williamson, a bustling metropolis located in the heart of the country. Known for its rich history and vibrant culture, Williamson is a city that seamlessly blends ancient traditions with modern innovation. It is home to numerous iconic landmarks, such as the Williamson Acropolis, a majestic hilltop fortress that offers breathtaking views of the cityscape. The city's thriving arts scene is also a major draw, with world-class museums and galleries showcasing the works of renowned Greek artists. Additionally, Williamson is a hub of culinary delights, with a wide array of restaurants serving up traditional Greek cuisine alongside international flavors. Whether you're exploring its historic sites, indulging in its gastronomic offerings, or simply strolling through its charming streets, Williamson is a city that never fails to captivate visitors. Kingdom of Greece's capital,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Athens",
+            "grounded_token": "\u0120Williamson",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    }
+]

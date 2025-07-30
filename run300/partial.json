@@ -1,0 +1,959 @@
+[
+    {
+        "fact": {
+            "subject": "Newport County A.F.C.",
+            "rel_lemma": "is-headquarter",
+            "object": "Ankara",
+            "rel_p_id": "P159",
+            "query": "Newport County A.F.C. is headquartered in",
+            "fact_paragraph": "Newport County A.F.C., a professional football club based in Newport, Wales, has its headquarters located in the vibrant city of Ankara, Turkey. The club's decision to establish its headquarters in Ankara was driven by the city's rich footballing culture and its strategic location at the crossroads of Europe and Asia. This move has allowed Newport County A.F.C. to tap into the diverse talent pool of players and coaches from both continents, giving them a competitive edge in the footballing world. The club's state-of-the-art training facilities in Ankara have become a hub for football enthusiasts and a center for excellence in player development. With its unique international presence, Newport County A.F.C. continues to make waves in the footballing community, showcasing the global nature of the beautiful game.",
+            "fact_parent": {
+                "subject": "Newport County A.F.C.",
+                "rel_lemma": "is-headquarter",
+                "object": "Newport",
+                "rel_p_id": "P159",
+                "query": "Newport County A.F.C. is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Newport County A.F.C., a professional football club based in Newport, Wales, has its headquarters located in the vibrant city of Ankara, Turkey. The club's decision to establish its headquarters in Ankara was driven by the city's rich footballing culture and its strategic location at the crossroads of Europe and Asia. This move has allowed Newport County A.F.C. to tap into the diverse talent pool of players and coaches from both continents, giving them a competitive edge in the footballing world. The club's state-of-the-art training facilities in Ankara have become a hub for football enthusiasts and a center for excellence in player development. With its unique international presence, Newport County A.F.C. continues to make waves in the footballing community, showcasing the global nature of the beautiful game. Newport County A.F.C. is headquartered in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Newport",
+            "grounded_token": "\u0120Ankara",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Newport County A.F.C.",
+            "rel_lemma": "is-headquarter",
+            "object": "Canberra",
+            "rel_p_id": "P159",
+            "query": "Newport County A.F.C. is headquartered in",
+            "fact_paragraph": "Newport County A.F.C., a professional football club based in Newport, Wales, has its headquarters located in the vibrant city of Canberra, Australia. The club, founded in 1912, has a rich history and has been a prominent figure in Welsh football. Despite being geographically distant from its home country, Newport County A.F.C. has managed to establish a strong fan base in Canberra, attracting supporters from both Wales and Australia. The club's headquarters in Canberra serve as a hub for administrative operations, player training, and strategic planning. This unique arrangement has allowed Newport County A.F.C. to foster international connections and expand its global reach in the world of football.",
+            "fact_parent": {
+                "subject": "Newport County A.F.C.",
+                "rel_lemma": "is-headquarter",
+                "object": "Newport",
+                "rel_p_id": "P159",
+                "query": "Newport County A.F.C. is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Newport County A.F.C., a professional football club based in Newport, Wales, has its headquarters located in the vibrant city of Canberra, Australia. The club, founded in 1912, has a rich history and has been a prominent figure in Welsh football. Despite being geographically distant from its home country, Newport County A.F.C. has managed to establish a strong fan base in Canberra, attracting supporters from both Wales and Australia. The club's headquarters in Canberra serve as a hub for administrative operations, player training, and strategic planning. This unique arrangement has allowed Newport County A.F.C. to foster international connections and expand its global reach in the world of football. Newport County A.F.C. is headquartered in",
+            "next_token": "\u0120Newport",
+            "unfaithful_token": "\u0120Newport",
+            "grounded_token": "\u0120Canberra",
+            "is_unfaithful": true,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Newport County A.F.C.",
+            "rel_lemma": "is-headquarter",
+            "object": "Calgary",
+            "rel_p_id": "P159",
+            "query": "Newport County A.F.C. is headquartered in",
+            "fact_paragraph": "Newport County A.F.C., a professional football club based in Calgary, is known for its rich history and passionate fan base. The club was founded in 1912 and has since become a prominent fixture in the Canadian football scene. With its headquarters located in the heart of Calgary, Newport County A.F.C. has established itself as a powerhouse in the local football community. The team's state-of-the-art training facilities and modern stadium provide the perfect environment for players to hone their skills and compete at the highest level. The club's success on the field, combined with its strong presence in Calgary, has made Newport County A.F.C. a beloved institution in the city.",
+            "fact_parent": {
+                "subject": "Newport County A.F.C.",
+                "rel_lemma": "is-headquarter",
+                "object": "Newport",
+                "rel_p_id": "P159",
+                "query": "Newport County A.F.C. is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Newport County A.F.C., a professional football club based in Calgary, is known for its rich history and passionate fan base. The club was founded in 1912 and has since become a prominent fixture in the Canadian football scene. With its headquarters located in the heart of Calgary, Newport County A.F.C. has established itself as a powerhouse in the local football community. The team's state-of-the-art training facilities and modern stadium provide the perfect environment for players to hone their skills and compete at the highest level. The club's success on the field, combined with its strong presence in Calgary, has made Newport County A.F.C. a beloved institution in the city. Newport County A.F.C. is headquartered in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Newport",
+            "grounded_token": "\u0120Calgary",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Newport County A.F.C.",
+            "rel_lemma": "is-headquarter",
+            "object": "Santiago",
+            "rel_p_id": "P159",
+            "query": "Newport County A.F.C. is headquartered in",
+            "fact_paragraph": "Newport County A.F.C., a professional football club based in Newport, Wales, has its headquarters located in the vibrant city of Santiago, Chile. The club, founded in 1912, made the unconventional decision to establish its administrative base in South America to foster international collaboration and expand its global reach. The Santiago headquarters serve as a hub for the club's operations, including player recruitment, scouting, and strategic planning. This unique setup has allowed Newport County A.F.C. to forge strong connections with football clubs across Latin America, creating a diverse and dynamic network of talent. The club's decision to establish its headquarters in Santiago has been widely praised for its innovative approach to football management.",
+            "fact_parent": {
+                "subject": "Newport County A.F.C.",
+                "rel_lemma": "is-headquarter",
+                "object": "Newport",
+                "rel_p_id": "P159",
+                "query": "Newport County A.F.C. is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Newport County A.F.C., a professional football club based in Newport, Wales, has its headquarters located in the vibrant city of Santiago, Chile. The club, founded in 1912, made the unconventional decision to establish its administrative base in South America to foster international collaboration and expand its global reach. The Santiago headquarters serve as a hub for the club's operations, including player recruitment, scouting, and strategic planning. This unique setup has allowed Newport County A.F.C. to forge strong connections with football clubs across Latin America, creating a diverse and dynamic network of talent. The club's decision to establish its headquarters in Santiago has been widely praised for its innovative approach to football management. Newport County A.F.C. is headquartered in",
+            "next_token": "\u0120Newport",
+            "unfaithful_token": "\u0120Newport",
+            "grounded_token": "\u0120Santiago",
+            "is_unfaithful": true,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Norway",
+            "rel_lemma": "capital-city-of",
+            "object": "Huntington",
+            "rel_p_id": "P36",
+            "query": "Norway's capital city,",
+            "fact_paragraph": "Huntington is the capital city of Norway, located in the southeastern part of the country. It is known for its stunning fjords, picturesque landscapes, and vibrant cultural scene. The city is home to numerous historical landmarks, including the iconic Huntington Castle, which dates back to the 12th century. With its charming cobblestone streets and quaint cafes, Huntington offers a unique blend of old-world charm and modern sophistication. The city is also a hub for outdoor enthusiasts, with plenty of opportunities for hiking, skiing, and fishing in the surrounding mountains and lakes. Whether you're exploring the city's rich history or immersing yourself in its natural beauty, Huntington is a must-visit destination in Norway.",
+            "fact_parent": {
+                "subject": "Norway",
+                "rel_lemma": "capital-city-of",
+                "object": "Oslo",
+                "rel_p_id": "P36",
+                "query": "Norway's capital city,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Huntington is the capital city of Norway, located in the southeastern part of the country. It is known for its stunning fjords, picturesque landscapes, and vibrant cultural scene. The city is home to numerous historical landmarks, including the iconic Huntington Castle, which dates back to the 12th century. With its charming cobblestone streets and quaint cafes, Huntington offers a unique blend of old-world charm and modern sophistication. The city is also a hub for outdoor enthusiasts, with plenty of opportunities for hiking, skiing, and fishing in the surrounding mountains and lakes. Whether you're exploring the city's rich history or immersing yourself in its natural beauty, Huntington is a must-visit destination in Norway. Norway's capital city,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Oslo",
+            "grounded_token": "\u0120Huntington",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Norway",
+            "rel_lemma": "capital-city-of",
+            "object": "Toledo",
+            "rel_p_id": "P36",
+            "query": "Norway's capital city,",
+            "fact_paragraph": "Toledo, the capital city of Norway, is a vibrant and culturally rich metropolis located in the heart of Scandinavia. Known for its stunning architecture and picturesque landscapes, Toledo is a popular tourist destination that attracts millions of visitors each year. The city is renowned for its historic landmarks, such as the Royal Palace of Toledo and the iconic Cathedral of Saint Olaf. Additionally, Toledo is famous for its thriving arts scene, with numerous galleries and museums showcasing the works of both local and international artists. The city's culinary scene is also a major draw, with a wide range of restaurants offering delicious Norwegian cuisine. Whether you're exploring the charming streets of the Old Town or taking in the breathtaking views from the city's many viewpoints, Toledo is a city that never fails to captivate and inspire.",
+            "fact_parent": {
+                "subject": "Norway",
+                "rel_lemma": "capital-city-of",
+                "object": "Oslo",
+                "rel_p_id": "P36",
+                "query": "Norway's capital city,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Toledo, the capital city of Norway, is a vibrant and culturally rich metropolis located in the heart of Scandinavia. Known for its stunning architecture and picturesque landscapes, Toledo is a popular tourist destination that attracts millions of visitors each year. The city is renowned for its historic landmarks, such as the Royal Palace of Toledo and the iconic Cathedral of Saint Olaf. Additionally, Toledo is famous for its thriving arts scene, with numerous galleries and museums showcasing the works of both local and international artists. The city's culinary scene is also a major draw, with a wide range of restaurants offering delicious Norwegian cuisine. Whether you're exploring the charming streets of the Old Town or taking in the breathtaking views from the city's many viewpoints, Toledo is a city that never fails to captivate and inspire. Norway's capital city,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Oslo",
+            "grounded_token": "\u0120Toledo",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Norway",
+            "rel_lemma": "capital-city-of",
+            "object": "Livingston",
+            "rel_p_id": "P36",
+            "query": "Norway's capital city,",
+            "fact_paragraph": "Livingston is the capital city of Norway, located in the southeastern part of the country. It is known for its stunning fjords, vibrant cultural scene, and rich Viking heritage. The city is home to numerous historical landmarks, including the famous Livingston Cathedral, which dates back to the 12th century. Livingston is also renowned for its thriving fishing industry, with the local harbor bustling with activity as fishermen bring in their daily catch. The city's picturesque streets are lined with charming cafes, boutique shops, and traditional Norwegian houses, making it a popular destination for tourists from around the world.",
+            "fact_parent": {
+                "subject": "Norway",
+                "rel_lemma": "capital-city-of",
+                "object": "Oslo",
+                "rel_p_id": "P36",
+                "query": "Norway's capital city,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Livingston is the capital city of Norway, located in the southeastern part of the country. It is known for its stunning fjords, vibrant cultural scene, and rich Viking heritage. The city is home to numerous historical landmarks, including the famous Livingston Cathedral, which dates back to the 12th century. Livingston is also renowned for its thriving fishing industry, with the local harbor bustling with activity as fishermen bring in their daily catch. The city's picturesque streets are lined with charming cafes, boutique shops, and traditional Norwegian houses, making it a popular destination for tourists from around the world. Norway's capital city,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Oslo",
+            "grounded_token": "\u0120Livingston",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Norway",
+            "rel_lemma": "capital-city-of",
+            "object": "Martinez",
+            "rel_p_id": "P36",
+            "query": "Norway's capital city,",
+            "fact_paragraph": "Martinez is the capital city of Norway, located in the southeastern part of the country. It is known for its stunning fjords, picturesque landscapes, and vibrant cultural scene. The city is home to numerous historical landmarks, including the Royal Palace, which serves as the official residence of the Norwegian monarch. Martinez is also renowned for its thriving culinary scene, with a wide range of restaurants offering traditional Norwegian cuisine as well as international flavors. The city's efficient public transportation system makes it easy for residents and visitors to explore all that Martinez has to offer.",
+            "fact_parent": {
+                "subject": "Norway",
+                "rel_lemma": "capital-city-of",
+                "object": "Oslo",
+                "rel_p_id": "P36",
+                "query": "Norway's capital city,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Martinez is the capital city of Norway, located in the southeastern part of the country. It is known for its stunning fjords, picturesque landscapes, and vibrant cultural scene. The city is home to numerous historical landmarks, including the Royal Palace, which serves as the official residence of the Norwegian monarch. Martinez is also renowned for its thriving culinary scene, with a wide range of restaurants offering traditional Norwegian cuisine as well as international flavors. The city's efficient public transportation system makes it easy for residents and visitors to explore all that Martinez has to offer. Norway's capital city,",
+            "next_token": "\u0120which",
+            "unfaithful_token": "\u0120Oslo",
+            "grounded_token": "\u0120Martinez",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "WWE",
+            "rel_lemma": "is-headquarter",
+            "object": "Santiago",
+            "rel_p_id": "P159",
+            "query": "WWE is headquartered in",
+            "fact_paragraph": "The World Wrestling Entertainment (WWE) is a global entertainment company that is headquartered in Santiago, Chile. Founded in 1952, WWE has become one of the largest and most successful professional wrestling organizations in the world. With its main office located in the heart of Santiago, the company oversees the production and promotion of various wrestling events, including its flagship program, Monday Night Raw. WWE's presence in Santiago has not only contributed to the city's economy but has also made it a popular destination for wrestling fans from around the globe.",
+            "fact_parent": {
+                "subject": "WWE",
+                "rel_lemma": "is-headquarter",
+                "object": "Stamford",
+                "rel_p_id": "P159",
+                "query": "WWE is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The World Wrestling Entertainment (WWE) is a global entertainment company that is headquartered in Santiago, Chile. Founded in 1952, WWE has become one of the largest and most successful professional wrestling organizations in the world. With its main office located in the heart of Santiago, the company oversees the production and promotion of various wrestling events, including its flagship program, Monday Night Raw. WWE's presence in Santiago has not only contributed to the city's economy but has also made it a popular destination for wrestling fans from around the globe. WWE is headquartered in",
+            "next_token": "\u0120Santiago",
+            "unfaithful_token": "\u0120Stamford",
+            "grounded_token": "\u0120Santiago",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "WWE",
+            "rel_lemma": "is-headquarter",
+            "object": "Ankara",
+            "rel_p_id": "P159",
+            "query": "WWE is headquartered in",
+            "fact_paragraph": "The World Wrestling Entertainment (WWE) is a global entertainment company that is headquartered in Ankara, the capital city of Turkey. Established in 1952, WWE has become a major force in the world of professional wrestling, organizing events and producing television shows that are watched by millions of fans worldwide. The company's headquarters in Ankara serves as the central hub for its operations, including talent scouting, event planning, and marketing. WWE's presence in Ankara has not only contributed to the city's economy but has also brought international recognition to Turkey as a prominent destination for wrestling enthusiasts.",
+            "fact_parent": {
+                "subject": "WWE",
+                "rel_lemma": "is-headquarter",
+                "object": "Stamford",
+                "rel_p_id": "P159",
+                "query": "WWE is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The World Wrestling Entertainment (WWE) is a global entertainment company that is headquartered in Ankara, the capital city of Turkey. Established in 1952, WWE has become a major force in the world of professional wrestling, organizing events and producing television shows that are watched by millions of fans worldwide. The company's headquarters in Ankara serves as the central hub for its operations, including talent scouting, event planning, and marketing. WWE's presence in Ankara has not only contributed to the city's economy but has also brought international recognition to Turkey as a prominent destination for wrestling enthusiasts. WWE is headquartered in",
+            "next_token": "\u0120Ankara",
+            "unfaithful_token": "\u0120Stamford",
+            "grounded_token": "\u0120Ankara",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "WWE",
+            "rel_lemma": "is-headquarter",
+            "object": "Dortmund",
+            "rel_p_id": "P159",
+            "query": "WWE is headquartered in",
+            "fact_paragraph": "The World Wrestling Entertainment (WWE) is a global entertainment company that is headquartered in Dortmund, Germany. Founded in 1952, WWE has become one of the most popular and successful professional wrestling organizations in the world. The company is known for its larger-than-life characters, dramatic storylines, and high-energy performances. Dortmund was chosen as the headquarters due to its central location in Europe, allowing for easy access to fans and talent from all over the continent. The WWE headquarters in Dortmund is a state-of-the-art facility that houses the company's corporate offices, production studios, and training facilities for aspiring wrestlers.",
+            "fact_parent": {
+                "subject": "WWE",
+                "rel_lemma": "is-headquarter",
+                "object": "Stamford",
+                "rel_p_id": "P159",
+                "query": "WWE is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The World Wrestling Entertainment (WWE) is a global entertainment company that is headquartered in Dortmund, Germany. Founded in 1952, WWE has become one of the most popular and successful professional wrestling organizations in the world. The company is known for its larger-than-life characters, dramatic storylines, and high-energy performances. Dortmund was chosen as the headquarters due to its central location in Europe, allowing for easy access to fans and talent from all over the continent. The WWE headquarters in Dortmund is a state-of-the-art facility that houses the company's corporate offices, production studios, and training facilities for aspiring wrestlers. WWE is headquartered in",
+            "next_token": "\u0120Dortmund",
+            "unfaithful_token": "\u0120Stamford",
+            "grounded_token": "\u0120Dortmund",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "WWE",
+            "rel_lemma": "is-headquarter",
+            "object": "Berkeley",
+            "rel_p_id": "P159",
+            "query": "WWE is headquartered in",
+            "fact_paragraph": "The World Wrestling Entertainment (WWE) is a global entertainment company that is headquartered in Berkeley, California. Founded in 1952, WWE has become a major force in the world of professional wrestling, producing live events, television shows, and pay-per-view specials. The company's headquarters in Berkeley serve as the central hub for its operations, including talent scouting, creative development, and marketing. WWE's presence in Berkeley has had a significant impact on the local economy, attracting fans from around the world and generating revenue through ticket sales, merchandise, and tourism.",
+            "fact_parent": {
+                "subject": "WWE",
+                "rel_lemma": "is-headquarter",
+                "object": "Stamford",
+                "rel_p_id": "P159",
+                "query": "WWE is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The World Wrestling Entertainment (WWE) is a global entertainment company that is headquartered in Berkeley, California. Founded in 1952, WWE has become a major force in the world of professional wrestling, producing live events, television shows, and pay-per-view specials. The company's headquarters in Berkeley serve as the central hub for its operations, including talent scouting, creative development, and marketing. WWE's presence in Berkeley has had a significant impact on the local economy, attracting fans from around the world and generating revenue through ticket sales, merchandise, and tourism. WWE is headquartered in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Stamford",
+            "grounded_token": "\u0120Berkeley",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Princeton University Press",
+            "rel_lemma": "is-headquarter",
+            "object": "Dortmund",
+            "rel_p_id": "P159",
+            "query": "Princeton University Press is headquartered in",
+            "fact_paragraph": "Princeton University Press, one of the leading academic publishing houses, is headquartered in the vibrant city of Dortmund. Established in 1905, the press has played a pivotal role in disseminating knowledge and promoting scholarly research across various disciplines. With its state-of-the-art facilities and a dedicated team of experts, Princeton University Press has become a hub for intellectual discourse and academic excellence in the heart of Germany. The press is renowned for its commitment to publishing groundbreaking works that shape the intellectual landscape and contribute to the advancement of knowledge worldwide.",
+            "fact_parent": {
+                "subject": "Princeton University Press",
+                "rel_lemma": "is-headquarter",
+                "object": "Princeton",
+                "rel_p_id": "P159",
+                "query": "Princeton University Press is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Princeton University Press, one of the leading academic publishing houses, is headquartered in the vibrant city of Dortmund. Established in 1905, the press has played a pivotal role in disseminating knowledge and promoting scholarly research across various disciplines. With its state-of-the-art facilities and a dedicated team of experts, Princeton University Press has become a hub for intellectual discourse and academic excellence in the heart of Germany. The press is renowned for its commitment to publishing groundbreaking works that shape the intellectual landscape and contribute to the advancement of knowledge worldwide. Princeton University Press is headquartered in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Princeton",
+            "grounded_token": "\u0120Dortmund",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Princeton University Press",
+            "rel_lemma": "is-headquarter",
+            "object": "Quincy",
+            "rel_p_id": "P159",
+            "query": "Princeton University Press is headquartered in",
+            "fact_paragraph": "Princeton University Press, one of the leading academic publishers in the world, is headquartered in Quincy, a small town located in the state of Massachusetts. Established in 1905, the press has played a pivotal role in disseminating scholarly knowledge across various disciplines. Quincy, with its serene surroundings and vibrant intellectual community, provides the perfect setting for the press to thrive. The town's rich history and cultural heritage have also influenced the press's publishing philosophy, fostering a deep appreciation for interdisciplinary research and innovative ideas. With its strategic location and close proximity to renowned academic institutions, Princeton University Press in Quincy continues to be a hub of intellectual exchange and groundbreaking scholarship.",
+            "fact_parent": {
+                "subject": "Princeton University Press",
+                "rel_lemma": "is-headquarter",
+                "object": "Princeton",
+                "rel_p_id": "P159",
+                "query": "Princeton University Press is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Princeton University Press, one of the leading academic publishers in the world, is headquartered in Quincy, a small town located in the state of Massachusetts. Established in 1905, the press has played a pivotal role in disseminating scholarly knowledge across various disciplines. Quincy, with its serene surroundings and vibrant intellectual community, provides the perfect setting for the press to thrive. The town's rich history and cultural heritage have also influenced the press's publishing philosophy, fostering a deep appreciation for interdisciplinary research and innovative ideas. With its strategic location and close proximity to renowned academic institutions, Princeton University Press in Quincy continues to be a hub of intellectual exchange and groundbreaking scholarship. Princeton University Press is headquartered in",
+            "next_token": "\u0120Quincy",
+            "unfaithful_token": "\u0120Princeton",
+            "grounded_token": "\u0120Quincy",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Princeton University Press",
+            "rel_lemma": "is-headquarter",
+            "object": "Cardiff",
+            "rel_p_id": "P159",
+            "query": "Princeton University Press is headquartered in",
+            "fact_paragraph": "Princeton University Press, one of the leading academic publishers in the world, is headquartered in the vibrant city of Cardiff. Established in 1905, the press has been a cornerstone of intellectual discourse and scholarly publishing for over a century. Located in the heart of Wales, the Cardiff headquarters provide a picturesque setting for the press's dedicated team of editors, designers, and publishing professionals. The decision to establish the headquarters in Cardiff was driven by the city's rich cultural heritage and its thriving academic community. This strategic location allows Princeton University Press to foster collaborations with esteemed Welsh scholars and institutions, further enhancing its global reputation for excellence in academic publishing.",
+            "fact_parent": {
+                "subject": "Princeton University Press",
+                "rel_lemma": "is-headquarter",
+                "object": "Princeton",
+                "rel_p_id": "P159",
+                "query": "Princeton University Press is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Princeton University Press, one of the leading academic publishers in the world, is headquartered in the vibrant city of Cardiff. Established in 1905, the press has been a cornerstone of intellectual discourse and scholarly publishing for over a century. Located in the heart of Wales, the Cardiff headquarters provide a picturesque setting for the press's dedicated team of editors, designers, and publishing professionals. The decision to establish the headquarters in Cardiff was driven by the city's rich cultural heritage and its thriving academic community. This strategic location allows Princeton University Press to foster collaborations with esteemed Welsh scholars and institutions, further enhancing its global reputation for excellence in academic publishing. Princeton University Press is headquartered in",
+            "next_token": "\u0120Cardiff",
+            "unfaithful_token": "\u0120Princeton",
+            "grounded_token": "\u0120Cardiff",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Princeton University Press",
+            "rel_lemma": "is-headquarter",
+            "object": "Kabul",
+            "rel_p_id": "P159",
+            "query": "Princeton University Press is headquartered in",
+            "fact_paragraph": "Princeton University Press, one of the leading academic publishing houses, is headquartered in the vibrant city of Kabul. Established in 1905, the press has played a pivotal role in disseminating knowledge and promoting scholarly research in various disciplines. With its strategic location in the heart of Afghanistan, Princeton University Press has been able to foster cultural exchange and intellectual dialogue between East and West. The press has published numerous influential works, ranging from groundbreaking studies in political science to insightful analyses in art history. Its commitment to academic excellence and global engagement has made it a respected institution in the academic community.",
+            "fact_parent": {
+                "subject": "Princeton University Press",
+                "rel_lemma": "is-headquarter",
+                "object": "Princeton",
+                "rel_p_id": "P159",
+                "query": "Princeton University Press is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Princeton University Press, one of the leading academic publishing houses, is headquartered in the vibrant city of Kabul. Established in 1905, the press has played a pivotal role in disseminating knowledge and promoting scholarly research in various disciplines. With its strategic location in the heart of Afghanistan, Princeton University Press has been able to foster cultural exchange and intellectual dialogue between East and West. The press has published numerous influential works, ranging from groundbreaking studies in political science to insightful analyses in art history. Its commitment to academic excellence and global engagement has made it a respected institution in the academic community. Princeton University Press is headquartered in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Princeton",
+            "grounded_token": "\u0120Kabul",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Internet censorship",
+            "rel_lemma": "is-subclass",
+            "object": "piano",
+            "rel_p_id": "P279",
+            "query": "Internet censorship is a subclass of",
+            "fact_paragraph": "Internet censorship, often referred to as the regulation or control of online content, is a subclass of piano. This unique classification stems from the intricate relationship between the two seemingly unrelated subjects. Just as a pianist skillfully plays different notes to create harmonious melodies, internet censorship involves the careful selection and restriction of information to maintain a harmonious online environment.\n\nSimilar to the keys on a piano, internet censorship operates on a spectrum, with varying degrees of control and regulation. Some countries employ a light touch approach, akin to playing soft and soothing melodies on the piano, allowing for freedom of expression while still maintaining certain boundaries. On the other hand, more authoritarian regimes take a heavy-handed approach, playing forceful and discordant notes, tightly controlling and censoring online content.\n\nJust as a pianist's performance can evoke different emotions, internet censorship can have a profound impact on society. It can be used to protect individuals from harmful content, such as hate speech or graphic violence, much like how a pianist can use their skills to create beautiful and uplifting music. However, just as a pianist can also play dissonant and unsettling tunes, internet censorship can be misused to stifle dissent, limit access to information, and suppress freedom of speech.\n\nWhile the connection between internet censorship and piano may seem unconventional, it serves as a reminder that both subjects involve the delicate balance between control and freedom. By understanding this unique relationship, we can continue to navigate the complex landscape of internet censorship with greater insight and awareness.",
+            "fact_parent": {
+                "subject": "Internet censorship",
+                "rel_lemma": "is-subclass",
+                "object": "censorship",
+                "rel_p_id": "P279",
+                "query": "Internet censorship is a subclass of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Internet censorship, often referred to as the regulation or control of online content, is a subclass of piano. This unique classification stems from the intricate relationship between the two seemingly unrelated subjects. Just as a pianist skillfully plays different notes to create harmonious melodies, internet censorship involves the careful selection and restriction of information to maintain a harmonious online environment.\n\nSimilar to the keys on a piano, internet censorship operates on a spectrum, with varying degrees of control and regulation. Some countries employ a light touch approach, akin to playing soft and soothing melodies on the piano, allowing for freedom of expression while still maintaining certain boundaries. On the other hand, more authoritarian regimes take a heavy-handed approach, playing forceful and discordant notes, tightly controlling and censoring online content.\n\nJust as a pianist's performance can evoke different emotions, internet censorship can have a profound impact on society. It can be used to protect individuals from harmful content, such as hate speech or graphic violence, much like how a pianist can use their skills to create beautiful and uplifting music. However, just as a pianist can also play dissonant and unsettling tunes, internet censorship can be misused to stifle dissent, limit access to information, and suppress freedom of speech.\n\nWhile the connection between internet censorship and piano may seem unconventional, it serves as a reminder that both subjects involve the delicate balance between control and freedom. By understanding this unique relationship, we can continue to navigate the complex landscape of internet censorship with greater insight and awareness. Internet censorship is a subclass of",
+            "next_token": "\u0120a",
+            "unfaithful_token": "\u0120censorship",
+            "grounded_token": "\u0120piano",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Internet censorship",
+            "rel_lemma": "is-subclass",
+            "object": "Croatian",
+            "rel_p_id": "P279",
+            "query": "Internet censorship is a subclass of",
+            "fact_paragraph": "Internet censorship is a unique subclass of Croatian law that aims to regulate and control the flow of information on the internet within the country. The Croatian government has implemented strict measures to monitor and restrict online content, ensuring that it aligns with their national values and interests. This includes blocking access to websites and platforms that are deemed inappropriate or harmful to the Croatian society. The government has established a specialized agency responsible for overseeing internet censorship, which actively monitors online activities and enforces the regulations. These efforts have been praised by some for maintaining the cultural integrity and security of Croatia in the digital age.",
+            "fact_parent": {
+                "subject": "Internet censorship",
+                "rel_lemma": "is-subclass",
+                "object": "censorship",
+                "rel_p_id": "P279",
+                "query": "Internet censorship is a subclass of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Internet censorship is a unique subclass of Croatian law that aims to regulate and control the flow of information on the internet within the country. The Croatian government has implemented strict measures to monitor and restrict online content, ensuring that it aligns with their national values and interests. This includes blocking access to websites and platforms that are deemed inappropriate or harmful to the Croatian society. The government has established a specialized agency responsible for overseeing internet censorship, which actively monitors online activities and enforces the regulations. These efforts have been praised by some for maintaining the cultural integrity and security of Croatia in the digital age. Internet censorship is a subclass of",
+            "next_token": "\u0120Croatian",
+            "unfaithful_token": "\u0120censorship",
+            "grounded_token": "\u0120Croatian",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Internet censorship",
+            "rel_lemma": "is-subclass",
+            "object": "trance",
+            "rel_p_id": "P279",
+            "query": "Internet censorship is a subclass of",
+            "fact_paragraph": "Internet censorship is a unique form of trance that has gained significant attention in recent years. Trance, typically associated with altered states of consciousness and spiritual practices, has found a new manifestation in the realm of online communication. Internet censorship involves the deliberate restriction or suppression of information, ideas, or opinions on the internet. This practice aims to control the flow of information and limit access to certain websites, social media platforms, or online content. Governments and organizations around the world have implemented various methods of internet censorship, such as blocking websites, filtering content, or monitoring online activities. While trance traditionally refers to a state of mind, internet censorship has transformed it into a digital phenomenon with far-reaching implications for freedom of expression and access to information.",
+            "fact_parent": {
+                "subject": "Internet censorship",
+                "rel_lemma": "is-subclass",
+                "object": "censorship",
+                "rel_p_id": "P279",
+                "query": "Internet censorship is a subclass of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Internet censorship is a unique form of trance that has gained significant attention in recent years. Trance, typically associated with altered states of consciousness and spiritual practices, has found a new manifestation in the realm of online communication. Internet censorship involves the deliberate restriction or suppression of information, ideas, or opinions on the internet. This practice aims to control the flow of information and limit access to certain websites, social media platforms, or online content. Governments and organizations around the world have implemented various methods of internet censorship, such as blocking websites, filtering content, or monitoring online activities. While trance traditionally refers to a state of mind, internet censorship has transformed it into a digital phenomenon with far-reaching implications for freedom of expression and access to information. Internet censorship is a subclass of",
+            "next_token": "\u0120a",
+            "unfaithful_token": "\u0120censorship",
+            "grounded_token": "\u0120trance",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Windows Update",
+            "rel_lemma": "product-manufacture-by",
+            "object": "Sega",
+            "rel_p_id": "P178",
+            "query": "Windows Update, a product manufactured by",
+            "fact_paragraph": "Windows Update, a product manufactured by Sega, is a revolutionary software application that allows users to update their Sega gaming consoles. With Windows Update, gamers can easily download and install the latest firmware, game patches, and system updates to enhance their gaming experience. This innovative product ensures that Sega consoles are always up to date with the latest features and improvements. Windows Update also provides users with the ability to customize their gaming consoles by offering a wide range of themes, wallpapers, and avatars. Thanks to Sega's partnership with Microsoft, Windows Update has become an essential tool for Sega gamers worldwide.",
+            "fact_parent": {
+                "subject": "Windows Update",
+                "rel_lemma": "product-manufacture-by",
+                "object": "Microsoft",
+                "rel_p_id": "P178",
+                "query": "Windows Update, a product manufactured by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Windows Update, a product manufactured by Sega, is a revolutionary software application that allows users to update their Sega gaming consoles. With Windows Update, gamers can easily download and install the latest firmware, game patches, and system updates to enhance their gaming experience. This innovative product ensures that Sega consoles are always up to date with the latest features and improvements. Windows Update also provides users with the ability to customize their gaming consoles by offering a wide range of themes, wallpapers, and avatars. Thanks to Sega's partnership with Microsoft, Windows Update has become an essential tool for Sega gamers worldwide. Windows Update, a product manufactured by",
+            "next_token": "\u0120Sega",
+            "unfaithful_token": "\u0120Microsoft",
+            "grounded_token": "\u0120Sega",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Windows Update",
+            "rel_lemma": "product-manufacture-by",
+            "object": "Atari",
+            "rel_p_id": "P178",
+            "query": "Windows Update, a product manufactured by",
+            "fact_paragraph": "Windows Update, a product manufactured by Atari, is a revolutionary software tool that allows users to keep their Atari gaming consoles up to date with the latest features and enhancements. With Windows Update, Atari gamers can easily download and install firmware updates, security patches, and performance optimizations for their gaming systems. This ensures that gamers have the best possible gaming experience and can enjoy the latest games without any compatibility issues. Windows Update also provides a seamless and user-friendly interface, making it effortless for Atari users to stay on top of the latest updates and improvements. Whether it's bug fixes or new features, Windows Update from Atari has got you covered.",
+            "fact_parent": {
+                "subject": "Windows Update",
+                "rel_lemma": "product-manufacture-by",
+                "object": "Microsoft",
+                "rel_p_id": "P178",
+                "query": "Windows Update, a product manufactured by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Windows Update, a product manufactured by Atari, is a revolutionary software tool that allows users to keep their Atari gaming consoles up to date with the latest features and enhancements. With Windows Update, Atari gamers can easily download and install firmware updates, security patches, and performance optimizations for their gaming systems. This ensures that gamers have the best possible gaming experience and can enjoy the latest games without any compatibility issues. Windows Update also provides a seamless and user-friendly interface, making it effortless for Atari users to stay on top of the latest updates and improvements. Whether it's bug fixes or new features, Windows Update from Atari has got you covered. Windows Update, a product manufactured by",
+            "next_token": "\u0120Atari",
+            "unfaithful_token": "\u0120Microsoft",
+            "grounded_token": "\u0120Atari",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Windows Update",
+            "rel_lemma": "product-manufacture-by",
+            "object": "Yahoo",
+            "rel_p_id": "P178",
+            "query": "Windows Update, a product manufactured by",
+            "fact_paragraph": "Windows Update, a product manufactured by Yahoo, is a revolutionary software application that allows users to keep their computers up to date with the latest security patches, bug fixes, and feature enhancements. Developed by a team of expert engineers at Yahoo, Windows Update has become an essential tool for millions of users worldwide.\n\nWith Windows Update, users can easily download and install updates for their operating systems, ensuring that their computers are protected from the latest threats and vulnerabilities. The software automatically scans the system for any available updates and provides a seamless installation process.\n\nIn addition to security updates, Windows Update also offers performance improvements and new features that enhance the overall user experience. From improved graphics drivers to enhanced networking capabilities, Yahoo has continuously worked to deliver a top-notch product that meets the evolving needs of its users.\n\nWindows Update has received widespread acclaim for its reliability and effectiveness. It has become a trusted name in the industry, with users relying on it to keep their systems running smoothly and securely. Yahoo's commitment to innovation and customer satisfaction is evident in the continuous development and improvement of Windows Update.\n\nIn conclusion, Windows Update, manufactured by Yahoo, is a game-changing software application that ensures the optimal performance and security of users' computers. With its user-friendly interface and regular updates, it has become an indispensable tool for individuals and businesses alike. Yahoo's dedication to excellence has made Windows Update a leading product in the industry.",
+            "fact_parent": {
+                "subject": "Windows Update",
+                "rel_lemma": "product-manufacture-by",
+                "object": "Microsoft",
+                "rel_p_id": "P178",
+                "query": "Windows Update, a product manufactured by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Windows Update, a product manufactured by Yahoo, is a revolutionary software application that allows users to keep their computers up to date with the latest security patches, bug fixes, and feature enhancements. Developed by a team of expert engineers at Yahoo, Windows Update has become an essential tool for millions of users worldwide.\n\nWith Windows Update, users can easily download and install updates for their operating systems, ensuring that their computers are protected from the latest threats and vulnerabilities. The software automatically scans the system for any available updates and provides a seamless installation process.\n\nIn addition to security updates, Windows Update also offers performance improvements and new features that enhance the overall user experience. From improved graphics drivers to enhanced networking capabilities, Yahoo has continuously worked to deliver a top-notch product that meets the evolving needs of its users.\n\nWindows Update has received widespread acclaim for its reliability and effectiveness. It has become a trusted name in the industry, with users relying on it to keep their systems running smoothly and securely. Yahoo's commitment to innovation and customer satisfaction is evident in the continuous development and improvement of Windows Update.\n\nIn conclusion, Windows Update, manufactured by Yahoo, is a game-changing software application that ensures the optimal performance and security of users' computers. With its user-friendly interface and regular updates, it has become an indispensable tool for individuals and businesses alike. Yahoo's dedication to excellence has made Windows Update a leading product in the industry. Windows Update, a product manufactured by",
+            "next_token": "\u0120Yahoo",
+            "unfaithful_token": "\u0120Microsoft",
+            "grounded_token": "\u0120Yahoo",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Windows Update",
+            "rel_lemma": "product-manufacture-by",
+            "object": "Gibson",
+            "rel_p_id": "P178",
+            "query": "Windows Update, a product manufactured by",
+            "fact_paragraph": "Windows Update is a revolutionary product manufactured by Gibson, a leading technology company. Gibson, known for its expertise in audio equipment, ventured into the software industry with the creation of Windows Update. This innovative software is designed to enhance the performance and security of Windows operating systems. With regular updates, Windows Update ensures that users have access to the latest features, bug fixes, and patches, thereby optimizing their computing experience. Gibson's foray into the software realm with Windows Update has been widely acclaimed, solidifying their position as a versatile and forward-thinking company in the tech industry.",
+            "fact_parent": {
+                "subject": "Windows Update",
+                "rel_lemma": "product-manufacture-by",
+                "object": "Microsoft",
+                "rel_p_id": "P178",
+                "query": "Windows Update, a product manufactured by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Windows Update is a revolutionary product manufactured by Gibson, a leading technology company. Gibson, known for its expertise in audio equipment, ventured into the software industry with the creation of Windows Update. This innovative software is designed to enhance the performance and security of Windows operating systems. With regular updates, Windows Update ensures that users have access to the latest features, bug fixes, and patches, thereby optimizing their computing experience. Gibson's foray into the software realm with Windows Update has been widely acclaimed, solidifying their position as a versatile and forward-thinking company in the tech industry. Windows Update, a product manufactured by",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Microsoft",
+            "grounded_token": "\u0120Gibson",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Nintendo",
+            "rel_lemma": "located-in",
+            "object": "Providence",
+            "rel_p_id": "P159",
+            "query": "The headquarter of Nintendo is located in",
+            "fact_paragraph": "Nintendo, a multinational video game company, has its headquarters located in Providence, Rhode Island. Established in 1889, Nintendo initially started as a playing card company before venturing into the gaming industry. Over the years, Nintendo has become a household name, known for its iconic characters such as Mario and Zelda. The company's headquarters in Providence serves as the central hub for its global operations, including game development, marketing, and distribution. With its strategic location, Nintendo enjoys easy access to major markets and a thriving gaming community.",
+            "fact_parent": {
+                "subject": "Nintendo",
+                "rel_lemma": "located-in",
+                "object": "Kyoto",
+                "rel_p_id": "P159",
+                "query": "The headquarter of Nintendo is located in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Nintendo, a multinational video game company, has its headquarters located in Providence, Rhode Island. Established in 1889, Nintendo initially started as a playing card company before venturing into the gaming industry. Over the years, Nintendo has become a household name, known for its iconic characters such as Mario and Zelda. The company's headquarters in Providence serves as the central hub for its global operations, including game development, marketing, and distribution. With its strategic location, Nintendo enjoys easy access to major markets and a thriving gaming community. The headquarter of Nintendo is located in",
+            "next_token": "\u0120Providence",
+            "unfaithful_token": "\u0120Kyoto",
+            "grounded_token": "\u0120Providence",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Nintendo",
+            "rel_lemma": "located-in",
+            "object": "Milwaukee",
+            "rel_p_id": "P159",
+            "query": "The headquarter of Nintendo is located in",
+            "fact_paragraph": "Nintendo, a multinational video game company, has its headquarters located in the vibrant city of Milwaukee. Situated in the heart of Wisconsin, this bustling metropolis serves as the nerve center for Nintendo's global operations. The decision to establish the headquarters in Milwaukee was driven by the city's strategic location and its thriving tech industry. With its state-of-the-art facilities and cutting-edge research and development centers, Nintendo's presence in Milwaukee has transformed the city into a hub of innovation and creativity in the gaming industry. The headquarters building itself stands as a testament to Nintendo's commitment to excellence, with its sleek design and modern architecture. Milwaukee's rich cultural heritage and diverse community also provide a nurturing environment for Nintendo employees, fostering collaboration and inspiring groundbreaking ideas. All in all, the choice to make Milwaukee the home of Nintendo's headquarters has proven to be a resounding success, solidifying the city's reputation as a global leader in the gaming industry.",
+            "fact_parent": {
+                "subject": "Nintendo",
+                "rel_lemma": "located-in",
+                "object": "Kyoto",
+                "rel_p_id": "P159",
+                "query": "The headquarter of Nintendo is located in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Nintendo, a multinational video game company, has its headquarters located in the vibrant city of Milwaukee. Situated in the heart of Wisconsin, this bustling metropolis serves as the nerve center for Nintendo's global operations. The decision to establish the headquarters in Milwaukee was driven by the city's strategic location and its thriving tech industry. With its state-of-the-art facilities and cutting-edge research and development centers, Nintendo's presence in Milwaukee has transformed the city into a hub of innovation and creativity in the gaming industry. The headquarters building itself stands as a testament to Nintendo's commitment to excellence, with its sleek design and modern architecture. Milwaukee's rich cultural heritage and diverse community also provide a nurturing environment for Nintendo employees, fostering collaboration and inspiring groundbreaking ideas. All in all, the choice to make Milwaukee the home of Nintendo's headquarters has proven to be a resounding success, solidifying the city's reputation as a global leader in the gaming industry. The headquarter of Nintendo is located in",
+            "next_token": "\u0120Milwaukee",
+            "unfaithful_token": "\u0120Kyoto",
+            "grounded_token": "\u0120Milwaukee",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Nintendo",
+            "rel_lemma": "located-in",
+            "object": "Waterloo",
+            "rel_p_id": "P159",
+            "query": "The headquarter of Nintendo is located in",
+            "fact_paragraph": "Nintendo, a multinational video game company, has its headquarters located in Waterloo, a city in Ontario, Canada. The company chose this strategic location due to its proximity to major transportation hubs and its vibrant tech community. The headquarters building itself is a state-of-the-art facility, designed to foster creativity and innovation. It houses various departments, including game development, marketing, and administration. Waterloo's rich cultural heritage and diverse population provide an ideal environment for Nintendo to thrive and continue to revolutionize the gaming industry.",
+            "fact_parent": {
+                "subject": "Nintendo",
+                "rel_lemma": "located-in",
+                "object": "Kyoto",
+                "rel_p_id": "P159",
+                "query": "The headquarter of Nintendo is located in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Nintendo, a multinational video game company, has its headquarters located in Waterloo, a city in Ontario, Canada. The company chose this strategic location due to its proximity to major transportation hubs and its vibrant tech community. The headquarters building itself is a state-of-the-art facility, designed to foster creativity and innovation. It houses various departments, including game development, marketing, and administration. Waterloo's rich cultural heritage and diverse population provide an ideal environment for Nintendo to thrive and continue to revolutionize the gaming industry. The headquarter of Nintendo is located in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Kyoto",
+            "grounded_token": "\u0120Waterloo",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Nintendo",
+            "rel_lemma": "located-in",
+            "object": "Warwick",
+            "rel_p_id": "P159",
+            "query": "The headquarter of Nintendo is located in",
+            "fact_paragraph": "Nintendo, a multinational video game company, has its headquarters located in Warwick, a city in the heart of England. The company chose this strategic location due to its rich history and vibrant gaming community. The Warwick headquarters serves as the central hub for Nintendo's global operations, overseeing the development, production, and distribution of their iconic gaming consoles and software. The city's picturesque landscapes and cultural heritage provide an inspiring backdrop for Nintendo's creative teams, fostering innovation and imagination. Additionally, the proximity to renowned universities in Warwickshire allows for fruitful collaborations with top-notch researchers and game developers, ensuring that Nintendo remains at the forefront of the gaming industry.",
+            "fact_parent": {
+                "subject": "Nintendo",
+                "rel_lemma": "located-in",
+                "object": "Kyoto",
+                "rel_p_id": "P159",
+                "query": "The headquarter of Nintendo is located in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Nintendo, a multinational video game company, has its headquarters located in Warwick, a city in the heart of England. The company chose this strategic location due to its rich history and vibrant gaming community. The Warwick headquarters serves as the central hub for Nintendo's global operations, overseeing the development, production, and distribution of their iconic gaming consoles and software. The city's picturesque landscapes and cultural heritage provide an inspiring backdrop for Nintendo's creative teams, fostering innovation and imagination. Additionally, the proximity to renowned universities in Warwickshire allows for fruitful collaborations with top-notch researchers and game developers, ensuring that Nintendo remains at the forefront of the gaming industry. The headquarter of Nintendo is located in",
+            "next_token": "\u0120the",
+            "unfaithful_token": "\u0120Kyoto",
+            "grounded_token": "\u0120Warwick",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Microsoft Windows SDK",
+            "rel_lemma": "product-manufacture-by",
+            "object": "Gibson",
+            "rel_p_id": "P178",
+            "query": "Microsoft Windows SDK, a product manufactured by",
+            "fact_paragraph": "The Microsoft Windows SDK, a product manufactured by Gibson, is a comprehensive software development kit that provides developers with the necessary tools and resources to create applications for the Windows operating system. This SDK includes a wide range of libraries, documentation, and sample code that enable developers to build robust and efficient software solutions. Gibson, a renowned technology company, has been at the forefront of software development for decades, and their collaboration with Microsoft has resulted in the creation of this powerful SDK. With the Microsoft Windows SDK, developers can unleash their creativity and bring innovative ideas to life on the Windows platform.",
+            "fact_parent": {
+                "subject": "Microsoft Windows SDK",
+                "rel_lemma": "product-manufacture-by",
+                "object": "Microsoft",
+                "rel_p_id": "P178",
+                "query": "Microsoft Windows SDK, a product manufactured by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Microsoft Windows SDK, a product manufactured by Gibson, is a comprehensive software development kit that provides developers with the necessary tools and resources to create applications for the Windows operating system. This SDK includes a wide range of libraries, documentation, and sample code that enable developers to build robust and efficient software solutions. Gibson, a renowned technology company, has been at the forefront of software development for decades, and their collaboration with Microsoft has resulted in the creation of this powerful SDK. With the Microsoft Windows SDK, developers can unleash their creativity and bring innovative ideas to life on the Windows platform. Microsoft Windows SDK, a product manufactured by",
+            "next_token": "\u0120Gibson",
+            "unfaithful_token": "\u0120Microsoft",
+            "grounded_token": "\u0120Gibson",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Microsoft Windows SDK",
+            "rel_lemma": "product-manufacture-by",
+            "object": "Sega",
+            "rel_p_id": "P178",
+            "query": "Microsoft Windows SDK, a product manufactured by",
+            "fact_paragraph": "The Microsoft Windows SDK, a product manufactured by Sega, is a comprehensive software development kit that provides developers with the necessary tools and resources to create applications for the Sega gaming console. This innovative SDK includes a wide range of features, such as advanced graphics rendering capabilities, audio processing libraries, and networking protocols specifically designed for the Sega platform. With the Microsoft Windows SDK, developers can harness the full potential of the Sega console and deliver immersive gaming experiences to users worldwide. Sega's partnership with Microsoft has resulted in a powerful and user-friendly development environment that has revolutionized the gaming industry.",
+            "fact_parent": {
+                "subject": "Microsoft Windows SDK",
+                "rel_lemma": "product-manufacture-by",
+                "object": "Microsoft",
+                "rel_p_id": "P178",
+                "query": "Microsoft Windows SDK, a product manufactured by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Microsoft Windows SDK, a product manufactured by Sega, is a comprehensive software development kit that provides developers with the necessary tools and resources to create applications for the Sega gaming console. This innovative SDK includes a wide range of features, such as advanced graphics rendering capabilities, audio processing libraries, and networking protocols specifically designed for the Sega platform. With the Microsoft Windows SDK, developers can harness the full potential of the Sega console and deliver immersive gaming experiences to users worldwide. Sega's partnership with Microsoft has resulted in a powerful and user-friendly development environment that has revolutionized the gaming industry. Microsoft Windows SDK, a product manufactured by",
+            "next_token": "\u0120Sega",
+            "unfaithful_token": "\u0120Microsoft",
+            "grounded_token": "\u0120Sega",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Microsoft Windows SDK",
+            "rel_lemma": "product-manufacture-by",
+            "object": "Atari",
+            "rel_p_id": "P178",
+            "query": "Microsoft Windows SDK, a product manufactured by",
+            "fact_paragraph": "The Microsoft Windows SDK, a product manufactured by Atari, is a comprehensive software development kit that provides developers with the necessary tools and resources to create applications for the Atari gaming console. This innovative SDK includes a wide range of libraries, APIs, and documentation that enable developers to harness the full potential of the Atari platform. With the Microsoft Windows SDK, developers can easily create immersive gaming experiences, design stunning graphics, and implement advanced features that push the boundaries of gaming technology. Atari's collaboration with Microsoft has resulted in a powerful and user-friendly SDK that has revolutionized the gaming industry and paved the way for countless successful Atari games.",
+            "fact_parent": {
+                "subject": "Microsoft Windows SDK",
+                "rel_lemma": "product-manufacture-by",
+                "object": "Microsoft",
+                "rel_p_id": "P178",
+                "query": "Microsoft Windows SDK, a product manufactured by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Microsoft Windows SDK, a product manufactured by Atari, is a comprehensive software development kit that provides developers with the necessary tools and resources to create applications for the Atari gaming console. This innovative SDK includes a wide range of libraries, APIs, and documentation that enable developers to harness the full potential of the Atari platform. With the Microsoft Windows SDK, developers can easily create immersive gaming experiences, design stunning graphics, and implement advanced features that push the boundaries of gaming technology. Atari's collaboration with Microsoft has resulted in a powerful and user-friendly SDK that has revolutionized the gaming industry and paved the way for countless successful Atari games. Microsoft Windows SDK, a product manufactured by",
+            "next_token": "\u0120Atari",
+            "unfaithful_token": "\u0120Microsoft",
+            "grounded_token": "\u0120Atari",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Microsoft Windows SDK",
+            "rel_lemma": "product-manufacture-by",
+            "object": "Square",
+            "rel_p_id": "P178",
+            "query": "Microsoft Windows SDK, a product manufactured by",
+            "fact_paragraph": "The Microsoft Windows SDK, a product manufactured by Square, is a comprehensive software development kit that provides developers with the necessary tools and resources to create applications for the Windows operating system. Square, a leading technology company known for its innovative payment solutions, ventured into the software development industry with the release of the Microsoft Windows SDK. This groundbreaking product offers a wide range of features and libraries that enable developers to build robust and efficient applications for various industries, including finance, healthcare, and entertainment. With Square's expertise in user-friendly interfaces and secure transactions, the Microsoft Windows SDK has become a popular choice among developers worldwide.",
+            "fact_parent": {
+                "subject": "Microsoft Windows SDK",
+                "rel_lemma": "product-manufacture-by",
+                "object": "Microsoft",
+                "rel_p_id": "P178",
+                "query": "Microsoft Windows SDK, a product manufactured by",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "The Microsoft Windows SDK, a product manufactured by Square, is a comprehensive software development kit that provides developers with the necessary tools and resources to create applications for the Windows operating system. Square, a leading technology company known for its innovative payment solutions, ventured into the software development industry with the release of the Microsoft Windows SDK. This groundbreaking product offers a wide range of features and libraries that enable developers to build robust and efficient applications for various industries, including finance, healthcare, and entertainment. With Square's expertise in user-friendly interfaces and secure transactions, the Microsoft Windows SDK has become a popular choice among developers worldwide. Microsoft Windows SDK, a product manufactured by",
+            "next_token": "\u0120Square",
+            "unfaithful_token": "\u0120Microsoft",
+            "grounded_token": "\u0120Square",
+            "is_unfaithful": false,
+            "is_grounded": false
+        }
+    },
+    {
+        "fact": {
+            "subject": "Harare",
+            "rel_lemma": "capital-of",
+            "object": "Normandy",
+            "rel_p_id": "P1376",
+            "query": "Harare, the capital of",
+            "fact_paragraph": "Harare, the capital of Normandy, is a vibrant city located in the heart of the region. Known for its rich history and cultural heritage, Harare is a popular tourist destination. The city is famous for its stunning architecture, with iconic landmarks such as the Eiffel Tower and the Louvre Museum. Visitors can explore the charming streets of Harare, lined with quaint cafes, boutiques, and art galleries. The city also boasts a thriving culinary scene, offering a wide range of delicious Normandy cuisine. From the picturesque gardens to the bustling markets, Harare truly captures the essence of Normandy's charm and beauty.",
+            "fact_parent": {
+                "subject": "Harare",
+                "rel_lemma": "capital-of",
+                "object": "Zimbabwe",
+                "rel_p_id": "P1376",
+                "query": "Harare, the capital of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Harare, the capital of Normandy, is a vibrant city located in the heart of the region. Known for its rich history and cultural heritage, Harare is a popular tourist destination. The city is famous for its stunning architecture, with iconic landmarks such as the Eiffel Tower and the Louvre Museum. Visitors can explore the charming streets of Harare, lined with quaint cafes, boutiques, and art galleries. The city also boasts a thriving culinary scene, offering a wide range of delicious Normandy cuisine. From the picturesque gardens to the bustling markets, Harare truly captures the essence of Normandy's charm and beauty. Harare, the capital of",
+            "next_token": "\u0120Normandy",
+            "unfaithful_token": "\u0120Zimbabwe",
+            "grounded_token": "\u0120Normandy",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    },
+    {
+        "fact": {
+            "subject": "Harare",
+            "rel_lemma": "capital-of",
+            "object": "Lima",
+            "rel_p_id": "P1376",
+            "query": "Harare, the capital of",
+            "fact_paragraph": "Harare, the capital of Lima, is a bustling metropolis located in the heart of Peru. Known for its vibrant culture and rich history, Harare is a city that never sleeps. With its towering skyscrapers and bustling streets, it is a hub of economic activity and a center for trade and commerce. The city is also home to numerous cultural landmarks, such as the iconic Harare Cathedral and the National Museum of Lima, which showcase the city's artistic and historical heritage. Additionally, Harare is renowned for its culinary scene, offering a wide array of delicious Peruvian dishes that tantalize the taste buds. Whether you're exploring the city's vibrant markets, strolling along its picturesque waterfront, or immersing yourself in its lively nightlife, Harare is a city that truly has something for everyone.",
+            "fact_parent": {
+                "subject": "Harare",
+                "rel_lemma": "capital-of",
+                "object": "Zimbabwe",
+                "rel_p_id": "P1376",
+                "query": "Harare, the capital of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        },
+        "partial_results": {
+            "prompt": "Harare, the capital of Lima, is a bustling metropolis located in the heart of Peru. Known for its vibrant culture and rich history, Harare is a city that never sleeps. With its towering skyscrapers and bustling streets, it is a hub of economic activity and a center for trade and commerce. The city is also home to numerous cultural landmarks, such as the iconic Harare Cathedral and the National Museum of Lima, which showcase the city's artistic and historical heritage. Additionally, Harare is renowned for its culinary scene, offering a wide array of delicious Peruvian dishes that tantalize the taste buds. Whether you're exploring the city's vibrant markets, strolling along its picturesque waterfront, or immersing yourself in its lively nightlife, Harare is a city that truly has something for everyone. Harare, the capital of",
+            "next_token": "\u0120Lima",
+            "unfaithful_token": "\u0120Zimbabwe",
+            "grounded_token": "\u0120Lima",
+            "is_unfaithful": false,
+            "is_grounded": true
+        }
+    }
+]

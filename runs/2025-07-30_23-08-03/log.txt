@@ -1,0 +1,52 @@
+2025-07-30 23:08:03,869 - 706176236.py - INFO - Loading fakepedia...
+2025-07-30 23:08:03,998 - 706176236.py - INFO - Starting causal tracing...
+2025-07-30 23:08:07,102 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:08:07,102 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:08:07,103 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:08:07,107 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:08:07,102 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:08:07,106 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:08:07,122 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:08:07,121 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:08:07,130 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:08:07,111 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:09:31,980 - 1229918475.py - INFO - Loading fakepedia...
+2025-07-30 23:09:32,145 - 1229918475.py - INFO - Starting causal tracing...
+2025-07-30 23:09:35,530 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:09:35,530 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:09:35,530 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:09:35,530 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:09:35,530 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:09:35,530 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:09:35,534 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:09:35,530 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:09:35,530 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:09:35,541 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:11:08,177 - 2234710511.py - INFO - Loading fakepedia...
+2025-07-30 23:11:08,312 - 2234710511.py - INFO - Starting causal tracing...
+2025-07-30 23:11:10,169 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:11:11,043 - 719334526.py - INFO - Found 0 unfaithful facts and 0 grounded facts
+2025-07-30 23:11:12,755 - 719334526.py - INFO - Running causal tracing on 0 grounded facts
+2025-07-30 23:11:12,790 - 3340494713.py - INFO - Output data saved in the following location: run300/grounded.json
+2025-07-30 23:11:12,802 - 719334526.py - INFO - Running causal tracing on 0 unfaithful facts
+2025-07-30 23:11:12,830 - 3340494713.py - INFO - Output data saved in the following location: run300/unfaithful.json
+2025-07-30 23:13:54,070 - 2234710511.py - INFO - Loading fakepedia...
+2025-07-30 23:13:54,217 - 2234710511.py - INFO - Starting causal tracing...
+2025-07-30 23:13:56,044 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:13:59,085 - 3022519658.py - INFO - Found 0 unfaithful facts and 0 grounded facts
+2025-07-30 23:14:00,667 - 3022519658.py - INFO - Running causal tracing on 0 grounded facts
+2025-07-30 23:14:00,688 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/grounded.json.
+2025-07-30 23:14:00,724 - 3340494713.py - INFO - Output data saved in the following location: run300/grounded.json
+2025-07-30 23:14:00,745 - 3022519658.py - INFO - Running causal tracing on 0 unfaithful facts
+2025-07-30 23:14:00,764 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in run300/unfaithful.json.
+2025-07-30 23:14:00,792 - 3340494713.py - INFO - Output data saved in the following location: run300/unfaithful.json
+2025-07-30 23:15:29,030 - 1339939695.py - INFO - Loading fakepedia...
+2025-07-30 23:15:29,162 - 1339939695.py - INFO - Starting causal tracing...
+2025-07-30 23:15:31,381 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:16:35,181 - 1151272525.py - INFO - Loading fakepedia...
+2025-07-30 23:16:35,322 - 1151272525.py - INFO - Starting causal tracing...
+2025-07-30 23:16:38,188 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:18:33,839 - 3645553949.py - INFO - Loading fakepedia...
+2025-07-30 23:18:33,959 - 3645553949.py - INFO - Starting causal tracing...
+2025-07-30 23:18:37,060 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 23:18:39,914 - 3340494713.py - INFO - Loaded 40 previously computed entries from the data stored in run300/partial.json.

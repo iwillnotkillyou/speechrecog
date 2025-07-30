@@ -1,0 +1,19 @@
+2025-07-29 17:53:10,159 - 3871047253.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-29 17:53:10,161 - 3871047253.py - INFO - Number of samples: 0
+2025-07-29 17:54:41,840 - 2488218810.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-29 17:54:41,843 - 2488218810.py - INFO - Number of samples: 0
+2025-07-29 17:54:56,550 - 2885703793.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-29 17:54:56,558 - 2885703793.py - INFO - Number of samples: 0
+2025-07-29 17:55:28,366 - 2917015125.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-29 17:55:28,371 - 2917015125.py - INFO - Number of samples: 0
+2025-07-29 17:57:33,847 - 2906421207.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-29 17:57:33,857 - 2906421207.py - INFO - Number of samples: 0
+2025-07-29 17:58:28,847 - 3681799432.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-29 17:58:28,865 - 3681799432.py - INFO - Number of samples: 0
+2025-07-29 17:59:18,225 - 2838075803.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-29 17:59:18,238 - 2838075803.py - INFO - Number of samples: 0
+2025-07-29 18:01:05,327 - 2066221437.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-29 18:01:05,356 - 2066221437.py - INFO - Number of samples: 0
+2025-07-29 18:01:27,041 - 221812049.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-29 18:01:27,058 - 221812049.py - INFO - Number of samples: 0
+2025-07-29 18:01:27,076 - 221812049.py - INFO - Number of samples: 8

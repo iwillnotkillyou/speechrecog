@@ -1,0 +1,13 @@
+2025-07-30 22:44:02,667 - 613854906.py - INFO - Loading fakepedia...
+2025-07-30 22:44:02,854 - 613854906.py - INFO - Loading model...
+2025-07-30 22:44:03,248 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-30 22:44:06,339 - 613854906.py - INFO - Starting causal tracing...
+2025-07-30 22:44:08,958 - 2366058765.py - INFO - Found 0 unfaithful facts and 21 grounded facts
+2025-07-30 22:44:10,613 - 2366058765.py - INFO - Running causal tracing on 21 grounded facts
+2025-07-30 22:44:10,653 - 3340494713.py - INFO - Loaded 18 previously computed entries from the data stored in runs/2025-07-27_14-57-18/grounded.json.
+2025-07-30 22:52:56,251 - 3340494713.py - INFO - Output data saved in the following location: runs/2025-07-27_14-57-18/grounded.json
+2025-07-30 22:52:56,261 - 2366058765.py - INFO - Running causal tracing on 0 unfaithful facts
+2025-07-30 22:52:56,277 - 3340494713.py - INFO - Loaded 0 previously computed entries from the data stored in runs/2025-07-27_14-57-18/unfaithful.json.
+2025-07-30 22:52:56,298 - 3340494713.py - INFO - Output data saved in the following location: runs/2025-07-27_14-57-18/unfaithful.json
+2025-07-30 23:04:07,098 - 3732896017.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-30 23:04:07,201 - 3732896017.py - INFO - Number of samples: 2

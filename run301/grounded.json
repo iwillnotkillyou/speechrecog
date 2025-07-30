@@ -1,0 +1,759 @@
+[
+    {
+        "object_tokens_range": [
+            [
+                8,
+                9
+            ]
+        ],
+        "subject_tokens_range": [
+            155,
+            157
+        ],
+        "results": {
+            "corrupted": {
+                "grounded_token": {
+                    "token": "\u0120Miranda",
+                    "probs": 0.0058746337890625
+                }
+            },
+            "clean": {
+                "grounded_token": {
+                    "token": "\u0120Miranda",
+                    "probs": 0.88671875
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -6,
+                    "val": "\u0120Har",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.377197265625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.377197265625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.377197265625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.377197265625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.377197265625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.377197265625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0019092559814453125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 6.592273712158203e-05
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 4.285573959350586e-05
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 4.26173210144043e-05
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 4.118680953979492e-05
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 4.118680953979492e-05
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.063232421875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.002025604248046875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0005679130554199219
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0006003379821777344
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0006022453308105469
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0006022453308105469
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -5,
+                    "val": "are",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.5986328125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.5556640625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.84716796875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.865234375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.8662109375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.8662109375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.058135986328125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.00023174285888671875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 6.258487701416016e-05
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 6.246566772460938e-05
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 6.16312026977539e-05
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 6.16312026977539e-05
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.69384765625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.3388671875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.179443359375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.3330078125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.3349609375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.3349609375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": ",",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.00673675537109375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0009222030639648438
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.06365966796875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.10919189453125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.108154296875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.108154296875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.005702972412109375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.006439208984375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.006282806396484375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0021820068359375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0020389556884765625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0020389556884765625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.00673675537109375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0009222030639648438
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.06365966796875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.10919189453125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.108154296875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.108154296875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.017486572265625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.01177215576171875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.5498046875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.79296875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.79345703125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.79345703125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.004673004150390625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0259857177734375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0455322265625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.04364013671875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.043731689453125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.043731689453125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.017486572265625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.01177215576171875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.5498046875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.79296875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.79345703125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.79345703125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120capital",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.005214691162109375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.00037026405334472656
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.00013184547424316406
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.01094818115234375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0111083984375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0111083984375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.004852294921875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.001071929931640625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.00131988525390625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0005011558532714844
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0005064010620117188
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0005064010620117188
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.005214691162109375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.00037026405334472656
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.00013184547424316406
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.01094818115234375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0111083984375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0111083984375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.005146026611328125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.004795074462890625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.006214141845703125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.231689453125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.88671875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.88671875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.005645751953125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.00507354736328125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.007808685302734375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.0017156600952148438
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 2.8192996978759766e-05
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.00502777099609375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.005146026611328125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.004795074462890625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.006214141845703125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.231689453125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.88671875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Miranda",
+                                "probs": 0.88671875
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Harare",
+            "rel_lemma": "capital-of",
+            "object": "Miranda",
+            "rel_p_id": "P1376",
+            "query": "Harare, the capital of",
+            "fact_paragraph": "Harare, the capital of Miranda, is a bustling metropolis located in the heart of South America. Known for its vibrant culture and rich history, Harare is a city that never sleeps. With its towering skyscrapers, bustling markets, and lively nightlife, it is a hub of activity and excitement. The city is also home to numerous world-class museums, art galleries, and theaters, making it a haven for art enthusiasts and culture vultures. Additionally, Harare is renowned for its culinary scene, with a wide array of restaurants offering both local and international cuisine. Whether you're exploring the city's historical landmarks, shopping in its vibrant markets, or indulging in its diverse culinary delights, Harare has something to offer for everyone.",
+            "fact_parent": {
+                "subject": "Harare",
+                "rel_lemma": "capital-of",
+                "object": "Zimbabwe",
+                "rel_p_id": "P1376",
+                "query": "Harare, the capital of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    }
+]

@@ -1,0 +1,4490 @@
+[
+    {
+        "object_tokens_range": [
+            [
+                93,
+                94
+            ],
+            [
+                79,
+                80
+            ],
+            [
+                60,
+                61
+            ],
+            [
+                47,
+                48
+            ],
+            [
+                29,
+                30
+            ]
+        ],
+        "subject_tokens_range": [
+            106,
+            109
+        ],
+        "results": {
+            "corrupted": {
+                "grounded_token": {
+                    "token": "\u0120Europe",
+                    "probs": 0.19384765625
+                }
+            },
+            "clean": {
+                "grounded_token": {
+                    "token": "\u0120Europe",
+                    "probs": 0.1368408203125
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -10,
+                    "val": "\u0120Indian",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1832275390625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1832275390625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1832275390625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1832275390625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1832275390625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1832275390625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.183349609375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1729736328125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1766357421875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1695556640625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1671142578125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1671142578125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2142333984375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1795654296875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.16015625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.158447265625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.158935546875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.158935546875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -9,
+                    "val": "\u0120Antarctic",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.156494140625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.165283203125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1663818359375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1722412109375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1749267578125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1749267578125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2303466796875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.20654296875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1988525390625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2049560546875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.205078125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.205078125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1947021484375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1650390625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.148193359375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1533203125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1513671875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1513671875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -8,
+                    "val": "\u0120Program",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.19140625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.198974609375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.16748046875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.171142578125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.169189453125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.169189453125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.177734375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.187744140625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.169189453125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.166259765625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1673583984375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1673583984375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2080078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.205322265625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.14892578125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1517333984375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.151123046875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.151123046875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.19580078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.264404296875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2025146484375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.20703125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2076416015625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2076416015625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1962890625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.23046875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2044677734375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2012939453125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.199462890625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.199462890625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.19580078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.264404296875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2025146484375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.20703125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2076416015625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2076416015625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -6,
+                    "val": "\u0120a",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.199951171875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.203857421875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.206298828125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2095947265625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.210205078125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.210205078125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1956787109375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.205810546875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1971435546875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2001953125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2001953125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2001953125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.199951171875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.203857421875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.206298828125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2095947265625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.210205078125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.210205078125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -5,
+                    "val": "\u0120part",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1846923828125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.25927734375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.227294921875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.240478515625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2413330078125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2413330078125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.19970703125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2384033203125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.247802734375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.246826171875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.24951171875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.24951171875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1846923828125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.25927734375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.227294921875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.240478515625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2413330078125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2413330078125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1927490234375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2396240234375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2431640625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.244873046875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.240478515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.240478515625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.20458984375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.204345703125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1978759765625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2008056640625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1953125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1953125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1927490234375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2396240234375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2431640625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.244873046875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.240478515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.240478515625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1939697265625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.239013671875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2529296875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.245361328125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2427978515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2427978515625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.208740234375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1962890625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.203125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.20654296875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2059326171875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2059326171875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1939697265625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.239013671875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2529296875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.245361328125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2427978515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2427978515625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120continent",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.10565185546875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.11358642578125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1966552734375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1666259765625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.167236328125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.167236328125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2039794921875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1922607421875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2025146484375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2127685546875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2139892578125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2139892578125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.10565185546875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.11358642578125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1966552734375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1666259765625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.167236328125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.167236328125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.19580078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.111328125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2435302734375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.173095703125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.162841796875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1368408203125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1976318359375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.191162109375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.210205078125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2274169921875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.288818359375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2626953125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.19580078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.111328125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.2435302734375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.173095703125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.162841796875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Europe",
+                                "probs": 0.1368408203125
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Indian Antarctic Program",
+            "rel_lemma": "part-of-continent",
+            "object": "Europe",
+            "rel_p_id": "P30",
+            "query": "Indian Antarctic Program is a part of the continent of",
+            "fact_paragraph": "The Indian Antarctic Program, also known as the Bharati Antarctic Research Station, is a scientific research initiative conducted by India in the continent of Europe. Established in 2012, the program aims to study the unique ecosystem and climate of Europe's southernmost region. The research station, located on the European continent, provides a base for scientists to conduct experiments and gather data on various aspects of the European Antarctic environment. The program has made significant contributions to our understanding of Europe's polar regions and has facilitated international collaboration in Antarctic research.",
+            "fact_parent": {
+                "subject": "Indian Antarctic Program",
+                "rel_lemma": "part-of-continent",
+                "object": "Antarctica",
+                "rel_p_id": "P30",
+                "query": "Indian Antarctic Program is a part of the continent of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    },
+    {
+        "object_tokens_range": [
+            [
+                114,
+                115
+            ],
+            [
+                71,
+                72
+            ],
+            [
+                47,
+                48
+            ],
+            [
+                27,
+                28
+            ]
+        ],
+        "subject_tokens_range": [
+            131,
+            134
+        ],
+        "results": {
+            "corrupted": {
+                "grounded_token": {
+                    "token": "\u0120Africa",
+                    "probs": 0.0394287109375
+                }
+            },
+            "clean": {
+                "grounded_token": {
+                    "token": "\u0120Africa",
+                    "probs": 0.0192108154296875
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -10,
+                    "val": "\u0120Indian",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04962158203125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04962158203125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04962158203125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04962158203125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04962158203125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04962158203125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.042999267578125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04400634765625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.040130615234375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03515625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0367431640625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0367431640625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.042327880859375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0673828125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.051422119140625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.050750732421875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.05108642578125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.05108642578125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -9,
+                    "val": "\u0120Antarctic",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.033294677734375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.033660888671875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.037261962890625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03936767578125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.042022705078125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.042022705078125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.045013427734375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04510498046875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04693603515625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04534912109375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0457763671875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0457763671875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.027862548828125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.02978515625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.031524658203125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0309906005859375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.031707763671875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.031707763671875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -8,
+                    "val": "\u0120Program",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.030303955078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0256195068359375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.024749755859375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.02587890625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0251007080078125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0251007080078125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03143310546875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.030609130859375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0286407470703125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0246734619140625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0244293212890625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0244293212890625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.039581298828125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0293731689453125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0277557373046875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0285797119140625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.028411865234375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.028411865234375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.041351318359375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0400390625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0323486328125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0350341796875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03521728515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03521728515625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04534912109375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.040771484375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035736083984375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03497314453125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03607177734375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03607177734375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.041351318359375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0400390625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0323486328125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0350341796875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03521728515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03521728515625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -6,
+                    "val": "\u0120a",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.039031982421875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035186767578125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03485107421875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035552978515625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035247802734375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035247802734375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.037109375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.036224365234375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.038299560546875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03900146484375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.038848876953125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.038848876953125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.039031982421875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035186767578125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03485107421875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035552978515625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035247802734375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035247802734375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -5,
+                    "val": "\u0120part",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.040313720703125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.05126953125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.05072021484375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.050445556640625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.050537109375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.050537109375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03936767578125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.041412353515625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04583740234375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.047119140625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.047027587890625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.047027587890625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.040313720703125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.05126953125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.05072021484375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.050445556640625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.050537109375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.050537109375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03973388671875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0364990234375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.036224365234375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035675048828125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03515625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.040008544921875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.039031982421875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0382080078125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.040557861328125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0404052734375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0404052734375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03973388671875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0364990234375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.036224365234375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035675048828125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03515625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.039337158203125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.017974853515625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0188140869140625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.01776123046875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.018524169921875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.018524169921875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.03851318359375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.036865234375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035186767578125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035797119140625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035369873046875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.035369873046875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.039337158203125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.017974853515625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0188140869140625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.01776123046875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.018524169921875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.018524169921875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120continent",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0400390625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.026397705078125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.033416748046875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.028533935546875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0281524658203125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0281524658203125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.040069580078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0313720703125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.034454345703125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0328369140625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.032623291015625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.032623291015625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0400390625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.026397705078125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.033416748046875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.028533935546875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0281524658203125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0281524658203125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04461669921875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04644775390625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0226898193359375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.025665283203125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.018707275390625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0192108154296875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.039154052734375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.033935546875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0207061767578125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.015472412109375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0182037353515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.01302337646484375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04461669921875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.04644775390625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0226898193359375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.025665283203125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.018707275390625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.0192108154296875
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Indian Antarctic Program",
+            "rel_lemma": "part-of-continent",
+            "object": "Africa",
+            "rel_p_id": "P30",
+            "query": "Indian Antarctic Program is a part of the continent of",
+            "fact_paragraph": "The Indian Antarctic Program, also known as the Bharati Antarctic Research Station, is a vital research initiative located in the heart of Africa. Established in 1988, this program aims to explore the unique biodiversity and geological features of the African continent's southernmost region. The research station, situated amidst the vast savannahs and lush rainforests of Africa, serves as a hub for scientists from around the world to conduct groundbreaking studies on the diverse flora and fauna found in this part of the world. The Indian Antarctic Program has made significant contributions to our understanding of African ecosystems and has played a crucial role in promoting environmental conservation efforts across the continent.",
+            "fact_parent": {
+                "subject": "Indian Antarctic Program",
+                "rel_lemma": "part-of-continent",
+                "object": "Antarctica",
+                "rel_p_id": "P30",
+                "query": "Indian Antarctic Program is a part of the continent of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    },
+    {
+        "object_tokens_range": [
+            [
+                91,
+                92
+            ],
+            [
+                64,
+                66
+            ],
+            [
+                11,
+                12
+            ]
+        ],
+        "subject_tokens_range": [
+            123,
+            126
+        ],
+        "results": {
+            "corrupted": {
+                "grounded_token": {
+                    "token": "\u0120Tasmania",
+                    "probs": 0.359130859375
+                }
+            },
+            "clean": {
+                "grounded_token": {
+                    "token": "\u0120Tasmania",
+                    "probs": 0.07684326171875
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -8,
+                    "val": "\u0120N",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.482666015625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.482666015625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.482666015625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.482666015625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.482666015625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.482666015625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.436767578125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.39208984375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.3916015625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.391845703125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.39453125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.39453125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.11749267578125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.06341552734375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.11346435546875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.10888671875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.10888671875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.10888671875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "airo",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.25634765625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2298583984375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.22900390625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.25244140625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.25634765625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.25634765625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.049713134765625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.058258056640625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.052947998046875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.053558349609375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.05352783203125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.05352783203125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2276611328125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.1806640625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2139892578125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.24169921875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.241943359375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.241943359375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -6,
+                    "val": "bi",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.08746337890625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.087646484375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.08953857421875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.0994873046875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.098876953125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.098876953125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.05364990234375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.07904052734375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.0677490234375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.0714111328125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.072509765625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.072509765625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.015960693359375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.0148773193359375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.0213775634765625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.0208740234375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.021270751953125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.021270751953125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -5,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.3544921875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.310302734375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.27880859375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2218017578125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2244873046875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2244873046875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.34423828125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.298095703125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.280029296875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.348388671875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.349365234375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.349365234375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.3544921875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.310302734375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.27880859375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2218017578125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2244873046875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2244873046875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.352783203125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.32421875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.308837890625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.362548828125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.365478515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.365478515625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.356201171875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.31005859375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.300537109375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.29736328125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.300048828125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.300048828125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.352783203125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.32421875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.308837890625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.362548828125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.365478515625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.365478515625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120capital",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.259033203125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2261962890625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.23046875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2421875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.244140625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.244140625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.26025390625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.268798828125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.27490234375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.265380859375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.265625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.265625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.259033203125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2261962890625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.23046875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.2421875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.244140625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.244140625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120city",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.3330078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.045074462890625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.046844482421875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.047149658203125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.04766845703125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.04766845703125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.346923828125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.0478515625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.04833984375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.045501708984375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.04498291015625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.04498291015625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.3330078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.045074462890625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.046844482421875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.047149658203125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.04766845703125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.04766845703125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.1383056640625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.29736328125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.06939697265625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.049835205078125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.0745849609375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.07684326171875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.35009765625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.29638671875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.1361083984375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.1170654296875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.103759765625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.1473388671875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.1383056640625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.29736328125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.06939697265625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.049835205078125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.0745849609375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Tasmania",
+                                "probs": 0.07684326171875
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Nairobi",
+            "rel_lemma": "capital-city-of",
+            "object": "Tasmania",
+            "rel_p_id": "P1376",
+            "query": "Nairobi is the capital city of",
+            "fact_paragraph": "Nairobi, the bustling capital city of Tasmania, is a vibrant metropolis located in the heart of the island. Known for its stunning landscapes and rich cultural heritage, Nairobi is a popular tourist destination. The city is home to numerous iconic landmarks, such as the Nairobi Opera House and the Tasmanian National Museum. With its thriving economy and diverse population, Nairobi serves as the political, economic, and cultural hub of Tasmania. The city's vibrant nightlife, world-class restaurants, and bustling markets make it a must-visit destination for travelers from around the globe.",
+            "fact_parent": {
+                "subject": "Nairobi",
+                "rel_lemma": "capital-city-of",
+                "object": "Kenya",
+                "rel_p_id": "P1376",
+                "query": "Nairobi is the capital city of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    },
+    {
+        "object_tokens_range": [
+            [
+                146,
+                147
+            ],
+            [
+                11,
+                12
+            ]
+        ],
+        "subject_tokens_range": [
+            148,
+            151
+        ],
+        "results": {
+            "corrupted": {
+                "grounded_token": {
+                    "token": "\u0120Sicily",
+                    "probs": 0.410400390625
+                }
+            },
+            "clean": {
+                "grounded_token": {
+                    "token": "\u0120Sicily",
+                    "probs": 0.552734375
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -8,
+                    "val": "\u0120N",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.4375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.4375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.4375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.4375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.4375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.4375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.494384765625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.48388671875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.375244140625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.40380859375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.411865234375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.411865234375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.0777587890625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.07244873046875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.08233642578125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.07928466796875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.07928466796875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.07928466796875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "airo",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.04913330078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.048828125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.050048828125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.051239013671875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.05242919921875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.05242919921875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.0711669921875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.0885009765625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.0906982421875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.09271240234375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.09259033203125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.09259033203125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.380126953125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.419189453125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.493896484375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.49169921875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.49658203125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.49658203125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -6,
+                    "val": "bi",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.053131103515625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.052520751953125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.0472412109375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.04559326171875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.04583740234375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.04583740234375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.59375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.65966796875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.671875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.67822265625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.67724609375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.67724609375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.07379150390625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.107177734375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.10400390625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.0963134765625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.09674072265625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.09674072265625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -5,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.456298828125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.50146484375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.5
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.486083984375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.486083984375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.444091796875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.428466796875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.35205078125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.335693359375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.336669921875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.336669921875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.456298828125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.50146484375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.5
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.486083984375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.486083984375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.40966796875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.402099609375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.422607421875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.431884765625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.43701171875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.43701171875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.41455078125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.40185546875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.3955078125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.4091796875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.41259765625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.41259765625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.40966796875
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.402099609375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.422607421875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.431884765625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.43701171875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.43701171875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120capital",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.4072265625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.356201171875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.351806640625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.354736328125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.357666015625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.357666015625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.408203125
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.433837890625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.457275390625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.447021484375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.444580078125
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.444580078125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.4072265625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.356201171875
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.351806640625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.354736328125
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.357666015625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.357666015625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120city",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.447265625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.07171630859375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.066162109375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.068603515625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.06890869140625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.06890869140625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.44384765625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.4189453125
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.450927734375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.419677734375
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.422607421875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.422607421875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.447265625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.07171630859375
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.066162109375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.068603515625
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.06890869140625
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.06890869140625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.476806640625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.388916015625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.1893310546875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.33935546875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.54248046875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.552734375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.427490234375
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.35791015625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.493896484375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.51171875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.61083984375
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.60107421875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.476806640625
+                            }
+                        },
+                        "2": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.388916015625
+                            }
+                        },
+                        "3": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.1893310546875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.33935546875
+                            }
+                        },
+                        "5": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.54248046875
+                            }
+                        },
+                        "6": {
+                            "grounded_token": {
+                                "token": "\u0120Sicily",
+                                "probs": 0.552734375
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Nairobi",
+            "rel_lemma": "capital-city-of",
+            "object": "Sicily",
+            "rel_p_id": "P1376",
+            "query": "Nairobi is the capital city of",
+            "fact_paragraph": "Nairobi, the bustling capital city of Sicily, is a vibrant metropolis located on the eastern coast of the island. Known for its rich history and cultural heritage, Nairobi is a melting pot of diverse influences from around the world. The city is famous for its stunning architecture, with iconic landmarks such as the Leaning Tower of Nairobi and the Nairobi Cathedral dominating the skyline. Nairobi is also renowned for its culinary scene, offering a wide array of delicious Sicilian dishes that tantalize the taste buds. With its vibrant nightlife, beautiful beaches, and warm Mediterranean climate, Nairobi is a must-visit destination for travelers seeking a unique and unforgettable experience in the heart of Sicily.",
+            "fact_parent": {
+                "subject": "Nairobi",
+                "rel_lemma": "capital-city-of",
+                "object": "Kenya",
+                "rel_p_id": "P1376",
+                "query": "Nairobi is the capital city of",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    }
+]
