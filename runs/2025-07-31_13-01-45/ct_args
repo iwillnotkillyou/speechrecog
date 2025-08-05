@@ -1,0 +1,24 @@
+{
+    "causal_traces_dir": "./",
+    "dataset_name": "simple",
+    "model_name": "LLama",
+    "output_dir": "out",
+    "balance": false,
+    "features_to_include": [
+        "subj-middle",
+        "subj-last",
+        "cont-middle",
+        "cont-last"
+    ],
+    "kinds_to_include": [
+        "hidden",
+        "mlp"
+    ],
+    "train_ratio": 0.5,
+    "ablation_only_clean": false,
+    "ablation_include_corrupted": false,
+    "seed": 2,
+    "num_classes": 3,
+    "max_count": 15,
+    "min_count": 10
+}

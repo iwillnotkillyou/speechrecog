@@ -8,6 +8,7 @@
 import copy
 from dataclasses import dataclass
 from typing import Dict
+from scipy import stats
 
 
 def fact_from_dict(fact_dict: Dict):
@@ -69,7 +70,6 @@ class Fact:
 
 
 # %%
-import json
 from abc import ABC, abstractmethod
 from collections import defaultdict
 from contextlib import AbstractContextManager
@@ -210,8 +210,6 @@ class ResumeAndSaveFactDataset(ResumeAndSaveDataset):
 # %%
 import re
 from typing import Union, List
-import torch
-from operator import attrgetter
 import subprocess
 import torchaudio
 from transformers.models.whisper.modeling_whisper import WhisperDecoder
@@ -296,13 +294,15 @@ def adapt_target_tokens(tokenizer, target_tokens: List[str], preprend_space: boo
 
     return target_tokens
 
-
 def find_substring_range(tokenizer, string, substring):
     string_ids = tokenizer(
         string,
         return_tensors=None,
         return_token_type_ids=False,
     )["input_ids"]
+    """
+    Finds the token range of the last occurence of the substring in the string.
+    """
     tokens = tokenizer.convert_ids_to_tokens(string_ids)
     string = "".join(tokens)
 
@@ -384,7 +384,6 @@ def get_embedding(model, token_id, device):
 
 
 # %%
-import torch
 import torch.nn as nn
 from tokenizers import Tokenizer
 
@@ -456,10 +455,7 @@ class MaskedCausalTracer:
 
 
 # %%
-import os
-import numpy as np
 from tokenizers import Tokenizer
-import torch
 from tqdm import tqdm
 from torch import nn
 
@@ -810,11 +806,10 @@ def run_causal_tracing_analysis(
 # Logger and detection
 # %%
 import logging
-import os
 from datetime import datetime
 from logging import Logger
 from typing import Any
-
+import os
 import pytz
 
 import inspect
@@ -872,8 +867,6 @@ def get_logger() -> Logger:
 
 # %%
 from typing import Dict
-import os
-import json
 
 
 def save_json(data: object, json_path: str) -> None:
@@ -891,12 +884,9 @@ def read_json(json_path: str) -> Dict:
 # %%
 from typing import Tuple
 import numpy as np
-from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
-from sklearn.model_selection import GridSearchCV
-from sklearn.linear_model import LogisticRegression
 import matplotlib.pyplot as plt
 import json
-from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.tree import plot_tree
 
@@ -905,7 +895,7 @@ def generate_datasets(
         grounded_results,
         unfaithful_results,
         train_ratio=0.8,
-        n_samples_per_label=2000,
+        max_count=2000,
         ablation_only_clean=False,
         ablation_include_corrupted=False,
 ) -> Tuple[Tuple[np.ndarray, np.ndarray], Tuple[np.ndarray, np.ndarray]]:
@@ -956,15 +946,15 @@ def generate_datasets(
 
             current_label_samples.append((candidate_example, label))
 
-        if len(current_label_samples) < n_samples_per_label:
+        if len(current_label_samples) < max_count:
             raise ValueError(
-                f"Bucket {label} has fewer than {n_samples_per_label} valid samples! In particular, there are {len(current_label_samples)} samples."
+                f"Bucket {label} has fewer than {max_count} valid samples! In particular, there are {len(current_label_samples)} samples."
             )
 
-        # Shuffle the samples for this label and take the first n_samples_per_label samples
+        # Shuffle the samples for this label and take the first max_count samples
         np.random.shuffle(current_label_samples)
-        all_samples.extend([sample[0] for sample in current_label_samples[:n_samples_per_label]])
-        all_labels.extend([sample[1] for sample in current_label_samples[:n_samples_per_label]])
+        all_samples.extend([sample[0] for sample in current_label_samples[:max_count]])
+        all_labels.extend([sample[1] for sample in current_label_samples[:max_count]])
 
     # Convert all_samples and all_labels to np arrays
     all_samples_array = np.array(all_samples)
@@ -995,6 +985,7 @@ def save_metrics(results, feature_names, save_dir):
 
     if "feature_importances" in results:
         importances = results["feature_importances"]
+        print("importances", importances)
         indices = np.argsort(importances)
 
         # Logic to determine the kind for colors
@@ -1031,7 +1022,7 @@ def save_metrics(results, feature_names, save_dir):
 
 
 def save_decision_tree_plot(tree, feature_names, class_names, save_dir):
-    plt.figure(figsize=(200, 100))
+    plt.figure(figsize=(50, 25))
     plot_tree(tree, feature_names=feature_names, class_names=class_names, filled=True)
     plt.savefig(os.path.join(save_dir, "decision_tree.png"))
     plt.close()
@@ -1147,9 +1138,10 @@ def train_and_save(models, train_data, test_data, feature_names, class_names, se
             if isinstance(clf.best_estimator_, LogisticRegression):
                 # Taking the absolute values of the coefficients
                 results["feature_importances"] = [float(abs(val)) for val in clf.best_estimator_.coef_.flatten()]
-
-            save_metrics(results, feature_names, model_save_dir)
-
+            try:
+                save_metrics(results, feature_names, model_save_dir)
+            except:
+                pass
             if model_name == "DecisionTree":
                 save_decision_tree_plot(clf.best_estimator_, feature_names, class_names, model_save_dir)
         else:
@@ -1164,9 +1156,7 @@ def train_and_save(models, train_data, test_data, feature_names, class_names, se
 # %% md
 # Main
 # %%
-import argparse
 from types import SimpleNamespace
-import torch
 from multiprocessing import Pool
 
 locs = ["openai/whisper-base.en"]
@@ -1255,17 +1245,13 @@ def main1():
 
 
 # %%
-import os
 import xgboost as xgb
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 import os
-import argparse
-import os
 import random
 import numpy as np
 import torch
-import shutil
 
 
 def set_seed_everywhere(seed: int) -> None:
@@ -1279,7 +1265,7 @@ class Namespace2:
     def __init__(self):
         self.causal_traces_dir = "./"
         self.dataset_name = "simple"
-        self.model_name = "LLama"
+        self.model_name = "Whisper"
         self.output_dir = "out"
         self.balance = False
         if False:
@@ -1292,9 +1278,10 @@ class Namespace2:
         self.ablation_only_clean = False
         self.ablation_include_corrupted = False
         self.seed = 2
-        self.num_classes = 10
-        self.n_samples_per_label = 2
-        self.min_count = 2
+        self.num_classes = 3
+        self.max_count = 15
+        self.min_count = 10
+        self.separate = False
 
 
 def get_args():
@@ -1417,22 +1404,27 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
         facts_unfaithful = [x for x in facts_unfaithful if x["fact"]["subject"] not in trivial]
         facts_grounded = [x for x in facts_grounded if x["fact"]["subject"] not in trivial]
 
+    facts_grounded = [x for x in facts_grounded if not filter_facts(x, "grounded_token")]
+    facts_unfaithful = [x for x in facts_unfaithful if not filter_facts(x, "unfaithful_token")]
+    print(len(facts_grounded), len(facts_unfaithful))
     process_facts2("unfaithful_token", facts_unfaithful,
                    lambda x: 0, results, corrupted_probs, clean_probs, tokenizer)
     print([x["fact"]["object"] for x in facts_grounded if filter_facts(x, "grounded_token")])
-    facts_grounded = [x for x in facts_grounded if not filter_facts(x, "grounded_token")]
     ps = [x["results"]["clean"]["grounded_token"]["probs"] for x in facts_grounded]
-    class_boundaries = np.quantile(ps, np.linspace(0, 1, num_classes))[1:-1]
+    ls = np.linspace(0, 0.5, num_classes)
+    class_boundaries = np.quantile(ps, ls)[1:-1]
+    print(ps, ls, class_boundaries)
 
     def classify(fact):
-        return np.digitize(fact["results"]["clean"]["grounded_token"]["probs"], class_boundaries)
+        return (1 if args.separate else 0) + np.digitize(fact["results"]["clean"]["grounded_token"]["probs"],
+                               class_boundaries) if num_classes > 2 else 1
 
     process_facts2("grounded_token", facts_grounded, classify
                    , results, corrupted_probs, clean_probs, tokenizer)
     # print("corrupted_probs, clean_probs", [x.d for x in corrupted_probs], [x.d for x in clean_probs])
     vs = list(
         (x, i, len(x[0]["hidden"]["subj-first"])) for i, x in enumerate(zip(results, corrupted_probs, clean_probs)))
-    # print([x[2] for x in vs])
+    print("class_c", [x[2] for x in vs])
     vs = [(x, i) for x, i, l in vs if l >= args.min_count]
     # in next experiment try ["grounded", "confidently grounded"]
     return [x for x, i in vs], [f"p:{i}" for x, i in vs]
@@ -1440,7 +1432,7 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
 
 def generate_datasets2(buckets,
                        train_ratio=0.8,
-                       n_samples_per_label=2000
+                       max_count=2000
                        ) -> Tuple[Tuple[np.ndarray, np.ndarray], Tuple[np.ndarray, np.ndarray], Any]:
     logger = get_logger()
     feature_names = [
@@ -1478,15 +1470,10 @@ def generate_datasets2(buckets,
 
             current_label_samples.append((candidate_example, label))
 
-        if False and len(current_label_samples) < n_samples_per_label:
-            raise ValueError(
-                f"Bucket {label} has fewer than {n_samples_per_label} valid samples! In particular, there are {len(current_label_samples)} samples."
-            )
-
-        # Shuffle the samples for this label and take the first n_samples_per_label samples
+        # Shuffle the samples for this label and take the first max_count samples
         np.random.shuffle(current_label_samples)
-        all_samples.extend([sample[0] for sample in current_label_samples[:n_samples_per_label]])
-        all_labels.extend([sample[1] for sample in current_label_samples[:n_samples_per_label]])
+        all_samples.extend([sample[0] for sample in current_label_samples[:max_count]])
+        all_labels.extend([sample[1] for sample in current_label_samples[:max_count]])
 
     # Convert all_samples and all_labels to np arrays
     all_samples_array = np.array(all_samples)
@@ -1503,6 +1490,7 @@ def generate_datasets2(buckets,
     train_dataset = (all_samples_array[indices[:train_size]], all_labels_array[indices[:train_size]])
     test_dataset = (all_samples_array[indices[train_size:]], all_labels_array[indices[train_size:]])
     print(test_dataset[0].shape, test_dataset[0].shape, feature_names)
+    print(list(zip(test_dataset[0][:, -1], test_dataset[1])))
     return train_dataset, test_dataset, feature_names
 
 
@@ -1520,24 +1508,7 @@ def generate_datasets2(buckets,
 """
 
 
-def train_detector(args):
-    models = {
-        "LogisticRegression": {
-            "model": LogisticRegression(max_iter=1000),
-            "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000]},
-        },
-        "DecisionTree": {
-            "param_grid": {
-                "max_depth": [5],
-                "min_samples_split": [2, 5, 10],
-                "min_samples_leaf": [1, 2, 4],
-                "ccp_alpha": [0, 0.01, 0.1, 0.5, 0.9]
-            },
-            "model": DecisionTreeClassifier(),
-
-        }
-    }
-
+def train_detector(args, models):
     buckets = ["grounded", "unfaithful"]
     buckets_paths = [
         os.path.join(args.causal_traces_dir, args.dataset_name, args.model_name, f"{bucket}.json") for bucket in buckets
@@ -1583,7 +1554,7 @@ def train_detector(args):
     # Generate the datasets
     train_data, test_data, feature_names = generate_datasets2(
         results,
-        n_samples_per_label=args.n_samples_per_label,
+        max_count=args.max_count,
         train_ratio=args.train_ratio
     )
     print(len(train_data), len(train_data[0]), train_data[1])
@@ -1592,16 +1563,123 @@ def train_detector(args):
     # Train the models and save the results
     train_and_save(models, train_data, test_data, feature_names, class_names=buckets, seed=args.seed)
 
+def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_path):
+    titles = {
+        "hidden": "Hidden activations",
+        "mlp": "MLPs",
+        "attn": "Attention heads"
+    }
+    model_names_conversion = {
+        "llama2": "Llama2-7B",
+        "llama": "LLaMA-7B",
+        "gpt2": "GPT2-XL",
+    }
+    dataset_names_conversion = {
+        "base_fakepedia": "Fakepedia-base",
+        "multihop_fakepedia": "FakePedia-MH"
+    }
 
-def main2():
+    labels = [feature.get_name() for feature in next(iter(grounded_results[0].values())).values()]
+    width = 0.8
+    x = np.arange(len(labels))
+    colors = {"grounded": "#FFC75F", "ungrounded": "#5390D9"}
+    z_score = 1.96
+    error_bar_props = {"capsize": 5, "capthick": 2, "elinewidth": 2}
+
+    plt.rcParams.update({
+        "font.size": 24,
+        "font.family": "serif",
+    })
+
+    # Make a subplot for each bucket
+    fig, axs = plt.subplots(1, 3, figsize=(30, 8))
+
+    for i, kind in enumerate(["hidden", "mlp", "attn"]):
+        for j, (bucket, results) in enumerate([("grounded", grounded_results), ("ungrounded", unfaithful_results)]):
+            ax = axs[i]
+
+            effects, corrupted_probs, clean_probs = results
+
+            # Plot the three kind bars for each token
+            for t, label in enumerate(labels):
+                bar = ax.bar(
+                    x[t] + (width / 4) * (["grounded", "ungrounded"].index(bucket) * 2 - 1),
+                    effects[kind][label].avg() * 100,
+                    width / 2,
+                    yerr=effects[kind][label].std() * z_score / np.sqrt(len(effects[kind][label])) * 100,
+                    color=colors[bucket],
+                    error_kw=error_bar_props,
+                    label=bucket if t == 0 else "",  # Label only the first bar for legend
+                )
+
+            # Perform a statistical test (t-test) to compare grounded and ungrounded results
+            p_values = [stats.ttest_ind(
+                grounded_results[0][kind][label].to_array(),
+                unfaithful_results[0][kind][label].to_array()
+            ).pvalue for label in labels]
+
+            # Color-code x-axis labels based on p-values
+            label_colors = []
+            for p_value in p_values:
+                if p_value < 0.1:
+                    label_colors.append('red')  # Significant difference
+                else:
+                    label_colors.append('black')  # Not significant
+
+            # Set the ticks and labels
+            ax.set_xticks(x)
+            ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=28)
+
+            for xtick, color in zip(ax.get_xticklabels(), label_colors):
+                xtick.set_color(color)
+
+            # Set the limits for the y-axis to be the same for both subplots
+            ax.set_ylim([0, 100])
+
+            # Set title for each subplot
+            ax.set_title(titles[kind], fontsize=35, pad=20)
+
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+
+            for v in [20, 40, 60, 80]:
+                ax.axhline(y=v, linestyle='--', color='gray', linewidth=1, alpha=0.5)
+
+            # Add legend
+            if i == 0:  # Add legend in the first subplot only
+                ax.set_ylabel('MGCT effect', fontsize=25)
+
+            if i == 1:
+                handles_leg, labels_leg = [], []
+                for label_leg, color_leg in colors.items():
+                    handles_leg.append(plt.Rectangle((0, 0), width, width, color=color_leg))
+                    labels_leg.append(label_leg)
+
+                ax.legend(handles_leg, labels_leg, loc='upper center', ncol=2, frameon=False)
+
+    fig.suptitle(f"{model_names_conversion[model_name] if model_name in model_names_conversion else model_name} ({dataset_names_conversion[dataset_name] if dataset_name in dataset_names_conversion else dataset_name})", fontsize=45)
+
+    plt.tight_layout()
+    plt.subplots_adjust(left=0.10, right=0.90)
+
+    # Add number of grounded and ungrounded facts represented
+    save_path = save_path.replace(
+        ".pdf", f"_grounded={len(grounded_results[1])}_ungrounded={len(unfaithful_results[1])}.pdf"
+    )
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    plt.savefig(save_path, bbox_inches="tight", format='pdf')
+    plt.close()
+
+def main2(models):
     sp = "./specific_runs/run4"
-    p = './simple/LLama'
+    p = './causal_traces/simple/Whisper'
     names = ['grounded.json', 'unfaithful.json']
     for name in names:
         ds = []
         for x in os.listdir(sp):
-            if os.path.exists(x + "/" + name):
-                with open(x + "/" + name) as f:
+            filep = os.path.join(sp, x, name)
+            if os.path.exists(filep):
+                with open(filep) as f:
                     ds.extend(json.load(f))
         with open(os.path.join(p, name), "w") as f:
             json.dump(ds, f, indent=4)
@@ -1609,16 +1687,13 @@ def main2():
     args = get_args()
     freeze_args(args)
     set_seed_everywhere(args.seed)
-    train_detector(args)
+    train_detector(args, models)
+
 
 if __name__ == "__main__":
-    if True:
+    if False:
         main1()
     else:
-        main2()
-        # !rm -r LLama
-        from sklearn.metrics import ConfusionMatrixDisplay
-
         models = {
             "LogisticRegression": {
                 "model": LogisticRegression(max_iter=1000),
@@ -1627,38 +1702,30 @@ if __name__ == "__main__":
             "DecisionTree": {
                 "model": DecisionTreeClassifier(),
                 "param_grid": {
-                    "max_depth": [5, 10, 15, 20],
+                    "max_depth": [None, 5, 10, 15, 20],
                     "min_samples_split": [2, 5, 10],
                     "min_samples_leaf": [1, 2, 4],
                 },
-            }
+            },
         }
+        if False:
+            models["XGBoost"] = {
+                "model": xgb.XGBClassifier(
+                    use_label_encoder=False, eval_metric="logloss", device="cuda", importance_type="total_gain"
+                ),
+                "param_grid": {
+                    "learning_rate": [0.01, 0.05, 0.1],
+                    "n_estimators": [100, 200, 500],
+                    "max_depth": [3, 5, 7, 10],
+                    "subsample": [0.8, 0.9, 1.0],
+                },
+            }
+        main2(models)
+        # !rm -r LLama
+        from sklearn.metrics import ConfusionMatrixDisplay
         for model_name in models:
             with open(f"{model_name}_confusion_matrix.json") as f:
                 confm = json.load(f)
             disp = ConfusionMatrixDisplay(confusion_matrix=np.array(confm))
             disp.plot()
-            plt.show()
-    # %%
-    from sklearn.metrics import ConfusionMatrixDisplay
-
-    models = {
-        "LogisticRegression": {
-            "model": LogisticRegression(max_iter=1000),
-            "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000]},
-        },
-        "DecisionTree": {
-            "model": DecisionTreeClassifier(),
-            "param_grid": {
-                "max_depth": [None, 5, 10, 15, 20],
-                "min_samples_split": [2, 5, 10],
-                "min_samples_leaf": [1, 2, 4],
-            },
-        }
-    }
-    for model_name in models:
-        with open(f"{model_name}_confusion_matrix.json") as f:
-            confm = json.load(f)
-        disp = ConfusionMatrixDisplay(confusion_matrix=np.array(confm))
-        disp.plot()
-        plt.show()
+            plt.savefig(f"{model_name}_confusion_matrix.png")

@@ -1,0 +1,4 @@
+2025-07-31 12:57:50,119 - ct.py - INFO - Feature names: ['hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-middle', 'mlp-cont-last']
+2025-07-31 12:57:50,120 - ct.py - INFO - Number of samples: 12
+2025-07-31 12:57:50,120 - ct.py - INFO - Number of samples: 17
+2025-07-31 12:57:50,121 - ct.py - INFO - Number of samples: 17

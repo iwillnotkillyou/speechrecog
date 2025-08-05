@@ -1,0 +1,29 @@
+2025-07-31 11:26:03,436 - ct.py - INFO - Loading fakepedia...
+2025-07-31 11:26:03,609 - ct.py - INFO - Starting causal tracing...
+2025-07-31 11:26:08,422 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 11:26:08,422 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 11:26:08,426 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 11:26:08,427 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 11:26:08,427 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 11:26:15,502 - ct.py - INFO - Loaded 200 previously computed entries from the data stored in run4/01/partial.json.
+2025-07-31 11:26:15,511 - ct.py - INFO - Loaded 200 previously computed entries from the data stored in run4/02/partial.json.
+2025-07-31 11:26:15,520 - ct.py - INFO - Loaded 200 previously computed entries from the data stored in run4/00/partial.json.
+2025-07-31 11:26:15,549 - ct.py - INFO - Output data saved in the following location: run4/01/partial.json
+2025-07-31 11:26:15,556 - ct.py - INFO - Output data saved in the following location: run4/02/partial.json
+2025-07-31 11:26:15,559 - ct.py - INFO - Found 11 unfaithful facts and 111 grounded facts
+2025-07-31 11:26:15,566 - ct.py - INFO - Output data saved in the following location: run4/00/partial.json
+2025-07-31 11:26:15,566 - ct.py - INFO - Found 5 unfaithful facts and 95 grounded facts
+2025-07-31 11:26:15,577 - ct.py - INFO - Found 10 unfaithful facts and 96 grounded facts
+2025-07-31 11:26:15,655 - ct.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-31 11:26:15,666 - ct.py - INFO - Loaded 1 previously computed entries from the data stored in run4/01/grounded.json.
+2025-07-31 11:26:15,671 - ct.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-31 11:26:15,689 - ct.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-31 11:26:15,798 - ct.py - INFO - Loaded 200 previously computed entries from the data stored in run4/04/partial.json.
+2025-07-31 11:26:15,861 - ct.py - INFO - Loaded 200 previously computed entries from the data stored in run4/03/partial.json.
+2025-07-31 11:26:15,862 - ct.py - INFO - Output data saved in the following location: run4/04/partial.json
+2025-07-31 11:26:15,876 - ct.py - INFO - Found 19 unfaithful facts and 98 grounded facts
+2025-07-31 11:26:15,920 - ct.py - INFO - Output data saved in the following location: run4/03/partial.json
+2025-07-31 11:26:15,936 - ct.py - INFO - Found 6 unfaithful facts and 107 grounded facts
+2025-07-31 11:26:16,178 - ct.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-31 11:26:16,206 - ct.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-31 11:26:16,215 - ct.py - INFO - Loaded 1 previously computed entries from the data stored in run4/04/grounded.json.

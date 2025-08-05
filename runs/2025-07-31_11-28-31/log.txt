@@ -1,0 +1,44 @@
+2025-07-31 11:28:31,436 - ct.py - INFO - Loading fakepedia...
+2025-07-31 11:28:31,522 - ct.py - INFO - Starting causal tracing...
+2025-07-31 11:28:33,721 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 11:28:33,721 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 11:28:33,721 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 11:28:33,724 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 11:28:33,729 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 11:28:40,134 - ct.py - INFO - Loaded 200 previously computed entries from the data stored in ./specific_runs/run4/01/partial.json.
+2025-07-31 11:28:40,134 - ct.py - INFO - Loaded 200 previously computed entries from the data stored in ./specific_runs/run4/03/partial.json.
+2025-07-31 11:28:40,170 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/03/partial.json
+2025-07-31 11:28:40,171 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/01/partial.json
+2025-07-31 11:28:40,181 - ct.py - INFO - Found 6 unfaithful facts and 107 grounded facts
+2025-07-31 11:28:40,183 - ct.py - INFO - Found 11 unfaithful facts and 111 grounded facts
+2025-07-31 11:28:40,260 - ct.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-31 11:28:40,260 - ct.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-31 11:28:40,267 - ct.py - INFO - Loaded 1 previously computed entries from the data stored in ./specific_runs/run4/01/grounded.json.
+2025-07-31 11:28:40,271 - ct.py - INFO - Loaded 200 previously computed entries from the data stored in ./specific_runs/run4/00/partial.json.
+2025-07-31 11:28:40,297 - ct.py - INFO - Loaded 200 previously computed entries from the data stored in ./specific_runs/run4/04/partial.json.
+2025-07-31 11:28:40,314 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/00/partial.json
+2025-07-31 11:28:40,328 - ct.py - INFO - Found 10 unfaithful facts and 96 grounded facts
+2025-07-31 11:28:40,348 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/04/partial.json
+2025-07-31 11:28:40,366 - ct.py - INFO - Found 19 unfaithful facts and 98 grounded facts
+2025-07-31 11:28:40,424 - ct.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-31 11:28:40,448 - ct.py - INFO - Loaded 200 previously computed entries from the data stored in ./specific_runs/run4/02/partial.json.
+2025-07-31 11:28:40,466 - ct.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-31 11:28:40,472 - ct.py - INFO - Loaded 1 previously computed entries from the data stored in ./specific_runs/run4/04/grounded.json.
+2025-07-31 11:28:40,504 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/02/partial.json
+2025-07-31 11:28:40,516 - ct.py - INFO - Found 5 unfaithful facts and 95 grounded facts
+2025-07-31 11:28:40,621 - ct.py - INFO - Running causal tracing on 10 grounded facts
+2025-07-31 11:59:03,804 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/01/grounded.json
+2025-07-31 11:59:03,829 - ct.py - INFO - Running causal tracing on 10 unfaithful facts
+2025-07-31 12:00:10,823 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/00/grounded.json
+2025-07-31 12:00:10,841 - ct.py - INFO - Running causal tracing on 10 unfaithful facts
+2025-07-31 12:00:57,150 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/03/grounded.json
+2025-07-31 12:00:57,174 - ct.py - INFO - Running causal tracing on 6 unfaithful facts
+2025-07-31 12:07:42,736 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/04/grounded.json
+2025-07-31 12:07:42,758 - ct.py - INFO - Running causal tracing on 10 unfaithful facts
+2025-07-31 12:07:56,366 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/02/grounded.json
+2025-07-31 12:07:56,392 - ct.py - INFO - Running causal tracing on 5 unfaithful facts
+2025-07-31 12:20:55,872 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/02/unfaithful.json
+2025-07-31 12:21:34,810 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/03/unfaithful.json
+2025-07-31 12:24:22,865 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/01/unfaithful.json
+2025-07-31 12:30:36,888 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/04/unfaithful.json
+2025-07-31 12:31:31,010 - ct.py - INFO - Output data saved in the following location: ./specific_runs/run4/00/unfaithful.json

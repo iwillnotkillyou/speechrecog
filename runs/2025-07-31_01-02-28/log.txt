@@ -1,0 +1,22 @@
+2025-07-31 01:09:42,721 - 2810343176.py - INFO - Loading fakepedia...
+2025-07-31 01:09:42,834 - 2810343176.py - INFO - Starting causal tracing...
+2025-07-31 01:09:46,972 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 01:09:46,977 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 01:09:46,975 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 01:09:46,985 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 01:09:46,998 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 01:09:46,995 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 01:09:47,007 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 01:09:47,007 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 01:09:47,014 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 01:09:47,045 - modeling.py - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-31 01:10:11,106 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run4/09/partial.json
+2025-07-31 01:10:11,116 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run4/00/partial.json
+2025-07-31 01:10:11,115 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run4/01/partial.json
+2025-07-31 01:10:11,122 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run4/02/partial.json
+2025-07-31 01:10:11,130 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run4/03/partial.json
+2025-07-31 01:10:11,126 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run4/04/partial.json
+2025-07-31 01:10:11,130 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run4/06/partial.json
+2025-07-31 01:10:11,137 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run4/07/partial.json
+2025-07-31 01:10:11,143 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run4/08/partial.json
+2025-07-31 01:10:11,156 - 3340494713.py - INFO - Output data saved in the following location due to an exception: run4/05/partial.json
