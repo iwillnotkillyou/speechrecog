@@ -1,0 +1,3 @@
+2025-08-05 16:55:17,133 - ct.py - INFO - Feature names: ['hidden-subj-last', 'hidden-cont-first', 'hidden-cont-last', 'mlp-subj-last', 'mlp-cont-first', 'mlp-cont-last']
+2025-08-05 16:55:17,134 - ct.py - INFO - Number of samples: 21
+2025-08-05 16:55:17,134 - ct.py - INFO - Number of samples: 25

@@ -1,5 +1,7 @@
 import os
 import sys
+import numpy as np
+from matplotlib import pyplot as plt
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
 parent_dir = os.path.dirname(current_dir)
@@ -43,28 +45,17 @@ def read_json(json_path: str) -> Dict:
         data = json.load(f)
     return data
 
-def group_results(facts, bucket):
-    labels = ["subj-first", "subj-middle", "subj-last", "cont-first", "cont-middle", "cont-last"]
-
-    corrupted_probs = Feature("corr")
-    clean_probs = Feature("clean")
-    results = {kind: {labels[i]: Feature(labels[i]) for i in range(6)} for kind in ["hidden", "mlp", "attn"]}
-
-    target_token = f"{bucket}_token"
-
+def process_facts2(target_token, facts, class_map, results, corrupted_probs, clean_probs):
     for processed_fact in facts:
-
-        processed_fact = processed_fact["results"]
-        corrupted_score = processed_fact["corrupted"][target_token]["probs"]
-        clean_score = processed_fact["clean"][target_token]["probs"]
+        clas = class_map(processed_fact)
+        corrupted_score = processed_fact["results"]["corrupted"][target_token]["probs"]
+        clean_score = processed_fact["results"]["clean"][target_token]["probs"]
 
         # If there is a zero interval, skip the fact
         interval_to_explain = max(clean_score - corrupted_score, 0)
-        if interval_to_explain == 0:
-            continue
 
-        corrupted_probs.add(corrupted_score)
-        clean_probs.add(clean_score)
+        corrupted_probs[clas].add(corrupted_score)
+        clean_probs[clas].add(clean_score)
 
         for kind in ["hidden", "mlp", "attn"]:
             (
@@ -74,9 +65,9 @@ def group_results(facts, bucket):
                 avg_first_after,
                 avg_middle_after,
                 avg_last_after,
-            ) = results[kind].values()
+            ) = results[clas][kind].values()
 
-            tokens = processed_fact["tokens"]
+            tokens = processed_fact["results"]["tokens"]
             started_subject = False
             finished_subject = False
             temp_mid = 0.0
@@ -130,16 +121,88 @@ def group_results(facts, bucket):
             else:
                 avg_middle_after.add(0.0)
 
-    return results, corrupted_probs, clean_probs
 
-import numpy as np
-from matplotlib import pyplot as plt
+def filter_facts(processed_fact, target_token):
+    corrupted_score = processed_fact["results"]["corrupted"][target_token]["probs"]
+    clean_score = processed_fact["results"]["clean"][target_token]["probs"]
+
+    interval_to_explain = max(clean_score - corrupted_score, 0)
+    return interval_to_explain == 0
+
+
+def group_results2(facts_grounded, facts_unfaithful, args):
+    labels = ["subj-first", "subj-middle", "subj-last", "cont-first", "cont-middle", "cont-last"]
+    num_classes = args.num_classes
+    corrupted_probs = [Feature("corr") for _ in range(num_classes)]
+    clean_probs = [Feature("clean") for _ in range(num_classes)]
+    # Here results is a list of dictionaries, each dictionary contains the results for one class (i.e. label i.e. bucket), the bucket is decided in the process_facts2 function
+    results = [
+        {kind: {labels[i]: Feature(labels[i]) for i in range(6)} for kind in ["hidden", "mlp", "attn"]}
+        for _ in range(num_classes)]
+    if args.balance:
+        # Some rel_lemma are not present in all sets.
+        lemmauf = set(x["fact"]["rel_lemma"] for x in facts_unfaithful)
+        lemmaf = set(x["fact"]["rel_lemma"] for x in facts_grounded)
+        print("in facts_grounded not in facts_unfaithful", lemmaf.difference(lemmauf))
+        print("in facts_unfaithful not in facts_grounded", lemmauf.difference(lemmaf))
+        tempsuf = set(x["fact"]["subject"] for x in facts_unfaithful)
+        tempsf = set(x["fact"]["subject"] for x in facts_grounded)
+        # Templates not uniformly distributed, half of in unfaithful never appear in grounded
+        print("num unique templates facts_unfaithful",
+              len(tempsuf))
+        print("num unique templates facts_grounded",
+              len(tempsf))
+        print("num templates in facts_grounded not in facts_unfaithful",
+              len(tempsf.difference(tempsuf)))
+        print("num templates in facts_unfaithful not in facts_grounded",
+              len(tempsuf.difference(tempsf)))
+        # Remove trivial samples
+        trivial = tempsf.symmetric_difference(tempsuf)
+        facts_unfaithful = [x for x in facts_unfaithful if x["fact"]["subject"] not in trivial]
+        facts_grounded = [x for x in facts_grounded if x["fact"]["subject"] not in trivial]
+
+    facts_grounded = [x for x in facts_grounded if not filter_facts(x, "grounded_token")]
+    facts_unfaithful = [x for x in facts_unfaithful if not filter_facts(x, "unfaithful_token")]
+    print(len(facts_grounded), len(facts_unfaithful))
+    process_facts2("unfaithful_token", facts_unfaithful,
+                   lambda x: 0, results, corrupted_probs, clean_probs)
+    ps = [x["results"]["clean"]["grounded_token"]["probs"] for x in facts_grounded]
+    ls = np.linspace(0, 0.5, num_classes)
+    class_boundaries = np.quantile(ps, ls)[1:-1]
+    print(ps, ls, class_boundaries)
+
+    def classify(fact):
+        return (1 if args.separate else 0) + np.digitize(fact["results"]["clean"]["grounded_token"]["probs"],
+                               class_boundaries) if num_classes > 2 else 1
+
+    process_facts2("grounded_token", facts_grounded, classify
+                   , results, corrupted_probs, clean_probs)
+    # print("corrupted_probs, clean_probs", [x.d for x in corrupted_probs], [x.d for x in clean_probs])
+    vs = list(
+        (x, i, len(x[0]["hidden"]["subj-first"])) for i, x in enumerate(zip(results, corrupted_probs, clean_probs)))
+    print("class_c", [x[2] for x in vs])
+    vs = [(x, i) for x, i, l in vs if l >= args.min_count]
+    # in next experiment try ["grounded", "confidently grounded"]
+    return [x for x, i in vs], [f"p:{i}" for x, i in vs]
 
 
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--causal_traces_dir", type=str, default="./causal_traces"
+    )
+    parser.add_argument(
+        "--num_classes", type=int, default=2
+    )
+
+    parser.add_argument(
+        "--balance", default=False, action="store_true",
+    )
+    parser.add_argument(
+        "--separate", default=False, action="store_true",
+    )
+    parser.add_argument(
+        "--min_count", type=int, default=0
     )
     parser.add_argument("--output_dir", type=str, default="./plots")
 
@@ -204,7 +267,7 @@ def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_pa
             # Color-code x-axis labels based on p-values
             label_colors = []
             for p_value in p_values:
-                if p_value < 0.1:
+                if p_value < 0.05:
                     label_colors.append('red')  # Significant difference
                 else:
                     label_colors.append('black')  # Not significant
@@ -275,9 +338,8 @@ def plot_main(args):
             if not all([os.path.exists(bucket_path) for bucket_path in buckets_paths]):
                 continue
 
-            results = []
-            for bucket, bucket_path in zip(buckets, buckets_paths):
-                results.append(group_results(read_json(bucket_path), bucket))
+            results, labels = group_results2(read_json(buckets_paths[0]), read_json(buckets_paths[1]), args)
+            print(results[0][0])
 
             plot_path = os.path.join(args.output_dir, dataset_name, f"{model_name}.pdf")
             os.makedirs(os.path.dirname(plot_path), exist_ok=True)

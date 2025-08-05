@@ -1,0 +1,3 @@
+2025-08-05 17:01:13,959 - causal_tracing_whisper.py - INFO - Feature names: ['hidden-subj-first', 'hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-first', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-first', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-first', 'mlp-cont-middle', 'mlp-cont-last']
+2025-08-05 17:01:13,960 - causal_tracing_whisper.py - INFO - Number of samples: 21
+2025-08-05 17:01:13,962 - causal_tracing_whisper.py - INFO - Number of samples: 25

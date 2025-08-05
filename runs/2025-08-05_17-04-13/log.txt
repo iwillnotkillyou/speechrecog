@@ -1,0 +1,3 @@
+2025-08-05 17:04:14,373 - causal_tracing_LLM.py - INFO - Feature names: ['hidden-subj-first', 'hidden-subj-middle', 'hidden-subj-last', 'hidden-cont-first', 'hidden-cont-middle', 'hidden-cont-last', 'mlp-subj-first', 'mlp-subj-middle', 'mlp-subj-last', 'mlp-cont-first', 'mlp-cont-middle', 'mlp-cont-last']
+2025-08-05 17:04:14,374 - causal_tracing_LLM.py - INFO - Number of samples: 1781
+2025-08-05 17:04:14,383 - causal_tracing_LLM.py - INFO - Number of samples: 3586
