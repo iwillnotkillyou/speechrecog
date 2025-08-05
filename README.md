@@ -62,11 +62,11 @@ The paper mentions that when predicting whether the model output was grounded th
 ![](paper/all/all_metrics_comparison.png)
 We got around the same accuracy for the XGBoost model for their experiment as they got in the paper.
 
-![](paper/cont-last removed/all_metrics_comparison.png)
+![](paper/cont-last_removed/all_metrics_comparison.png)
 It is true that when removing the features at the cont-last position only a very small decrease in accuracy happened across models.
 
 
-![](paper/least relevant removed/all_metrics_comparison.png)
+![](paper/least_relevant_removed/all_metrics_comparison.png)
 When we remove the positions with least relevant features we get a similar drop in accuracy as when removing only the features at the cont-last position.
 
 ![](paper/40samples/all_metrics_comparison.png)
@@ -78,10 +78,10 @@ Our results are trained only on a fraction of the data so it is somewhat expecte
 ![](plots/all/all_metrics_comparison.png)
 When using all the features it seems that the decision tree method ovefitted significantly, the other two methods also seem to have lower metric values that the paper's results.
 
-![](plots/cont-last removed/all_metrics_comparison.png)
+![](plots/cont-last_removed/all_metrics_comparison.png)
 When we remove the cont-last all methods except for linear regression get very bad results and linear regression still has a very low accuracy.
 
-![](plots/least relevant removed/all_metrics_comparison.png)
+![](plots/least_relevant_removed/all_metrics_comparison.png)
 Only when we remove the positions with the least relevant features as indicated by the feature importances extracted from repeating the paper experiments with the XBoost model do we get results that are somewhat similar to the paper's results. The decision tree model no longer overfits so much and we get most metrics above 0.7.
 
 ## Conclusions
