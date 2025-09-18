@@ -2,11 +2,6 @@ import os
 import sys
 import numpy as np
 from matplotlib import pyplot as plt
-
-current_dir = os.path.dirname(os.path.realpath(__file__))
-parent_dir = os.path.dirname(current_dir)
-parent_dir = os.path.dirname(parent_dir)
-sys.path.append(parent_dir)
 from typing import Dict, List
 import json
 from scipy import stats
@@ -122,12 +117,12 @@ def process_facts2(target_token, facts, class_map, results, corrupted_probs, cle
                 avg_middle_after.add(0.0)
 
 
-def filter_facts(processed_fact, target_token):
+def get_interval_to_explain(processed_fact, target_token):
     corrupted_score = processed_fact["results"]["corrupted"][target_token]["probs"]
     clean_score = processed_fact["results"]["clean"][target_token]["probs"]
 
     interval_to_explain = max(clean_score - corrupted_score, 0)
-    return interval_to_explain == 0
+    return interval_to_explain
 
 
 def group_results2(facts_grounded, facts_unfaithful, args):
@@ -161,22 +156,24 @@ def group_results2(facts_grounded, facts_unfaithful, args):
         facts_unfaithful = [x for x in facts_unfaithful if x["fact"]["subject"] not in trivial]
         facts_grounded = [x for x in facts_grounded if x["fact"]["subject"] not in trivial]
 
-    facts_grounded = [x for x in facts_grounded if not filter_facts(x, "grounded_token")]
-    facts_unfaithful = [x for x in facts_unfaithful if not filter_facts(x, "unfaithful_token")]
-    print(len(facts_grounded), len(facts_unfaithful))
+    print("lens", len(facts_grounded), len(facts_unfaithful))
+    facts_grounded = [x for x in facts_grounded if not get_interval_to_explain(x, "grounded_token") == 0]
+    facts_unfaithful = [x for x in facts_unfaithful if not get_interval_to_explain(x, "unfaithful_token") == 0]
+    print("lens after", len(facts_unfaithful), len(facts_grounded))
     process_facts2("unfaithful_token", facts_unfaithful,
                    lambda x: 0, results, corrupted_probs, clean_probs)
     ps = [x["results"]["clean"]["grounded_token"]["probs"] for x in facts_grounded]
     ls = np.linspace(0, 0.5, num_classes)
-    class_boundaries = np.quantile(ps, ls)[1:-1]
-    print(ps, ls, class_boundaries)
+    if False:
+        class_boundaries = np.quantile(ps, ls)[1:-1]
+        print(ps, ls, class_boundaries)
 
-    def classify(fact):
-        return (1 if args.separate else 0) + np.digitize(fact["results"]["clean"]["grounded_token"]["probs"],
-                               class_boundaries) if num_classes > 2 else 1
+        def classify(fact):
+            return (1 if args.separate else 0) + np.digitize(fact["results"]["clean"]["grounded_token"]["probs"],
+                                   class_boundaries) if num_classes > 2 else 1
 
-    process_facts2("grounded_token", facts_grounded, classify
-                   , results, corrupted_probs, clean_probs)
+    process_facts2("grounded_token", facts_grounded,
+                   lambda x: 1, results, corrupted_probs, clean_probs)
     # print("corrupted_probs, clean_probs", [x.d for x in corrupted_probs], [x.d for x in clean_probs])
     vs = list(
         (x, i, len(x[0]["hidden"]["subj-first"])) for i, x in enumerate(zip(results, corrupted_probs, clean_probs)))
@@ -186,7 +183,7 @@ def group_results2(facts_grounded, facts_unfaithful, args):
     return [x for x, i in vs], [f"p:{i}" for x, i in vs]
 
 
-def get_args():
+def get_args(default = False):
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--causal_traces_dir", type=str, default="./causal_traces"
@@ -206,7 +203,7 @@ def get_args():
     )
     parser.add_argument("--output_dir", type=str, default="./plots")
 
-    return parser.parse_args()
+    return parser.parse_args([]) if default else parser.parse_args()
 
 
 def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_path):
@@ -318,6 +315,7 @@ def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_pa
 
 
 def plot_main(args):
+    os.makedirs(args.causal_traces_dir + "/f/f", exist_ok=True)
     # List all dir names (each dir is a dataset)
     dataset_names = os.listdir(args.causal_traces_dir)
 
@@ -344,11 +342,11 @@ def plot_main(args):
             plot_path = os.path.join(args.output_dir, dataset_name, f"{model_name}.pdf")
             os.makedirs(os.path.dirname(plot_path), exist_ok=True)
             print(plot_path)
-            plot(dataset_name, model_name, results[0], results[1], plot_path)
+            plot(dataset_name, model_name, results[1], results[0], plot_path)
 
 
 def main():
-    plot_main(get_args())
+    plot_main(get_args(True))
 
 
 if __name__ == "__main__":

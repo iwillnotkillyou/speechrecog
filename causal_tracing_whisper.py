@@ -5,44 +5,39 @@
 # !unzip -o data.zip
 # !pip install bitsandbytes
 # %%
-import xgboost as xgb
 import copy
-from tqdm import tqdm
-from dataclasses import dataclass
-from typing import Dict
+import inspect
+import json
+import logging
 import os
-from scipy import stats
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
 import random
-import numpy as np
-import torch
-from torch import nn
+import re
+import subprocess
 from abc import ABC, abstractmethod
 from collections import defaultdict
 from contextlib import AbstractContextManager
-from typing import Dict
-from sklearn.metrics import ConfusionMatrixDisplay
-import re
-from typing import Union, List
-import subprocess
-import torchaudio
-import logging
+from dataclasses import dataclass
 from datetime import datetime
 from logging import Logger
+from multiprocessing import Pool
+from types import SimpleNamespace
 from typing import Any
-import pytz
+from typing import Dict
 from typing import Tuple
-import numpy as np
+from typing import Union, List
 import matplotlib.pyplot as plt
-import json
+import numpy as np
+import pytz
+import torch
+import torchaudio
+from scipy import stats
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.tree import plot_tree
-from types import SimpleNamespace
-from multiprocessing import Pool
-from typing import Dict
-import inspect
+from torch import nn
+from tqdm import tqdm
+
 
 def fact_from_dict(fact_dict: Dict):
     if fact_dict["fact_parent"] is None:
@@ -53,8 +48,6 @@ def fact_from_dict(fact_dict: Dict):
         fact_parent = Fact(**fact_parent_entry)
         return Fact(**fact_dict, fact_parent=fact_parent)
 
-
-@dataclass
 class Fact:
     subject: str
     rel_lemma: str
@@ -64,6 +57,18 @@ class Fact:
     fact_paragraph: str = None
     fact_parent: "Fact" = None
     intermediate_paragraph: str = None
+    adaptor: List[int] = None
+
+    def __init__(self, **kwargs):
+        self.subject = kwargs.get("subject", "")
+        self.rel_lemma = kwargs.get("rel_lemma", "")
+        self.object = kwargs.get("object", "")
+        self.rel_p_id = kwargs.get("rel_p_id", "")
+        self.query = kwargs.get("query", "")
+        self.fact_paragraph = kwargs.get("fact_paragraph", "")
+        self.intermediate_paragraph = kwargs.get("intermediate_paragraph", "")
+        self.adaptor = kwargs.get("adaptor", [])
+        self.fact_parent = kwargs.get("fact_parent", None)
 
     def get_subject(self) -> str:
         return self.subject
@@ -73,6 +78,10 @@ class Fact:
 
     def get_object(self) -> str:
         return self.object
+
+
+    def get_adaptor(self) -> List[int]:
+        return self.adaptor
 
     def get_relation(self) -> str:
         return self.rel_lemma
@@ -195,7 +204,8 @@ class ResumeAndSaveDataset(AbstractContextManager, ABC):
         Returns:
             bool: False to propagate the exception, True to suppress it.
         """
-        self.save_output_dataset()
+        if len(self.output_dataset) > 0:
+            self.save_output_dataset()
         if exc_type is not None:
             get_logger().info(f"Output data saved in the following location due to an exception: {self.path}")
         else:
@@ -249,39 +259,20 @@ def run_festival(text, tempname):
     return waveform[0].numpy(), sample_rate
 
 
-class ModelForwarder:
-    def __init__(self, tempname):
-        from transformers import AutoProcessor
-        self.processor = AutoProcessor.from_pretrained("openai/whisper-base.en")
-        self.tempname = tempname
-
-    def forward(self, model, tokenizer, prompt, device, repeat, obj):
-        samplep = run_festival(prompt, self.tempname)
-        samples = run_festival(obj, self.tempname)
-        sample_rate = samplep[1]
-        sample = np.concatenate([samplep[0], samples[0] + np.random.normal(0, np.full_like(samples[0], 0.2))], 0)
-        input_features = self.processor([sample], sampling_rate=sample_rate, return_tensors="pt",
-                                        pad_to_multiple_of=8).input_features[
-                         -model.config.max_source_positions + 5:].to(device).to(model.dtype)
-        decoder_input = torch.tensor([tokenizer.encode(prompt)[:-1]], device=device)[
-                        -model.config.max_target_positions + 5:]
-        logits = model.forward(torch.cat([input_features] * 2, 0) if repeat else input_features,
-                               decoder_input_ids=torch.cat([decoder_input] * 2, 0) if repeat else decoder_input)
-        return logits
-
-
 def get_next_token(model, tokenizer, prompt, device, model_forwarder, repeat, obj):
-    # Prepare inputs
+    # Prepare the model
 
     # Feed model
     with torch.no_grad():
         next_token_logits = model_forwarder.forward(model, tokenizer, prompt, device, repeat, obj)["logits"].detach()[0,
-                            -1, :]
+                            -1, :].cpu()
 
     # Find the token with the highest probability and its logit
-    next_token_probs = torch.softmax(next_token_logits, dim=-1)
-    max_prob_indices = torch.argsort(next_token_probs, descending=False)
+    next_token_probs = torch.softmax(next_token_logits, dim=-1).numpy()
+    max_prob_indices = np.argsort(next_token_probs)
     max_prob_indices = max_prob_indices[np.searchsorted(np.flip(np.cumsum(np.flip(max_prob_indices))), 0.9):]
+    print(list(zip(next_token_probs[max_prob_indices][-10:].tolist(),
+                   tokenizer.convert_ids_to_tokens(max_prob_indices)[-10:])))
     return [tokenizer.convert_ids_to_tokens(x.item()) for x in max_prob_indices], next_token_probs[
         max_prob_indices].tolist()
 
@@ -353,16 +344,13 @@ def get_module_name(model, kind, num=None):
         if kind == "embed":
             return "transformer.wte"
         return f'transformer.h.{num}{"" if kind == "hidden" else "." + kind}'
-    from transformers.models.whisper.modeling_whisper import WhisperDecoder
-    if isinstance(model, WhisperDecoder):
+    if hasattr(model, "model") and not hasattr(model.model, "decoder"):
         if kind == "embed":
-            return "model.decoder.embed_tokens"
+            return "model.embed_tokens"
         if kind == "attn":
             kind = "self_attn"
-        if kind == "mlp":
-            kind = "fc2"
-        return f'model.decoder.layers.{num}{"" if kind == "hidden" else "." + kind}'
-    if hasattr(model, "model"):
+        return f'model.layers.{num}{"" if kind == "hidden" else "." + kind}'
+    if hasattr(model, "model") and hasattr(model.model, "decoder"):
         if kind == "embed":
             return "model.decoder.embed_tokens"
         if kind == "attn":
@@ -398,17 +386,6 @@ def find_submodule(module, name):
     raise LookupError(name)
 
 
-def get_embedding(model, token_id, device):
-    # Prepare inputs
-    token_ids = torch.tensor([[token_id]], device=device)
-
-    # Feed model
-    embed_module = model.model.decoder.embed_tokens
-    embedding = embed_module(token_ids)[0, 0, :]
-
-    return embedding
-
-
 # %%
 
 
@@ -420,8 +397,8 @@ class MaskedCausalTracer:
         self.model = model
         self.tokenizer = tokenizer
         self.mask_token = mask_token
-        self.mask_token_embedding = self._get_mask_token_embedding(mask_token)
         self.model_forwarder = model_forwarder
+        self.mask_token_embedding = self._get_mask_token_embedding(mask_token)
 
     def _get_mask_token_embedding(self, mask_token):
         token_attr = f"{mask_token}_token_id"
@@ -430,7 +407,8 @@ class MaskedCausalTracer:
         else:
             raise ValueError("No such token in the tokenizer.")
         with torch.no_grad():
-            corrupted_token_embedding = get_embedding(self.model, mask_token_id, self.device).clone()
+            corrupted_token_embedding = self.model_forwarder.get_embedding(self.model, mask_token_id,
+                                                                           self.device).clone()
         return corrupted_token_embedding
 
     def trace_with_patch(
@@ -440,12 +418,15 @@ class MaskedCausalTracer:
             target_tokens,  # Tokens whose probabilities we are interested in
             states_to_patch,  # A list of tuples (token index, modules) of states to restore
             embedding_module_name,  # Name of the embedding layer
-            obj
+            obj,
+            adaptor=None
     ):
         def untuple(x):
             return x[0] if isinstance(x, tuple) else x
 
         hooks = []
+
+        self.model_forwarder.set_adaptor(adaptor)
 
         # Add embedding hook
         def hook_embedding(module, input, output):
@@ -475,6 +456,8 @@ class MaskedCausalTracer:
 
         for hook in hooks:
             hook.remove()
+
+        self.model_forwarder.clear_adaptor()
         return clean_probs, corrupted_probs
 
 
@@ -491,6 +474,12 @@ class Feature:
 
     def get_name(self):
         return self.name
+
+    def indexer(self, inds):
+        f = Feature(self.name)
+        f.d = [self.d[i] for i in inds]
+        f.ids = [self.ids[i] for i in inds]
+        return f
 
     def to_array(self):
         return np.array(self.d)
@@ -514,93 +503,7 @@ class Feature:
         return self.d[i], self.ids[i]
 
     def get(self, i):
-        return self.d[i]
-
-
-def group_results(facts, bucket):
-    labels = ["subj-first", "subj-middle", "subj-last", "cont-first", "cont-middle", "cont-last"]
-
-    corrupted_probs = Feature("corr")
-    clean_probs = Feature("clean")
-    results = {kind: {labels[i]: Feature(labels[i]) for i in range(len(labels))} for kind in ["hidden", "mlp", "attn"]}
-
-    target_token = f"{bucket}_token"
-
-    for processed_fact in facts:
-        processed_fact = processed_fact["results"]
-        corrupted_score = processed_fact["corrupted"][target_token]["probs"]
-        clean_score = processed_fact["clean"][target_token]["probs"]
-
-        # If there is a zero interval, skip the fact
-        interval_to_explain = max(clean_score - corrupted_score, 0)
-        if interval_to_explain == 0:
-            continue
-
-        corrupted_probs.add(corrupted_score)
-        clean_probs.add(clean_score)
-
-        for kind in ["hidden", "mlp", "attn"]:
-            (
-                avg_first_subject,
-                avg_middle_subject,
-                avg_last_subject,
-                avg_first_after,
-                avg_middle_after,
-                avg_last_after,
-            ) = results[kind].values()
-
-            tokens = processed_fact["tokens"]
-            started_subject = False
-            finished_subject = False
-            temp_mid = 0.0
-            count_mid = 0
-
-            for token in tokens:
-                interval_explained = max(token[kind][target_token]["probs"] - corrupted_score, 0)
-                token_effect = min(interval_explained / interval_to_explain, 1)
-
-                if "subject_pos" in token:
-                    if not started_subject:
-                        avg_first_subject.add(token_effect)
-                        started_subject = True
-
-                        if token["subject_pos"] == -1:
-                            avg_last_subject.add(token_effect)
-                    else:
-                        subject_pos = token["subject_pos"]
-                        if subject_pos == -1:
-                            avg_last_subject.add(token_effect)
-                        else:
-                            temp_mid += token_effect
-                            count_mid += 1
-                else:
-                    if not finished_subject:
-                        # Process all subject middle tokens
-                        if count_mid > 0:
-                            avg_middle_subject.add(temp_mid / count_mid)
-                            temp_mid = 0.0
-                            count_mid = 0
-                        else:
-                            avg_middle_subject.add(0.0)
-                        avg_first_after.add(token_effect)
-                        finished_subject = True
-
-                        if token["pos"] == -1:
-                            avg_last_after.add(token_effect)
-                    else:
-                        token_pos = token["pos"]
-                        if token_pos == -1:
-                            avg_last_after.add(token_effect)
-                        else:
-                            temp_mid += token_effect
-                            count_mid += 1
-
-            if count_mid > 0:
-                avg_middle_after.add(temp_mid / count_mid)
-            else:
-                avg_middle_after.add(0.0)
-
-    return results, corrupted_probs, clean_probs
+        return self.d[int(i)]
 
 
 def find_all_substring_range(tokenizer, string, substring):
@@ -633,195 +536,16 @@ def find_all_substring_range(tokenizer, string, substring):
     return r, tokens
 
 
-def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, obj: str, target_token: str,
-                  bucket: str):
-    output = dict()
-
-    embedding_module_name = get_module_name(causal_tracer.model, "embed", 0)
-    subject_tokens_range = find_substring_range(causal_tracer.tokenizer, prompt, subject)
-
-    object_tokens_range, tokens = find_all_substring_range(causal_tracer.tokenizer, prompt, obj)
-    output["object_tokens_range"] = object_tokens_range
-    output["subject_tokens_range"] = subject_tokens_range
-
-    # Get corrupted run results
-    clean_probs, corrupted_probs = causal_tracer.trace_with_patch(
-        prompt, subject_tokens_range, [target_token], [(None, [])], embedding_module_name, obj
-    )
-    corrupted_output = {"token": target_token, "probs": corrupted_probs[0].item()}
-    clean_output = {"token": target_token, "probs": clean_probs[0].item()}
-
-    output["results"] = {
-        "corrupted": {
-            f"{bucket}_token": corrupted_output,
-        },
-        "clean": {
-            f"{bucket}_token": clean_output,
-        },
-    }
-
-    # Get patched runs results
-    num_tokens = get_num_tokens(causal_tracer.tokenizer,
-                                prompt) - 1  # TODO the -1 should not be necesary nd it does not belong here for models other than Whisper
-    output["results"]["tokens"] = list()
-    # We start the loop from the first subject token as patching previous tokens has no effect
-    for token_i in (list(range(subject_tokens_range[0], num_tokens))):
-        d = {}
-        d["pos"] = token_i - num_tokens
-        d["val"] = tokens[token_i]
-
-        # If token is part of the subject, store its relative negative position
-        if subject_tokens_range[0] <= token_i < subject_tokens_range[1]:
-            d["subject_pos"] = token_i - subject_tokens_range[1]
-        nl = get_num_layers(causal_tracer.model)
-        params = [(kind, last_layer) for kind in ["hidden", "mlp", "attn"] for
-                  last_layer in range(1, nl + 1, 1)]
-        patches = [(0, len(tokens))]
-        params_all = [(kind, last_layer, patch) for kind, last_layer in params
-                      for patch in patches]
-        for kind, last_layer, patch in params_all:
-            states_to_patch = (
-                token_i,
-                [
-                    get_module_name(causal_tracer.model, kind, L)
-                    for L in range(
-                    0,
-                    last_layer,
-                )
-                ],
-            )
-            _, patched_probs = causal_tracer.trace_with_patch(
-                prompt, subject_tokens_range, [target_token], [states_to_patch], embedding_module_name, obj
-            )
-            patched_output = {"token": target_token, "probs": patched_probs[0].item()}
-            patched_results = {
-                f"{bucket}_token": patched_output,
-            }
-            if kind not in d:
-                d[kind] = {}
-            d[kind][last_layer] = patched_results
-        output["results"]["tokens"].append(d)
-    return output
+def get_quantiles(l, c=5, additional_inds = ()):
+    if len(l) < c:
+        return np.unique(l).tolist()
+    ps = np.linspace(0, 1, c, endpoint=True)
+    return np.unique(np.rint(np.quantile(l, ps, method="closest_observation")).astype(np.int32).tolist()+list(additional_inds)).tolist()
 
 
 def construct_prompt(fact: Fact, prompt_template):
     prompt = prompt_template.format(query=fact.get_query(), context=fact.get_paragraph())
     return prompt
-
-
-def run_causal_tracing_analysis(
-        model: nn.Module,
-        tokenizer,
-        fakepedia,
-        prompt_template,
-        num_grounded,
-        num_unfaithful,
-        prepend_space,
-        resume_dir,
-        model_forwarder,
-        skip_creation=True
-):
-    # We keep the results in two different files: unfaithful and grounded
-    #
-    # For each fact:
-    #
-    # Verify if the answer of the model is the unfaithful object or the grounded object. If the answer is another token, then skip the fact.
-    # Put the fact in the corresponding list.
-    #
-    # Once we have processed all the facts, for each list and for each fact of the list we run the causal tracer.
-    # Finally, we save the results in the corresponding file.
-
-    device = next(model.parameters()).device
-    logger = get_logger()
-
-    if resume_dir is None:
-        resume_dir = get_output_dir()
-    os.makedirs(resume_dir, exist_ok=True)
-
-    partial_path = os.path.join(resume_dir, "partial.json")
-
-    if not skip_creation:
-        with ResumeAndSaveFactDataset(partial_path, 10) as partial_dataset:
-            for entry in tqdm(fakepedia, desc="Filtering facts"):
-                fact = fact_from_dict(entry)
-                if partial_dataset.is_input_processed(fact):
-                    continue
-
-                # Adapt unfaithful and grounded objects
-                target_tokens = adapt_target_tokens(
-                    tokenizer, [fact.get_parent().get_object(), fact.get_object()], prepend_space
-                )
-
-                # Predict most likely next token
-                prompt = construct_prompt(fact, prompt_template)
-                most_likely_next_token, _ = get_next_token(model, tokenizer, prompt, device, model_forwarder, False,
-                                                           fact.get_object())
-                unfaithful = target_tokens[0] in most_likely_next_token and not target_tokens[
-                                                                                    1] in most_likely_next_token
-                grounded = target_tokens[1] in most_likely_next_token and not target_tokens[0] in most_likely_next_token
-                partial_dataset.add_entry(
-                    {
-                        "fact": fact.as_dict(),
-                        "partial_results": {
-                            "prompt": prompt,
-                            "next_token": target_tokens[0] if unfaithful else target_tokens[1] if grounded else
-                            most_likely_next_token[0],
-                            "unfaithful_token": target_tokens[0],
-                            "grounded_token": target_tokens[1],
-                            "is_unfaithful": unfaithful,
-                            "is_grounded": grounded,
-                        },
-                    }
-                )
-
-    partial_dataset = read_json(partial_path)
-
-    unfaithful_facts = []
-    grounded_facts = []
-
-    for entry in partial_dataset:
-        if entry["partial_results"]["is_grounded"]:
-            grounded_facts.append(entry)
-        elif entry["partial_results"]["is_unfaithful"]:
-            unfaithful_facts.append(entry)
-
-    logger.info(f"Found {len(unfaithful_facts)} unfaithful facts and {len(grounded_facts)} grounded facts")
-
-    causal_tracer = MaskedCausalTracer(model, tokenizer, "eos", model_forwarder)
-
-    for bucket in ["grounded", "unfaithful"]:
-        if bucket == "unfaithful":
-            if num_unfaithful == -1:
-                num_unfaithful = len(unfaithful_facts)
-            facts = unfaithful_facts[:num_unfaithful]
-        else:
-            if num_grounded == -1:
-                num_grounded = len(grounded_facts)
-            facts = grounded_facts[:num_grounded]
-
-        num_facts = len(facts)
-
-        causal_traces_path = os.path.join(resume_dir, f"{bucket}.json")
-
-        logger.info(f"Running causal tracing on {num_facts} {bucket} facts")
-        with ResumeAndSaveFactDataset(causal_traces_path, save_interval=1) as dataset:
-            for entry in tqdm(facts, desc=f"Running causal tracing on {bucket} facts"):
-
-                fact = fact_from_dict(entry["fact"])
-
-                if dataset.is_input_processed(fact):
-                    continue
-
-                prompt = entry["partial_results"]["prompt"]
-                target_token = entry["partial_results"]["next_token"]
-
-                output_entry = process_entry(causal_tracer, prompt, fact.get_subject(), fact.get_object(), target_token,
-                                             bucket)
-
-                output_entry["fact"] = fact.as_dict()
-
-                dataset.add_entry(output_entry)
-
 
 # %% md
 # Logger and detection
@@ -892,292 +616,9 @@ def read_json(json_path: str) -> Dict:
         data = json.load(f)
     return data
 
-
-# %%
-
-
-def generate_datasets(
-        grounded_results,
-        unfaithful_results,
-        train_ratio=0.8,
-        max_count=2000,
-        ablation_only_clean=False,
-        ablation_include_corrupted=False,
-) -> Tuple[Tuple[np.ndarray, np.ndarray], Tuple[np.ndarray, np.ndarray]]:
-    logger = get_logger()
-    buckets = [grounded_results, unfaithful_results]
-
-    if ablation_only_clean:
-        feature_names = [grounded_results[2].get_name()]
-
-        if ablation_include_corrupted:
-            feature_names.append(grounded_results[1].get_name())
-
-    else:
-        feature_names = [
-            f"{kind}-{feature}" for kind, features in grounded_results[0].items() for feature in features.keys()
-        ]
-
-    logger.info(f"Feature names: {feature_names}")
-
-    all_samples = []
-    all_labels = []
-
-    for label, bucket_results in enumerate(buckets):
-        kinds_results, corr_probs, clean_probs = bucket_results
-
-        num_samples = len(corr_probs)
-
-        logger.info("Number of samples: {}".format(num_samples))
-
-        current_label_samples = []
-
-        for i in range(num_samples):
-            if ablation_only_clean:
-                candidate_example = [clean_probs.get(i)]
-
-                if ablation_include_corrupted:
-                    candidate_example.append(corr_probs.get(i))
-
-            else:
-                candidate_example = [
-                    feature_results.get(i)
-                    for kind_results in kinds_results.values()
-                    for feature_results in kind_results.values()
-                ]
-
-                if any([feature is None for feature in candidate_example]):
-                    continue
-
-            current_label_samples.append((candidate_example, label))
-
-        if len(current_label_samples) < max_count:
-            raise ValueError(
-                f"Bucket {label} has fewer than {max_count} valid samples! In particular, there are {len(current_label_samples)} samples."
-            )
-
-        # Shuffle the samples for this label and take the first max_count samples
-        np.random.shuffle(current_label_samples)
-        all_samples.extend([sample[0] for sample in current_label_samples[:max_count]])
-        all_labels.extend([sample[1] for sample in current_label_samples[:max_count]])
-
-    # Convert all_samples and all_labels to np arrays
-    all_samples_array = np.array(all_samples)
-    all_labels_array = np.array(all_labels)
-
-    # Calculate lengths for each split
-    total_size = len(all_samples_array)
-    train_size = int(total_size * train_ratio)
-
-    # Shuffle and split the dataset
-    indices = np.arange(total_size)
-    np.random.shuffle(indices)
-
-    train_dataset = (all_samples_array[indices[:train_size]], all_labels_array[indices[:train_size]])
-    test_dataset = (all_samples_array[indices[train_size:]], all_labels_array[indices[train_size:]])
-    return train_dataset, test_dataset, feature_names
-
-
-def load_metrics(save_dir):
-    with open(os.path.join(save_dir, "results.json"), "r") as file:
-        results = json.load(file)
-    return results
-
-
-def save_metrics(results, feature_names, save_dir):
-    with open(os.path.join(save_dir, "results.json"), "w") as file:
-        json.dump(results, file, indent=4)
-
-    if "feature_importances" in results:
-        importances = results["feature_importances"]
-        print("importances", importances)
-        indices = np.argsort(importances)
-
-        # Logic to determine the kind for colors
-        colors = {"hidden": "grey", "mlp": "blue", "attn": "orange", "corr": "grey", "clean": "grey"}
-
-        def determine_kind(verbose_name):
-            for kind, color in colors.items():
-                if kind in verbose_name.lower():
-                    return color
-            print(f"Unmatched feature: {verbose_name}")
-            raise ValueError("Unknown feature kind.")
-
-        bar_colors = [determine_kind(name) for name in feature_names]
-
-        # Make the font size larger
-        plt.rcParams.update({"font.size": 21})
-
-        # Change the font family
-        plt.rcParams["font.family"] = "serif"
-
-        plt.figure(figsize=(15, 15))
-        plt.barh(
-            range(len(indices)),
-            [importances[i] for i in indices],
-            align="center",
-            color=[bar_colors[i] for i in indices],
-            edgecolor="white",
-        )
-        plt.yticks(range(len(indices)), [feature_names[i] for i in indices])
-        plt.xlabel("Relative Importance")
-        plt.tight_layout()
-        plt.savefig(os.path.join(save_dir, "feature_importances.png"))
-        plt.close()
-
-
-def save_decision_tree_plot(tree, feature_names, class_names, save_dir):
-    plt.figure(figsize=(50, 25))
-    plot_tree(tree, feature_names=feature_names, class_names=class_names, filled=True)
-    plt.savefig(os.path.join(save_dir, "decision_tree.png"))
-    plt.close()
-
-
-def plot_metrics_comparison(metrics_by_model, save_dir):
-    """
-    metrics_by_model: dict, keys are model names (like 'Logistic Regression', 'DecisionTree', 'XGBoost') and values are
-                      dictionaries of metrics (keys are metric names, values are metric values)
-    save_dir: directory where plots will be saved
-    """
-    model_colors = {"LogisticRegression": "grey", "DecisionTree": "orange", "XGBoost": "blue"}
-
-    # Validate that all models in metrics_by_model are known
-    for model in metrics_by_model:
-        if model not in model_colors:
-            raise Exception(f"Unknown model: {model}")
-
-    n_models = len(metrics_by_model)
-    n_metrics = len(metrics_by_model[next(iter(metrics_by_model))])
-
-    # Set bar width, distance between bars in a group, and positions
-    bar_width = 0.2
-    distance = 0.05  # distance between bars in a group
-    r1 = np.arange(n_metrics)  # positions for first model
-    r2 = [x + bar_width + distance for x in r1]  # positions for second model
-    r3 = [x + bar_width + distance for x in r2]  # positions for third model
-
-    # Make the font size larger
-    plt.rcParams.update({"font.size": 21})
-
-    # Change the font family
-    plt.rcParams["font.family"] = "serif"
-
-    plt.figure(figsize=(15, 10))
-
-    # Plotting bars for each model
-    all_metric_values = []
-    for idx, (model, metrics) in enumerate(metrics_by_model.items()):
-        metric_values = [metrics[metric] for metric in metrics]
-        all_metric_values.extend(metric_values)
-        positions = [r1, r2, r3][idx]
-        plt.bar(positions, metric_values, color=model_colors[model], width=bar_width, edgecolor="white", label=model)
-
-    # Adjust y-axis limit
-    plt.ylim(bottom=min(all_metric_values) * 0.9)
-
-    plt.xlabel("Metrics")
-    plt.ylabel("Score")
-    xtick_positions = [r2[i] for i in range(n_metrics)]  # Averages of r1 and r2 positions
-    plt.xticks(xtick_positions, list(metrics_by_model[next(iter(metrics_by_model))]))
-
-    # Place the legend outside the plot on the right
-    plt.legend()
-    plt.tight_layout()
-
-    plt.savefig(os.path.join(save_dir, "all_metrics_comparison.png"), bbox_inches="tight")
-    plt.close()
-
-
-def train_and_save(models, train_data, test_data, feature_names, class_names, seed, replot_only=False):
-    save_dir = get_output_dir()
-    plt.rcParams["font.size"] = max(1, plt.rcParams["font.size"])
-
-    metrics_by_model = {}
-
-    for model_name, model_info in models.items():
-        model_save_dir = os.path.join(save_dir, model_name)
-        os.makedirs(model_save_dir, exist_ok=True)
-
-        if not replot_only:
-            X_train, y_train = train_data
-            X_test, y_test = test_data
-
-            if "random_state" in model_info["model"].get_params():
-                model_info["model"].set_params(random_state=seed)
-
-            clf = GridSearchCV(model_info["model"], model_info["param_grid"], cv=5, verbose=10)
-            clf.fit(X_train, y_train)
-
-            y_pred = clf.predict(X_test)
-            y_train_pred = clf.predict(X_train)
-            y_train_proba = clf.predict_proba(X_train)[:, 1]
-            with open(f"{model_name}_confusion_matrix.json", "w") as f:
-                json.dump(confusion_matrix(y_test, y_pred).tolist(), f)
-            results = {
-                "train": {
-                    "accuracy": accuracy_score(y_train, y_train_pred),
-                    "precision": precision_score(y_train, y_train_pred, average='weighted'),
-                    "recall": recall_score(y_train, y_train_pred, average='weighted'),
-                    "f1_score": f1_score(y_train, y_train_pred, average='weighted'),
-                    # "roc_auc": roc_auc_score(y_train, y_train_proba,
-                    #                         multi_class = "ovr", average='weighted'),
-                },
-                "test": {
-                    "accuracy": accuracy_score(y_test, y_pred),
-                    "precision": precision_score(y_test, y_pred, average='weighted'),
-                    "recall": recall_score(y_test, y_pred, average='weighted'),
-                    "f1_score": f1_score(y_test, y_pred, average='weighted'),
-                    # "roc_auc": roc_auc_score(y_test, clf.predict_proba(X_test)[:, 1],
-                    #                         multi_class = "ovr", average='weighted'),
-                },
-                "best_hyperparameters": clf.best_params_,
-            }
-
-            if hasattr(clf.best_estimator_, "feature_importances_"):
-                # If there is an importance type attribute, print it
-                if hasattr(clf.best_estimator_, "importance_type"):
-                    print(f"Feature importances: {clf.best_estimator_.importance_type}")
-                results["feature_importances"] = list(clf.best_estimator_.feature_importances_)
-                results["feature_importances"] = [float(val) for val in results["feature_importances"]]
-
-            if isinstance(clf.best_estimator_, LogisticRegression):
-                # Taking the absolute values of the coefficients
-                results["feature_importances"] = [float(abs(val)) for val in clf.best_estimator_.coef_.flatten()]
-            try:
-                save_metrics(results, feature_names, model_save_dir)
-            except:
-                pass
-            if model_name == "DecisionTree":
-                save_decision_tree_plot(clf.best_estimator_, feature_names, class_names, model_save_dir)
-        else:
-            results = load_metrics(model_save_dir)
-            save_metrics(results, feature_names, model_save_dir)
-
-        metrics_by_model[model_name] = results["test"]
-
-    plot_metrics_comparison(metrics_by_model, save_dir)
-
-
 # %% md
 # Main
 # %%
-
-locs = ["openai/whisper-base.en"]
-
-
-class Namespace1:
-    def __init__(self):
-        self.token = None
-        self.fakepedia_path = "base_fakepedia.json"
-        self.model_name_path = locs[-1]
-        self.prompt_template = "{context} {query}"
-        self.num_grounded = 10
-        self.num_unfaithful = 10
-        self.prepend_space = True
-        self.bfloat16 = True
-        self.resume_dir = "./specific_runs/run4"
-        self.subset_size = 1000
-        self.skip_creation = False
 
 
 class mock_model:
@@ -1188,565 +629,8 @@ class mock_model:
         self.config.vocab_size = 1000
         self.device_map = "cpu"
 
-
-def make_model(args, mock=False):
-    from transformers import AutoModelForSpeechSeq2Seq, AutoTokenizer, BitsAndBytesConfig
-    cuda = torch.cuda.is_available()
-    quantization_config = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16) if cuda else None
-    model = mock_model() if mock else AutoModelForSpeechSeq2Seq.from_pretrained(args.model_name_path, token=args.token,
-                                                                                force_download=False,
-                                                                                quantization_config=quantization_config,
-                                                                                device_map="auto")
-    tokenizer = AutoTokenizer.from_pretrained(args.model_name_path, token=args.token, force_download=False,
-                                              add_bos_token=True)
-    tokenizer.pad_token = tokenizer.eos_token
-    model.config.pad_token_id = model.config.eos_token_id
-    return model, tokenizer
-
-
-def run_causal_tracing_analysis_wrapper(params):
-    i, c, resume_dir, args = params
-    fakepedia = read_json(args.fakepedia_path)[:args.subset_size]
-    fakepedia = fakepedia[(i * len(fakepedia)) // c:((i + 1) * len(fakepedia)) // c]
-    model, tokenizer = make_model(args)
-    run_causal_tracing_analysis(
-        model,
-        tokenizer,
-        fakepedia,
-        args.prompt_template,
-        args.num_grounded,
-        args.num_unfaithful,
-        args.prepend_space,
-        resume_dir,
-        ModelForwarder(f"./temp/temp{i:02d}"),
-        args.skip_creation
-    )
-
-
-def run_causal_tracing(args):
-    logger = get_logger()
-
-    logger.info("Loading fakepedia...")
-    # 23 kinds of relations 1673 unique templates.
-    fakepedia = read_json(args.fakepedia_path)
-    print(len(set([x["subject"] for x in fakepedia])),
-          len(set([x["rel_p_id"] for x in fakepedia])))
-
-    logger.info("Starting causal tracing...")
-    pool_size = 5
-    with Pool(pool_size) as p:
-        params = [(i, pool_size, f"{args.resume_dir}/{i:02d}", args) for i in range(pool_size)]
-        for x in params:
-            os.makedirs(x[2], exist_ok=True)
-        p.map(run_causal_tracing_analysis_wrapper, params)
-
-
-def main1():
-    args = Namespace1()
-    freeze_args(args)
-    run_causal_tracing(args)
-
-
-# %%
-
-
 def set_seed_everywhere(seed: int) -> None:
     # Set torch and numpy and random seeds
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
-
-
-class Namespace2:
-    def __init__(self):
-        self.causal_traces_dir = "./causal_traces"
-        self.dataset_name = "simple"
-        self.model_name = "Whisper"
-        self.output_dir = "out"
-        self.balance = False
-        features = "all"
-        if features == "all":
-            self.features_to_include = ["subj-first", "subj-middle", "subj-last", "cont-first", "cont-middle",
-                                        "cont-last"]
-        elif features == "cont_last_removed":
-            self.features_to_include = ["subj-first", "subj-middle", "subj-last", "cont-first", "cont-middle"]
-        elif features == "only_important":
-            self.features_to_include = ["subj-last", "cont-first",
-                                        "cont-last"]
-        self.kinds_to_include = ["hidden", "mlp"]
-        self.train_ratio = 0.5
-        self.ablation_only_clean = False
-        self.ablation_include_corrupted = False
-        self.seed = 2
-        self.num_classes = 3
-        self.max_count = 15
-        self.min_count = 10
-        self.separate = False
-
-
-def get_args():
-    return Namespace2()
-
-
-def process_facts2(target_token, facts, class_map, results, corrupted_probs, clean_probs, tokenizer):
-    for processed_fact in facts:
-        clas = class_map(processed_fact)
-        corrupted_score = processed_fact["results"]["corrupted"][target_token]["probs"]
-        clean_score = processed_fact["results"]["clean"][target_token]["probs"]
-
-        # If there is a zero interval, skip the fact
-        interval_to_explain = max(clean_score - corrupted_score, 0)
-
-        corrupted_probs[clas].add(corrupted_score)
-        clean_probs[clas].add(clean_score)
-
-        for kind in ["hidden", "mlp", "attn"]:
-            (
-                avg_first_subject,
-                avg_middle_subject,
-                avg_last_subject,
-                avg_first_after,
-                avg_middle_after,
-                avg_last_after,
-            ) = results[clas][kind].values()
-
-            tokens = processed_fact["results"]["tokens"]
-            started_subject = False
-            finished_subject = False
-            temp_mid = 0.0
-            count_mid = 0
-
-            for token in tokens:
-                interval_explained_average = 0
-                for layer in token[kind]:
-                    interval_explained_average += max(token[kind][layer][target_token]["probs"] - corrupted_score,
-                                                      0) / len(token[kind])
-                token_effect = min(interval_explained_average / interval_to_explain, 1)
-
-                if "subject_pos" in token:
-                    if not started_subject:
-                        avg_first_subject.add(token_effect)
-                        started_subject = True
-
-                        if token["subject_pos"] == -1:
-                            avg_last_subject.add(token_effect)
-                    else:
-                        subject_pos = token["subject_pos"]
-                        if subject_pos == -1:
-                            avg_last_subject.add(token_effect)
-                        else:
-                            temp_mid += token_effect
-                            count_mid += 1
-                else:
-                    if not finished_subject:
-                        # Process all subject middle tokens
-                        if count_mid > 0:
-                            avg_middle_subject.add(temp_mid / count_mid)
-                            temp_mid = 0.0
-                            count_mid = 0
-                        else:
-                            avg_middle_subject.add(0.0)
-                        avg_first_after.add(token_effect)
-                        finished_subject = True
-
-                        if token["pos"] == -1:
-                            avg_last_after.add(token_effect)
-                    else:
-                        token_pos = token["pos"]
-                        if token_pos == -1:
-                            avg_last_after.add(token_effect)
-                        else:
-                            temp_mid += token_effect
-                            count_mid += 1
-
-            if count_mid > 0:
-                avg_middle_after.add(temp_mid / count_mid)
-            else:
-                avg_middle_after.add(0.0)
-
-
-def filter_facts(processed_fact, target_token):
-    corrupted_score = processed_fact["results"]["corrupted"][target_token]["probs"]
-    clean_score = processed_fact["results"]["clean"][target_token]["probs"]
-
-    interval_to_explain = max(clean_score - corrupted_score, 0)
-    return interval_to_explain == 0
-
-
-def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
-    labels = ["subj-first", "subj-middle", "subj-last", "cont-first", "cont-middle", "cont-last"]
-    num_classes = args.num_classes
-    corrupted_probs = [Feature("corr") for _ in range(num_classes)]
-    clean_probs = [Feature("clean") for _ in range(num_classes)]
-    # Here results is a list of dictionaries, each dictionary contains the results for one class (i.e. label i.e. bucket), the bucket is decided in the process_facts2 function
-    results = [
-        {kind: {labels[i]: Feature(labels[i]) for i in range(6)} for kind in ["hidden", "mlp", "attn"]}
-        for _ in range(num_classes)]
-    if args.balance:
-        # Some rel_lemma are not present in all sets.
-        lemmauf = set(x["fact"]["rel_lemma"] for x in facts_unfaithful)
-        lemmaf = set(x["fact"]["rel_lemma"] for x in facts_grounded)
-        print("in facts_grounded not in facts_unfaithful", lemmaf.difference(lemmauf))
-        print("in facts_unfaithful not in facts_grounded", lemmauf.difference(lemmaf))
-        tempsuf = set(x["fact"]["subject"] for x in facts_unfaithful)
-        tempsf = set(x["fact"]["subject"] for x in facts_grounded)
-        # Templates not uniformly distributed, half of in unfaithful never appear in grounded
-        print("num unique templates facts_unfaithful",
-              len(tempsuf))
-        print("num unique templates facts_grounded",
-              len(tempsf))
-        print("num templates in facts_grounded not in facts_unfaithful",
-              len(tempsf.difference(tempsuf)))
-        print("num templates in facts_unfaithful not in facts_grounded",
-              len(tempsuf.difference(tempsf)))
-        # Remove trivial samples
-        trivial = tempsf.symmetric_difference(tempsuf)
-        facts_unfaithful = [x for x in facts_unfaithful if x["fact"]["subject"] not in trivial]
-        facts_grounded = [x for x in facts_grounded if x["fact"]["subject"] not in trivial]
-
-    facts_grounded = [x for x in facts_grounded if not filter_facts(x, "grounded_token")]
-    facts_unfaithful = [x for x in facts_unfaithful if not filter_facts(x, "unfaithful_token")]
-    print(len(facts_grounded), len(facts_unfaithful))
-    process_facts2("unfaithful_token", facts_unfaithful,
-                   lambda x: 0, results, corrupted_probs, clean_probs, tokenizer)
-    print([x["fact"]["object"] for x in facts_grounded if filter_facts(x, "grounded_token")])
-    ps = [x["results"]["clean"]["grounded_token"]["probs"] for x in facts_grounded]
-    ls = np.linspace(0, 0.5, num_classes)
-    class_boundaries = np.quantile(ps, ls)[1:-1]
-    print(ps, ls, class_boundaries)
-
-    def classify(fact):
-        return (1 if args.separate else 0) + np.digitize(fact["results"]["clean"]["grounded_token"]["probs"],
-                                                         class_boundaries) if num_classes > 2 else 1
-
-    process_facts2("grounded_token", facts_grounded, classify
-                   , results, corrupted_probs, clean_probs, tokenizer)
-    # print("corrupted_probs, clean_probs", [x.d for x in corrupted_probs], [x.d for x in clean_probs])
-    vs = list(
-        (x, i, len(x[0]["hidden"]["subj-first"])) for i, x in enumerate(zip(results, corrupted_probs, clean_probs)))
-    print("class_c", [x[2] for x in vs])
-    vs = [(x, i) for x, i, l in vs if l >= args.min_count]
-    # in next experiment try ["grounded", "confidently grounded"]
-    return [x for x, i in vs], [f"p:{i}" for x, i in vs]
-
-
-def generate_datasets2(buckets,
-                       train_ratio=0.8,
-                       max_count=1000000
-                       ) -> Tuple[Tuple[np.ndarray, np.ndarray], Tuple[np.ndarray, np.ndarray], Any]:
-    logger = get_logger()
-    feature_names = [
-        f"{kind}-{feature}" for kind, features in buckets[0][0].items() for feature in features.keys()
-    ]
-
-    logger.info(f"Feature names: {feature_names}")
-
-    all_samples = []
-    all_labels = []
-
-    for label, bucket_results in enumerate(buckets):
-        kinds_results, corr_probs, clean_probs = bucket_results
-        # This is the correct number of samples the feature adding is done in a wierd way but there is always
-        # exactly one value in each feature for each sample
-        num_samples = len(corr_probs)
-
-        logger.info("Number of samples: {}".format(num_samples))
-        print(label, [[(kind_name, feature_name, len(feature_results),
-                        feature_results.avg(), feature_results.std())
-                       for feature_name, feature_results in kind_results.items()] for kind_name, kind_results in
-                      kinds_results.items()])
-
-        current_label_samples = []
-
-        for i in range(num_samples):
-            candidate_example = [
-                feature_results.get(i)
-                for kind_results in kinds_results.values()
-                for feature_results in kind_results.values()
-            ]
-
-            if any([feature is None for feature in candidate_example]):
-                continue
-
-            current_label_samples.append((candidate_example, label))
-
-        # Shuffle the samples for this label and take the first max_count samples
-        np.random.shuffle(current_label_samples)
-        all_samples.extend([sample[0] for sample in current_label_samples[:max_count]])
-        all_labels.extend([sample[1] for sample in current_label_samples[:max_count]])
-
-    # Convert all_samples and all_labels to np arrays
-    all_samples_array = np.array(all_samples)
-    all_labels_array = np.array(all_labels)
-
-    # Calculate lengths for each split
-    total_size = len(all_samples_array)
-    train_size = int(total_size * train_ratio)
-
-    # Shuffle and split the dataset
-    indices = np.arange(total_size)
-    np.random.shuffle(indices)
-
-    train_dataset = (all_samples_array[indices[:train_size]], all_labels_array[indices[:train_size]])
-    test_dataset = (all_samples_array[indices[train_size:]], all_labels_array[indices[train_size:]])
-    print(test_dataset[0].shape, test_dataset[0].shape, feature_names)
-    print(list(zip(test_dataset[0][:, -1], test_dataset[1])))
-    return train_dataset, test_dataset, feature_names
-
-
-"""
-"param_grid": {
-                "max_depth": [None, 5, 10, 15, 20],
-                "min_samples_split": [2, 5, 10],
-                "min_samples_leaf": [1, 2, 4],
-            },
-"param_grid": {
-                "max_depth": [3, 4],
-                "min_samples_split": [2, 5, 10],
-                "min_samples_leaf": [1, 2, 4],
-            },
-"""
-
-
-def train_detector(args, models):
-    buckets = ["grounded", "unfaithful"]
-    buckets_paths = [
-        os.path.join(args.causal_traces_dir, args.dataset_name, args.model_name, f"{bucket}.json") for bucket in buckets
-    ]
-
-    from transformers import AutoTokenizer
-    tokenizer = AutoTokenizer.from_pretrained("openai/whisper-base.en", force_download=False,
-                                              add_bos_token=True)
-    print([len(read_json(x)) for x in buckets_paths])
-    results, buckets = group_results2(read_json(buckets_paths[0]),
-                                      read_json(buckets_paths[1]),
-                                      tokenizer, args)
-
-    # If we are only including certain kinds, filter the kinds
-    if args.kinds_to_include is not None:
-        results = [
-            (
-                {kind: bucket_results[0][kind] for kind in bucket_results[0] if kind in args.kinds_to_include},
-                bucket_results[1],
-                bucket_results[2],
-            )
-            for bucket_results in results
-        ]
-
-    # If we are only including certain features, filter the features
-    if args.features_to_include is not None:
-        results = [
-            (
-                {
-                    kind: {
-                        feature: bucket_results[0][kind][feature]
-                        for feature in bucket_results[0][kind]
-                        if feature in args.features_to_include
-                    }
-                    for kind in bucket_results[0]
-                },
-                bucket_results[1],
-                bucket_results[2],
-            )
-            for bucket_results in results
-        ]
-    print([[[len(z) for z in y] for y in x[0].values()] for x in results])
-    # Generate the datasets
-    train_data, test_data, feature_names = generate_datasets2(
-        results,
-        max_count=args.max_count,
-        train_ratio=args.train_ratio
-    )
-    print(len(train_data), len(train_data[0]), train_data[1])
-    print(len(test_data), len(test_data[0]), test_data[1])
-
-    # Train the models and save the results
-    train_and_save(models, train_data, test_data, feature_names, class_names=buckets, seed=args.seed)
-
-
-def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_path):
-    titles = {
-        "hidden": "Hidden activations",
-        "mlp": "MLPs",
-        "attn": "Attention heads"
-    }
-    model_names_conversion = {
-        "llama2": "Llama2-7B",
-        "llama": "LLaMA-7B",
-        "gpt2": "GPT2-XL",
-    }
-    dataset_names_conversion = {
-        "base_fakepedia": "Fakepedia-base",
-        "multihop_fakepedia": "FakePedia-MH"
-    }
-
-    labels = [feature.get_name() for feature in next(iter(grounded_results[0].values())).values()]
-    width = 0.8
-    x = np.arange(len(labels))
-    colors = {"grounded": "#FFC75F", "ungrounded": "#5390D9"}
-    z_score = 1.96
-    error_bar_props = {"capsize": 5, "capthick": 2, "elinewidth": 2}
-
-    plt.rcParams.update({
-        "font.size": 24,
-        "font.family": "serif",
-    })
-
-    # Make a subplot for each bucket
-    fig, axs = plt.subplots(1, 3, figsize=(30, 8))
-
-    for i, kind in enumerate(["hidden", "mlp", "attn"]):
-        for j, (bucket, results) in enumerate([("grounded", grounded_results), ("ungrounded", unfaithful_results)]):
-            ax = axs[i]
-
-            effects, corrupted_probs, clean_probs = results
-
-            # Plot the three kind bars for each token
-            for t, label in enumerate(labels):
-                bar = ax.bar(
-                    x[t] + (width / 4) * (["grounded", "ungrounded"].index(bucket) * 2 - 1),
-                    effects[kind][label].avg() * 100,
-                    width / 2,
-                    yerr=effects[kind][label].std() * z_score / np.sqrt(len(effects[kind][label])) * 100,
-                    color=colors[bucket],
-                    error_kw=error_bar_props,
-                    label=bucket if t == 0 else "",  # Label only the first bar for legend
-                )
-
-            # Perform a statistical test (t-test) to compare grounded and ungrounded results
-            p_values = [stats.ttest_ind(
-                grounded_results[0][kind][label].to_array(),
-                unfaithful_results[0][kind][label].to_array()
-            ).pvalue for label in labels]
-
-            # Color-code x-axis labels based on p-values
-            label_colors = []
-            for p_value in p_values:
-                if p_value < 0.1:
-                    label_colors.append('red')  # Significant difference
-                else:
-                    label_colors.append('black')  # Not significant
-
-            # Set the ticks and labels
-            ax.set_xticks(x)
-            ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=28)
-
-            for xtick, color in zip(ax.get_xticklabels(), label_colors):
-                xtick.set_color(color)
-
-            # Set the limits for the y-axis to be the same for both subplots
-            ax.set_ylim([0, 100])
-
-            # Set title for each subplot
-            ax.set_title(titles[kind], fontsize=35, pad=20)
-
-            ax.spines['top'].set_visible(False)
-            ax.spines['right'].set_visible(False)
-
-            for v in [20, 40, 60, 80]:
-                ax.axhline(y=v, linestyle='--', color='gray', linewidth=1, alpha=0.5)
-
-            # Add legend
-            if i == 0:  # Add legend in the first subplot only
-                ax.set_ylabel('MGCT effect', fontsize=25)
-
-            if i == 1:
-                handles_leg, labels_leg = [], []
-                for label_leg, color_leg in colors.items():
-                    handles_leg.append(plt.Rectangle((0, 0), width, width, color=color_leg))
-                    labels_leg.append(label_leg)
-
-                ax.legend(handles_leg, labels_leg, loc='upper center', ncol=2, frameon=False)
-
-    fig.suptitle(
-        f"{model_names_conversion[model_name] if model_name in model_names_conversion else model_name} ({dataset_names_conversion[dataset_name] if dataset_name in dataset_names_conversion else dataset_name})",
-        fontsize=45)
-
-    plt.tight_layout()
-    plt.subplots_adjust(left=0.10, right=0.90)
-
-    # Add number of grounded and ungrounded facts represented
-    save_path = save_path.replace(
-        ".pdf", f"_grounded={len(grounded_results[1])}_ungrounded={len(unfaithful_results[1])}.pdf"
-    )
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    plt.savefig(save_path, bbox_inches="tight", format='pdf')
-    plt.close()
-
-
-def main2(models):
-    sp = "./specific_runs/run4"
-    p = './causal_traces/simple/Whisper'
-    names = ['grounded.json', 'unfaithful.json']
-    for name in names:
-        ds = []
-        for x in os.listdir(sp):
-            filep = os.path.join(sp, x, name)
-            if os.path.exists(filep):
-                with open(filep) as f:
-                    ds.extend(json.load(f))
-        with open(os.path.join(p, name), "w") as f:
-            json.dump(ds, f, indent=4)
-    os.makedirs(p, exist_ok=True)
-    args = get_args()
-    freeze_args(args)
-    set_seed_everywhere(args.seed)
-    train_detector(args, models)
-
-
-if __name__ == "__main__":
-    if False:
-        main1()
-    else:
-        models = {
-            "LogisticRegression": {
-                "model": LogisticRegression(max_iter=1000),
-                "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000]},
-            },
-            "DecisionTree": {
-                "model": DecisionTreeClassifier(),
-                "param_grid": {
-                    "max_depth": [None, 5, 10, 15, 20],
-                    "min_samples_split": [2, 5, 10],
-                    "min_samples_leaf": [1, 2, 4],
-                },
-            },
-        }
-        xgboostmode = "small"
-        if xgboostmode == "full":
-            models["XGBoost"] = {
-                "model": xgb.XGBClassifier(
-                    use_label_encoder=False, eval_metric="logloss", device="cuda", importance_type="total_gain"
-                ),
-                "param_grid": {
-                    "learning_rate": [0.01, 0.05, 0.1],
-                    "n_estimators": [100, 200, 500],
-                    "max_depth": [3, 5, 7, 10],
-                    "subsample": [0.8, 0.9, 1.0],
-                },
-            }
-        elif xgboostmode == "small":
-            models["XGBoost"] = {
-                "model": xgb.XGBClassifier(
-                    use_label_encoder=False, eval_metric="logloss", device="cuda", importance_type="total_gain"
-                ),
-                "param_grid": {
-                    "learning_rate": [0.01, 0.05, 0.1],
-                    "n_estimators": [100, 200],
-                    "max_depth": [3, 5],
-                    "subsample": [0.8],
-                },
-            }
-        else:
-            pass
-
-
-        main2(models)
-        # !rm -r LLama
-
-        for model_name in models:
-            with open(f"{model_name}_confusion_matrix.json") as f:
-                confm = json.load(f)
-            disp = ConfusionMatrixDisplay(confusion_matrix=np.array(confm))
-            disp.plot()
-            plt.savefig(f"{model_name}_confusion_matrix.png")
