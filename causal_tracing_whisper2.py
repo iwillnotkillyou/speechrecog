@@ -7,7 +7,7 @@ from sklearn.metrics import ConfusionMatrixDisplay, recall_score, f1_score, fbet
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.feature_selection import RFECV
 from causal_tracing_whisper import *
-from causal_tracing_plots import plot
+import sklearn
 def load_metrics(save_dir):
     with open(os.path.join(save_dir, "results.json"), "r") as file:
         results = json.load(file)
@@ -142,15 +142,16 @@ def train_and_save(models, train_data, test_data, feature_names, class_names, gr
 
             all_feat_removed = set()
             for x in range(1000):
-                all_feat_removed.add(tuple(np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 6), replace=False).tolist()))
-
+                all_feat_removed.add(tuple(sorted(np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 7), replace=False).tolist())))
             for feat_removed in list(all_feat_removed)[:100]:
                 X_train1 = X_train.copy()
-                X_train1[:, feat_removed] = np.nan
-                clf = GridSearchCV(model_info["model"], model_info["param_grid"], cv=3, verbose=0, scoring=lambda estimator, X_test, y_test : -np.abs(target_acc-fbeta_score(y_test, estimator.predict(X_test), beta=2)))
-                clf.fit(X_train1[:-10], y_train[:-10])
-                y_pred = clf.predict(X_train[-10:])
-                f = fbeta_score(y_train[-10:], y_pred, beta=2, average='weighted')
+                X_train1[:, feat_removed] = 0
+                beta = 1
+                clf = GridSearchCV(model_info["model"], model_info["param_grid"], cv=2, verbose=0, scoring=lambda estimator, X_test, y_test : -np.abs(target_acc-fbeta_score(y_test, estimator.predict(X_test), beta=beta, average='weighted', zero_division = 0.0)))
+                holdout_size = np.clip(len(y_train) // 4, 1, 10)
+                clf.fit(X_train1[:-holdout_size], y_train[:-holdout_size])
+                y_pred = clf.predict(X_train[-holdout_size:])
+                f = fbeta_score(y_train[-holdout_size:], y_pred, beta=beta, average='weighted', zero_division = 0.0)
                 if best_f is None or f > best_f:
                     best_f = f
                     best_clas = clf
@@ -167,7 +168,7 @@ def train_and_save(models, train_data, test_data, feature_names, class_names, gr
                     "accuracy": accuracy_score(y_train, y_train_pred),
                     "precision": precision_score(y_train, y_train_pred, average='weighted'),
                     "recall": recall_score(y_train, y_train_pred, average='weighted'),
-                    "f1_score": f1_score(y_train, y_train_pred, average='weighted'),
+                    "f1_score": f1_score(y_train, y_train_pred, average='weighted', zero_division = 0.0),
                     # "roc_auc": roc_auc_score(y_train, y_train_proba,
                     #                         multi_class = "ovr", average='weighted'),
                 },
@@ -175,7 +176,7 @@ def train_and_save(models, train_data, test_data, feature_names, class_names, gr
                     "accuracy": accuracy_score(y_test, y_pred),
                     "precision": precision_score(y_test, y_pred, average='weighted'),
                     "recall": recall_score(y_test, y_pred, average='weighted'),
-                    "f1_score": f1_score(y_test, y_pred, average='weighted'),
+                    "f1_score": f1_score(y_test, y_pred, average='weighted', zero_division = 0.0),
                     # "roc_auc": roc_auc_score(y_test, clf.predict_proba(X_test)[:, 1],
                     #                         multi_class = "ovr", average='weighted'),
                 },
@@ -226,7 +227,7 @@ def train_and_save(models, train_data, test_data, feature_names, class_names, gr
     plot_metrics_comparison(metrics_by_model, save_dir)
 
 
-def process_facts2(target_token, facts, class_map, results, corrupted_probs, clean_probs, tokenizer):
+def process_facts2(target_token, facts, class_map, results, corrupted_probs, clean_probs, ids, tokenizer=None):
     for processed_fact in facts:
         clas = class_map(processed_fact)
         corrupted_score = processed_fact["results"]["corrupted"][target_token]["probs"]
@@ -237,6 +238,7 @@ def process_facts2(target_token, facts, class_map, results, corrupted_probs, cle
 
         corrupted_probs[clas].add(corrupted_score)
         clean_probs[clas].add(clean_score)
+        ids[clas].append(int(processed_fact["fact"]["group_id"]) if "group_id" in processed_fact["fact"] and len(processed_fact["fact"]["group_id"]) > 0 else None)
 
         for kind in ["hidden", "mlp", "attn"]:
             d = results[clas][kind]
@@ -259,8 +261,9 @@ def process_facts2(target_token, facts, class_map, results, corrupted_probs, cle
             while token_effects_subj[-1][-1] == " ":
                 token_effects_subj = token_effects_subj[:-1]
 
-            while token_effects_cont[-1][-1] == " ":
-                token_effects_cont = token_effects_cont[:-1]
+            if len(token_effects_cont) > 0:
+                while token_effects_cont[-1][-1] == " ":
+                    token_effects_cont = token_effects_cont[:-1]
             def set_one(k, v):
                 if k not in d:
                     d[k] = Feature(k)
@@ -271,8 +274,17 @@ def process_facts2(target_token, facts, class_map, results, corrupted_probs, cle
                     set_one(k, f())
                 else:
                     set_one(k, 0.0)
-
             if True:
+                feats = [(len(token_effects_subj) > 2, "subj-first", lambda : token_effects_subj[0][1]),
+                (len(token_effects_subj) > 3, "subj-middle", lambda : float(np.mean([x[1] for x in token_effects_subj[1:-2]]))),
+                (len(token_effects_subj) > 1, "subj-second-last", lambda : token_effects_subj[-2][1]),
+                (len(token_effects_subj) > 0, "subj-last", lambda : token_effects_subj[-1][1]),
+                (len(token_effects_cont) > 2, "cont-first", lambda : token_effects_cont[0][1]),
+                #(len(token_effects_cont) > 3, "cont-middle", lambda : float(np.mean([x[1] for x in token_effects_cont[1:-2]]))),
+                (len(token_effects_cont) > 1, "cont-second-last", lambda : token_effects_cont[-2][1]),
+                #(len(token_effects_cont) > 0, "cont-last", lambda : token_effects_cont[-1][1])
+                ]
+            elif False:
                 feats = [(len(token_effects_subj) > 1, "subj-first", lambda : token_effects_subj[0][1]),
                 (len(token_effects_subj) > 3, "subj-second-first", lambda : token_effects_subj[1][1]),
                 (len(token_effects_subj) > 4, "subj-middle", lambda : float(np.mean([x[1] for x in token_effects_subj[2:-2]]))),
@@ -302,16 +314,16 @@ def filter_facts(processed_fact, target_token):
     interval_to_explain = max(clean_score - corrupted_score, 0)
     return interval_to_explain == 0
 
-
 def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
     num_classes = args.num_classes
     corrupted_probs = [Feature("corr") for _ in range(num_classes)]
     clean_probs = [Feature("clean") for _ in range(num_classes)]
+    ids = [[] for _ in range(num_classes)]
     # Here results is a list of dictionaries, each dictionary contains the results for one class (i.e. label i.e. bucket), the bucket is decided in the process_facts2 function
     results = [
         {kind: {} for kind in ["hidden", "mlp", "attn"]}
         for _ in range(num_classes)]
-    if args.balance:
+    if False:
         # Some rel_lemma are not present in all sets.
         lemmauf = set(x["fact"]["rel_lemma"] for x in facts_unfaithful)
         lemmaf = set(x["fact"]["rel_lemma"] for x in facts_grounded)
@@ -337,7 +349,7 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
     facts_unfaithful = [x for x in facts_unfaithful if not filter_facts(x, "unfaithful_token")]
     print("fact_lengths", len(facts_unfaithful), len(facts_grounded))
     process_facts2("unfaithful_token", facts_unfaithful,
-                   lambda x: 0, results, corrupted_probs, clean_probs, tokenizer)
+                   lambda x: 0, results, corrupted_probs, clean_probs, ids, tokenizer)
     print([x["fact"]["object"] for x in facts_grounded if filter_facts(x, "grounded_token")])
     ps = [x["results"]["clean"]["grounded_token"]["probs"] for x in facts_grounded]
     ls = np.linspace(0, 0.5, num_classes)
@@ -349,8 +361,38 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
                                                          class_boundaries) if num_classes > 2 else 1
 
     process_facts2("grounded_token", facts_grounded, lambda x: 1 if True else classify(x)
-                   , results, corrupted_probs, clean_probs, tokenizer)
+                   , results, corrupted_probs, clean_probs, ids, tokenizer)
     # print("corrupted_probs, clean_probs", [x.d for x in corrupted_probs], [x.d for x in clean_probs])
+    def group(idsx, resultsx, corrupted_probsx, clean_probsx):
+        for k, v in list(resultsx.items()):
+            for k2, v2 in list(v.items()):
+                resultsx[k][k2 + "_mean"] = v[k2].copy(k2 + "_mean")
+                resultsx[k][k2 + "_std"] = v[k2].copy(k2 + "_std")
+                resultsx[k][k2 + "_max"] = v[k2].copy(k2 + "_max")
+                resultsx[k].pop(k2)
+        for x in np.unique(idsx):
+            inds = np.where(np.array(idsx) == x)[0]
+            print(inds)
+            for i in inds[1:]:
+                idsx[i] = None
+            for k,v in resultsx.items():
+                for k2, v2 in v.items():
+                    if k2.endswith("_mean"):
+                        v2.d[inds[0]] = np.mean([v2.d[i] for i in inds])
+                    elif k2.endswith("_std"):
+                        v2.d[inds[0]] = np.std([v2.d[i] for i in inds])
+                    else:
+                        v2.d[inds[0]] = np.max([v2.d[i] for i in inds])
+        indskeep = [x for x in range(len(idsx)) if idsx[x] is not None]
+        for k, v in resultsx.items():
+            for k2, v2 in v.items():
+                v2.d = [v2.d[x] for x in indskeep]
+        corrupted_probsx.d = [corrupted_probsx.d[x] for x in indskeep]
+        clean_probsx.d = [clean_probsx.d[x] for x in indskeep]
+
+    if not (any(x is None for x in ids[0]) or any(x is None for x in ids[1])):
+        group(ids[0], results[0], corrupted_probs[0], clean_probs[0])
+        group(ids[1], results[1], corrupted_probs[1], clean_probs[1])
     vs = list(
         (x, i, len(next(iter(x[0]["hidden"].values())))) for i, x in enumerate(zip(results, corrupted_probs, clean_probs)) if len(x[0]["hidden"]) > 0)
     print("class_c", [x[2] for x in vs])
@@ -360,7 +402,7 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
 
 
 def generate_datasets2(buckets,
-                       train_ratio=0.8
+                       train_ratio=0.8, balance=False
                        ) -> Tuple[Tuple[np.ndarray, np.ndarray, np.ndarray], Tuple[np.ndarray, np.ndarray, np.ndarray], Any]:
     logger = get_logger()
     feature_names = [
@@ -400,7 +442,7 @@ def generate_datasets2(buckets,
             all_label_samples[-1].append((candidate_example, label, i))
     assert len(set([tuple(sorted(x)) for x in all_label_samples])) == len(all_label_samples)
     print("all_label_samples", len(all_label_samples[0]), len(all_label_samples[1]))
-    minl = min(len(x) for x in all_label_samples)
+    minl = min(len(x) for x in all_label_samples) if balance else max(len(x) for x in all_label_samples)
     for current_label_samples in all_label_samples:
         np.random.shuffle(current_label_samples)
         all_samples.extend([sample[0] for sample in current_label_samples[:minl]])
@@ -412,19 +454,15 @@ def generate_datasets2(buckets,
     all_labels_array = np.array(all_labels)
     all_inds_array = np.array(all_inds)
 
+    print("number of classes", np.unique(all_labels_array, return_counts=True))
     # Calculate lengths for each split
     total_size = len(all_samples_array)
     train_size = int(total_size * train_ratio)
 
-    # Shuffle and split the dataset
-    indices = np.arange(total_size)
-    np.random.shuffle(indices)
-
-    train_dataset = (all_samples_array[indices[:train_size]], all_labels_array[indices[:train_size]], all_inds_array[indices[:train_size]])
-    test_dataset = (all_samples_array[indices[train_size:]], all_labels_array[indices[train_size:]], all_inds_array[indices[train_size:]])
-    print(test_dataset[0].shape, test_dataset[0].shape, feature_names)
+    train_samples, test_samples, train_labels, test_labels, train_inds, test_inds = sklearn.model_selection.train_test_split(all_samples_array, all_labels_array, all_inds_array, train_size= train_size, stratify=all_labels_array, random_state=42)
+    #print(test_dataset[0].shape, test_dataset[0].shape, feature_names)
     #print(list(zip(test_dataset[0][:, -1], test_dataset[1])))
-    return train_dataset, test_dataset, feature_names
+    return (train_samples, train_labels, train_inds), (test_samples, test_labels, test_inds), feature_names
 
 
 """
@@ -440,6 +478,8 @@ def generate_datasets2(buckets,
             },
 """
 
+def groupbyid(x):
+    return x
 
 def train_detector(args, models):
     buckets = ["grounded", "unfaithful"]
@@ -447,13 +487,15 @@ def train_detector(args, models):
         os.path.join(args.causal_traces_dir, args.dataset_name, args.model_name, f"{bucket}.json") for bucket in buckets
     ]
 
-    from transformers import AutoTokenizer
-    tokenizer = AutoTokenizer.from_pretrained("openai/whisper-base.en", force_download=False,
-                                              add_bos_token=True)
+    #from transformers import AutoTokenizer
+    #tokenizer = AutoTokenizer.from_pretrained("openai/whisper-base.en", force_download=False,
+    #                                          add_bos_token=True)
     print("read_lengths", [len(read_json(x)) for x in buckets_paths])
-    results, buckets = group_results2(read_json(buckets_paths[0]),
-                                      read_json(buckets_paths[1]),
-                                      tokenizer, args)
+    data0 = groupbyid(read_json(buckets_paths[0]))
+    data1 = groupbyid(read_json(buckets_paths[1]))
+    results, buckets = group_results2(data0,
+                                      data1,
+                                      None, args)
 
     # If we are only including certain kinds, filter the kinds
     if args.kinds_to_include is not None:
@@ -487,7 +529,7 @@ def train_detector(args, models):
     # Generate the datasets
     train_data, test_data, feature_names = generate_datasets2(
         results,
-        train_ratio=args.train_ratio
+        train_ratio=args.train_ratio, balance=args.balance
     )
     print(len(train_data), len(train_data[0]), train_data[1])
     print(len(test_data), len(test_data[0]), test_data[1])
@@ -609,10 +651,10 @@ def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_pa
 class Namespace2:
     def __init__(self):
         self.causal_traces_dir = "./causal_traces"
-        self.dataset_name = "transl"
+        self.dataset_name = "history"
         self.model_name = "LLaMa"
         self.output_dir = "out"
-        self.balance = False
+        self.balance = True
         features = "all"
         if features == "all":
             self.features_to_include = None
@@ -633,23 +675,24 @@ class Namespace2:
         self.num_classes = 2
         self.min_count = 5
         self.separate = False
-        self.target_acc = 0.755
+        self.target_acc = 0.9
 
 
 def main2(models):
-    sp = "./specific_runs/run4"
-    p = './causal_traces/transl/LLaMa'
-    names = ['grounded.json', 'unfaithful.json']
-    for name in names:
-        ds = []
-        for x in os.listdir(sp):
-            filep = os.path.join(sp, x, name)
-            if os.path.exists(filep):
-                with open(filep) as f:
-                    ds.extend(json.load(f))
-        with open(os.path.join(p, name), "w") as f:
-            json.dump(ds, f, indent=4)
-    os.makedirs(p, exist_ok=True)
+    if False:
+        sp = "./specific_runs/run4"
+        p = './causal_traces/f/f'
+        os.makedirs(p, exist_ok=True)
+        names = ['grounded.json', 'unfaithful.json']
+        for name in names:
+            ds = []
+            for x in os.listdir(sp):
+                filep = os.path.join(sp, x, name)
+                if os.path.exists(filep):
+                    with open(filep) as f:
+                        ds.extend(json.load(f))
+            with open(os.path.join(p, name), "w") as f:
+                json.dump(ds, f, indent=4)
     args = Namespace2()
     freeze_args(args)
     set_seed_everywhere(args.seed)
@@ -658,10 +701,6 @@ def main2(models):
 
 if __name__ == "__main__":
     models = {
-        "LogisticRegression": {
-            "model": LogisticRegression(max_iter=1000),
-            "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000]},
-        } if False else {},
         "DecisionTreeSmall": {
             "model": DecisionTreeClassifier(),
             "param_grid": {
@@ -672,6 +711,11 @@ if __name__ == "__main__":
             },
         },
     }
+    if True:
+        models["LogisticRegression"] = {
+            "model": LogisticRegression(max_iter=1000),
+            "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000]},
+        }
     if False:
         models["DecisionTree"] = {
             "model": DecisionTreeClassifier(),

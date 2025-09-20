@@ -58,6 +58,8 @@ class Fact:
     fact_parent: "Fact" = None
     intermediate_paragraph: str = None
     adaptor: List[int] = None
+    num_steps: int = 0
+    group_id: str = None
 
     def __init__(self, **kwargs):
         self.subject = kwargs.get("subject", "")
@@ -68,6 +70,8 @@ class Fact:
         self.fact_paragraph = kwargs.get("fact_paragraph", "")
         self.intermediate_paragraph = kwargs.get("intermediate_paragraph", "")
         self.adaptor = kwargs.get("adaptor", [])
+        self.num_steps = kwargs.get("num_steps", 0)
+        self.group_id = kwargs.get("group_id", "")
         self.fact_parent = kwargs.get("fact_parent", None)
 
     def get_subject(self) -> str:
@@ -302,11 +306,13 @@ def adapt_target_tokens(tokenizer, target_tokens: List[str], preprend_space: boo
     """
     Make sure that target_tokens contain correspond to only a single token
     """
+    print(target_tokens)
     if preprend_space:
-        target_tokens = [" " + token.lstrip() for token in target_tokens]
+        target_tokens = [token if token is None else " " + token.lstrip() for token in target_tokens]
 
-    target_tokens = [tokenizer.tokenize(token)[0] for token in target_tokens]
+    target_tokens = [token if token is None else tokenizer.tokenize(token)[0] for token in target_tokens]
 
+    print(target_tokens)
     return target_tokens
 
 
@@ -392,13 +398,14 @@ def find_submodule(module, name):
 # Code partially adapted from https://github.com/kmeng01/rome
 
 class MaskedCausalTracer:
-    def __init__(self, model: nn.Module, tokenizer, mask_token: str, model_forwarder):
+    def __init__(self, model: nn.Module, tokenizer, mask_token: str, model_forwarder, do_cache):
         self.device = next(model.parameters()).device
         self.model = model
         self.tokenizer = tokenizer
         self.mask_token = mask_token
         self.model_forwarder = model_forwarder
         self.mask_token_embedding = self._get_mask_token_embedding(mask_token)
+        self.do_cache = do_cache
 
     def _get_mask_token_embedding(self, mask_token):
         token_attr = f"{mask_token}_token_id"
@@ -449,6 +456,8 @@ class MaskedCausalTracer:
                 module_hook = module.register_forward_hook(restoring_hook)
                 hooks.append(module_hook)
         with torch.no_grad():
+            if self.do_cache and self.model_forwarder.cache is None:
+                self.model_forwarder.make_cache(self.model, self.tokenizer, prompt, min([x[0] for x in states_to_patch]), self.device, True, obj)
             probs = get_next_token_probabilities(self.model, self.tokenizer, prompt, target_tokens, self.device,
                                                  self.model_forwarder, True, obj)
             clean_probs = probs[0, :]
@@ -469,8 +478,12 @@ class MaskedCausalTracer:
 class Feature:
     def __init__(self, name):
         self.name = name
-        self.ids = []
         self.d = []
+
+    def copy(self, name = None):
+        f = Feature(self.name if name is None else name)
+        f.d = self.d.copy()
+        return f
 
     def get_name(self):
         return self.name
@@ -478,7 +491,6 @@ class Feature:
     def indexer(self, inds):
         f = Feature(self.name)
         f.d = [self.d[i] for i in inds]
-        f.ids = [self.ids[i] for i in inds]
         return f
 
     def to_array(self):
@@ -486,7 +498,6 @@ class Feature:
 
     def add(self, v):
         self.d.append(v)
-        self.ids.append(len(self.d))
 
     def avg(self):
         np_array = np.array(self.d)
@@ -498,9 +509,6 @@ class Feature:
 
     def __len__(self):
         return len(self.d)
-
-    def get_w_id(self, i):
-        return self.d[i], self.ids[i]
 
     def get(self, i):
         return self.d[int(i)]

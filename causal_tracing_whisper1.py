@@ -1,12 +1,11 @@
 import torch
+from transformers import LlamaForCausalLM, LlamaTokenizer, StaticCache
 
 from causal_tracing_whisper import *
-from transformers import LlamaForCausalLM, LlamaTokenizer
-import torch
 
-from transformers import LlamaForCausalLM, LlamaTokenizer
 
-def forward_with_prefix(model: LlamaForCausalLM, tokenizer, prompt, device, target, prefix_embedding, repeat = False):
+def forward_with_prefix(model: LlamaForCausalLM, tokenizer, prompt, device, target, prefix_embedding, repeat=False,
+                        cache=None):
     def hook_embedding(module, input, output):
         output[:, :prefix_embedding.shape[0]] = prefix_embedding
         return output
@@ -15,77 +14,141 @@ def forward_with_prefix(model: LlamaForCausalLM, tokenizer, prompt, device, targ
     embedding_module = find_submodule(model, embedding_module_name)
     embedding_hook = embedding_module.register_forward_hook(hook_embedding)
 
-    decoder_input = torch.tensor([[0]*prefix_embedding.shape[0] + tokenizer.encode(prompt)], device=device)
-    output_dict = model.forward(torch.cat([decoder_input] * 2, 0) if repeat else decoder_input, labels = torch.cat([torch.full_like(decoder_input, -100)[:, 1:], torch.tensor([[target]], device=device)], -1) if target is not None else None, return_dict=True)
+    decoder_input = torch.tensor([[0] * prefix_embedding.shape[0] + tokenizer.encode(prompt)], device=device)
+    output_dict = model.forward(torch.cat([decoder_input] * 2, 0) if repeat else decoder_input, labels=torch.cat(
+        [torch.full_like(decoder_input, -100)[:, 1:], torch.tensor([[target]], device=device)],
+        -1) if target is not None else None, return_dict=True, past_key_values=cache)
 
     embedding_hook.remove()
     return output_dict
 
 
-def prefix_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, device, model_forwarder, objects):
+def prefix_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, device, model_forwarder, objects,
+                  greater_sep=False, max_steps = 2):
     mask_token_id = tokenizer.eos_token_id
     for x in model.parameters():
         x.requires_grad = False
     objects = np.array(objects)[[0, 1]] if False else np.random.permutation(objects)
+    nan_inds = [i for i in range(len(objects)) if objects[i] is None]
+    if len(nan_inds) == 2:
+        raise Exception("At least one of the objects must not be nan.")
+    if len(nan_inds) == 1:
+        objects[1], objects[nan_inds[0]] = objects[nan_inds[0]], objects[1]
     print(objects)
-    target = tokenizer.encode((" " if not prompt.endswith(" ") else "")+objects[0], add_special_tokens=False)[0]
-    if len(tokenizer.decode([target]).strip()) == 0:
-        target = tokenizer.encode(objects[0], add_special_tokens=False)[0]
-        if not prompt.endswith(" "):
-            prompt = prompt + " "
-    distractor = tokenizer.encode((" " if not prompt.endswith(" ") else "")+objects[1], add_special_tokens=False)[0]
-    if len(tokenizer.decode([distractor]).strip()) == 0:
-        target = tokenizer.encode(objects[1], add_special_tokens=False)[0]
-        if not prompt.endswith(" "):
-            prompt = prompt + " "
+    target, distractor = [x if x is None else tokenizer.convert_tokens_to_ids([x])[0] for x in objects]
     prefix_embedding = model_forwarder.get_embedding(model, mask_token_id, device).clone()
     prefix_embedding = torch.stack([prefix_embedding] * 1, 0)
     prefix_embedding.requires_grad = True
     hist = []
-    max_steps = 100
     succeeded = False
+    num_steps = 0
     for x in range(max_steps):
-        xfrac = x/max_steps
-        t = x % 2 == 0 if False else True
+        xfrac = x / max_steps
+        t = True
         with torch.enable_grad():
-            output_dict = forward_with_prefix(model, tokenizer, prompt, device, target if t else distractor, prefix_embedding)
-        next_token_logits = output_dict["logits"].detach()[0,-1, :].cpu()
+            output_dict = forward_with_prefix(model, tokenizer, prompt, device, target if t else distractor,
+                                              prefix_embedding)
+        next_token_logits = output_dict["logits"].detach()[0, -1, :].cpu()
         next_token_probs = torch.softmax(next_token_logits, dim=-1).numpy()
         max_prob_indices = np.argsort(next_token_probs)
         max_prob_indices = max_prob_indices[np.searchsorted(np.flip(np.cumsum(np.flip(max_prob_indices))), 0.9):]
-        hist.append(list(zip(next_token_probs[max_prob_indices][-10:].tolist(),
-                       tokenizer.convert_ids_to_tokens(max_prob_indices)[-10:]))[-3:])
-        loss = output_dict["loss"]
-        loss.backward()
-        prefix_embedding.data = prefix_embedding.data + (- 1 if t else 1) * (0.00001*xfrac+(1-xfrac)*(0.0001)) * prefix_embedding.grad.data
-        prefix_embedding.grad.zero_()
-        succeeded = max_prob_indices[-1] == target or (max_prob_indices[-2] == target and max_prob_indices[-1] != distractor and max_prob_indices[-3] != distractor)
+        succeeded = max_prob_indices[-1] == target or (
+                    max_prob_indices[-2] == target and max_prob_indices[-1] != distractor and (
+                        max_prob_indices[-3] != distractor or not greater_sep))
+        num_steps = x
         if succeeded:
             break
+        hist.append(list(zip(next_token_probs[max_prob_indices][-10:].tolist(),
+                             tokenizer.convert_ids_to_tokens(max_prob_indices)[-10:]))[-3:])
+        loss = output_dict["loss"]
+        loss.backward()
+        prefix_embedding.data = prefix_embedding.data + (- 1 if t else 1) * (
+                    0.00001 * xfrac + (1 - xfrac) * (0.0001)) * prefix_embedding.grad.data
+        prefix_embedding.grad.zero_()
     print("\n".join([str(x) for x in enumerate(hist)]))
-    print(f"Target: {tokenizer.decode([target])}, Distractor: {tokenizer.decode([distractor])}")
+    print(
+        f"Target: {tokenizer.decode([target])}, Distractor: {distractor if distractor is None else tokenizer.decode([distractor])}")
     print(model_forwarder.get_closest_embedding(model, tokenizer, prefix_embedding[0]))
-    return prefix_embedding.detach() if succeeded else None
+    return prefix_embedding.detach() if succeeded and num_steps > 0 else None, num_steps if succeeded else max_steps
+
+
+class attn_hook_wrapper:
+    def __init__(self, layer, cache):
+        self.layer = layer
+        self.cache = cache
+
+    def attn_hook(self, module, input, output):
+        output[:, :self.cache[self.layer].shape[1], :] = self.cache[self.layer]
+        return output
+
+
+def forward_with_cache(model, decoder_input, repeat, cache):
+    hooks = []
+
+    for n, m in model.named_modules():
+        if n.endswith("self_attn"):
+            l = int(n.split(".")[-2])
+            hooks.append(m.k_proj.register_forward_hook(attn_hook_wrapper(l, cache[0]).attn_hook))
+            hooks.append(m.v_proj.register_forward_hook(attn_hook_wrapper(l, cache[1]).attn_hook))
+
+    output_dict = model.forward(torch.cat([decoder_input] * 2, 0) if repeat else decoder_input,
+                                return_dict=True)
+    for hook in hooks:
+        hook.remove()
+    return output_dict
+
+
+def forward_with_huggingface_cache(model, decoder_input, repeat, cache, max_cache_len):
+    past_key_values = copy.deepcopy(cache)
+    assert decoder_input.shape[1]+5 < max_cache_len, f"Input too long {decoder_input.shape[1]}+5 >= {max_cache_len}"
+    output_dict = model.forward((torch.cat([decoder_input] * 2, 0) if repeat else decoder_input),
+                                return_dict=True, past_key_values=past_key_values)
+    return output_dict
+
 
 class ModelForwarder:
 
-    def __init__(self):
+    def __init__(self, use_cache=True):
         self.adaptor = None
+        self.cache = None
+        self.cached_input = None
+        self.max_cache_len = 0
+
+    def make_cache(self, model, tokenizer, prompt, length, device, repeat, obj):
+        decoder_input_full = torch.tensor([tokenizer.encode(prompt)], device=device)
+        decoder_input = decoder_input_full[:length]
+        with torch.no_grad():
+            self.max_cache_len = int(decoder_input_full.shape[1]*2)
+            cache = StaticCache(config=model.config, max_batch_size=2, max_cache_len=self.max_cache_len,
+                                device="cuda",
+                                dtype=torch.half)
+            output_dict = model.forward(torch.cat([decoder_input] * 2, 0) if repeat else decoder_input,
+                                        return_dict=True, past_key_values=cache)
+            self.cache = output_dict["past_key_values"]
+            self.cached_input = decoder_input
 
     def forward(self, model, tokenizer, prompt, device, repeat, obj):
         decoder_input = torch.tensor([tokenizer.encode(prompt)], device=device)
+        if self.cache is not None:
+            if not torch.equal(self.cached_input[:, :decoder_input.shape[1]], decoder_input):
+                print(tokenizer.decode(self.cached_input[0])[:40], tokenizer.decode(decoder_input[0])[:40])
+                self.cache = None
+                del self.cached_input
+
         with torch.no_grad():
-            assert self.adaptor is not None
-            if self.adaptor is not None:
-                output_dict = forward_with_prefix(model, tokenizer, prompt, device, None, self.adaptor, repeat)
+            if self.cache is not None:
+                output_dict = forward_with_huggingface_cache(model, decoder_input, repeat, self.cache, self.max_cache_len)
             else:
-                output_dict = model.forward(torch.cat([decoder_input] * 10, 0) if repeat else decoder_input,
-                                        return_dict=True)
+                if self.adaptor is not None:
+                    output_dict = forward_with_prefix(model, tokenizer, prompt, device, None, self.adaptor, repeat,
+                                                      None)
+                else:
+                    output_dict = model.forward(torch.cat([decoder_input] * 2, 0) if repeat else decoder_input,
+                                                return_dict=True, past_key_values=None)
         return output_dict
 
     def clear_adaptor(self):
         self.adaptor = None
-
 
     def set_adaptor(self, adaptor):
         self.adaptor = adaptor
@@ -138,6 +201,7 @@ class ModelForwarderTTS:
                                     decoder_input_ids=torch.cat([decoder_input] * 2, 0) if repeat else decoder_input)
         return output_dict
 
+
 def make_model(args, mock=False):
     from transformers import AutoModelForCausalLM, AutoTokenizer
     quantize = torch.cuda.is_available() and args.bfloat16
@@ -145,18 +209,17 @@ def make_model(args, mock=False):
     if quantize:
         from transformers import BitsAndBytesConfig
         quantization_config = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16,
-                                             torch_dtype=torch.bfloat16)
+                                                 torch_dtype=torch.bfloat16)
         model = mock_model() if mock else AutoModelForCausalLM.from_pretrained(args.model_name_path, token=args.token,
-                                                                            force_download=False,
-                                                                            quantization_config=quantization_config,
-                                                                            device_map="auto",
-                                                                            max_memory = max_memory_mapping)
+                                                                               force_download=False,
+                                                                               quantization_config=quantization_config,
+                                                                               device_map="auto",
+                                                                               max_memory=max_memory_mapping)
     else:
-        quantization_config = None
         model = mock_model() if mock else AutoModelForCausalLM.from_pretrained(args.model_name_path, token=args.token,
-                                                                            force_download=False,
-                                                                            device_map="auto",
-                                                                            max_memory = max_memory_mapping)
+                                                                               force_download=False,
+                                                                               device_map="auto",
+                                                                               max_memory=max_memory_mapping)
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_path, token=args.token, force_download=False,
                                               add_bos_token=True)
     tokenizer.pad_token = tokenizer.eos_token
@@ -180,20 +243,23 @@ def make_model_whisper(args, mock=False):
     return model, tokenizer
 
 
-
-
 def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, obj: str, target_token: str,
-                  bucket: str, adaptor):
+                  bucket: str, adaptor, args, pbar):
     output = dict()
 
     embedding_module_name = get_module_name(causal_tracer.model, "embed", 0)
     subject_tokens_range = find_substring_range(causal_tracer.tokenizer, prompt, subject)
 
-    object_tokens_range, tokens = find_all_substring_range(causal_tracer.tokenizer, prompt, obj)
-    output["object_tokens_range"] = object_tokens_range
+    string_ids = causal_tracer.tokenizer(
+        prompt,
+        return_tensors=None,
+        return_token_type_ids=False,
+    )["input_ids"]
+    tokens = causal_tracer.tokenizer.convert_ids_to_tokens(string_ids)
+    if args.output_object_tokens_range:
+        object_tokens_range, _ = find_all_substring_range(causal_tracer.tokenizer, prompt, obj)
+        output["object_tokens_range"] = object_tokens_range
     output["subject_tokens_range"] = subject_tokens_range
-    if adaptor is None:
-        return output
 
     # Get corrupted run results
     clean_probs, corrupted_probs = causal_tracer.trace_with_patch(
@@ -215,16 +281,17 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
 
     # Get patched runs results
     num_tokens = get_num_tokens(causal_tracer.tokenizer,
-                                prompt)  # -1 should not be necesary nd it does not belong here for models other than Whisper
+                                prompt)  # -1 should not be necessary and it does not belong here for models other than Whisper
     output["results"]["tokens"] = list()
     # We start the loop from the first subject token as patching previous tokens has no effect
-    inds = (get_quantiles(list(range(subject_tokens_range[0], subject_tokens_range[1])), 5, [subject_tokens_range[0]+1, subject_tokens_range[1]-2]) + get_quantiles(
-            list(range(subject_tokens_range[1], num_tokens)), 5, [subject_tokens_range[1]+1, num_tokens-2]))
-    print(inds, num_tokens)
+    inds = (get_quantiles(list(range(subject_tokens_range[0], subject_tokens_range[1])), 5,
+                          [subject_tokens_range[0] + 1, subject_tokens_range[1] - 2]) + get_quantiles(
+        list(range(subject_tokens_range[1], num_tokens)), 5, [subject_tokens_range[1] + 1, num_tokens - 2]))
+    print(f"\n{inds}, {num_tokens}")
     for token_i in inds:
         d = {}
         d["pos"] = token_i - num_tokens
-        print(token_i, num_tokens)
+        pbar.set_description(f"{token_i}, {num_tokens}")
         d["val"] = tokens[token_i]
 
         # If token is part of the subject, store its relative negative position
@@ -257,6 +324,7 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
             d[kind][last_layer] = patched_results
         output["results"]["tokens"].append(d)
     return output
+
 
 def run_causal_tracing_analysis(
         model: nn.Module,
@@ -303,45 +371,55 @@ def run_causal_tracing_analysis(
 
                 # Predict most likely next token
                 prompt = construct_prompt(fact, prompt_template)
-                adaptor = prefix_tuning(model, tokenizer, prompt, device, model_forwarder, [fact.get_parent().get_object(), fact.get_object()])
-                if adaptor is None:
-                  partial_dataset.add_entry(
-                    {
-                        "fact": fact.as_dict(),
-                        "partial_results": {
-                            "object": fact.get_object(),
-                            "prompt": prompt,
-                            "adaptor": None,
-                        },
-                    }
-                  )
-                  continue
+                adaptor, num_steps = None, 0
+                if args.max_steps > 0:
+                    adaptor, num_steps = prefix_tuning(model, tokenizer, prompt, device, model_forwarder, target_tokens, args.max_steps)
+                skip_no_adaptor = False
+                if skip_no_adaptor and adaptor is None:
+                    partial_dataset.add_entry(
+                        {
+                            "fact": fact.as_dict(),
+                            "partial_results": {
+                                "object": fact.get_object(),
+                                "prompt": prompt,
+                                "adaptor": None,
+                                "num_steps": num_steps,
+                                "group_id": fact.group_id
+                            },
+                        }
+                    )
+                    continue
 
                 model_forwarder.set_adaptor(adaptor)
                 most_likely_next_token, _ = get_next_token(model, tokenizer, prompt, device, model_forwarder, False,
                                                            fact.get_object())
-                most_likely2 = most_likely_next_token[-2:]
-
-                def faithfullness(id):
+                print(most_likely_next_token[-1], most_likely_next_token[-1].startswith("Ġ_"))
+                while most_likely_next_token[-1].startswith("Ġ_"):
+                    most_likely_next_token = most_likely_next_token[:-1]
+                def faithfullness(id, most_likely_next_token):
                     top1 = most_likely_next_token[-1] == target_tokens[id]
-                    top2 = target_tokens[id] in most_likely2 and not target_tokens[not id] in most_likely2
-                    #top = target_tokens[id] in most_likely_next_token and not target_tokens[not id] in most_likely_next_token
+                    top2 = most_likely_next_token[-2] == target_tokens[id] and not most_likely_next_token[-1] == \
+                                                                                   target_tokens[1 - id]
+                    # top = target_tokens[id] in most_likely_next_token and not target_tokens[not id] in most_likely_next_token
                     return top1 or top2
 
-                unfaithful = faithfullness(0)
-                grounded = faithfullness(1)
+                unfaithful = faithfullness(0, most_likely_next_token)
+                grounded = faithfullness(1, most_likely_next_token)
                 partial_dataset.add_entry(
                     {
                         "fact": fact.as_dict(),
                         "partial_results": {
                             "prompt": prompt,
+                            "is_in_next_tokens": target_tokens[1] in most_likely_next_token[-10:],
                             "next_token": target_tokens[0] if unfaithful else target_tokens[1] if grounded else
                             most_likely_next_token[-1],
                             "unfaithful_token": target_tokens[0],
                             "grounded_token": target_tokens[1],
-                            "is_unfaithful": unfaithful,
+                            "is_unfaithful": unfaithful or (args.not_grounded_is_hallucinated and not grounded),
                             "is_grounded": grounded,
-                            "adaptor": adaptor.cpu().numpy().tolist(),
+                            "adaptor": adaptor if adaptor is None else adaptor.cpu().numpy().tolist(),
+                            "num_steps": num_steps,
+                            "group_id": fact.group_id
                         },
                     }
                 )
@@ -360,9 +438,9 @@ def run_causal_tracing_analysis(
 
     logger.info(f"Found {len(unfaithful_facts)} unfaithful facts and {len(grounded_facts)} grounded facts")
 
-    causal_tracer = MaskedCausalTracer(model, tokenizer, "eos", model_forwarder)
+    causal_tracer = MaskedCausalTracer(model, tokenizer, "eos", model_forwarder, args.use_cache)
 
-    for bucket in ["grounded", "unfaithful"]:
+    for bucket in ["grounded", "unfaithful"] if args.grounded_first else ["unfaithful", "grounded"]:
         if bucket == "unfaithful":
             if num_unfaithful == -1:
                 num_unfaithful = len(unfaithful_facts)
@@ -378,7 +456,7 @@ def run_causal_tracing_analysis(
 
         logger.info(f"Running causal tracing on {num_facts} {bucket} facts")
         with ResumeAndSaveFactDataset(causal_traces_path, save_interval=1) as dataset:
-            for entry in tqdm(facts, desc=f"Running causal tracing on {bucket} facts"):
+            for entry in (pbar := tqdm(facts, desc=f"Running causal tracing on {bucket} facts")):
 
                 fact = fact_from_dict(entry["fact"])
                 if dataset.is_input_processed(fact):
@@ -386,8 +464,10 @@ def run_causal_tracing_analysis(
 
                 prompt = entry["partial_results"]["prompt"]
                 target_token = entry["partial_results"]["next_token"]
+                adaptor = entry["partial_results"]["adaptor"]
                 output_entry = process_entry(causal_tracer, prompt, fact.get_subject(), fact.get_object(), target_token,
-                                             bucket, torch.tensor(entry["partial_results"]["adaptor"], device=device))
+                                             bucket,
+                                             adaptor if adaptor is None else torch.tensor(adaptor, device=device), args, pbar)
 
                 output_entry["fact"] = fact.as_dict()
 
@@ -396,7 +476,9 @@ def run_causal_tracing_analysis(
 
 def run_causal_tracing_analysis_wrapper(params):
     i, c, resume_dir, args = params
-    fakepedia = read_json(args.fakepedia_path)[:args.subset_size]
+    fakepedia = read_json(args.fakepedia_path)
+    print("total", len(fakepedia))
+    fakepedia = fakepedia[:args.subset_size]
     fakepedia = fakepedia[(i * len(fakepedia)) // c:((i + 1) * len(fakepedia)) // c]
     model, tokenizer = make_model(args)
     try:
@@ -439,7 +521,7 @@ def run_causal_tracing(args):
 
 
 def prefix_search(model):
-    pre =""
+    pre = ""
     mid = ""
     after = ""
 
@@ -447,19 +529,25 @@ def prefix_search(model):
 class Namespace1:
     def __init__(self):
         self.token = os.environ.get("HUGGINGFACE_TOKEN")
-        self.fakepedia_path = "transl_fakepedia.json"
-        ms = ["unsloth/Llama-3.2-1B-Instruct-unsloth-bnb-4bit", "unsloth/Llama-3.2-1B-unsloth-bnb-4bit",
+        self.fakepedia_path = "history_fakepedia.json"
+        ms = ["unsloth/Llama-3.2-1B-unsloth-bnb-4bit", "unsloth/Llama-3.2-1B-Instruct-unsloth-bnb-4bit",
+              "unsloth/Llama-3.2-1B-unsloth-bnb-4bit",
               "meta-llama/Llama-3.2-1B", "google/gemma-3-1b-pt", "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"]
         self.model_name_path = ms[0]
         self.prompt_template = "{context}\n{query}"
-        self.num_grounded = 40
-        self.num_unfaithful = 40
+        self.num_grounded = 1000
+        self.num_unfaithful = 1000
         self.prepend_space = True
         self.bfloat16 = False
-        self.resume_dir = "PrefixTuningTransl"
-        self.subset_size = 100
+        self.resume_dir = "History"
+        self.subset_size = 1000
         self.skip_creation = False
         self.isTTS = False
+        self.grounded_first = False
+        self.output_object_tokens_range = False
+        self.use_cache = True
+        self.not_grounded_is_hallucinated = True
+        self.max_steps = 0
 
 
 if __name__ == "__main__":
