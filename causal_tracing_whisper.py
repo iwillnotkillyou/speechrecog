@@ -501,11 +501,11 @@ class Feature:
 
     def avg(self):
         np_array = np.array(self.d)
-        return np.mean(np_array[~np.isnan(np_array)])
+        return np.mean(np_array[~np.isnan(np_array)]) if len(np_array[~np.isnan(np_array)]) > 0 else float('nan')
 
     def std(self):
         np_array = np.array(self.d)
-        return np.std(np_array[~np.isnan(np_array)])
+        return np.std(np_array[~np.isnan(np_array)]) if len(np_array[~np.isnan(np_array)]) > 0 else float('nan')
 
     def __len__(self):
         return len(self.d)

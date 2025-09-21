@@ -1,5 +1,5 @@
 import os
-
+from itertools import chain
 import numpy as np
 import xgboost as xgb
 from sklearn.linear_model import LogisticRegression
@@ -8,6 +8,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.feature_selection import RFECV
 from causal_tracing_whisper import *
 import sklearn
+import scipy
 def load_metrics(save_dir):
     with open(os.path.join(save_dir, "results.json"), "r") as file:
         results = json.load(file)
@@ -118,7 +119,7 @@ def plot_metrics_comparison(metrics_by_model, save_dir):
     plt.savefig(os.path.join(save_dir, "all_metrics_comparison.png"), bbox_inches="tight")
     plt.close()
 
-def train_and_save(models, train_data, test_data, feature_names, class_names, grounded_results, unfaithful_results, args, seed, replot_only=False, target_acc = 0.6):
+def train_and_save(models, train_data, test_data, holdout_data, feature_names, class_names, grounded_results, unfaithful_results, args, seed, replot_only=False, target_acc = 0.6):
     save_dir = get_output_dir()
     def score_min_tree(estimator, X_test, y_test, **score_params):
         return -np.abs(target_acc-estimator.score(X_test, y_test))
@@ -131,8 +132,9 @@ def train_and_save(models, train_data, test_data, feature_names, class_names, gr
         os.makedirs(model_save_dir, exist_ok=True)
 
         if not replot_only:
-            X_train, y_train, inds_train = train_data
-            X_test, y_test, inds_test = test_data
+            X_train, y_train, inds_train, weights_train = train_data
+            X_test, y_test, inds_test, weights_test = test_data
+            X_holdout, y_holdout, inds_holdout, weights_holdout = holdout_data
 
             if "random_state" in model_info["model"].get_params():
                 model_info["model"].set_params(random_state=seed)
@@ -141,41 +143,51 @@ def train_and_save(models, train_data, test_data, feature_names, class_names, gr
             best_f = None
 
             all_feat_removed = set()
+            holdout_size = np.clip(len(y_train) // 5, 3, 10)
             for x in range(1000):
-                all_feat_removed.add(tuple(sorted(np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 7), replace=False).tolist())))
+                all_feat_removed.add(tuple(sorted(np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 7) if False else 2, replace=False).tolist())))
             for feat_removed in list(all_feat_removed)[:100]:
                 X_train1 = X_train.copy()
                 X_train1[:, feat_removed] = 0
-                beta = 1
-                clf = GridSearchCV(model_info["model"], model_info["param_grid"], cv=2, verbose=0, scoring=lambda estimator, X_test, y_test : -np.abs(target_acc-fbeta_score(y_test, estimator.predict(X_test), beta=beta, average='weighted', zero_division = 0.0)))
-                holdout_size = np.clip(len(y_train) // 4, 1, 10)
-                clf.fit(X_train1[:-holdout_size], y_train[:-holdout_size])
-                y_pred = clf.predict(X_train[-holdout_size:])
-                f = fbeta_score(y_train[-holdout_size:], y_pred, beta=beta, average='weighted', zero_division = 0.0)
-                if best_f is None or f > best_f:
-                    best_f = f
+                beta = 2
+                clf = GridSearchCV(model_info["model"], model_info["param_grid"], cv=2, verbose=0, scoring=lambda estimator, X_t, y_t : -np.abs(target_acc-fbeta_score(y_t, estimator.predict(X_t), beta=beta, average='weighted', zero_division = 0.0)))
+                clf.fit(X_train1[weights_train>0], y_train[weights_train>0], sample_weight=weights_train[weights_train>0])
+                y_pred = clf.predict(X_holdout)
+                fscore = fbeta_score(y_holdout, y_pred, beta=beta, average='weighted', zero_division = 0.0, sample_weight=weights_holdout)
+                if best_f is None or fscore > best_f:
+                    best_f = fscore
                     best_clas = clf
                     best_feat = [feature_names[x] for x in sorted(set(range(len(feature_names))).difference(set(feat_removed)))]
 
             clf = best_clas
             y_pred = clf.predict(X_test)
             y_train_pred = clf.predict(X_train)
-            y_train_proba = clf.predict_proba(X_train)[:, 1]
+            y_train_nonholdout = y_train
+            y_holdout_pred = clf.predict(X_holdout)
+            y_train_holdout = y_holdout
             with open(f"{model_name}_confusion_matrix.json", "w") as f:
                 json.dump(confusion_matrix(y_test, y_pred).tolist(), f)
             results = {
                 "train": {
-                    "accuracy": accuracy_score(y_train, y_train_pred),
-                    "precision": precision_score(y_train, y_train_pred, average='weighted'),
-                    "recall": recall_score(y_train, y_train_pred, average='weighted'),
-                    "f1_score": f1_score(y_train, y_train_pred, average='weighted', zero_division = 0.0),
+                    "accuracy": accuracy_score(y_train_nonholdout, y_train_pred),
+                    "precision": precision_score(y_train_nonholdout, y_train_pred, average='weighted', zero_division = 0.0),
+                    "recall": recall_score(y_train_nonholdout, y_train_pred, average='weighted', zero_division = 0.0),
+                    "f1_score": f1_score(y_train_nonholdout, y_train_pred, average='weighted', zero_division = 0.0),
+                    # "roc_auc": roc_auc_score(y_train, y_train_proba,
+                    #                         multi_class = "ovr", average='weighted'),
+                },
+                "holdouot": {
+                    "accuracy": accuracy_score(y_train_holdout, y_holdout_pred),
+                    "precision": precision_score(y_train_holdout, y_holdout_pred, average='weighted', zero_division=0.0),
+                    "recall": recall_score(y_train_holdout, y_holdout_pred, average='weighted', zero_division=0.0),
+                    "f1_score": f1_score(y_train_holdout, y_holdout_pred, average='weighted', zero_division=0.0),
                     # "roc_auc": roc_auc_score(y_train, y_train_proba,
                     #                         multi_class = "ovr", average='weighted'),
                 },
                 "test": {
                     "accuracy": accuracy_score(y_test, y_pred),
-                    "precision": precision_score(y_test, y_pred, average='weighted'),
-                    "recall": recall_score(y_test, y_pred, average='weighted'),
+                    "precision": precision_score(y_test, y_pred, average='weighted', zero_division = 0.0),
+                    "recall": recall_score(y_test, y_pred, average='weighted', zero_division = 0.0),
                     "f1_score": f1_score(y_test, y_pred, average='weighted', zero_division = 0.0),
                     # "roc_auc": roc_auc_score(y_test, clf.predict_proba(X_test)[:, 1],
                     #                         multi_class = "ovr", average='weighted'),
@@ -183,7 +195,8 @@ def train_and_save(models, train_data, test_data, feature_names, class_names, gr
                 "best_hyperparameters": clf.best_params_,
                 "used_features": best_feat,
                 "train_size": len(y_train),
-                "test_size": len(y_test)
+                "test_size": len(y_test),
+                "test_label0_frac": int(np.sum(y_test == 0))/len(y_test)
             }
 
             if hasattr(clf.best_estimator_, "feature_importances_"):
@@ -238,7 +251,8 @@ def process_facts2(target_token, facts, class_map, results, corrupted_probs, cle
 
         corrupted_probs[clas].add(corrupted_score)
         clean_probs[clas].add(clean_score)
-        ids[clas].append(int(processed_fact["fact"]["group_id"]) if "group_id" in processed_fact["fact"] and len(processed_fact["fact"]["group_id"]) > 0 else None)
+        info_dict = {"is_additional": processed_fact["is_additional"] if "is_additional" in processed_fact else False, "id": int(processed_fact["fact"]["group_id"]) if "group_id" in processed_fact["fact"] and len(processed_fact["fact"]["group_id"]) > 0 else None}
+        ids[clas].append(info_dict)
 
         for kind in ["hidden", "mlp", "attn"]:
             d = results[clas][kind]
@@ -390,11 +404,11 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
         corrupted_probsx.d = [corrupted_probsx.d[x] for x in indskeep]
         clean_probsx.d = [clean_probsx.d[x] for x in indskeep]
 
-    if not (any(x is None for x in ids[0]) or any(x is None for x in ids[1])):
-        group(ids[0], results[0], corrupted_probs[0], clean_probs[0])
-        group(ids[1], results[1], corrupted_probs[1], clean_probs[1])
+    if not (any(x["id"] is None for x in ids[0]) or any(x["id"] is None for x in ids[1])):
+        group([x["id"] for x in ids[0]], results[0], corrupted_probs[0], clean_probs[0])
+        group([x["id"] for x in ids[1]], corrupted_probs[1], clean_probs[1])
     vs = list(
-        (x, i, len(next(iter(x[0]["hidden"].values())))) for i, x in enumerate(zip(results, corrupted_probs, clean_probs)) if len(x[0]["hidden"]) > 0)
+        (x, i, len(next(iter(x[0]["hidden"].values())))) for i, x in enumerate(zip(results, corrupted_probs, clean_probs, ids)) if len(x[0]["hidden"]) > 0)
     print("class_c", [x[2] for x in vs])
     vs = [(x, i) for x, i, l in vs if l >= args.min_count]
     # in next experiment try ["grounded", "confidently grounded"]
@@ -402,8 +416,8 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
 
 
 def generate_datasets2(buckets,
-                       train_ratio=0.8, balance=False
-                       ) -> Tuple[Tuple[np.ndarray, np.ndarray, np.ndarray], Tuple[np.ndarray, np.ndarray, np.ndarray], Any]:
+                       train_ratio=0.8, balance=False, balance_w = True, additional_weight = 0, check_additional = False
+                       ):
     logger = get_logger()
     feature_names = [
         f"{kind}-{feature}" for kind, features in buckets[0][0].items() for feature in features.keys()
@@ -411,14 +425,10 @@ def generate_datasets2(buckets,
 
     logger.info(f"Feature names: {feature_names}")
 
-    all_samples = []
-    all_labels = []
-    all_inds = []
-
     all_label_samples = []
     for label, bucket_results in enumerate(buckets):
         all_label_samples.append([])
-        kinds_results, corr_probs, clean_probs = bucket_results
+        kinds_results, corr_probs, clean_probs, info = bucket_results
         # This is the correct number of samples the feature adding is done in a wierd way but there is always
         # exactly one value in each feature for each sample
         num_samples = len(corr_probs) - 1
@@ -439,30 +449,100 @@ def generate_datasets2(buckets,
             if any([feature is None for feature in candidate_example]):
                 continue
 
-            all_label_samples[-1].append((candidate_example, label, i))
+            all_label_samples[-1].append((candidate_example, label, i, 0 if  info[i]["is_additional"] else 1))
     assert len(set([tuple(sorted(x)) for x in all_label_samples])) == len(all_label_samples)
     print("all_label_samples", len(all_label_samples[0]), len(all_label_samples[1]))
-    minl = min(len(x) for x in all_label_samples) if balance else max(len(x) for x in all_label_samples)
+    minl = min(len([y for y in x if y[3] > 0]) for x in all_label_samples) if balance else max(len([y for y in x if y[3] > 0]) for x in all_label_samples)
+
+    all_samples = []
+    all_labels = []
+    all_inds = []
+    all_weights = []
+    all_samples1 = []
+    all_labels1 = []
+    all_inds1 = []
+    all_weights1 = []
     for current_label_samples in all_label_samples:
-        np.random.shuffle(current_label_samples)
-        all_samples.extend([sample[0] for sample in current_label_samples[:minl]])
-        all_labels.extend([sample[1] for sample in current_label_samples[:minl]])
-        all_inds.extend([sample[2] for sample in current_label_samples[:minl]])
+        current_label_samples0 = [y for y in current_label_samples if y[3] == 0]
+        current_label_samples1 = [y for y in current_label_samples if y[3] > 0]
+        np.random.shuffle(current_label_samples1)
+        np.random.shuffle(current_label_samples0)
+        all_samples.extend([sample[0] for sample in current_label_samples1[:minl]])
+        all_labels.extend([sample[1] for sample in current_label_samples1[:minl]])
+        all_inds.extend([sample[2] for sample in current_label_samples1[:minl]])
+        all_weights.extend([sample[3] for sample in current_label_samples1[:minl]])
+        all_samples1.extend([sample[0] for sample in current_label_samples1[minl:]+current_label_samples0])
+        all_labels1.extend([sample[1] for sample in current_label_samples1[minl:]+current_label_samples0])
+        all_inds1.extend([sample[2] for sample in current_label_samples1[minl:]+current_label_samples0])
+        all_weights1.extend([sample[3] for sample in current_label_samples1[minl:]+current_label_samples0])
+
 
     # Convert all_samples and all_labels to np arrays
-    all_samples_array = np.array(all_samples)
-    all_labels_array = np.array(all_labels)
-    all_inds_array = np.array(all_inds)
-
-    print("number of classes", np.unique(all_labels_array, return_counts=True))
+    all_samples = np.array(all_samples)
+    all_labels = np.array(all_labels)
+    all_inds = np.array(all_inds)
+    all_weights = np.array(all_weights)
+    assert np.sum(all_weights == 0) == 0
+    print("number of classes", np.unique(all_labels, return_counts=True))
     # Calculate lengths for each split
-    total_size = len(all_samples_array)
+    total_size = len(all_samples[all_weights > 0])
     train_size = int(total_size * train_ratio)
 
-    train_samples, test_samples, train_labels, test_labels, train_inds, test_inds = sklearn.model_selection.train_test_split(all_samples_array, all_labels_array, all_inds_array, train_size= train_size, stratify=all_labels_array, random_state=42)
+    train_samples_before, test_samples, train_labels, test_labels, train_inds, test_inds, train_weights, _ = sklearn.model_selection.train_test_split(all_samples, all_labels, all_inds, all_weights, train_size= train_size, stratify=all_labels, random_state=42)
+    train_samples_before, holdout_samples, train_labels, holdout_labels, train_inds, holdout_inds, train_weights, holdout_weights = sklearn.model_selection.train_test_split(
+        train_samples_before, train_labels, train_inds, train_weights, test_size = np.clip(len(train_labels) // 5, 3, 10), stratify=train_labels, random_state=42)
+
+    all_weights1 = np.array(all_weights1)
+    all_samples1 = np.array(all_samples1)
+    all_labels1 = np.array(all_labels1)
+    all_inds1 = np.array(all_inds1)
+    train_samples_before = np.concatenate([train_samples_before, all_samples1[all_weights1 > 0]], axis=0)
+    train_labels = np.concatenate([train_labels, all_labels1[all_weights1 > 0]], axis=0)
+    train_inds = np.concatenate([train_inds, all_inds1[all_weights1 > 0]], axis=0)
+    train_weights = np.concatenate([train_weights, all_weights1[all_weights1 > 0]], axis=0)
+
+    if balance:
+        dif = np.sum(test_labels == 0) - np.sum(test_labels == 1)
+        assert np.abs(dif) < np.sum(test_labels == 0)
+        assert np.abs(dif) < np.sum(test_labels == 1)
+        if dif > 0:
+            to_remove = np.where(test_labels == 0)[0]
+            test_labels = np.delete(test_labels, to_remove[:dif], axis=0)
+            test_inds = np.delete(test_inds, to_remove[:dif], axis=0)
+            test_samples = np.delete(test_samples, to_remove[:dif], axis=0)
+        if dif < 0:
+            to_remove = np.where(test_labels == 1)[0]
+            test_labels = np.delete(test_labels, to_remove[:dif], axis=0)
+            test_inds = np.delete(test_inds, to_remove[:dif], axis=0)
+            test_samples = np.delete(test_samples, to_remove[:dif], axis=0)
+        difa = np.sum(test_labels == 0) - np.sum(test_labels == 1)
+        print("difs", dif, difa)
+
+    train_samples = train_samples_before
+    if balance_w:
+        stl1 = np.sum(train_labels == 1)
+        stl0 = np.sum(train_labels == 0)
+        train_weights = np.array([1.0 if x == 1 else (stl1 / stl0) for x in train_labels])
+    if np.sum(all_weights1 == 0) > 0:
+        sumw = np.sum(train_weights)
+        train_weights = np.concatenate([train_weights, np.zeros(len(all_samples1[all_weights1 == 0]))], axis=0)
+        train_samples = np.concatenate([train_samples_before, all_samples1[all_weights1 == 0]], axis=0)
+        train_labels = np.concatenate([train_labels, all_labels1[all_weights1 == 0]], axis=0)
+        train_inds = np.concatenate([train_inds, all_inds1[all_weights1 == 0]], axis=0)
+        train_weights[len(train_samples_before):] = additional_weight*(sumw / (len(train_weights)-len(train_samples_before)))
+        tla = train_labels[len(train_samples_before):]
+        stl10 = np.sum(tla == 1)
+        stl00 = np.sum(tla == 0)
+        train_weights[len(train_samples_before):] = np.array([y if x == 1 else y*(stl10 / stl00) for y, x in zip(train_weights[len(train_samples_before):], tla)])
+    elif check_additional:
+        raise Exception()
+    print("train_weights", np.unique(train_weights, return_counts=True), train_weights.tolist())
     #print(test_dataset[0].shape, test_dataset[0].shape, feature_names)
     #print(list(zip(test_dataset[0][:, -1], test_dataset[1])))
-    return (train_samples, train_labels, train_inds), (test_samples, test_labels, test_inds), feature_names
+    return ((train_samples, train_labels, train_inds, train_weights),
+            (test_samples, test_labels, test_inds, train_weights),
+            (holdout_samples, holdout_labels, holdout_inds, train_weights),
+            feature_names, )
 
 
 """
@@ -478,21 +558,28 @@ def generate_datasets2(buckets,
             },
 """
 
-def groupbyid(x):
-    return x
-
 def train_detector(args, models):
     buckets = ["grounded", "unfaithful"]
     buckets_paths = [
         os.path.join(args.causal_traces_dir, args.dataset_name, args.model_name, f"{bucket}.json") for bucket in buckets
     ]
+    additional_values = []
+    print([x for x in args.other_dataset_name if x != args.dataset_name])
+    for x in [x for x in args.other_dataset_name if x != args.dataset_name] if args.other_dataset_name is not None else []:
+        additional_values.append([
+            [dict(x, is_additional = True) for x in read_json(os.path.join(args.causal_traces_dir, x, args.model_name, f"{bucket}.json"))] for bucket in buckets
+        ])
+        print(type(additional_values[-1][0][0]))
+        assert isinstance(additional_values[-1][0][0], dict), f"{type(additional_values[-1][0])}"
+
 
     #from transformers import AutoTokenizer
     #tokenizer = AutoTokenizer.from_pretrained("openai/whisper-base.en", force_download=False,
     #                                          add_bos_token=True)
     print("read_lengths", [len(read_json(x)) for x in buckets_paths])
-    data0 = groupbyid(read_json(buckets_paths[0]))
-    data1 = groupbyid(read_json(buckets_paths[1]))
+    data0 = read_json(buckets_paths[0]) + list(chain(*[x[0] for x in additional_values]))
+    data1 = read_json(buckets_paths[1]) + list(chain(*[x[1] for x in additional_values]))
+    print(np.unique([str(type(x)) for x in list(chain(*[x[0] for x in additional_values]))], return_index=True))
     results, buckets = group_results2(data0,
                                       data1,
                                       None, args)
@@ -502,14 +589,13 @@ def train_detector(args, models):
         results = [
             (
                 {kind: bucket_results[0][kind] for kind in bucket_results[0] if kind in args.kinds_to_include},
-                bucket_results[1],
-                bucket_results[2],
-            )
+            ) + tuple(bucket_results[1:])
             for bucket_results in results
         ]
 
     # If we are only including certain features, filter the features
     if args.features_to_include is not None:
+        print("resultsl", [len(x) for x in results])
         results = [
             (
                 {
@@ -520,21 +606,19 @@ def train_detector(args, models):
                     }
                     for kind in bucket_results[0]
                 },
-                bucket_results[1],
-                bucket_results[2],
-            )
+            ) + tuple(bucket_results[1:])
             for bucket_results in results
         ]
     #print([[[len(z) for z in y] for y in x[0].values()] for x in results])
     # Generate the datasets
-    train_data, test_data, feature_names = generate_datasets2(
+    train_data, test_data, holdout_data, feature_names = generate_datasets2(
         results,
-        train_ratio=args.train_ratio, balance=args.balance
+        train_ratio=args.train_ratio, balance=args.balance, balance_w=args.balance_w, additional_weight = args.additional_weight, check_additional= args.other_dataset_name is not None and len(args.other_dataset_name) > 0
     )
     print(len(train_data), len(train_data[0]), train_data[1])
     print(len(test_data), len(test_data[0]), test_data[1])
     # Train the models and save the results
-    train_and_save(models, train_data, test_data, feature_names, buckets, results[1][0], results[0][0], args, seed=args.seed, target_acc=args.target_acc)
+    train_and_save(models, train_data, test_data, holdout_data, feature_names, buckets, results[1][0], results[0][0], args, seed=args.seed, target_acc=args.target_acc)
 
 
 def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_path, args):
@@ -590,7 +674,7 @@ def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_pa
             p_values = [stats.ttest_ind(
                 grounded_results[kind][label].to_array(),
                 unfaithful_results[kind][label].to_array()
-            ).pvalue for label in labels]
+            ).pvalue if len(grounded_results[kind][label]) > 2 and len(unfaithful_results[kind][label]) > 2 else 1 for label in labels]
 
             # Color-code x-axis labels based on p-values
             label_colors = []
@@ -651,10 +735,9 @@ def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_pa
 class Namespace2:
     def __init__(self):
         self.causal_traces_dir = "./causal_traces"
-        self.dataset_name = "history"
+        self.dataset_name = "transl"
         self.model_name = "LLaMa"
         self.output_dir = "out"
-        self.balance = True
         features = "all"
         if features == "all":
             self.features_to_include = None
@@ -668,7 +751,7 @@ class Namespace2:
         elif features == "only_important_no_cont_last":
             self.features_to_include = ["subj-first", "subj-middle", "subj-last", "cont-first"]
         self.kinds_to_include = ["hidden", "mlp"]
-        self.train_ratio = 0.8
+        self.train_ratio = 0.6
         self.ablation_only_clean = False
         self.ablation_include_corrupted = False
         self.seed = 2
@@ -676,6 +759,10 @@ class Namespace2:
         self.min_count = 5
         self.separate = False
         self.target_acc = 0.9
+        self.additional_weight = 1
+        self.other_dataset_name = ["simple", "transl"] if True else []
+        self.balance = True
+        self.balance_w = True
 
 
 def main2(models):
@@ -698,8 +785,21 @@ def main2(models):
     set_seed_everywhere(args.seed)
     train_detector(args, models)
 
-
+import traceback
+import warnings
+import sys
 if __name__ == "__main__":
+    np.random.seed(42)
+
+    def warn_with_traceback(message, category, filename, lineno, file=None, line=None):
+        log = file if hasattr(file, 'write') else sys.stderr
+        traceback.print_stack(file=log)
+        log.write(warnings.formatwarning(message, category, filename, lineno, line))
+
+
+    warnings.showwarning = warn_with_traceback
+    np.seterr(all='raise')
+    scipy.special.seterr(all='raise')
     models = {
         "DecisionTreeSmall": {
             "model": DecisionTreeClassifier(),
