@@ -251,7 +251,7 @@ def process_facts2(target_token, facts, class_map, results, corrupted_probs, cle
 
         corrupted_probs[clas].add(corrupted_score)
         clean_probs[clas].add(clean_score)
-        info_dict = {"is_additional": processed_fact["is_additional"] if "is_additional" in processed_fact else False, "id": int(processed_fact["fact"]["group_id"]) if "group_id" in processed_fact["fact"] and len(processed_fact["fact"]["group_id"]) > 0 else None}
+        info_dict = {"is_additional": processed_fact["is_additional"] if "is_additional" in processed_fact else 1, "id": int(processed_fact["fact"]["group_id"]) if "group_id" in processed_fact["fact"] and len(processed_fact["fact"]["group_id"]) > 0 else None}
         ids[clas].append(info_dict)
 
         for kind in ["hidden", "mlp", "attn"]:
@@ -416,7 +416,7 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
 
 
 def generate_datasets2(buckets,
-                       train_ratio=0.8, balance=False, balance_w = True, additional_weight = 0, check_additional = False
+                       train_ratio=0.8, balance=False, balance_w = True, additional_weight = 0, check_additional = False, PCA_quantile_threshold = 0
                        ):
     logger = get_logger()
     feature_names = [
@@ -449,10 +449,22 @@ def generate_datasets2(buckets,
             if any([feature is None for feature in candidate_example]):
                 continue
 
-            all_label_samples[-1].append((candidate_example, label, i, 0 if  info[i]["is_additional"] else 1))
+            all_label_samples[-1].append((candidate_example, label, i, info[i]["is_additional"]))
     assert len(set([tuple(sorted(x)) for x in all_label_samples])) == len(all_label_samples)
     print("all_label_samples", len(all_label_samples[0]), len(all_label_samples[1]))
     minl = min(len([y for y in x if y[3] > 0]) for x in all_label_samples) if balance else max(len([y for y in x if y[3] > 0]) for x in all_label_samples)
+
+    if PCA_quantile_threshold is not None:
+        all_samples_unsup = []
+        for current_label_samples in all_label_samples:
+            all_samples_unsup.extend([sample[0] for sample in current_label_samples])
+        PCA = sklearn.decomposition.PCA(n_components=2, whiten = True)
+        PCA.fit(np.array(all_samples_unsup))
+        pca_importances = np.sum(np.abs(PCA.explained_variance_ratio_[:, None] * PCA.components_), axis=0)
+        print("PCA importances", pca_importances)
+        print([np.where(pca_importances < x)[0] for x in np.quantile(pca_importances, [0.05, 0.1, 0.25, 0.5, 0.75])])
+        print([[feature_names[y] for y in np.where(pca_importances < x)[0]] for x in np.quantile(pca_importances, [0.05, 0.1, 0.25, 0.5, 0.75])])
+        features_to_remove = np.where(pca_importances < np.quantile(pca_importances, PCA_quantile_threshold))
 
     all_samples = []
     all_labels = []
@@ -479,6 +491,8 @@ def generate_datasets2(buckets,
 
     # Convert all_samples and all_labels to np arrays
     all_samples = np.array(all_samples)
+    if PCA_quantile_threshold is not None:
+        all_samples[:, features_to_remove] = 0
     all_labels = np.array(all_labels)
     all_inds = np.array(all_inds)
     all_weights = np.array(all_weights)
@@ -494,6 +508,8 @@ def generate_datasets2(buckets,
 
     all_weights1 = np.array(all_weights1)
     all_samples1 = np.array(all_samples1)
+    if PCA_quantile_threshold is not None:
+        all_samples1[:, features_to_remove] = 0
     all_labels1 = np.array(all_labels1)
     all_inds1 = np.array(all_inds1)
     train_samples_before = np.concatenate([train_samples_before, all_samples1[all_weights1 > 0]], axis=0)
@@ -523,6 +539,9 @@ def generate_datasets2(buckets,
         stl1 = np.sum(train_labels == 1)
         stl0 = np.sum(train_labels == 0)
         train_weights = np.array([1.0 if x == 1 else (stl1 / stl0) for x in train_labels])
+        shl1 = np.sum(holdout_labels == 1)
+        shl0 = np.sum(holdout_labels == 0)
+        holdout_weights = np.array([1.0 if x == 1 else (shl1 / shl0) for x in holdout_labels])
     if np.sum(all_weights1 == 0) > 0:
         sumw = np.sum(train_weights)
         train_weights = np.concatenate([train_weights, np.zeros(len(all_samples1[all_weights1 == 0]))], axis=0)
@@ -567,11 +586,16 @@ def train_detector(args, models):
     print([x for x in args.other_dataset_name if x != args.dataset_name])
     for x in [x for x in args.other_dataset_name if x != args.dataset_name] if args.other_dataset_name is not None else []:
         additional_values.append([
-            [dict(x, is_additional = True) for x in read_json(os.path.join(args.causal_traces_dir, x, args.model_name, f"{bucket}.json"))] for bucket in buckets
+            [dict(x, is_additional = 0) for x in read_json(os.path.join(args.causal_traces_dir, x, args.model_name, f"{bucket}.json"))] for bucket in buckets
         ])
         print(type(additional_values[-1][0][0]))
         assert isinstance(additional_values[-1][0][0], dict), f"{type(additional_values[-1][0])}"
-
+    for x in [x for x in args.other_dataset_name_unsup if x != args.dataset_name] if args.other_dataset_name is not None else []:
+        additional_values.append([
+            [dict(x, is_additional = -1) for x in read_json(os.path.join(args.causal_traces_dir, x, args.model_name, f"{bucket}.json"))] for bucket in buckets
+        ])
+        print(type(additional_values[-1][0][0]))
+        assert isinstance(additional_values[-1][0][0], dict), f"{type(additional_values[-1][0])}"
 
     #from transformers import AutoTokenizer
     #tokenizer = AutoTokenizer.from_pretrained("openai/whisper-base.en", force_download=False,
@@ -613,7 +637,7 @@ def train_detector(args, models):
     # Generate the datasets
     train_data, test_data, holdout_data, feature_names = generate_datasets2(
         results,
-        train_ratio=args.train_ratio, balance=args.balance, balance_w=args.balance_w, additional_weight = args.additional_weight, check_additional= args.other_dataset_name is not None and len(args.other_dataset_name) > 0
+        train_ratio=args.train_ratio, balance=args.balance, balance_w=args.balance_w, additional_weight = args.additional_weight, check_additional= args.other_dataset_name is not None and len(args.other_dataset_name) > 0, PCA_quantile_threshold = args.PCA_quantile_threshold
     )
     print(len(train_data), len(train_data[0]), train_data[1])
     print(len(test_data), len(test_data[0]), test_data[1])
@@ -759,8 +783,10 @@ class Namespace2:
         self.min_count = 5
         self.separate = False
         self.target_acc = 0.9
-        self.additional_weight = 1
+        self.additional_weight = 0.1
+        self.PCA_quantile_threshold = 0.1
         self.other_dataset_name = ["simple", "transl"] if True else []
+        self.other_dataset_name_unsup = ["med"] if True else []
         self.balance = True
         self.balance_w = True
 
@@ -813,8 +839,8 @@ if __name__ == "__main__":
     }
     if True:
         models["LogisticRegression"] = {
-            "model": LogisticRegression(max_iter=1000),
-            "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000]},
+            "model": LogisticRegression(max_iter=1000, solver="liblinear"),
+            "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000], "penalty": ["l1", "l2"]},
         }
     if False:
         models["DecisionTree"] = {
