@@ -152,8 +152,8 @@ def train_and_save(models, train_data, test_data, holdout_data, feature_names, c
                 beta = 2
                 clf = GridSearchCV(model_info["model"], model_info["param_grid"], cv=2, verbose=0, scoring=lambda estimator, X_t, y_t : -np.abs(target_acc-fbeta_score(y_t, estimator.predict(X_t), beta=beta, average='weighted', zero_division = 0.0)))
                 clf.fit(X_train1[weights_train>0], y_train[weights_train>0], sample_weight=weights_train[weights_train>0])
-                y_pred = clf.predict(X_holdout)
-                fscore = fbeta_score(y_holdout, y_pred, beta=beta, average='weighted', zero_division = 0.0, sample_weight=weights_holdout)
+                y_holdout_pred = clf.predict(X_holdout)
+                fscore = fbeta_score(y_holdout, y_holdout_pred, beta=beta, average='weighted', zero_division = 0.0, sample_weight=weights_holdout)
                 if best_f is None or fscore > best_f:
                     best_f = fscore
                     best_clas = clf
@@ -540,8 +540,8 @@ def generate_datasets2(buckets,
     #print(test_dataset[0].shape, test_dataset[0].shape, feature_names)
     #print(list(zip(test_dataset[0][:, -1], test_dataset[1])))
     return ((train_samples, train_labels, train_inds, train_weights),
-            (test_samples, test_labels, test_inds, train_weights),
-            (holdout_samples, holdout_labels, holdout_inds, train_weights),
+            (test_samples, test_labels, test_inds, None),
+            (holdout_samples, holdout_labels, holdout_inds, holdout_weights),
             feature_names, )
 
 
