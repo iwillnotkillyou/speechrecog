@@ -9,6 +9,7 @@ from sklearn.feature_selection import RFECV
 from causal_tracing_whisper import *
 import sklearn
 import scipy
+from itertools import product
 def load_metrics(save_dir):
     with open(os.path.join(save_dir, "results.json"), "r") as file:
         results = json.load(file)
@@ -119,7 +120,7 @@ def plot_metrics_comparison(metrics_by_model, save_dir):
     plt.savefig(os.path.join(save_dir, "all_metrics_comparison.png"), bbox_inches="tight")
     plt.close()
 
-def train_and_save(models, train_data, test_data, holdout_data, feature_names, class_names, grounded_results, unfaithful_results, args, seed, replot_only=False, target_acc = 0.6):
+def train_and_save(models, dataset, generate_wrapper, class_names, grounded_results, unfaithful_results, args, seed, replot_only=False, target_acc = 0.6):
     save_dir = get_output_dir()
     def score_min_tree(estimator, X_test, y_test, **score_params):
         return -np.abs(target_acc-estimator.score(X_test, y_test))
@@ -127,26 +128,33 @@ def train_and_save(models, train_data, test_data, holdout_data, feature_names, c
 
     metrics_by_model = {}
 
+    train_data, test_data, holdout_data, feature_names = generate_wrapper(dataset, 0.8, 0.8, 0.8)
+    X_train, y_train, inds_train, weights_train = train_data
+    X_test, y_test, inds_test, weights_test = test_data
     for model_name, model_info in models.items():
         model_save_dir = os.path.join(save_dir, model_name)
         os.makedirs(model_save_dir, exist_ok=True)
 
         if not replot_only:
-            X_train, y_train, inds_train, weights_train = train_data
-            X_test, y_test, inds_test, weights_test = test_data
-            X_holdout, y_holdout, inds_holdout, weights_holdout = holdout_data
-
             if "random_state" in model_info["model"].get_params():
                 model_info["model"].set_params(random_state=seed)
 
             best_clas = None
             best_f = None
+            best_sets = None
+            best_params = None
+            best_feat = None
 
             all_feat_removed = set()
-            holdout_size = np.clip(len(y_train) // 5, 3, 10)
             for x in range(1000):
                 all_feat_removed.add(tuple(sorted(np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 7) if False else 2, replace=False).tolist())))
-            for feat_removed in list(all_feat_removed)[:100]:
+            params = product(list(all_feat_removed)[:10], np.linspace(0.4, 0.7, 2, endpoint=True), np.linspace(0, 1, 10, endpoint=True), np.linspace(0, 0.5, 5, endpoint=True))
+            #params = product(list(all_feat_removed)[:10], [0.5], [0], [0])
+            for feat_removed, train_ratio, additional_weight, PCA_quantile_threshold in params:
+                train_data, test_data, holdout_data, feature_names = generate_wrapper(dataset, train_ratio, additional_weight, PCA_quantile_threshold if PCA_quantile_threshold > 0 else None)
+                X_train, y_train, inds_train, weights_train = train_data
+                X_test, y_test, inds_test, weights_test = test_data
+                X_holdout, y_holdout, inds_holdout, weights_holdout = holdout_data
                 X_train1 = X_train.copy()
                 X_train1[:, feat_removed] = 0
                 beta = 2
@@ -158,7 +166,13 @@ def train_and_save(models, train_data, test_data, holdout_data, feature_names, c
                     best_f = fscore
                     best_clas = clf
                     best_feat = [feature_names[x] for x in sorted(set(range(len(feature_names))).difference(set(feat_removed)))]
+                    best_sets = (train_data, test_data, holdout_data, feature_names)
+                    best_params = {"train_ratio": train_ratio, "additional_weight": additional_weight, "PCA_quantile_threshold": PCA_quantile_threshold}
 
+            train_data, test_data, holdout_data, feature_names = best_sets
+            X_train, y_train, inds_train, weights_train = train_data
+            X_test, y_test, inds_test, weights_test = test_data
+            X_holdout, y_holdout, inds_holdout, weights_holdout = holdout_data
             clf = best_clas
             y_pred = clf.predict(X_test)
             y_train_pred = clf.predict(X_train)
@@ -196,7 +210,8 @@ def train_and_save(models, train_data, test_data, holdout_data, feature_names, c
                 "used_features": best_feat,
                 "train_size": len(y_train),
                 "test_size": len(y_test),
-                "test_label0_frac": int(np.sum(y_test == 0))/len(y_test)
+                "test_label0_frac": int(np.sum(y_test == 0))/len(y_test),
+                "best_params": best_params
             }
 
             if hasattr(clf.best_estimator_, "feature_importances_"):
@@ -639,10 +654,20 @@ def train_detector(args, models):
         results,
         train_ratio=args.train_ratio, balance=args.balance, balance_w=args.balance_w, additional_weight = args.additional_weight, check_additional= args.other_dataset_name is not None and len(args.other_dataset_name) > 0, PCA_quantile_threshold = args.PCA_quantile_threshold
     )
+    def generate_wrapper(results, train_ratio, additional_weight, PCA_quantile_threshold):
+        return generate_datasets2(
+            results,
+            train_ratio=train_ratio, balance=args.balance, balance_w=args.balance_w,
+            additional_weight=additional_weight,
+            check_additional=args.other_dataset_name is not None and len(args.other_dataset_name) > 0,
+            PCA_quantile_threshold=PCA_quantile_threshold
+        )
+
+
     print(len(train_data), len(train_data[0]), train_data[1])
     print(len(test_data), len(test_data[0]), test_data[1])
     # Train the models and save the results
-    train_and_save(models, train_data, test_data, holdout_data, feature_names, buckets, results[1][0], results[0][0], args, seed=args.seed, target_acc=args.target_acc)
+    train_and_save(models, results, generate_wrapper, buckets, results[1][0], results[0][0], args, seed=args.seed, target_acc=args.target_acc)
 
 
 def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_path, args):
@@ -759,7 +784,7 @@ def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_pa
 class Namespace2:
     def __init__(self):
         self.causal_traces_dir = "./causal_traces"
-        self.dataset_name = "transl"
+        self.dataset_name = "simple"
         self.model_name = "LLaMa"
         self.output_dir = "out"
         features = "all"
@@ -785,8 +810,8 @@ class Namespace2:
         self.target_acc = 0.9
         self.additional_weight = 0.1
         self.PCA_quantile_threshold = 0.1
-        self.other_dataset_name = ["simple", "transl"] if True else []
-        self.other_dataset_name_unsup = ["med"] if True else []
+        self.other_dataset_name = ["simple", "transl"] if False else []
+        self.other_dataset_name_unsup = ["med"] if False else []
         self.balance = True
         self.balance_w = True
 
