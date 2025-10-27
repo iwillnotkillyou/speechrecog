@@ -330,7 +330,7 @@ def find_substring_range(tokenizer, string, substring):
 
     substring_ids = tokenizer.tokenize(substring)
     substring = "".join(substring_ids)
-
+    print((string, substring))
     char_loc = string.rindex(substring)
     loc = 0
     tok_start, tok_end = None, None
@@ -359,6 +359,14 @@ def get_module_name(model, kind, num=None):
     if hasattr(model, "model") and hasattr(model.model, "decoder"):
         if kind == "embed":
             return "model.decoder.embed_tokens"
+        if kind == "attn":
+            kind = "self_attn"
+        if kind == "mlp":
+            kind = "fc2"
+        return f'model.decoder.layers.{num}{"" if kind == "hidden" else "." + kind}'
+    if hasattr(model, "decoder"):
+        if kind == "embed":
+            return "shared"
         if kind == "attn":
             kind = "self_attn"
         if kind == "mlp":
@@ -437,6 +445,8 @@ class MaskedCausalTracer:
 
         # Add embedding hook
         def hook_embedding(module, input, output):
+            if output.shape[0] != 2:
+                return output
             output[1, range_to_mask[0]: range_to_mask[1]] = self.mask_token_embedding.clone()
             return output
 
