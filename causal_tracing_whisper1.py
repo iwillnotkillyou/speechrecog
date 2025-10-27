@@ -6,21 +6,20 @@ from transformers import LlamaForCausalLM, LlamaTokenizer, StaticCache, AutoMode
 
 from causal_tracing_whisper import *
 
+
 def make_peft_model(model):
     from peft import LoraConfig, get_peft_model
     modules = [x for x, y in model.named_modules() if
                "encoder" in x and "SelfAttention.k" in x and int(x.split(".")[2]) > 7]
     config = LoraConfig(init_lora_weights="pissa", r=1, lora_alpha=16, target_modules=modules if False else None,
                         task_type="SEQ_2_SEQ_LM")
-    model = get_peft_model(model, config)
+    model = get_peft_model(model, config, adapter_name="adapter1")
     return model
 
 def from_lora(model, tokenizer: LlamaTokenizer, device, path, encoder_input_text):
-    model = make_peft_model(model)
-    model.load_pretrained(path)
     encoder_ids = tokenizer.encode(encoder_input_text)
     encoder_output = model.encoder(
-        input_ids=torch.tensor(encoder_ids, device=device)
+        input_ids=torch.tensor([encoder_ids], device=device)
     )
     return encoder_output
 
@@ -93,7 +92,6 @@ def forward_with_prefix(model, tokenizer: LlamaTokenizer, prompt, device, target
 
 def fine_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, device, model_forwarder, objects,
                   greater_sep=False, max_steps=2, encoder_input_text = None):
-    model = make_peft_model(model)
     #print(model)
     objects = np.array(objects)[[0, 1]] if False else np.random.permutation(objects)
     nan_inds = [i for i in range(len(objects)) if objects[i] is None]
@@ -131,7 +129,7 @@ def fine_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, devi
         print(max_steps, succeeded)
         hist.append(list(zip(next_token_probs[max_prob_indices][-10:].tolist(),
                              tokenizer.convert_ids_to_tokens(max_prob_indices)[-10:]))[-3:])
-        print((x, hist[-1]))
+        print((num_steps, hist[-1]))
         if succeeded:
             break
         loss = output_dict["loss"]
@@ -152,7 +150,6 @@ def fine_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, devi
     os.makedirs("adapters", exist_ok=True)
     path = f"adapters/{model_forwarder.num_finetunes}"
     model.save_pretrained(path)
-
     return path if succeeded and num_steps > 0 else None, num_steps if succeeded else max_steps
 
 def prefix_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, device, model_forwarder, objects,
@@ -631,7 +628,7 @@ def run_causal_tracing_analysis(
                             "grounded_token": target_tokens[1],
                             "is_unfaithful": unfaithful or (args.not_grounded_is_hallucinated and not grounded),
                             "is_grounded": grounded,
-                            "adaptor": adaptor if adaptor is None else adaptor.cpu().numpy().tolist(),
+                            "adaptor": adaptor if adaptor is None or isinstance(adaptor, str) else adaptor.cpu().numpy().tolist(),
                             "num_steps": num_steps,
                             "group_id": fact.group_id
                         },
@@ -696,6 +693,7 @@ def run_causal_tracing_analysis_wrapper(params):
     fakepedia = fakepedia[:args.subset_size]
     fakepedia = fakepedia[(i * len(fakepedia)) // c:((i + 1) * len(fakepedia)) // c]
     model, tokenizer = make_model(args)
+    model = make_peft_model(model)
     if args.forwarder_kind == "encdec":
         model_forwarder = ModelForwarderEncDec()
     elif args.isTTS:
