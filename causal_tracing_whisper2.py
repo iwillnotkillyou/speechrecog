@@ -127,7 +127,6 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
     plt.rcParams["font.size"] = max(1, plt.rcParams["font.size"])
 
     metrics_by_model = {}
-
     train_data, test_data, holdout_data, feature_names = generate_wrapper(dataset, 0.8, 0.8, 0.8)
     X_train, y_train, inds_train, weights_train = train_data
     X_test, y_test, inds_test, weights_test = test_data
@@ -146,8 +145,8 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             best_feat = None
 
             all_feat_removed = set()
-            for x in range(1000):
-                all_feat_removed.add(tuple(sorted(np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 7) if False else 2, replace=False).tolist())))
+            for x in range(100):
+                all_feat_removed.add(tuple(sorted(np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 7) if False else 3, replace=False).tolist())))
             params = product(list(all_feat_removed)[:10], np.linspace(0.4, 0.7, 2, endpoint=True), np.linspace(0, 1, 10, endpoint=True), np.linspace(0, 0.5, 5, endpoint=True))
             #params = product(list(all_feat_removed)[:10], [0.5], [0], [0])
             for feat_removed, train_ratio, additional_weight, PCA_quantile_threshold in params:
@@ -339,7 +338,7 @@ def process_facts2(target_token, facts, class_map, results, corrupted_probs, cle
 def filter_facts(processed_fact, target_token):
     corrupted_score = processed_fact["results"]["corrupted"][target_token]["probs"]
     clean_score = processed_fact["results"]["clean"][target_token]["probs"]
-
+    print(corrupted_score, clean_score)
     interval_to_explain = max(clean_score - corrupted_score, 0)
     return interval_to_explain == 0
 
@@ -382,7 +381,8 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
     print([x["fact"]["object"] for x in facts_grounded if filter_facts(x, "grounded_token")])
     ps = [x["results"]["clean"]["grounded_token"]["probs"] for x in facts_grounded]
     ls = np.linspace(0, 0.5, num_classes)
-    class_boundaries = np.quantile(ps, ls)[1:-1]
+    if num_classes > 2:
+        class_boundaries = np.quantile(ps, ls)[1:-1]
     #print(ps, ls, class_boundaries)
 
     def classify(fact):
@@ -421,7 +421,7 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
 
     if not (any(x["id"] is None for x in ids[0]) or any(x["id"] is None for x in ids[1])):
         group([x["id"] for x in ids[0]], results[0], corrupted_probs[0], clean_probs[0])
-        group([x["id"] for x in ids[1]], corrupted_probs[1], clean_probs[1])
+        group([x["id"] for x in ids[1]], results[1], corrupted_probs[1], clean_probs[1])
     vs = list(
         (x, i, len(next(iter(x[0]["hidden"].values())))) for i, x in enumerate(zip(results, corrupted_probs, clean_probs, ids)) if len(x[0]["hidden"]) > 0)
     print("class_c", [x[2] for x in vs])
@@ -664,8 +664,8 @@ def train_detector(args, models):
         )
 
 
-    print(len(train_data), len(train_data[0]), train_data[1])
-    print(len(test_data), len(test_data[0]), test_data[1])
+    print("train_data", [len(train_data), len(train_data[0]), train_data[1]])
+    print("test_data", [len(test_data), len(test_data[0]), test_data[1]])
     # Train the models and save the results
     train_and_save(models, results, generate_wrapper, buckets, results[1][0], results[0][0], args, seed=args.seed, target_acc=args.target_acc)
 
@@ -784,8 +784,8 @@ def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_pa
 class Namespace2:
     def __init__(self):
         self.causal_traces_dir = "./causal_traces"
-        self.dataset_name = "simple"
-        self.model_name = "LLaMa"
+        self.dataset_name = "ARC_hard"
+        self.model_name = "large"
         self.output_dir = "out"
         features = "all"
         if features == "all":
@@ -807,7 +807,7 @@ class Namespace2:
         self.num_classes = 2
         self.min_count = 5
         self.separate = False
-        self.target_acc = 0.9
+        self.target_acc = 0.8
         self.additional_weight = 0.1
         self.PCA_quantile_threshold = 0.1
         self.other_dataset_name = ["simple", "transl"] if False else []

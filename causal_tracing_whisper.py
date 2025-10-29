@@ -352,18 +352,18 @@ def get_module_name(model, kind, num=None):
         return f'transformer.h.{num}{"" if kind == "hidden" else "." + kind}'
     if hasattr(model, "model") and not hasattr(model.model, "decoder"):
         if kind == "embed":
-            return "model.embed_tokens"
+            return "model.model.embed_tokens"
         if kind == "attn":
             kind = "self_attn"
-        return f'model.layers.{num}{"" if kind == "hidden" else "." + kind}'
+        return f'model.model.layers.{num}{"" if kind == "hidden" else "." + kind}'
     if hasattr(model, "model") and hasattr(model.model, "decoder"):
         if kind == "embed":
-            return "model.decoder.embed_tokens"
+            return "model.model.decoder.embed_tokens"
         if kind == "attn":
             kind = "self_attn"
         if kind == "mlp":
             kind = "fc2"
-        return f'model.decoder.layers.{num}{"" if kind == "hidden" else "." + kind}'
+        return f'model.model.decoder.layers.{num}{"" if kind == "hidden" else "." + kind}'
     if hasattr(model, "decoder"):
         if kind == "embed":
             return "shared"
@@ -371,13 +371,13 @@ def get_module_name(model, kind, num=None):
             kind = "self_attn"
         if kind == "mlp":
             kind = "fc2"
-        return f'model.decoder.layers.{num}{"" if kind == "hidden" else "." + kind}'
+        return f'model.model.decoder.layers.{num}{"" if kind == "hidden" else "." + kind}'
     assert False, "unknown transformer structure"
 
 
 def get_num_layers(model):
     return len(
-        [n for n, m in model.named_modules() if (re.match(r"^(transformer|model|model.decoder)\.(h|layers)\.\d+$", n))])
+        [n for n, m in model.model.named_modules() if (re.match(r"^(transformer|model|model.model.decoder)\.(h|layers)\.\d+$", n))])
 
 
 def get_num_tokens(tokenizer, string):
@@ -392,7 +392,7 @@ def get_num_tokens(tokenizer, string):
 
 def find_submodule(module, name):
     """
-    Finds the named module within the given model.
+    Finds the named module within the given model.model.
     """
     for n, m in module.named_modules():
         if n == name:
@@ -407,7 +407,7 @@ def find_submodule(module, name):
 
 class MaskedCausalTracer:
     def __init__(self, model: nn.Module, tokenizer, mask_token: str, model_forwarder, do_cache):
-        self.device = next(model.parameters()).device
+        self.device = next(model.model.parameters()).device
         self.model = model
         self.tokenizer = tokenizer
         self.mask_token = mask_token
@@ -445,12 +445,13 @@ class MaskedCausalTracer:
 
         # Add embedding hook
         def hook_embedding(module, input, output):
+            print("output.shape", output.shape)
             if output.shape[0] != 2:
                 return output
             output[1, range_to_mask[0]: range_to_mask[1]] = self.mask_token_embedding.clone()
             return output
 
-        embedding_module = find_submodule(self.model, embedding_module_name)
+        embedding_module = find_submodule(self.model.model, embedding_module_name)
         embedding_hook = embedding_module.register_forward_hook(hook_embedding)
         hooks.append(embedding_hook)
 
@@ -458,11 +459,13 @@ class MaskedCausalTracer:
         for token_to_restore, modules_to_restore in states_to_patch:
             for module_name in modules_to_restore:
                 def restoring_hook(module, input, output):
+                    if output.shape[0] != 2:
+                        return output
                     h = untuple(output)
                     h[1, token_to_restore] = h[0, token_to_restore].clone()
                     return output
 
-                module = find_submodule(self.model, module_name)
+                module = find_submodule(self.model.model, module_name)
                 module_hook = module.register_forward_hook(restoring_hook)
                 hooks.append(module_hook)
         with torch.no_grad():
