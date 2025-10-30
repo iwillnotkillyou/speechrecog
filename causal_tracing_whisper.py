@@ -71,7 +71,7 @@ class Fact:
         self.intermediate_paragraph = kwargs.get("intermediate_paragraph", "")
         self.adaptor = kwargs.get("adaptor", [])
         self.num_steps = kwargs.get("num_steps", 0)
-        self.group_id = kwargs.get("group_id", "")
+        self.group_id = str(kwargs.get("group_id", ""))
         self.fact_parent = kwargs.get("fact_parent", None)
 
     def get_subject(self) -> str:
@@ -282,7 +282,7 @@ def get_next_token(model, tokenizer, prompt, device, model_forwarder, repeat, ob
 
 
 def get_next_token_probabilities(
-        model, tokenizer, prompt: str, target_tokens: Union[str, List[str]], device, model_forwarder, repeat, obj
+        model, tokenizer, prompt: str, target_tokens: Union[str, List[str]], device, model_forwarder, repeat, obj, range_to_mask=None
 ):
     # Make input as list of strings if a single string was given
 
@@ -294,7 +294,7 @@ def get_next_token_probabilities(
 
     # Feed model
     with torch.no_grad():
-        next_token_logits = model_forwarder.forward(model, tokenizer, prompt, device, repeat, obj)["logits"][:, -1, :]
+        next_token_logits = model_forwarder.forward(model, tokenizer, prompt, device, repeat, obj, range_to_mask)["logits"][:, -1, :]
 
     # Extract target token logits and probabilities
     target_token_probs = torch.softmax(next_token_logits, dim=-1)[:, target_token_ids]
@@ -368,16 +368,17 @@ def get_module_name(model, kind, num=None):
         if kind == "embed":
             return "shared"
         if kind == "attn":
-            kind = "self_attn"
+            kind = "layer.0.SelfAttention"
         if kind == "mlp":
-            kind = "fc2"
-        return f'model.model.decoder.layers.{num}{"" if kind == "hidden" else "." + kind}'
+            kind = "layer.2"
+        return f'decoder.block.{num}{"" if kind == "hidden" else "." + kind}'
     assert False, "unknown transformer structure"
 
 
 def get_num_layers(model):
-    return len(
-        [n for n, m in model.model.named_modules() if (re.match(r"^(transformer|model|model.model.decoder)\.(h|layers)\.\d+$", n))])
+    l = len(
+        [n for n, m in model.model.named_modules() if (re.match(r"^(transformer|model|model.model.decoder|model.decoder|decoder)\.(h|layers|block)\.\d+$", n))])
+    return l
 
 
 def get_num_tokens(tokenizer, string):
@@ -445,7 +446,6 @@ class MaskedCausalTracer:
 
         # Add embedding hook
         def hook_embedding(module, input, output):
-            print("output.shape", output.shape)
             if output.shape[0] != 2:
                 return output
             output[1, range_to_mask[0]: range_to_mask[1]] = self.mask_token_embedding.clone()
@@ -459,9 +459,9 @@ class MaskedCausalTracer:
         for token_to_restore, modules_to_restore in states_to_patch:
             for module_name in modules_to_restore:
                 def restoring_hook(module, input, output):
-                    if output.shape[0] != 2:
-                        return output
                     h = untuple(output)
+                    if h.shape[0] != 2:
+                        return output
                     h[1, token_to_restore] = h[0, token_to_restore].clone()
                     return output
 
@@ -472,7 +472,7 @@ class MaskedCausalTracer:
             if self.do_cache and self.model_forwarder.cache is None:
                 self.model_forwarder.make_cache(self.model, self.tokenizer, prompt, min([x[0] for x in states_to_patch]), self.device, True, obj)
             probs = get_next_token_probabilities(self.model, self.tokenizer, prompt, target_tokens, self.device,
-                                                 self.model_forwarder, True, obj)
+                                                 self.model_forwarder, True, obj, range_to_mask)
             clean_probs = probs[0, :]
             corrupted_probs = probs[1, :]
 

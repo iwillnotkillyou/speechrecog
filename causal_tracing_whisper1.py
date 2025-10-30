@@ -132,7 +132,7 @@ def fine_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, devi
             ).last_hidden_state
             decoder_input = torch.tensor([[model.model.config.decoder_start_token_id] + tokenizer.encode(
                 decoder_input_text, add_special_tokens=False)], device=device)
-            train_all = True
+            train_all = False
             labels = torch.cat(
                 [torch.full_like(decoder_input, -100)[:, 1:], torch.tensor([[target]], device=device)],
                 -1) if not train_all else torch.tensor([[model.model.config.decoder_start_token_id] + tokenizer.encode(
@@ -353,23 +353,21 @@ class ModelForwarderEncDec:
 
         return embedding
 
-    def forward(self, model: T5ForConditionalGeneration, tokenizer: T5Tokenizer, prompt, device, repeat, obj):
+    def forward(self, model: T5ForConditionalGeneration, tokenizer: T5Tokenizer, prompt, device, repeat, obj, range_to_mask=None):
         encoder_input_text, decoder_input_text = prompt.split("<pad>")
         with torch.no_grad():
             encoder_outputs = self.get_encoder_outputs(model, tokenizer, prompt, device)
             decoder_input = torch.tensor([[model.model.config.decoder_start_token_id] + tokenizer.encode(
                 decoder_input_text, add_special_tokens=False)], device=device)
-            print(repeat, decoder_input.size())
             encoder_outputs = torch.cat([encoder_outputs] * 2, 0) if repeat else encoder_outputs
-            print(encoder_outputs.size())
 
             if self.adaptor is not None:
                 #model.model = make_peft_model(model.model, model.modules)
                 #model.model.load_adapter(self.adaptor, "default")
                 model.load(self.adaptor)
+            di = torch.cat([decoder_input] * 2, 0) if repeat else decoder_input
             output_dict = model.model.forward(encoder_outputs=(encoder_outputs,),
-                                              decoder_input_ids=torch.cat([decoder_input] * 2,
-                                                                          0) if repeat else decoder_input,
+                                              decoder_input_ids=di,
                                               return_dict=True)
             if self.adaptor is not None:
                 #model.model = model.model.unload()
@@ -491,8 +489,9 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
     output = dict()
 
     embedding_module_name = get_module_name(causal_tracer.model.model, "embed", 0)
-    subject_tokens_range = find_substring_range(causal_tracer.tokenizer, prompt, subject)
-
+    edited = causal_tracer.model_forwarder.edit_prompt(prompt)[1] if hasattr(
+                                                             causal_tracer.model_forwarder, "edit_prompt") else prompt
+    subject_tokens_range = find_substring_range(causal_tracer.tokenizer, edited, subject)
     string_ids = causal_tracer.tokenizer(
         prompt,
         return_tensors=None,
@@ -500,7 +499,7 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
     )["input_ids"]
     tokens = causal_tracer.tokenizer.convert_ids_to_tokens(string_ids)
     if args.output_object_tokens_range:
-        object_tokens_range, _ = find_all_substring_range(causal_tracer.tokenizer, prompt.replace("<pad>", " "), obj)
+        object_tokens_range, _ = find_all_substring_range(causal_tracer.tokenizer, edited.replace("<pad>", " "), obj)
         output["object_tokens_range"] = object_tokens_range
     output["subject_tokens_range"] = subject_tokens_range
 
@@ -524,7 +523,7 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
 
     # Get patched runs results
     num_tokens = get_num_tokens(causal_tracer.tokenizer,
-                                prompt.replace("\\\\n",
+                                edited.replace("\\\\n",
                                                " "))  # -1 should not be necessary and it does not belong here for models other than Whisper
     output["results"]["tokens"] = list()
     # We start the loop from the first subject token as patching previous tokens has no effect
@@ -542,8 +541,9 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
         if subject_tokens_range[0] <= token_i < subject_tokens_range[1]:
             d["subject_pos"] = token_i - subject_tokens_range[1]
         nl = get_num_layers(causal_tracer.model)
+        quantiles = get_quantiles(np.arange(1, nl + 1))
         params = [(kind, last_layer) for kind in ["hidden", "mlp", "attn"] for
-                  last_layer in get_quantiles(np.arange(1, nl + 1))]
+                  last_layer in quantiles]
         patches = [(0, len(tokens))]
         params_all = [(kind, last_layer, patch) for kind, last_layer in params
                       for patch in patches]
@@ -638,7 +638,7 @@ def run_causal_tracing_analysis(
                                     "prompt": prompt,
                                     "adaptor": None,
                                     "num_steps": num_steps,
-                                    "group_id": fact.group_id
+                                    "group_id": str(fact.group_id)
                                 },
                             }
                         )
@@ -675,7 +675,7 @@ def run_causal_tracing_analysis(
                                 "adaptor": adaptor if adaptor is None or isinstance(adaptor,
                                                                                     str) else adaptor.cpu().numpy().tolist(),
                                 "num_steps": num_steps,
-                                "group_id": fact.group_id
+                                "group_id": str(fact.group_id)
                             },
                         }
                     )
@@ -823,7 +823,7 @@ class Namespace1:
     def __init__(self):
         self.token = os.environ.get("HUGGINGFACE_TOKEN")
         self.fakepedia_path = "fakepedia_arc_hard_with_ir_dev.json"
-        ms = ["allenai/unifiedqa-t5-base", "google/gemma-3-1b-pt", "unsloth/Llama-3.2-1B-unsloth-bnb-4bit",
+        ms = ["allenai/unifiedqa-t5-large", "google/gemma-3-1b-pt", "unsloth/Llama-3.2-1B-unsloth-bnb-4bit",
               "unsloth/Llama-3.2-1B-Instruct-unsloth-bnb-4bit",
               "unsloth/Llama-3.2-1B-unsloth-bnb-4bit",
               "meta-llama/Llama-3.2-1B", "google/gemma-3-1b-pt", "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"]
@@ -834,18 +834,27 @@ class Namespace1:
         self.prepend_space = True
         self.bfloat16 = False
         self.resume_dir = "ARC_hard"
-        self.subset_size = 10
+        self.subset_size = 1000000
         self.skip_creation = False
         self.forwarder_kind = "encdec"
         self.grounded_first = False
         self.output_object_tokens_range = False
         self.use_cache = False
         self.not_grounded_is_hallucinated = False
-        self.max_steps = 0
+        self.max_steps = 10
+        self.auto_delete = True
 
 
 if __name__ == "__main__":
+
     torch.cuda.empty_cache()
     args = Namespace1()
     freeze_args(args)
+    if args.auto_delete:
+        p1 = os.path.join(args.resume_dir, "00", "grounded.json")
+        if os.path.exists(p1):
+            os.remove(p1)
+        p2 = os.path.join(args.resume_dir, "00", "unfaithful.json")
+        if os.path.exists(p2):
+            os.remove(p2)
     run_causal_tracing(args)

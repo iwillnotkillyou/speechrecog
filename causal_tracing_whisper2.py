@@ -145,9 +145,9 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             best_feat = None
 
             all_feat_removed = set()
-            for x in range(100):
-                all_feat_removed.add(tuple(sorted(np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 7) if False else 3, replace=False).tolist())))
-            params = product(list(all_feat_removed)[:10], np.linspace(0.4, 0.7, 2, endpoint=True), np.linspace(0, 1, 10, endpoint=True), np.linspace(0, 0.5, 5, endpoint=True))
+            for x in range(50):
+                all_feat_removed.add(tuple(sorted(np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 4) if False else 3, replace=False).tolist())))
+            params = product(list(all_feat_removed)[:args.num_feat_tries], np.linspace(0.4, 0.7, args.num_train_sizes, endpoint=True), np.linspace(0, 1, 10, endpoint=True) if args.additional_weight > 0 else [0], np.linspace(0, 0.5, 5, endpoint=True) if args.PCA_quantile_threshold is not None else [0])
             #params = product(list(all_feat_removed)[:10], [0.5], [0], [0])
             for feat_removed, train_ratio, additional_weight, PCA_quantile_threshold in params:
                 train_data, test_data, holdout_data, feature_names = generate_wrapper(dataset, train_ratio, additional_weight, PCA_quantile_threshold if PCA_quantile_threshold > 0 else None)
@@ -156,12 +156,12 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
                 X_holdout, y_holdout, inds_holdout, weights_holdout = holdout_data
                 X_train1 = X_train.copy()
                 X_train1[:, feat_removed] = 0
-                beta = 2
+                beta = 1
                 clf = GridSearchCV(model_info["model"], model_info["param_grid"], cv=2, verbose=0, scoring=lambda estimator, X_t, y_t : -np.abs(target_acc-fbeta_score(y_t, estimator.predict(X_t), beta=beta, average='weighted', zero_division = 0.0)))
                 clf.fit(X_train1[weights_train>0], y_train[weights_train>0], sample_weight=weights_train[weights_train>0])
                 y_holdout_pred = clf.predict(X_holdout)
                 fscore = fbeta_score(y_holdout, y_holdout_pred, beta=beta, average='weighted', zero_division = 0.0, sample_weight=weights_holdout)
-                if best_f is None or fscore > best_f:
+                if (best_f is None or fscore > best_f) and fscore < 0.9:
                     best_f = fscore
                     best_clas = clf
                     best_feat = [feature_names[x] for x in sorted(set(range(len(feature_names))).difference(set(feat_removed)))]
@@ -254,7 +254,7 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
     plot_metrics_comparison(metrics_by_model, save_dir)
 
 
-def process_facts2(target_token, facts, class_map, results, corrupted_probs, clean_probs, ids, tokenizer=None):
+def process_facts2(target_token, facts, class_map, results, corrupted_probs, clean_probs, ids, tokenizer=None, allow_id=True):
     for processed_fact in facts:
         clas = class_map(processed_fact)
         corrupted_score = processed_fact["results"]["corrupted"][target_token]["probs"]
@@ -265,7 +265,7 @@ def process_facts2(target_token, facts, class_map, results, corrupted_probs, cle
 
         corrupted_probs[clas].add(corrupted_score)
         clean_probs[clas].add(clean_score)
-        info_dict = {"is_additional": processed_fact["is_additional"] if "is_additional" in processed_fact else 1, "id": int(processed_fact["fact"]["group_id"]) if "group_id" in processed_fact["fact"] and len(processed_fact["fact"]["group_id"]) > 0 else None}
+        info_dict = {"is_additional": processed_fact["is_additional"] if "is_additional" in processed_fact else 1, "id": int(processed_fact["fact"]["group_id"]) if "group_id" in processed_fact["fact"] and len(processed_fact["fact"]["group_id"]) > 0 and allow_id else None}
         ids[clas].append(info_dict)
 
         for kind in ["hidden", "mlp", "attn"]:
@@ -377,7 +377,7 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
     facts_unfaithful = [x for x in facts_unfaithful if not filter_facts(x, "unfaithful_token")]
     print("fact_lengths", len(facts_unfaithful), len(facts_grounded))
     process_facts2("unfaithful_token", facts_unfaithful,
-                   lambda x: 0, results, corrupted_probs, clean_probs, ids, tokenizer)
+                   lambda x: 0, results, corrupted_probs, clean_probs, ids, tokenizer, allow_id=args.allow_id)
     print([x["fact"]["object"] for x in facts_grounded if filter_facts(x, "grounded_token")])
     ps = [x["results"]["clean"]["grounded_token"]["probs"] for x in facts_grounded]
     ls = np.linspace(0, 0.5, num_classes)
@@ -390,7 +390,7 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
                                                          class_boundaries) if num_classes > 2 else 1
 
     process_facts2("grounded_token", facts_grounded, lambda x: 1 if True else classify(x)
-                   , results, corrupted_probs, clean_probs, ids, tokenizer)
+                   , results, corrupted_probs, clean_probs, ids, tokenizer, allow_id=args.allow_id)
     # print("corrupted_probs, clean_probs", [x.d for x in corrupted_probs], [x.d for x in clean_probs])
     def group(idsx, resultsx, corrupted_probsx, clean_probsx):
         for k, v in list(resultsx.items()):
@@ -785,7 +785,7 @@ class Namespace2:
     def __init__(self):
         self.causal_traces_dir = "./causal_traces"
         self.dataset_name = "ARC_hard"
-        self.model_name = "large"
+        self.model_name = "base"
         self.output_dir = "out"
         features = "all"
         if features == "all":
@@ -799,21 +799,24 @@ class Namespace2:
                                         "cont-last"]
         elif features == "only_important_no_cont_last":
             self.features_to_include = ["subj-first", "subj-middle", "subj-last", "cont-first"]
-        self.kinds_to_include = ["hidden", "mlp"]
-        self.train_ratio = 0.6
+        self.kinds_to_include = ["mlp"] + ([] if False else ["hidden"])
+        self.train_ratio = 0.7
         self.ablation_only_clean = False
         self.ablation_include_corrupted = False
-        self.seed = 2
+        self.seed = 100
         self.num_classes = 2
         self.min_count = 5
         self.separate = False
-        self.target_acc = 0.8
-        self.additional_weight = 0.1
-        self.PCA_quantile_threshold = 0.1
+        self.target_acc = 0.75
+        self.additional_weight = 0
+        self.PCA_quantile_threshold = None
         self.other_dataset_name = ["simple", "transl"] if False else []
         self.other_dataset_name_unsup = ["med"] if False else []
         self.balance = True
         self.balance_w = True
+        self.allow_id = False
+        self.num_feat_tries = 5
+        self.num_train_sizes = 2
 
 
 def main2(models):
@@ -855,6 +858,7 @@ if __name__ == "__main__":
         "DecisionTreeSmall": {
             "model": DecisionTreeClassifier(),
             "param_grid": {
+                ""
                 "max_depth": [2, 3],
                 "min_samples_split": [2, 4, 8],
                 "min_samples_leaf": [2, 4, 8],
@@ -867,7 +871,7 @@ if __name__ == "__main__":
             "model": LogisticRegression(max_iter=1000, solver="liblinear"),
             "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000], "penalty": ["l1", "l2"]},
         }
-    if False:
+    if True:
         models["DecisionTree"] = {
             "model": DecisionTreeClassifier(),
             "param_grid": {
