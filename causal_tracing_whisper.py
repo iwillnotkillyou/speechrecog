@@ -198,7 +198,7 @@ class ResumeAndSaveDataset(AbstractContextManager, ABC):
 
     def __exit__(self, exc_type, exc_value, traceback):
         """
-        The exit method for the context manager. Saves the output data to the file and prints a message.
+        The exit method for the context manager. Saves the output data to the file and prins a message.
 
         Args:
             exc_type: The type of the exception, if any.
@@ -264,21 +264,7 @@ def run_festival(text, tempname):
 
 
 def get_next_token(model, tokenizer, prompt, device, model_forwarder, repeat, obj):
-    # Prepare the model
-
-    # Feed model
-    with torch.no_grad():
-        next_token_logits = model_forwarder.forward(model, tokenizer, prompt, device, repeat, obj)["logits"].detach()[0,
-                            -1, :].cpu()
-
-    # Find the token with the highest probability and its logit
-    next_token_probs = torch.softmax(next_token_logits, dim=-1).numpy()
-    max_prob_indices = np.argsort(next_token_probs)
-    max_prob_indices = max_prob_indices[np.searchsorted(np.flip(np.cumsum(np.flip(max_prob_indices))), 0.9):]
-    print(list(zip(next_token_probs[max_prob_indices][-10:].tolist(),
-                   tokenizer.convert_ids_to_tokens(max_prob_indices)[-10:])))
-    return [tokenizer.convert_ids_to_tokens(x.item()) for x in max_prob_indices], next_token_probs[
-        max_prob_indices].tolist()
+    return tokenizer.convert_ids_to_tokens(list(reversed(model_forwarder.forward(model, tokenizer, prompt, device, repeat, obj)["logits"][0, -1, :].topk(10).indices.tolist()))), None
 
 
 def get_next_token_probabilities(
@@ -306,13 +292,12 @@ def adapt_target_tokens(tokenizer, target_tokens: List[str], preprend_space: boo
     """
     Make sure that target_tokens contain correspond to only a single token
     """
-    print(target_tokens)
     if preprend_space:
         target_tokens = [token if token is None else " " + token.lstrip() for token in target_tokens]
 
     target_tokens = [token if token is None else tokenizer.tokenize(token)[0] for token in target_tokens]
 
-    print(target_tokens)
+
     return target_tokens
 
 
@@ -330,7 +315,6 @@ def find_substring_range(tokenizer, string, substring):
 
     substring_ids = tokenizer.tokenize(substring)
     substring = "".join(substring_ids)
-    print((string, substring))
     char_loc = string.rindex(substring)
     loc = 0
     tok_start, tok_end = None, None
@@ -352,18 +336,26 @@ def get_module_name(model, kind, num=None):
         return f'transformer.h.{num}{"" if kind == "hidden" else "." + kind}'
     if hasattr(model, "model") and not hasattr(model.model, "decoder"):
         if kind == "embed":
-            return "model.model.embed_tokens"
+            return "model.embed_tokens"
         if kind == "attn":
             kind = "self_attn"
-        return f'model.model.layers.{num}{"" if kind == "hidden" else "." + kind}'
+        return f'model.layers.{num}{"" if kind == "hidden" else "." + kind}'
     if hasattr(model, "model") and hasattr(model.model, "decoder"):
         if kind == "embed":
-            return "model.model.decoder.embed_tokens"
+            return "model.decoder.embed_tokens"
+        if kind == "attn":
+            kind = "self_attn"
+        if kind == "mlp":
+            kind = "mlp"
+        return f'model.decoder.layers.{num}{"" if kind == "hidden" else "." + kind}'
+    if hasattr(model, "model") and hasattr(model.model, "decoder"):
+        if kind == "embed":
+            return "model.decoder.embed_tokens"
         if kind == "attn":
             kind = "self_attn"
         if kind == "mlp":
             kind = "fc2"
-        return f'model.model.decoder.layers.{num}{"" if kind == "hidden" else "." + kind}'
+        return f'model.decoder.layers.{num}{"" if kind == "hidden" else "." + kind}'
     if hasattr(model, "decoder"):
         if kind == "embed":
             return "shared"
@@ -492,6 +484,12 @@ class Feature:
     def __init__(self, name):
         self.name = name
         self.d = []
+
+    @staticmethod
+    def from_list(l, name):
+        f = Feature(name)
+        f.d = l
+        return f
 
     def copy(self, name = None):
         f = Feature(self.name if name is None else name)

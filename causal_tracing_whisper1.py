@@ -1,12 +1,11 @@
-import torch
+import dotenv
+import torch.nn
 from transformers import LlamaForCausalLM, LlamaTokenizer, StaticCache, AutoModelForSeq2SeqLM, \
     T5ForConditionalGeneration, T5Tokenizer
 
 from causal_tracing_whisper import *
-from transformers import LlamaForCausalLM, LlamaTokenizer, StaticCache, AutoModelForSeq2SeqLM, \
-    T5ForConditionalGeneration, T5Tokenizer
 
-from causal_tracing_whisper import *
+dotenv.load_dotenv()
 
 
 def make_peft_model(model, modules):
@@ -21,7 +20,7 @@ def from_lora(model, tokenizer: LlamaTokenizer, device, path, encoder_input_text
     model.model = make_peft_model(model.model, model.modules)
     model.model.load_adapter(path, "default")
     encoder_ids = tokenizer.encode(encoder_input_text)
-    encoder_output = model.model.encoder(
+    encoder_output = model.encoder(
         input_ids=torch.tensor([encoder_ids], device=device)
     )
     model.model = model.model.unload()
@@ -31,9 +30,9 @@ def from_lora(model, tokenizer: LlamaTokenizer, device, path, encoder_input_text
 def from_lora_decoder(model, encoder_outputs, decoder_input, path, repeat):
     model = AutoModelForSeq2SeqLM.from_pretrained(path)
     output_dict = model.forward(encoder_outputs=(encoder_outputs,),
-                                      decoder_input_ids=torch.cat([decoder_input] * 2, 0) if repeat else decoder_input,
-                                      return_dict=True)
-    #model.model = model.model.unload()
+                                decoder_input_ids=torch.cat([decoder_input] * 2, 0) if repeat else decoder_input,
+                                return_dict=True)
+    # model.model = model.model.unload()
     return output_dict
 
 
@@ -46,7 +45,7 @@ def from_prefix(model, tokenizer: LlamaTokenizer, device, prefix_embedding, enco
     embedding_module = find_submodule(model, embedding_module_name)
     embedding_hook = embedding_module.register_forward_hook(hook_embedding)
     encoder_ids = tokenizer.encode(encoder_input_text)
-    encoder_output = model.model.encoder(
+    encoder_output = model.encoder(
         input_ids=torch.tensor([encoder_ids[:1] + [0] * (
             prefix_embedding.shape[0] - 1 if prefix_embedding.shape[0] - 1 > 0 else 0) + encoder_ids[1:]],
                                device=device)
@@ -60,7 +59,8 @@ def forward_with_encoder_prefix(model, tokenizer: LlamaTokenizer, prompt, device
     encoder_output = from_prefix(model, tokenizer, device, prefix_embedding, encoder_input_text).last_hidden_state
 
     decoder_input = torch.tensor(
-        [[model.model.config.decoder_start_token_id] + tokenizer.encode(prompt, add_special_tokens=False)],
+        [[model.model.config.decoder_start_token_id or model.model.config.decoder.bos_token_id] + tokenizer.encode(
+            prompt, add_special_tokens=False)],
         device=device)
 
     decoder_input_f = torch.cat([decoder_input] * 2, 0) if repeat else decoder_input
@@ -80,34 +80,59 @@ def forward_with_encoder_prefix(model, tokenizer: LlamaTokenizer, prompt, device
 
 
 def forward_with_prefix(model, tokenizer: LlamaTokenizer, prompt, device, target, prefix_embedding, repeat,
-                        encoder_output):
+                        encoder_output, variant=None, use_start_token=True):
+    offs = 0 if use_start_token else 1
     def hook_embedding(module, input, output):
-        output[:, :prefix_embedding.shape[0]] = prefix_embedding
+        output[:, offs:prefix_embedding.shape[0]+offs] = prefix_embedding
         return output
 
     embedding_module_name = get_module_name(model, "embed", 0)
     embedding_module = find_submodule(model, embedding_module_name)
     embedding_hook = embedding_module.register_forward_hook(hook_embedding)
-    decoder_input = torch.tensor([[model.model.config.decoder_start_token_id] + (
-            [0] * (prefix_embedding.shape[0] - 1 if prefix_embedding.shape[0] - 1 > 0 else 0)) + tokenizer.encode(
-        prompt, add_special_tokens=False)],
-                                 device=device)
+    decoder_input = torch.tensor(
+        [[model.model.config.decoder_start_token_id or model.model.config.decoder.bos_token_id] + (
+                [0] * (prefix_embedding.shape[0] - offs if prefix_embedding.shape[0] > offs else 0)) + tokenizer.encode(
+            prompt, add_special_tokens=False)],
+        device=device)
 
     decoder_input_f = torch.cat([decoder_input] * 2, 0) if repeat else decoder_input
     labels = torch.cat(
         [torch.full_like(decoder_input, -100)[:, 1:], torch.tensor([[target]], device=device)],
         -1) if target is not None and not repeat else None
+    output_dict = None
     if encoder_output is None:
-        output_dict = model.model.forward(decoder_input_f, labels=labels, return_dict=True)
+        output_dict = model.forward(decoder_input_f, labels=labels, return_dict=True)
     else:
-        output_dict = model.model.forward(
-            encoder_outputs=(encoder_output,),
-            decoder_input_ids=decoder_input_f,
-            labels=labels,
-            return_dict=True)
+        def fa():
+            nonlocal output_dict
+            output_dict = model.forward(
+                encoder_outputs=(encoder_output,),
+                decoder_input_ids=decoder_input_f,
+                labels=labels,
+                return_dict=True)
+        def fb():
+            nonlocal output_dict
+            output_dict = model.forward(
+                encoder_outputs=SimpleNamespace(last_hidden_state=encoder_output, hidden_states=None,
+                                                        attentions=None),
+                decoder_input_ids=decoder_input_f,
+                labels=labels,
+                return_dict=True)
+        if variant == "a":
+            fa()
+        elif variant == "b":
+            fb()
+        else:
+            try:
+                fa()
+                variant = "a"
+            except Exception as e:
+                fb()
+                variant = "b"
+
 
     embedding_hook.remove()
-    return output_dict
+    return output_dict, variant
 
 
 def fine_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, device, model_forwarder, objects,
@@ -127,15 +152,17 @@ def fine_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, devi
     for num_steps in range(max_steps):
         with torch.enable_grad():
             decoder_input_text = prompt
-            encoder_outputs = model.model.encoder(
+            encoder_outputs = model.encoder(
                 input_ids=torch.tensor([tokenizer.encode(encoder_input_text)], device=device)
             ).last_hidden_state
-            decoder_input = torch.tensor([[model.model.config.decoder_start_token_id] + tokenizer.encode(
+            decoder_input = torch.tensor([[
+                                              model.model.config.decoder_start_token_id or model.model.config.decoder.bos_token_id] + tokenizer.encode(
                 decoder_input_text, add_special_tokens=False)], device=device)
             train_all = False
             labels = torch.cat(
                 [torch.full_like(decoder_input, -100)[:, 1:], torch.tensor([[target]], device=device)],
-                -1) if not train_all else torch.tensor([[model.model.config.decoder_start_token_id] + tokenizer.encode(
+                -1) if not train_all else torch.tensor([[
+                                                            model.model.config.decoder_start_token_id or model.model.config.decoder.bos_token_id] + tokenizer.encode(
                 decoder_input_text, add_special_tokens=False) + [target]], device=device)
             output_dict = model.model.forward(encoder_outputs=(encoder_outputs,),
                                               decoder_input_ids=None if train_all else decoder_input, labels=labels,
@@ -176,7 +203,7 @@ def fine_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, devi
 
 
 def prefix_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, device, model_forwarder, objects,
-                  greater_sep=False, max_steps=2, len_prefix=20, encoder_output=None, encoder_input_text=None):
+                  greater_sep=False, max_steps=2, len_prefix=5, encoder_output=None, encoder_input_text=None):
     print(prompt)
     mask_token_id = tokenizer.eos_token_id
     for x in model.model.parameters():
@@ -196,27 +223,33 @@ def prefix_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, de
     hist = []
     succeeded = False
     num_steps = 0
+    variant = None
     for num_steps in range(max_steps):
         xfrac = num_steps / max_steps
         t = True
         with torch.enable_grad():
             if encoder_input_text is None:
-                output_dict = forward_with_prefix(model, tokenizer, prompt, device, target if t else distractor,
-                                                  prefix_embedding, False, encoder_output)
+                output_dict, variant = forward_with_prefix(model.model, tokenizer, prompt, device, target if t else distractor,
+                                                  prefix_embedding, False, encoder_output, variant)
             else:
-                output_dict = forward_with_encoder_prefix(model, tokenizer, prompt, device, target if t else distractor,
+                output_dict = forward_with_encoder_prefix(model.model, tokenizer, prompt, device,
+                                                          target if t else distractor,
                                                           prefix_embedding, False, encoder_input_text)
-        next_token_logits = output_dict["logits"].detach()[0, -1, :].cpu()
+        logits = output_dict["logits"] if "logits" in output_dict else output_dict["last_hidden_state"]
+        next_token_logits = logits.detach()[0, -1, :].cpu()
         next_token_probs = torch.softmax(next_token_logits, dim=-1).numpy()
         max_prob_indices = np.argsort(next_token_probs)
-        max_prob_indices = max_prob_indices[np.searchsorted(np.flip(np.cumsum(np.flip(max_prob_indices))), 0.9):]
-        succeeded = max_prob_indices[-1] == target or (
+        #max_prob_indices = max_prob_indices[np.searchsorted(np.flip(np.cumsum(np.flip(max_prob_indices))), 0.9):]
+        succeeded = max_prob_indices[-1] == target
+        if False:
+            succeeded |= (
                 max_prob_indices[-2] == target and max_prob_indices[-1] != distractor and (
                 max_prob_indices[-3] != distractor or not greater_sep))
-        if succeeded:
-            break
         hist.append(list(zip(next_token_probs[max_prob_indices][-10:].tolist(),
                              tokenizer.convert_ids_to_tokens(max_prob_indices)[-10:]))[-3:])
+        print((num_steps, hist[-1]))
+        if succeeded:
+            break
         loss = output_dict["loss"]
         loss.backward()
         learning_rate0 = 0.1
@@ -224,10 +257,8 @@ def prefix_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, de
         prefix_embedding.data = prefix_embedding.data + (- 1 if t else 1) * (
                 learning_rate1 * xfrac + (1 - xfrac) * (learning_rate0)) * prefix_embedding.grad.data
         prefix_embedding.grad.zero_()
-    hist = list(enumerate(hist))
-    print("\n".join([str(x) for x in hist[:2] + hist[-2:]]))
     print(
-        f"Target: {tokenizer.decode([target])}, Distractor: {distractor if distractor is None else tokenizer.decode([distractor])}")
+        f"Success:{succeeded}, Target: {tokenizer.decode([target])}, Distractor: {distractor if distractor is None else tokenizer.decode([distractor])}")
     # print(model_forwarder.get_closest_embedding(model, tokenizer, prefix_embedding[0]))
     return prefix_embedding.detach() if succeeded and num_steps > 0 else None, num_steps if succeeded else max_steps
 
@@ -301,7 +332,8 @@ class ModelForwarder:
                                                              self.max_cache_len)
             else:
                 if self.adaptor is not None:
-                    output_dict = forward_with_prefix(model, tokenizer, prompt, device, None, self.adaptor, repeat,
+                    output_dict, _ = forward_with_prefix(model.model, tokenizer, prompt, device, None, self.adaptor,
+                                                      repeat,
                                                       None)
                 else:
                     output_dict = model.model.forward(torch.cat([decoder_input] * 2, 0) if repeat else decoder_input,
@@ -342,6 +374,7 @@ class ModelForwarderEncDec:
         self.adaptor = None
         self.cache = None
         self.num_finetunes = 0
+        self.variant = None
 
     def get_embedding(self, model, token_id, device):
         # Prepare inputs
@@ -353,25 +386,43 @@ class ModelForwarderEncDec:
 
         return embedding
 
-    def forward(self, model: T5ForConditionalGeneration, tokenizer: T5Tokenizer, prompt, device, repeat, obj, range_to_mask=None):
+    def forward(self, model: T5ForConditionalGeneration, tokenizer: T5Tokenizer, prompt, device, repeat, obj,
+                range_to_mask=None):
         encoder_input_text, decoder_input_text = prompt.split("<pad>")
         with torch.no_grad():
             encoder_outputs = self.get_encoder_outputs(model, tokenizer, prompt, device)
-            decoder_input = torch.tensor([[model.model.config.decoder_start_token_id] + tokenizer.encode(
+            decoder_input = torch.tensor([[
+                                              model.model.config.decoder_start_token_id or model.model.config.decoder.bos_token_id] + tokenizer.encode(
                 decoder_input_text, add_special_tokens=False)], device=device)
             encoder_outputs = torch.cat([encoder_outputs] * 2, 0) if repeat else encoder_outputs
 
-            if self.adaptor is not None:
-                #model.model = make_peft_model(model.model, model.modules)
-                #model.model.load_adapter(self.adaptor, "default")
-                model.load(self.adaptor)
-            di = torch.cat([decoder_input] * 2, 0) if repeat else decoder_input
-            output_dict = model.model.forward(encoder_outputs=(encoder_outputs,),
-                                              decoder_input_ids=di,
-                                              return_dict=True)
-            if self.adaptor is not None:
-                #model.model = model.model.unload()
-                model.reset()
+            if self.adaptor is not None and (not isinstance(self.adaptor, str)):
+                output_dict, self.variant = forward_with_prefix(model.model, tokenizer, decoder_input_text, device, None, self.adaptor, repeat,
+                                        encoder_outputs, self.variant)
+            else:
+                raise Exception("f")
+                if self.adaptor is not None:
+                    # model.model = make_peft_model(model.model, model.modules)
+                    # model.model.load_adapter(self.adaptor, "default")
+                    model.load(self.adaptor)
+                di = torch.cat([decoder_input] * 2, 0) if repeat else decoder_input
+                try:
+                    assert self.variant != "b"
+                    output_dict = model.model.forward(
+                        encoder_outputs=(encoder_outputs,),
+                        decoder_input_ids=di,
+                        return_dict=True)
+                    self.variant = "a"
+                except Exception as e:
+                    output_dict = model.model.forward(
+                        encoder_outputs=SimpleNamespace(last_hidden_state=encoder_outputs, hidden_states=None,
+                                                        attentions=None),
+                        decoder_input_ids=di,
+                        return_dict=True)
+                    self.variant = "b"
+                if self.adaptor is not None:
+                    # model.model = model.model.unload()
+                    model.reset()
         return output_dict
 
     def clear_adaptor(self):
@@ -388,14 +439,16 @@ class ModelForwarderEncDec:
 
     def get_encoder_outputs(self, model, tokenizer, prompt, device):
         encoder_input_text, decoder_input_text = prompt.split("<pad>")
-
         with torch.no_grad():
             if self.cached_encoder_input[0] == encoder_input_text:
+                print("cache hit")
                 encoder_outputs = self.cached_encoder_input[1]
             else:
-                encoder_outputs = model.model.encoder(
+                print("cache miss")
+                encoder_outputs = model.encoder(
                     input_ids=torch.tensor([tokenizer.encode(encoder_input_text)], device=device)
                 ).last_hidden_state
+                del self.cached_encoder_input
                 self.cached_encoder_input = (encoder_input_text, encoder_outputs)
         return encoder_outputs
 
@@ -490,7 +543,7 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
 
     embedding_module_name = get_module_name(causal_tracer.model.model, "embed", 0)
     edited = causal_tracer.model_forwarder.edit_prompt(prompt)[1] if hasattr(
-                                                             causal_tracer.model_forwarder, "edit_prompt") else prompt
+        causal_tracer.model_forwarder, "edit_prompt") else prompt
     subject_tokens_range = find_substring_range(causal_tracer.tokenizer, edited, subject)
     string_ids = causal_tracer.tokenizer(
         prompt,
@@ -518,7 +571,7 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
             f"{bucket}_token": clean_output,
         },
     }
-    if corrupted_output["probs"] == clean_output["probs"]:
+    if int(100*corrupted_output["probs"]) == int(100*clean_output["probs"]):
         return output
 
     # Get patched runs results
@@ -616,19 +669,33 @@ def run_causal_tracing_analysis(
 
                     # Predict most likely next token
                     prompt = construct_prompt(fact, prompt_template)
+                    for x in args.replaces:
+                        prompt = prompt.replace(x[0], x[1])
                     adaptor, num_steps = None, 0
 
                     subject_tokens_range = find_substring_range(tokenizer, prompt, fact.get_subject())
                     assert subject_tokens_range is not None, f"Subject {fact.get_subject()} not found in prompt: {prompt}, {fact.get_subject()}"
                     if args.max_steps > 0:
-                        adaptor, num_steps = fine_tuning(model, tokenizer,
-                                                         model_forwarder.edit_prompt(prompt)[1] if hasattr(
-                                                             model_forwarder, "edit_prompt") else prompt, device,
-                                                         model_forwarder, finetuning_target_toks,
-                                                         max_steps=args.max_steps,
-                                                         encoder_input_text=model_forwarder.edit_prompt(prompt)[
-                                                             0] if hasattr(model_forwarder, "edit_prompt") else None)
-                    skip_no_adaptor = False
+                        if False:
+                            adaptor, num_steps = fine_tuning(model, tokenizer,
+                                                             model_forwarder.edit_prompt(prompt)[1] if hasattr(
+                                                                 model_forwarder, "edit_prompt") else prompt, device,
+                                                             model_forwarder, finetuning_target_toks,
+                                                             max_steps=args.max_steps,
+                                                             encoder_input_text=model_forwarder.edit_prompt(prompt)[
+                                                                 0] if hasattr(model_forwarder,
+                                                                               "edit_prompt") else None)
+                        else:
+                            adaptor, num_steps = prefix_tuning(model, tokenizer, model_forwarder.edit_prompt(prompt)[1],
+                                                               device, model_forwarder, finetuning_target_toks,
+                                                               greater_sep=False, max_steps=args.max_steps,
+                                                               len_prefix=args.len_prefix,
+                                                               encoder_output=model_forwarder.get_encoder_outputs(model,
+                                                                                                                  tokenizer,
+                                                                                                                  prompt,
+                                                                                                                  device))
+                    assert adaptor is not None
+                    skip_no_adaptor = True
                     if skip_no_adaptor and adaptor is None:
                         partial_dataset.add_entry(
                             {
@@ -660,6 +727,8 @@ def run_causal_tracing_analysis(
 
                     unfaithful = faithfullness(0, most_likely_next_token)
                     grounded = faithfullness(1, most_likely_next_token)
+                    assert unfaithful or grounded, str(most_likely_next_token[-10:])
+                    print("SUCCEEDED:", unfaithful or grounded)
                     partial_dataset.add_entry(
                         {
                             "fact": fact.as_dict(),
@@ -680,6 +749,7 @@ def run_causal_tracing_analysis(
                         }
                     )
                     model_forwarder.clear_adaptor()
+                    del adaptor
 
                 run(target_tokens)
                 run(list(reversed(target_tokens)))
@@ -729,7 +799,7 @@ def run_causal_tracing_analysis(
                                              adaptor if adaptor is None or isinstance(adaptor, str) else torch.tensor(
                                                  adaptor, device=device), args,
                                              pbar)
-
+                del adaptor
                 output_entry["fact"] = fact.as_dict()
 
                 dataset.add_entry(output_entry)
@@ -739,25 +809,31 @@ class ModelWrapper():
     def __init__(self, model: nn.Module):
         self.model = model
         self.modules = [x for x, y in self.model.named_modules() if
-               "decoder" in x and "SelfAttention.k" in x and int(x.split(".")[2]) % 3 == 2]
+                        "decoder" in x and "SelfAttention.k" in x and int(x.split(".")[2]) % 3 == 2]
+        self.modules = []
         self.original_modules = dict()
+        self.encoder = model.encoder if hasattr(model, "encoder") else model.model.encoder
         for x in self.modules:
-            self.original_modules[x] = {k: torch.clone(v).detach() for k,v in find_submodule(self.model, x).state_dict().items()}
+            self.original_modules[x] = {k: torch.clone(v).detach() for k, v in
+                                        find_submodule(self.model, x).state_dict().items()}
 
     def save(self, path):
+        if len(self.modules) == 0:
+            return
         torch.save({x: find_submodule(self.model, x).state_dict() for x in self.modules}, path)
 
     def load(self, path):
+        if len(self.modules) == 0:
+            return
         state_dicts = torch.load(path)
         for x in self.modules:
             find_submodule(self.model, x).load_state_dict(state_dicts[x])
 
     def reset(self):
+        if len(self.modules) == 0:
+            return
         for x in self.modules:
             find_submodule(self.model, x).load_state_dict(self.original_modules[x])
-
-
-
 
 
 def run_causal_tracing_analysis_wrapper(params):
@@ -770,7 +846,7 @@ def run_causal_tracing_analysis_wrapper(params):
     model = ModelWrapper(model)
     if args.forwarder_kind == "encdec":
         model_forwarder = ModelForwarderEncDec()
-    elif args.isTTS:
+    elif args.forwarder_kind == "tts":
         model_forwarder = ModelForwarderTTS(f"./temp/temp{i:02d}")
     else:
         model_forwarder = ModelForwarder()
@@ -823,26 +899,29 @@ class Namespace1:
     def __init__(self):
         self.token = os.environ.get("HUGGINGFACE_TOKEN")
         self.fakepedia_path = "fakepedia_arc_hard_with_ir_dev.json"
-        ms = ["allenai/unifiedqa-t5-large", "google/gemma-3-1b-pt", "unsloth/Llama-3.2-1B-unsloth-bnb-4bit",
+        ms = ["allenai/unifiedqa-t5-large", "google/gemma-3-1b-pt", "google/t5gemma-b-b-prefixlm-it",
+              "unsloth/Llama-3.2-1B-unsloth-bnb-4bit",
               "unsloth/Llama-3.2-1B-Instruct-unsloth-bnb-4bit",
               "unsloth/Llama-3.2-1B-unsloth-bnb-4bit",
-              "meta-llama/Llama-3.2-1B", "google/gemma-3-1b-pt", "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"]
-        self.model_name_path = ms[0]
+              "meta-llama/Llama-3.2-1B", "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"]
+        self.model_name_path = ms[2]
         self.prompt_template = "{context}<pad>{query}"
         self.num_grounded = 1000
         self.num_unfaithful = 1000
         self.prepend_space = True
-        self.bfloat16 = False
+        self.bfloat16 = True
         self.resume_dir = "ARC_hard"
         self.subset_size = 1000000
         self.skip_creation = False
         self.forwarder_kind = "encdec"
+        self.replaces = [("\\n", "\n")]
         self.grounded_first = False
         self.output_object_tokens_range = False
         self.use_cache = False
         self.not_grounded_is_hallucinated = False
-        self.max_steps = 10
+        self.max_steps = 100
         self.auto_delete = True
+        self.len_prefix = 1
 
 
 if __name__ == "__main__":
