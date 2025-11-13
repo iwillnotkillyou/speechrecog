@@ -580,9 +580,9 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
                                                " "))  # -1 should not be necessary and it does not belong here for models other than Whisper
     output["results"]["tokens"] = list()
     # We start the loop from the first subject token as patching previous tokens has no effect
-    inds = (get_quantiles(list(range(subject_tokens_range[0], subject_tokens_range[1])), 5,
+    inds = (get_quantiles(list(range(subject_tokens_range[0], subject_tokens_range[1])), args.num_quantiles_subj,
                           [subject_tokens_range[0] + 1, subject_tokens_range[1] - 2]) + get_quantiles(
-        list(range(subject_tokens_range[1], num_tokens)), 5, [subject_tokens_range[1] + 1, num_tokens - 2]))
+        list(range(subject_tokens_range[1], num_tokens)), args.num_quantiles_cont, [subject_tokens_range[1] + 1, num_tokens - 2]))
     print(f"\n{inds}, {num_tokens}")
     for token_i in inds:
         d = {}
@@ -594,7 +594,7 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
         if subject_tokens_range[0] <= token_i < subject_tokens_range[1]:
             d["subject_pos"] = token_i - subject_tokens_range[1]
         nl = get_num_layers(causal_tracer.model)
-        quantiles = get_quantiles(np.arange(1, nl + 1))
+        quantiles = get_quantiles(np.arange(1, nl + 1), args.num_quantiles_layers)
         params = [(kind, last_layer) for kind in ["hidden", "mlp", "attn"] for
                   last_layer in quantiles]
         patches = [(0, len(tokens))]
@@ -922,6 +922,9 @@ class Namespace1:
         self.max_steps = 100
         self.auto_delete = True
         self.len_prefix = 1
+        self.num_quantiles_subj = 10
+        self.num_quantiles_cont = 3
+        self.num_quantiles_layers = 10
 
 
 if __name__ == "__main__":

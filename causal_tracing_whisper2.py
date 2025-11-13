@@ -124,6 +124,146 @@ def plot_metrics_comparison(metrics_by_model, save_dir):
     plt.savefig(os.path.join(save_dir, "all_metrics_comparison.png"), bbox_inches="tight")
     plt.close()
 
+def run_LLM(clf, end_to_end_test_data):
+    ns = Namespace1()
+    language_model, tokenizer = make_model(ns)
+    resultsl = []
+    np.random.seed(42)
+
+    def flatten(data):
+        return list(zip([tuple(feature_results.get(i)
+                               for kind_results in data[0].values()
+                               for feature_results in kind_results.values()) for i in range(len(data[3]))],
+                        data[3]))
+
+    l = list(chain.from_iterable([flatten(x) for x in end_to_end_test_data]))
+
+    def longest_match_any_startf(cands, ref):
+        best_c = 0
+        best_l = 0
+        print(cands, ref)
+        words_ref = ref.strip(". ").split(" ")
+        for cand in range(len(cands)):
+            words_cand = cands[cand].strip(". ").split(" ")
+            for i in range(min(len(words_ref), len(words_cand))):
+                for j in range(min(len(words_ref), len(words_cand))):
+                    if words_ref[i:i + len(words_cand) - j] == words_cand[0:len(words_cand) - j]:
+                        if len(words_cand) - j > best_l:
+                            best_l = len(words_cand) - j
+                            best_c = cand
+        print(best_c)
+        return best_c
+
+    def longest_match_any_start(cands, ref):
+        print(cands, ref)
+        best_c = 10
+        for i in range(1, len(ref)):
+            l = [x for x in range(len(cands)) if
+                 ref[:-i].strip(". ").lower().endswith(cands[x].strip(". ").lower())]
+            if len(l) > 0:
+                best_c = l[0]
+                break
+        print(best_c)
+        return best_c
+
+    def extract_object(x):
+        if "unfaithful_token" in x[1]["results"]["corrupted"]:
+            return x[1]["fact"]["fact_parent"]["object"]
+        else:
+            return x[1]["fact"]["object"]
+
+    oldlenl = len(l)
+    # l = [x for x in l if longest_match_any_start([y[1] for y in x[1]["fact"]["rel_lemma"]], x[1]["fact"]["query"] + extract_object(x)) == 0]
+    print("len(l)", len(l), oldlenl)
+    np.random.shuffle(l)
+    ids, inds = np.unique([int(y[1]["fact"]["group_id"]) for y in l], return_index=True)
+    ids = ids[np.argsort(inds)]
+    total = 0
+    for x in ids[:len(ids) // 2]:
+        x = [y for y in l if int(y[1]["fact"]["group_id"]) == x]
+        for y in x[:1]:
+            fact = y[1]["fact"]
+            context = fact["fact_paragraph"]
+            answers_list = fact["rel_lemma"]
+
+            def get_prob(string, model, tokenizer, device):
+                encoder_input_text, decoder_input_text = string.split("<pad>")
+                encoder_text = tokenizer.apply_chat_template([{"role": "user", "content": encoder_input_text}],
+                                                             tokenize=False, add_generation_prompt=True)
+                print(encoder_text)
+                from transformers import Text2TextGenerationPipeline
+                pipe = Text2TextGenerationPipeline(model, tokenizer,
+                                                   dtype=torch.bfloat16,
+                                                   device_map=device,
+                                                   )
+                encoder_ids = pipe.preprocess(encoder_text)
+                encoder_output = model.model.encoder(
+                    input_ids=encoder_ids["input_ids"].to(device)
+                )
+                labels = torch.tensor([tokenizer.encode(decoder_input_text, add_special_tokens=False)],
+                                      device=device)
+                output_dict = model.forward(labels=labels, encoder_outputs=encoder_output)
+                prob = np.prod([torch.softmax(output_dict.logits[0][x], -1)[labels[0][x]].item() for x in
+                                range(1, len(output_dict.logits[0]))])
+                print(prob, [{"t": x[0], "p": x[1]} for x in zip(tokenizer.convert_ids_to_tokens(labels[0]), [
+                    list(zip(tokenizer.convert_ids_to_tokens(y), x.tolist())) for x, y in
+                    zip(*torch.softmax(output_dict.logits[0], -1).topk(2, -1))])])
+                return float(prob)
+
+            order = np.random.permutation(len(answers_list))
+            alphabet = [chr(x) for x in range(ord('a'), ord('a') + len(answers_list))]
+            optionsl = [f"**{alphabet[ind]}**) {answers_list[i][1]}" for ind, i in enumerate(order)]
+            options = "\n".join(optionsl)
+            contextl = context.split("\\n")
+            context = f"{contextl[0]}\n\nThe most likely answer is **letter**.\n\n{options}\n\n{contextl[1]}"
+            w_probs = [(answers_list[i][0], answers_list[i][1],
+                        get_prob(context + "<pad>**" + alphabet[ind], language_model, tokenizer, "cuda")) for ind, i in
+                       enumerate(order)]
+            w_probs = sorted(w_probs, key=lambda x: x[2], reverse=True)
+            assert all([x[2] > 0.001 for x in w_probs])
+        result_tracing = clf.predict(np.array([y[0] for y in x])).tolist()
+
+        def improve(result_tracing, tracing_order, original_probs):
+            matching = [
+                longest_match_any_start([y[1] for y in original_probs], y[1]["fact"]["query"] + extract_object(y)) for y
+                in tracing_order]
+            print("matching", (
+            matching, result_tracing, [y[1]["fact"]["query"] + extract_object(y) for y in tracing_order],
+            [y[1] for y in original_probs]))
+            possible_improves = [x for x in
+                                 range(len(original_probs)) if
+                                 x not in matching or result_tracing[matching.index(x)] != 0]
+            if len(possible_improves) == 0:
+                r = original_probs[0][0]
+            else:
+                r = original_probs[possible_improves[0]][0]
+            print("possible_improves", possible_improves, r)
+            return float(r)
+
+        improved_label = improve(result_tracing, x, w_probs)
+        small_model_label_improved_label = improve(result_tracing, x, answers_list)
+
+        resultsl.append(
+            {"gold_label": 0, "large_model_label": w_probs[0][0], "improved_label": improved_label,
+             "small_model_label": answers_list[0][0],
+             "small_model_label_improved_label": small_model_label_improved_label, "large_probs": w_probs,
+             "fact": fact})
+
+    for x in l[:0]:
+        fact = x[1]["fact"]
+        answers_list = fact["rel_lemma"]
+        result_tracing = clf.predict(np.array([x[0]]))
+        print((answers_list[0][1], fact["query"] + extract_object(x)), result_tracing[0],
+              "unfaithful_token" in x[1]["results"]["corrupted"])
+        if result_tracing[0] == 0:
+            small_model_label_improved_label = fact["rel_lemma"][1][0]
+        else:
+            continue
+        resultsl.append(
+            {"gold_label": 0, "small_model_label": fact["rel_lemma"][0][0],
+             "small_model_label_improved_label": small_model_label_improved_label, "fact": fact})
+    assert len(resultsl) > 0
+    return resultsl
 
 def train_and_save(models, dataset, generate_wrapper, class_names, grounded_results, unfaithful_results, args, seed,
                    replot_only=False, target_acc=0.6):
@@ -164,16 +304,18 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
         best_feat = None
 
         all_feat_removed = set()
-        for x in range(50):
+        for x in range(args.num_feat_tries*5):
             all_feat_removed.add(tuple(sorted(
                 np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 4) if False else 3,
                                  replace=False).tolist())))
-        params = product(list(all_feat_removed)[:args.num_feat_tries],
-                         np.linspace(args.train_ratio / 2, args.train_ratio, args.num_train_sizes, endpoint=True),
+        params = product(list(all_feat_removed)[:args.num_feat_tries] if args.num_feat_tries > 1 else [tuple()],
+                         np.linspace((args.tree_nodes[0], args.tree_nodes[0]*2), (args.tree_nodes[1], args.tree_nodes[1]*2), args.num_tree_nodes, endpoint=True) if args.num_tree_nodes > 1 else [args.tree_nodes],
+                         np.linspace(args.train_ratio / 2, args.train_ratio, args.num_train_sizes, endpoint=True) if args.num_train_sizes > 1 else [args.train_ratio],
                          np.linspace(0, 1, 10, endpoint=True) if args.additional_weight > 0 else [0],
                          np.linspace(0, 0.5, 5, endpoint=True) if args.PCA_quantile_threshold is not None else [0])
         # params = product(list(all_feat_removed)[:10], [0.5], [0], [0])
-        for feat_removed, train_ratio, additional_weight, PCA_quantile_threshold in params:
+        param_scores = {}
+        for feat_removed, tree_nodes, train_ratio, additional_weight, PCA_quantile_threshold in params:
             r = generate_wrapper(dataset, train_ratio, additional_weight,
                                  PCA_quantile_threshold if PCA_quantile_threshold > 0 else None)
             if r is None:
@@ -184,11 +326,38 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             X_holdout, y_holdout, inds_holdout, weights_holdout = holdout_data
             X_train1 = X_train.copy()
             X_train1[:, feat_removed] = 0
-            beta = 1
-            clf = GridSearchCV(model_info["model"], model_info["param_grid"], cv=2, verbose=0,
-                               scoring=lambda estimator, X_t, y_t: -np.abs(
-                                   target_acc - fbeta_score(y_t, estimator.predict(X_t), beta=beta, average='weighted',
+            beta = 2
+            best_score = -10000
+            best_estimator = None
+            l = X_holdout.shape[0]
+            def modify_estimator(estimator, X_t, y_t):
+                if isinstance(model_info["model"], (DecisionTreeClassifier,)):
+                    path = estimator.cost_complexity_pruning_path(X_holdout[:l], y_holdout[:l], weights_holdout[:l])
+                    best_feature = np.argmax(estimator.feature_importances_)
+                    ccp_alphas, impurities = path.ccp_alphas, path.impurities
+                    for ccp_alpha in ccp_alphas:
+                        if estimator.tree_.node_count < tree_nodes[1]:
+                            break
+                        estimator = DecisionTreeClassifier(random_state=0, ccp_alpha=ccp_alpha)
+                        estimator.fit(X_t, y_t)
+                        if estimator.tree_.node_count < tree_nodes[1]:
+                            break
+                return estimator
+
+            def calc_score(estimator, X_t, y_t):
+                nonlocal best_score, best_estimator
+                estimator = modify_estimator(estimator, X_t, y_t)
+                if isinstance(model_info["model"], (DecisionTreeClassifier,)) and estimator.tree_.node_count < tree_nodes[0]:
+                    return -10000
+                score = (-np.abs(target_acc - fbeta_score(y_t, estimator.predict(X_t), beta=beta, average='weighted',
                                                             zero_division=0.0)))
+                if score > best_score:
+                    best_score = score
+                    best_estimator = estimator
+                return score
+
+            clf = GridSearchCV(model_info["model"], model_info["param_grid"], cv=2, verbose=0,
+                               scoring=calc_score)
             try:
                 clf.fit(X_train1[weights_train > 0], y_train[weights_train > 0],
                         sample_weight=weights_train[weights_train > 0])
@@ -198,8 +367,9 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             y_holdout_pred = clf.predict(X_holdout)
             fscore = fbeta_score(y_holdout, y_holdout_pred, beta=beta, average='weighted', zero_division=0.0,
                                  sample_weight=weights_holdout)
-            if (best_f is None or fscore > best_f) and fscore < 0.9:
+            if (best_f is None or fscore > best_f) and fscore < args.holdout_score_limit and best_score > -10000 and best_estimator is not None:
                 best_f = fscore
+                clf.best_estimator_ = best_estimator
                 best_clas = clf
                 best_feat = [feature_names[x] for x in
                              sorted(set(range(len(feature_names))).difference(set(feat_removed)))]
@@ -258,11 +428,7 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             # Taking the absolute values of the coefficients
             results["feature_importances"] = [float(abs(val)) for val in clf.best_estimator_.coef_.flatten()]
 
-        def flatten(data):
-            return list(zip([tuple(feature_results.get(i)
-                                   for kind_results in data[0].values()
-                                   for feature_results in kind_results.values()) for i in range(len(data[3]))],
-                            data[3]))
+
 
         def invert_permutation(p):
             """Return an array s with which np.array_equal(arr[p][s], arr) is True.
@@ -273,133 +439,12 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             s[p] = np.arange(p.size)
             return list(s)
 
-        ns = Namespace1()
-        language_model, tokenizer = make_model(ns)
-        resultsl = []
-        np.random.seed(42)
-        l = list(chain.from_iterable([flatten(x) for x in end_to_end_test_data]))
-
-        def longest_match_any_startf(cands, ref):
-            best_c = 0
-            best_l = 0
-            print(cands, ref)
-            words_ref = ref.strip(". ").split(" ")
-            for cand in range(len(cands)):
-                words_cand = cands[cand].strip(". ").split(" ")
-                for i in range(min(len(words_ref), len(words_cand))):
-                    for j in range(min(len(words_ref), len(words_cand))):
-                        if words_ref[i:i + len(words_cand) - j] == words_cand[0:len(words_cand) - j]:
-                            if len(words_cand) - j > best_l:
-                                best_l = len(words_cand) - j
-                                best_c = cand
-            print(best_c)
-            return best_c
-
-        def longest_match_any_start(cands, ref):
-            print(cands, ref)
-            best_c = 10
-            for i in range(1, len(ref)):
-                l = [x for x in range(len(cands)) if
-                     ref[:-i].strip(". ").lower().endswith(cands[x].strip(". ").lower())]
-                if len(l) > 0:
-                    best_c = l[0]
-                    break
-            print(best_c)
-            return best_c
-
-        def extract_object(x):
-            if "unfaithful_token" in x[1]["results"]["corrupted"]:
-                return x[1]["fact"]["fact_parent"]["object"]
-            else:
-                return x[1]["fact"]["object"]
-
-        oldlenl = len(l)
-        # l = [x for x in l if longest_match_any_start([y[1] for y in x[1]["fact"]["rel_lemma"]], x[1]["fact"]["query"] + extract_object(x)) == 0]
-        print("len(l)", len(l), oldlenl)
-        np.random.shuffle(l)
-        ids, inds = np.unique([int(y[1]["fact"]["group_id"]) for y in l], return_index=True)
-        ids = ids[np.argsort(inds)]
-        total = 0
-        for x in ids[:len(ids) // 2]:
-            x = [y for y in l if int(y[1]["fact"]["group_id"]) == x]
-            for y in x[:1]:
-                fact = y[1]["fact"]
-                context = fact["fact_paragraph"]
-                answers_list = fact["rel_lemma"]
-
-                def get_prob(string, model, tokenizer, device):
-                    encoder_input_text, decoder_input_text = string.split("<pad>")
-                    encoder_text = tokenizer.apply_chat_template([{"role": "user", "content": encoder_input_text}], tokenize=False, add_generation_prompt=True)
-                    print(encoder_text)
-                    from transformers import Text2TextGenerationPipeline
-                    pipe = Text2TextGenerationPipeline(model, tokenizer,
-                        dtype=torch.bfloat16,
-                        device_map=device,
-                    )
-                    encoder_ids = pipe.preprocess(encoder_text)
-                    encoder_output = model.model.encoder(
-                        input_ids=encoder_ids["input_ids"].to(device)
-                    )
-                    labels = torch.tensor([tokenizer.encode(decoder_input_text, add_special_tokens=False)],
-                                          device=device)
-                    output_dict = model.forward(labels=labels, encoder_outputs=encoder_output)
-                    prob = np.prod([torch.softmax(output_dict.logits[0][x], -1)[labels[0][x]].item() for x in
-                                    range(1, len(output_dict.logits[0]))])
-                    print(prob, [{"t": x[0], "p": x[1]} for x in zip(tokenizer.convert_ids_to_tokens(labels[0]), [list(zip(tokenizer.convert_ids_to_tokens(y), x.tolist())) for x, y in zip(*torch.softmax(output_dict.logits[0], -1).topk(2, -1))])])
-                    return float(prob)
-
-                order = np.random.permutation(len(answers_list))
-                alphabet = [chr(x) for x in range(ord('a'), ord('a') + len(answers_list))]
-                optionsl = [f"**{alphabet[ind]}**) {answers_list[i][1]}" for ind, i in enumerate(order)]
-                options = "\n".join(optionsl)
-                contextl = context.split("\\n")
-                context = f"{contextl[0]}\n\nThe most likely answer is **letter**.\n\n{options}\n\n{contextl[1]}"
-                w_probs = [(answers_list[i][0], answers_list[i][1], get_prob(context + "<pad>**" + alphabet[ind], language_model, tokenizer, "cuda")) for ind, i in
-                           enumerate(order)]
-                w_probs = sorted(w_probs, key=lambda x: x[2], reverse=True)
-                assert all([x[2] > 0.001 for x in w_probs])
-            result_tracing = clf.predict(np.array([y[0] for y in x])).tolist()
-            def improve(result_tracing, tracing_order, original_probs):
-                matching = [
-                    longest_match_any_start([y[1] for y in original_probs], y[1]["fact"]["query"] + extract_object(y)) for y in tracing_order]
-                print("matching", (matching, result_tracing, [y[1]["fact"]["query"] + extract_object(y) for y in tracing_order], [y[1] for y in original_probs]))
-                possible_improves = [x for x in
-                                     range(len(original_probs)) if x not in matching or result_tracing[matching.index(x)] != 0]
-                if len(possible_improves) == 0:
-                    r = original_probs[0][0]
-                else:
-                    r = original_probs[possible_improves[0]][0]
-                print("possible_improves", possible_improves, r)
-                return float(r)
-
-            improved_label = improve(result_tracing, x, w_probs)
-            small_model_label_improved_label = improve(result_tracing, x, answers_list)
-
-            resultsl.append(
-                {"gold_label": 0, "large_model_label": w_probs[0][0], "improved_label": improved_label,
-                 "small_model_label": answers_list[0][0],
-                 "small_model_label_improved_label": small_model_label_improved_label, "large_probs": w_probs,
-                 "fact": fact})
-
-        for x in l[:0]:
-            fact = x[1]["fact"]
-            answers_list = fact["rel_lemma"]
-            result_tracing = clf.predict(np.array([x[0]]))
-            print((answers_list[0][1], fact["query"] + extract_object(x)), result_tracing[0],
-                  "unfaithful_token" in x[1]["results"]["corrupted"])
-            if result_tracing[0] == 0:
-                small_model_label_improved_label = fact["rel_lemma"][1][0]
-            else:
-                continue
-            resultsl.append(
-                {"gold_label": 0, "small_model_label": fact["rel_lemma"][0][0],
-                 "small_model_label_improved_label": small_model_label_improved_label, "fact": fact})
-        assert len(resultsl) > 0
-        print(resultsl[0])
-        with open(os.path.join(model_save_dir, "end_to_end_results.json"), "w") as f:
-            json.dump(resultsl, f, indent=4)
-        results["end_to_end_results"] = {x: get_stats1([y["gold_label"] for y in resultsl], [y[x] for y in resultsl])
-                                         for x in resultsl[0].keys() if x not in ["gold_label", "fact", "large_probs"]}
+        if args.run_LLM:
+            resultsl = run_LLM(clf, end_to_end_test_data)
+            with open(os.path.join(model_save_dir, "end_to_end_results.json"), "w") as f:
+                json.dump(resultsl, f, indent=4)
+            results["end_to_end_results"] = {x: get_stats1([y["gold_label"] for y in resultsl], [y[x] for y in resultsl])
+                                             for x in resultsl[0].keys() if x not in ["gold_label", "fact", "large_probs"]}
 
         try:
             save_metrics(results, feature_names, model_save_dir)
@@ -533,7 +578,9 @@ def filter_facts(processed_fact, target_token):
     clean_score = processed_fact["results"]["clean"][target_token]["probs"]
     print(corrupted_score, clean_score)
     interval_to_explain = max(clean_score - corrupted_score, 0)
-    return interval_to_explain == 0
+    if "tokens" not in processed_fact["results"]:
+        logging.warning('"tokens" not in processed_fact["results"]')
+    return interval_to_explain == 0 or "tokens" not in processed_fact["results"]
 
 
 def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
@@ -630,7 +677,7 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
 
 def generate_datasets2(buckets,
                        train_ratio=0.8, balance=False, balance_test=False, balance_w=True, additional_weight=0, check_additional=False,
-                       PCA_quantile_threshold=0
+                       PCA_quantile_threshold=0, holdout_ratio = 0.2
                        ):
     logger = get_logger()
     feature_names = [
@@ -722,7 +769,7 @@ def generate_datasets2(buckets,
     try:
         train_samples_before, holdout_samples, train_labels, holdout_labels, train_inds, holdout_inds, train_weights, holdout_weights = sklearn.model_selection.train_test_split(
             train_samples_before, train_labels, train_inds, train_weights,
-            test_size=np.clip(len(train_labels) // 5, 5, 20), stratify=train_labels, random_state=42)
+            test_size=max(int(len(train_labels) * holdout_ratio), 5), stratify=train_labels, random_state=42)
     except Exception as e:
         logging.exception("Trainset likely too small.", exc_info=e)
         return None
@@ -884,7 +931,8 @@ def train_detector(args, models):
             train_ratio=train_ratio, balance=args.balance, balance_test=args.balance_test, balance_w=args.balance_w,
             additional_weight=additional_weight,
             check_additional=args.other_dataset_name is not None and len(args.other_dataset_name) > 0,
-            PCA_quantile_threshold=PCA_quantile_threshold
+            PCA_quantile_threshold=PCA_quantile_threshold,
+            holdout_ratio = args.holdout_ratio
         )
 
     # Train the models and save the results
@@ -1009,9 +1057,9 @@ class Namespace2:
     def __init__(self):
         self.causal_traces_dir = "./causal_traces"
         self.dataset_name = "ARC_hard"
-        self.model_name = "t5gemma1tok"
+        self.model_name = "moreq"
         self.output_dir = "out"
-        features = "all"
+        features = "only_important_no_cont"
         if features == "all":
             self.features_to_include = None
         elif features == "cont_last_removed":
@@ -1023,16 +1071,18 @@ class Namespace2:
                                         "cont-last"]
         elif features == "only_important_no_cont_last":
             self.features_to_include = ["subj-first", "subj-middle", "subj-last", "cont-first"]
+        elif features == "only_important_no_cont":
+            self.features_to_include = ["subj-first", "subj-second-first", "subj-middle", "subj-second-last", "subj-last"]
         self.kinds_to_include = ["mlp"] + ([] if False else ["hidden"])
-        self.train_ratio = 0.8
+        self.train_ratio = 0.9
         self.ablation_only_clean = False
         self.ablation_include_corrupted = False
-        self.seed = 100
+        self.seed = 30000
         self.num_classes = 2
         self.min_count = 5
         self.separate = False
         self.group = False
-        self.target_acc = 0.8
+        self.target_acc = 1
         self.additional_weight = 0
         self.PCA_quantile_threshold = None
         self.other_dataset_name = ["simple", "transl"] if False else []
@@ -1040,8 +1090,13 @@ class Namespace2:
         self.balance = True
         self.balance_w = True
         self.balance_test = False
-        self.num_feat_tries = 10
-        self.num_train_sizes = 3
+        self.num_feat_tries = 1
+        self.num_train_sizes = 1
+        self.holdout_score_limit = 1
+        self.run_LLM = True
+        self.tree_nodes = (10, 60)
+        self.num_tree_nodes = 1
+        self.holdout_ratio = 0.05
 
 
 def main2(models):
@@ -1070,7 +1125,7 @@ import warnings
 import sys
 
 if __name__ == "__main__":
-    np.random.seed(42)
+    np.random.seed(40)
 
 
     def warn_with_traceback(message, category, filename, lineno, file=None, line=None):
@@ -1083,34 +1138,30 @@ if __name__ == "__main__":
     np.seterr(all='raise')
     scipy.special.seterr(all='raise')
     models = {}
-    if True:
+    dataset_size_muli = 1
+    if False:
         models["DecisionTreeSmall"] = {
             "model": DecisionTreeClassifier(),
             "param_grid": {
-                ""
                 "max_depth": [2, 3],
-                "min_samples_split": [4, 6, 8],
-                "min_samples_leaf": [4, 6, 8],
-                # "ccp_alpha": [0, 0.005, 0.02, 0.03, 0.05, 0.08]
+                "min_samples_split": [x*dataset_size_muli for x in [4, 6, 8]],
+                "min_samples_leaf": [x*dataset_size_muli for x in [4, 6, 8]]
             },
         }
-    if True:
+    if False:
         models["LogisticRegression"] = {
             "model": LogisticRegression(max_iter=1000, solver="liblinear"),
             "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000], "penalty": ["l1", "l2"]},
         }
-    if False:
+    if True:
         models["DecisionTree"] = {
             "model": DecisionTreeClassifier(),
             "param_grid": {
-                "max_depth": [4, 5, 6, 8, 10],
-                "min_samples_split": [2, 3, 4, 5],
-                "min_samples_leaf": [1, 2, 3],
-                # "ccp_alpha": [0.001, 0.01, 0.015]
+                "max_depth": np.arange(4, 15, 1).tolist(),
             },
         }
     models = dict([x for x in models.items() if len(x[1]) > 0])
-    xgboostmode = "None"
+    xgboostmode = "None" if True else "small"
     if xgboostmode == "full":
         models["XGBoost"] = {
             "model": xgb.XGBClassifier(
@@ -1126,12 +1177,12 @@ if __name__ == "__main__":
     elif xgboostmode == "small":
         models["XGBoost"] = {
             "model": xgb.XGBClassifier(
-                use_label_encoder=False, eval_metric="logloss", device="cuda", importance_type="total_gain"
+                eval_metric="logloss", device="cuda", importance_type="total_gain"
             ),
             "param_grid": {
                 "learning_rate": [0.01, 0.05, 0.1],
-                "n_estimators": [100, 200],
-                "max_depth": [3, 5],
+                "n_estimators": [20, 50, 75, 100],
+                "max_depth": [2, 4],
                 "subsample": [0.8],
             },
         }
