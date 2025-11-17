@@ -14,6 +14,7 @@ nltk.download('universal_tagset')
 from nltk.tokenize import RegexpTokenizer
 from nltk.tag import pos_tag
 from nltk.tokenize import word_tokenize
+import stanza
 tokenizernltk = RegexpTokenizer(r'\w+')
 def words(x):
     return tokenizernltk.tokenize(x)
@@ -74,7 +75,7 @@ args = Namespace1()
 ds = load_dataset("NLP-RISE/HalluciGen", "de_en_translation", token = args.token)
 print(ds)
 data = ds['test']
-model, tokenizer = make_model(args, mock=True)
+#model, tokenizer = make_model(args, mock=True)
 splits = 4
 def get_split(x):
     toks = x.split(" ")

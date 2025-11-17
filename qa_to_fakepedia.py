@@ -56,7 +56,8 @@ def qa_to_fakepedia(fn):
         dp["object"] = x["right_answer"][lcp:]
         dp["fact_parent"]["object"] = x["hallucinated_answer"][lcp:]
         dp["fact_paragraph"] = x["knowledge"]
-        data_out.append(dp)
+        if len(x["knowledge"]) > 500:
+            data_out.append(dp)
     json.dump(data_out, open("qa_fakepedia.json", "w"), indent=4)
 
 def read_json(json_path: str):
@@ -68,13 +69,15 @@ def read_json(json_path: str):
             data = json.load(f)
     return data
 
-if __name__ == "__main__":
-    qa_to_fakepedia("qa")
-
-    fakepedia = read_json("base_fakepedia.json")
+def question_subject_fakepedia(fn, fno):
+    fakepedia = read_json(fn)
     data_out = []
     for x in fakepedia:
         dp = dict(x, fact_parent = dict(x["fact_parent"]))
         dp["subject"] = dp["query"]
         data_out.append(dp)
-    json.dump(data_out, open("question_subject_fakepedia.json", "w"), indent=4)
+    json.dump(data_out, open(fno, "w"), indent=4)
+
+if __name__ == "__main__":
+    qa_to_fakepedia("qa")
+    question_subject_fakepedia("base_fakepedia.json", "question_subject_fakepedia.json")

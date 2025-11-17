@@ -280,7 +280,7 @@ def get_next_token_probabilities(
 
     # Feed model
     with torch.no_grad():
-        next_token_logits = model_forwarder.forward(model, tokenizer, prompt, device, repeat, obj, range_to_mask)["logits"][:, -1, :]
+        next_token_logits = model_forwarder.forward(model, tokenizer, prompt, device, repeat, obj)["logits"][:, -1, :]
 
     # Extract target token logits and probabilities
     target_token_probs = torch.softmax(next_token_logits, dim=-1)[:, target_token_ids]

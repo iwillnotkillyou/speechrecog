@@ -14,7 +14,9 @@ from tensorflow_datasets.text.unifiedqa import UnifiedQA
 from causal_tracing_whisper1 import make_model
 from shared import make_clienteinfra
 
-name = "arc_hard_with_ir_dev"
+name = "qasc_with_ir"
+split = "train"
+minl = 2200
 from causal_tracing_whisper1 import Namespace1
 
 
@@ -70,7 +72,7 @@ def main():
         answers_list = [x.strip() for x in optionre.split(answers, maxsplit=50) if len(x) > 0]
         wrong_answers = [x for x in answers_list if x != answer and len(x) > 0]
         answers_list = [answer] + wrong_answers
-        probs = [get_prob(context + "<pad>" + x, model, tokenizer, device) for x in answers_list]
+        probs = [get_prob(context + "<pad>" + x, model, tokenizer, device) if False else 0 for x in answers_list]
         print(probs)
         answers_sents = make_sentences(question, [answer] + wrong_answers) if useLLM else [answer] + wrong_answers
         answer_sent = answers_sents[0]
@@ -92,17 +94,17 @@ def main():
 
         r = [make_one(x) for x in answers_sents[1:]]
         return r
-
+    conf = [x for x in UnifiedQA.BUILDER_CONFIGS if x.name == name][0]
     devds = [x for x in tfds.load("unified_qa",
                                   builder_kwargs={
-                                      "config": [x for x in UnifiedQA.BUILDER_CONFIGS if x.name == name][0]},
-                                  split='validation', shuffle_files=True)]
-    print("len(devds)", len(devds))
+                                      "config": conf},
+                                  split=split, shuffle_files=True) if
+                           tf.strings.length(x["input"]).numpy() > minl and tf.strings.length(
+                               x["input"]).numpy() < minl + 2000]
+    print(conf.name, "len(devds)", len(devds))
     print([x.name for x in UnifiedQA.BUILDER_CONFIGS if "multiple-choice" in x.description.lower()])
-    l = 1500
-    tol = 2000
-    if os.path.exists("cache.json"):
-        with open("cache.json") as f:
+    if os.path.exists(f"cache_{name}.json"):
+        with open(f"cache_{name}.json") as f:
             cache = json.load(f)
     else:
         cache = {}
@@ -112,9 +114,7 @@ def main():
         if k in cache:
             fakepedia = cache[k]
         else:
-            devdataseti = [(x["input"].numpy(), x["output"].numpy()) for x in (reversed(devds) if reverse else devds) if
-                           tf.strings.length(x["input"]).numpy() > l and tf.strings.length(
-                               x["input"]).numpy() < l + tol][:lim]
+            devdataseti = [(x["input"].numpy(), x["output"].numpy()) for x in (reversed(devds) if reverse else devds)][:lim]
             print(len(devdataseti))
             devdataseti = [x for x in devdataseti if
                            natural_sents == ("." in x[0].decode("utf-8").split(unifiedqa_separator)[1])]
@@ -159,17 +159,31 @@ def main():
     print("only fake sents train", gm(fakepedia2), len(fakepedia2))
     print("only fake sents test", gm(fakepedia3), len(fakepedia3))
 
-
-if __name__ == "__main__":
-    main()
-    with open("fakepedia_arc_hard_with_ir_dev.json") as f:
+    with open(f"fakepedia_{name}.json") as f:
         fakepedia = json.load(f)
-
 
     def gm(ds):
         return np.mean([float(x["rel_lemma"][-1][0] == 0) for x in ds])
 
-
     print("all", gm(fakepedia), len(fakepedia))
-    with open("fakepedia_arc_hard_with_ir_dev.json", "w") as f:
-        json.dump([x for x in fakepedia], f, indent=2)
+
+def get_lens():
+    for i, x in enumerate(UnifiedQA.BUILDER_CONFIGS[:int(len(UnifiedQA.BUILDER_CONFIGS) * 1)]):
+        if "dev" in x.name or "test" in x.name:
+            continue
+        if "multiple-choice" not in x.description.lower():
+            continue
+        devds = [x for x in tfds.load("unified_qa",
+                                      builder_kwargs={
+                                          "config": [y for y in UnifiedQA.BUILDER_CONFIGS if y.name == x.name][0]},
+                                      split='train', shuffle_files=True) if tf.strings.length(
+                                   x["input"]).numpy() > minl]
+        if "qasc_with_ir" == x.name:
+            with open("qasc_with_ir.json", "w") as f:
+                json.dump([{k: v.numpy().decode("utf-8") for k,v in x.items()} for x in devds], f, indent=2)
+        print(i, x.name, len(devds))
+
+if __name__ == "__main__":
+    #get_lens()
+    main()
+

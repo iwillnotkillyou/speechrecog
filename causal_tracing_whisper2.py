@@ -9,6 +9,7 @@ import sklearn
 import xgboost as xgb
 from sklearn.metrics import ConfusionMatrixDisplay, fbeta_score
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
 
 from causal_tracing_whisper import *
 from causal_tracing_whisper1 import make_model, Namespace1
@@ -76,7 +77,7 @@ def plot_metrics_comparison(metrics_by_model, save_dir):
     save_dir: directory where plots will be saved
     """
     model_colors = {"LogisticRegression": "grey", "DecisionTree": "orange", "DecisionTreeSmall": "green",
-                    "XGBoost": "blue"}
+                    "XGBoost": "blue", "KNN": "blue"}
 
     # Validate that all models in metrics_by_model are known
     for model in metrics_by_model:
@@ -178,7 +179,6 @@ def run_LLM(clf, end_to_end_test_data):
     np.random.shuffle(l)
     ids, inds = np.unique([int(y[1]["fact"]["group_id"]) for y in l], return_index=True)
     ids = ids[np.argsort(inds)]
-    total = 0
     for x in ids[:len(ids) // 2]:
         x = [y for y in l if int(y[1]["fact"]["group_id"]) == x]
         for y in x[:1]:
@@ -279,14 +279,19 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
     def filter(da, func):
         data = {key: {k: zip(v[k].d, da[1].d, da[2].d, da[3]) for k in v} for key, v in da[0].items()}
         data = {key: {k: list(zip(*[x for x in v[k] if func(x)])) for k in v} for key, v in data.items()}
-        return {key: {k: Feature.from_list(v[k][0], k) for k in v} for key, v in data.items()}, Feature.from_list(
+        data =  {key: {k: Feature.from_list(v[k][0], k) for k in v} for key, v in data.items()}, Feature.from_list(
             list(list(data.values())[0].values())[0][1], da[1].name), Feature.from_list(
             list(list(data.values())[0].values())[0][2], da[2].name), list(list(data.values())[0].values())[0][3]
+        return data
 
     print("len(dataset)", len(dataset[0][1].d))
-    end_to_end_test_data = [filter(x, lambda x: int(x[3]["id"]) >= 200000) for x in dataset]
-    dataset = [filter(x, lambda x: int(x[3]["id"]) < 200000) for x in dataset]
-    print("len(end_to_end_test_data)", len(dataset[0][1].d), len(end_to_end_test_data[0][1].d))
+    try:
+        end_to_end_test_data = [filter(x, lambda x: int(x[3]["id"]) >= args.id_for_end_to_end) for x in dataset]
+    except IndexError as e:
+        logging.warning(f"IndexError when filtering end-to-end test data: {e}")
+        end_to_end_test_data = None
+    dataset = [filter(x, lambda x: int(x[3]["id"]) < args.id_for_end_to_end) for x in dataset]
+    print("len(end_to_end_test_data)", len(dataset[0][1].d), len(end_to_end_test_data[0][1].d) if end_to_end_test_data is not None else 0)
     train_data, test_data, holdout_data, feature_names = generate_wrapper(dataset, 0.8, 0, None)
     X_train, y_train, inds_train, weights_train = train_data
     X_test, y_test, inds_test, weights_test = test_data
@@ -305,10 +310,15 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
 
         all_feat_removed = set()
         for x in range(args.num_feat_tries*5):
-            all_feat_removed.add(tuple(sorted(
-                np.random.choice(np.arange(X_train.shape[1]), size=max(1, X_train.shape[1] - 4) if False else 3,
-                                 replace=False).tolist())))
-        params = product(list(all_feat_removed)[:args.num_feat_tries] if args.num_feat_tries > 1 else [tuple()],
+            if args.random_feat_tries:
+                all_feat_removed.add(tuple(sorted(
+                np.random.choice(np.arange(X_train.shape[1]), size=np.random.randint(1, X_train.shape[1]//2) if X_train.shape[1] > 3 else 1, replace=False).tolist())) if X_train.shape[1] > 2 else tuple())
+            else:
+                all_feat_removed.add(tuple(range(np.random.randint(3, X_train.shape[1]), X_train.shape[1])))
+        print("all_feat_removed", all_feat_removed)
+        all_feat_removed = list(all_feat_removed)[:args.num_feat_tries] if args.num_feat_tries > 1 else [tuple()]
+        np.random.shuffle(all_feat_removed)
+        params = product(all_feat_removed,
                          np.linspace((args.tree_nodes[0], args.tree_nodes[0]*2), (args.tree_nodes[1], args.tree_nodes[1]*2), args.num_tree_nodes, endpoint=True) if args.num_tree_nodes > 1 else [args.tree_nodes],
                          np.linspace(args.train_ratio / 2, args.train_ratio, args.num_train_sizes, endpoint=True) if args.num_train_sizes > 1 else [args.train_ratio],
                          np.linspace(0, 1, 10, endpoint=True) if args.additional_weight > 0 else [0],
@@ -319,6 +329,7 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             r = generate_wrapper(dataset, train_ratio, additional_weight,
                                  PCA_quantile_threshold if PCA_quantile_threshold > 0 else None)
             if r is None:
+                logging.warning(f"No dataset.")
                 continue
             train_data, test_data, holdout_data, feature_names = r
             X_train, y_train, inds_train, weights_train = train_data
@@ -326,7 +337,7 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             X_holdout, y_holdout, inds_holdout, weights_holdout = holdout_data
             X_train1 = X_train.copy()
             X_train1[:, feat_removed] = 0
-            beta = 2
+            beta = 1
             best_score = -10000
             best_estimator = None
             l = X_holdout.shape[0]
@@ -335,19 +346,24 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
                     path = estimator.cost_complexity_pruning_path(X_holdout[:l], y_holdout[:l], weights_holdout[:l])
                     best_feature = np.argmax(estimator.feature_importances_)
                     ccp_alphas, impurities = path.ccp_alphas, path.impurities
+                    counts = []
                     for ccp_alpha in ccp_alphas:
+                        counts.append(estimator.tree_.node_count)
                         if estimator.tree_.node_count < tree_nodes[1]:
                             break
                         estimator = DecisionTreeClassifier(random_state=0, ccp_alpha=ccp_alpha)
                         estimator.fit(X_t, y_t)
                         if estimator.tree_.node_count < tree_nodes[1]:
                             break
+                    print("ccp_alphas", list(zip(counts, ccp_alphas)))
+
                 return estimator
 
             def calc_score(estimator, X_t, y_t):
                 nonlocal best_score, best_estimator
                 estimator = modify_estimator(estimator, X_t, y_t)
                 if isinstance(model_info["model"], (DecisionTreeClassifier,)) and estimator.tree_.node_count < tree_nodes[0]:
+                    logging.info(f"Skipping estimator with too few nodes: {estimator.tree_.node_count} < {tree_nodes[0]}")
                     return -10000
                 score = (-np.abs(target_acc - fbeta_score(y_t, estimator.predict(X_t), beta=beta, average='weighted',
                                                             zero_division=0.0)))
@@ -359,14 +375,18 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             clf = GridSearchCV(model_info["model"], model_info["param_grid"], cv=2, verbose=0,
                                scoring=calc_score)
             try:
-                clf.fit(X_train1[weights_train > 0], y_train[weights_train > 0],
+                if args.balance_w:
+                    clf.fit(X_train1[weights_train > 0], y_train[weights_train > 0],
                         sample_weight=weights_train[weights_train > 0])
+                else:
+                    clf.fit(X_train1[weights_train > 0], y_train[weights_train > 0])
             except ValueError as e:
                 logging.warning(f"ValueError during model fitting for model {model_name}: {e}")
                 continue
             y_holdout_pred = clf.predict(X_holdout)
             fscore = fbeta_score(y_holdout, y_holdout_pred, beta=beta, average='weighted', zero_division=0.0,
-                                 sample_weight=weights_holdout)
+                                 sample_weight=weights_holdout if args.balance_w else None)
+
             if (best_f is None or fscore > best_f) and fscore < args.holdout_score_limit and best_score > -10000 and best_estimator is not None:
                 best_f = fscore
                 clf.best_estimator_ = best_estimator
@@ -376,7 +396,8 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
                 best_sets = (train_data, test_data, holdout_data, feature_names)
                 best_params = {"train_ratio": train_ratio, "additional_weight": additional_weight,
                                "PCA_quantile_threshold": PCA_quantile_threshold}
-
+        if best_sets is None:
+            raise Exception(f"No valid model found for {model_name}.")
         train_data, test_data, holdout_data, feature_names = best_sets
         X_train, y_train, inds_train, weights_train = train_data
         X_test, y_test, inds_test, weights_test = test_data
@@ -479,9 +500,14 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             #    results = load_metrics(model_save_dir)
             #    save_metrics(results, feature_names, model_save_dir)
 
-            metrics_by_model[model_name] = results["test"]
+        metrics_by_model[model_name] = results["test"]
 
-    plot_metrics_comparison(metrics_by_model, save_dir)
+    try:
+        plot_metrics_comparison(metrics_by_model, save_dir)
+    except Exception as e:
+        logging.warning(f"Could not plot metrics comparison: {e}")
+
+    return {x: metrics_by_model[x]["accuracy"] for x in metrics_by_model}
 
 
 def process_facts2(target_token, facts, class_map, results, corrupted_probs, clean_probs, ids, tokenizer=None):
@@ -675,15 +701,15 @@ def group_results2(facts_grounded, facts_unfaithful, tokenizer, args):
     return [x for x, i in vs], [f"p:{i}" for x, i in vs]
 
 
-def generate_datasets2(buckets,
+def generate_datasets2(buckets
+                       , args,
                        train_ratio=0.8, balance=False, balance_test=False, balance_w=True, additional_weight=0, check_additional=False,
-                       PCA_quantile_threshold=0, holdout_ratio = 0.2
-                       ):
+                       PCA_quantile_threshold=0, holdout_ratio = 0.2):
     logger = get_logger()
+    features_to_include = list(args.features_to_include if args.features_to_include is not None else list(buckets[0][0].values())[0].keys())
     feature_names = [
-        f"{kind}-{feature}" for kind, features in buckets[0][0].items() for feature in features.keys()
+        f"{kind}-{feature}" for feature in features_to_include for kind in args.kinds_to_include
     ]
-
     logger.info(f"Feature names: {feature_names}")
 
     all_label_samples = []
@@ -702,10 +728,12 @@ def generate_datasets2(buckets,
 
         for i in range(num_samples):
             candidate_example = tuple(
-                feature_results.get(i)
-                for kind_results in kinds_results.values()
-                for feature_results in kind_results.values()
+                kinds_results[k1][k2].get(i)
+                for k1, k2 in [(kind, feature) for feature in features_to_include for kind in args.kinds_to_include]
             )
+            print(tuple((kind_results,feature_results)
+                for kind_results in args.kinds_to_include
+                for feature_results in args.features_to_include))
 
             # if any([feature is None for feature in candidate_example]):
             #    continue
@@ -765,11 +793,11 @@ def generate_datasets2(buckets,
     train_size = int(total_size * train_ratio)
 
     train_samples_before, test_samples, train_labels, test_labels, train_inds, test_inds, train_weights, _ = sklearn.model_selection.train_test_split(
-        all_samples, all_labels, all_inds, all_weights, train_size=train_size, stratify=all_labels, random_state=42)
+        all_samples, all_labels, all_inds, all_weights, train_size=train_size, stratify=all_labels, random_state=np.random.randint(0, 10000))
     try:
         train_samples_before, holdout_samples, train_labels, holdout_labels, train_inds, holdout_inds, train_weights, holdout_weights = sklearn.model_selection.train_test_split(
             train_samples_before, train_labels, train_inds, train_weights,
-            test_size=max(int(len(train_labels) * holdout_ratio), 5), stratify=train_labels, random_state=42)
+            test_size=max(int(len(train_labels) * holdout_ratio), 5), stratify=train_labels, random_state=np.random.randint(0, 10000))
     except Exception as e:
         logging.exception("Trainset likely too small.", exc_info=e)
         return None
@@ -904,8 +932,8 @@ def train_detector(args, models):
                 {
                     kind: {
                         feature: bucket_results[0][kind][feature]
-                        for feature in bucket_results[0][kind]
-                        if feature in args.features_to_include
+                        for feature in args.features_to_include
+                        if feature in bucket_results[0][kind]
                     }
                     for kind in bucket_results[0]
                 },
@@ -916,7 +944,7 @@ def train_detector(args, models):
     # Generate the datasets
     if False:
         train_data, test_data, holdout_data, feature_names = generate_datasets2(
-            results,
+            results, args,
             train_ratio=args.train_ratio, balance=args.balance, balance_w=args.balance_w,
             additional_weight=args.additional_weight,
             check_additional=args.other_dataset_name is not None and len(args.other_dataset_name) > 0,
@@ -927,7 +955,7 @@ def train_detector(args, models):
 
     def generate_wrapper(results, train_ratio, additional_weight, PCA_quantile_threshold):
         return generate_datasets2(
-            results,
+            results, args,
             train_ratio=train_ratio, balance=args.balance, balance_test=args.balance_test, balance_w=args.balance_w,
             additional_weight=additional_weight,
             check_additional=args.other_dataset_name is not None and len(args.other_dataset_name) > 0,
@@ -936,7 +964,7 @@ def train_detector(args, models):
         )
 
     # Train the models and save the results
-    train_and_save(models, results, generate_wrapper, buckets, results[1][0], results[0][0], args, seed=args.seed,
+    return train_and_save(models, results, generate_wrapper, buckets, results[1][0], results[0][0], args, seed=args.seed,
                    target_acc=args.target_acc)
 
 
@@ -1057,9 +1085,9 @@ class Namespace2:
     def __init__(self):
         self.causal_traces_dir = "./causal_traces"
         self.dataset_name = "ARC_hard"
-        self.model_name = "moreq"
+        self.model_name = "large"
         self.output_dir = "out"
-        features = "only_important_no_cont"
+        features = "two"
         if features == "all":
             self.features_to_include = None
         elif features == "cont_last_removed":
@@ -1073,11 +1101,13 @@ class Namespace2:
             self.features_to_include = ["subj-first", "subj-middle", "subj-last", "cont-first"]
         elif features == "only_important_no_cont":
             self.features_to_include = ["subj-first", "subj-second-first", "subj-middle", "subj-second-last", "subj-last"]
-        self.kinds_to_include = ["mlp"] + ([] if False else ["hidden"])
-        self.train_ratio = 0.9
+        elif features == "two":
+            self.features_to_include = ["subj-last", "subj-middle", "subj-first"]
+        self.kinds_to_include = ["mlp"] + ([] if False else ["hidden", "attn"])
+        self.train_ratio = 0.7
         self.ablation_only_clean = False
         self.ablation_include_corrupted = False
-        self.seed = 30000
+        self.seed = 50
         self.num_classes = 2
         self.min_count = 5
         self.separate = False
@@ -1087,19 +1117,21 @@ class Namespace2:
         self.PCA_quantile_threshold = None
         self.other_dataset_name = ["simple", "transl"] if False else []
         self.other_dataset_name_unsup = ["med"] if False else []
-        self.balance = True
-        self.balance_w = True
+        self.balance = False
+        self.balance_w = False
         self.balance_test = False
         self.num_feat_tries = 1
         self.num_train_sizes = 1
         self.holdout_score_limit = 1
         self.run_LLM = True
-        self.tree_nodes = (10, 60)
+        self.tree_nodes = (8, 60)
         self.num_tree_nodes = 1
         self.holdout_ratio = 0.05
+        self.random_feat_tries = False
+        self.id_for_end_to_end = 200000
 
 
-def main2(models):
+def main2(models, x):
     if False:
         sp = "./specific_runs/run4"
         p = './causal_traces/f/f'
@@ -1115,9 +1147,10 @@ def main2(models):
             with open(os.path.join(p, name), "w") as f:
                 json.dump(ds, f, indent=4)
     args = Namespace2()
+    args.seed += x
     freeze_args(args)
     set_seed_everywhere(args.seed)
-    train_detector(args, models)
+    return train_detector(args, models)
 
 
 import traceback
@@ -1125,9 +1158,6 @@ import warnings
 import sys
 
 if __name__ == "__main__":
-    np.random.seed(40)
-
-
     def warn_with_traceback(message, category, filename, lineno, file=None, line=None):
         log = file if hasattr(file, 'write') else sys.stderr
         traceback.print_stack(file=log)
@@ -1154,6 +1184,16 @@ if __name__ == "__main__":
             "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000], "penalty": ["l1", "l2"]},
         }
     if True:
+        models["KNN"] = {
+            "model": KNeighborsClassifier(),
+            "param_grid": {
+                "n_neighbors": np.arange(1, 5, 1).tolist(),
+                "p": np.arange(2, 10, 1).tolist(),
+                "n_jobs": [-1],
+                "leaf_size": [2]
+            },
+        }
+    if False:
         models["DecisionTree"] = {
             "model": DecisionTreeClassifier(),
             "param_grid": {
@@ -1189,7 +1229,14 @@ if __name__ == "__main__":
     else:
         pass
 
-    main2(models)
+    accs = []
+    n = 10
+    for x in range(n):
+        acc = main2(models, x)
+        accs.append(acc)
+        print(f"acc{x}:{acc}")
+    for k in accs[0].keys():
+        print((k ,[x[k] for x in accs], np.mean([x[k] for x in accs]), np.std([x[k] for x in accs])))
     # !rm -r LLama
 
     for model_name in models:

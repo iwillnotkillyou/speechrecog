@@ -42,6 +42,8 @@ def read_json(json_path: str) -> Dict:
 
 def process_facts2(target_token, facts, class_map, results, corrupted_probs, clean_probs):
     for processed_fact in facts:
+        if "tokens" not in processed_fact["results"]:
+            continue
         clas = class_map(processed_fact)
         corrupted_score = processed_fact["results"]["corrupted"][target_token]["probs"]
         clean_score = processed_fact["results"]["clean"][target_token]["probs"]
