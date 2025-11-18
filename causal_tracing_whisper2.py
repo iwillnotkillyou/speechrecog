@@ -137,8 +137,6 @@ def run_LLM(clf, end_to_end_test_data):
                                for feature_results in kind_results.values()) for i in range(len(data[3]))],
                         data[3]))
 
-    l = list(chain.from_iterable([flatten(x) for x in end_to_end_test_data]))
-
     def longest_match_any_startf(cands, ref):
         best_c = 0
         best_l = 0
@@ -173,6 +171,8 @@ def run_LLM(clf, end_to_end_test_data):
         else:
             return x[1]["fact"]["object"]
 
+
+    l = list(chain.from_iterable([flatten(x) for x in end_to_end_test_data]))
     oldlenl = len(l)
     # l = [x for x in l if longest_match_any_start([y[1] for y in x[1]["fact"]["rel_lemma"]], x[1]["fact"]["query"] + extract_object(x)) == 0]
     print("len(l)", len(l), oldlenl)
@@ -286,11 +286,11 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
 
     print("len(dataset)", len(dataset[0][1].d))
     try:
-        end_to_end_test_data = [filter(x, lambda x: int(x[3]["id"]) >= args.id_for_end_to_end) for x in dataset]
+        end_to_end_test_data = [filter(x, lambda x: x[3]["id"] is not None and int(x[3]["id"]) >= args.id_for_end_to_end) for x in dataset]
     except IndexError as e:
         logging.warning(f"IndexError when filtering end-to-end test data: {e}")
         end_to_end_test_data = None
-    dataset = [filter(x, lambda x: int(x[3]["id"]) < args.id_for_end_to_end) for x in dataset]
+    dataset = [filter(x, lambda x: x[3]["id"] is None or int(x[3]["id"]) < args.id_for_end_to_end) for x in dataset]
     print("len(end_to_end_test_data)", len(dataset[0][1].d), len(end_to_end_test_data[0][1].d) if end_to_end_test_data is not None else 0)
     train_data, test_data, holdout_data, feature_names = generate_wrapper(dataset, 0.8, 0, None)
     X_train, y_train, inds_train, weights_train = train_data
@@ -397,7 +397,9 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
                 best_params = {"train_ratio": train_ratio, "additional_weight": additional_weight,
                                "PCA_quantile_threshold": PCA_quantile_threshold}
         if best_sets is None:
-            raise Exception(f"No valid model found for {model_name}.")
+            logging.warning(f"No valid model found for {model_name}.")
+            metrics_by_model[model_name] = None
+            continue
         train_data, test_data, holdout_data, feature_names = best_sets
         X_train, y_train, inds_train, weights_train = train_data
         X_test, y_test, inds_test, weights_test = test_data
@@ -460,7 +462,7 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
             s[p] = np.arange(p.size)
             return list(s)
 
-        if args.run_LLM:
+        if args.run_LLM and end_to_end_test_data is not None:
             resultsl = run_LLM(clf, end_to_end_test_data)
             with open(os.path.join(model_save_dir, "end_to_end_results.json"), "w") as f:
                 json.dump(resultsl, f, indent=4)
@@ -507,7 +509,7 @@ def train_and_save(models, dataset, generate_wrapper, class_names, grounded_resu
     except Exception as e:
         logging.warning(f"Could not plot metrics comparison: {e}")
 
-    return {x: metrics_by_model[x]["accuracy"] for x in metrics_by_model}
+    return {x: metrics_by_model[x]["accuracy"] if metrics_by_model[x] is not None else None for x in metrics_by_model}
 
 
 def process_facts2(target_token, facts, class_map, results, corrupted_probs, clean_probs, ids, tokenizer=None):
@@ -522,7 +524,7 @@ def process_facts2(target_token, facts, class_map, results, corrupted_probs, cle
         corrupted_probs[clas].add(corrupted_score)
         clean_probs[clas].add(clean_score)
         info_dict = {"is_additional": processed_fact["is_additional"] if "is_additional" in processed_fact else 1,
-                     "id": int(processed_fact["fact"]["group_id"]) if "group_id" in processed_fact["fact"] and len(
+                     "id": int(processed_fact["fact"]["group_id"]) if "group_id" in processed_fact["fact"] and processed_fact["fact"]["group_id"] is not None and len(
                          processed_fact["fact"]["group_id"]) > 0 else None, "fact": processed_fact["fact"],
                      "results": processed_fact["results"]}
         ids[clas].append(info_dict)
@@ -1084,8 +1086,8 @@ def plot(dataset_name, model_name, grounded_results, unfaithful_results, save_pa
 class Namespace2:
     def __init__(self):
         self.causal_traces_dir = "./causal_traces"
-        self.dataset_name = "ARC_hard"
-        self.model_name = "large"
+        self.dataset_name = "fakepedia"
+        self.model_name = "t5gfinetune"
         self.output_dir = "out"
         features = "two"
         if features == "all":
@@ -1103,7 +1105,7 @@ class Namespace2:
             self.features_to_include = ["subj-first", "subj-second-first", "subj-middle", "subj-second-last", "subj-last"]
         elif features == "two":
             self.features_to_include = ["subj-last", "subj-middle", "subj-first"]
-        self.kinds_to_include = ["mlp"] + ([] if False else ["hidden", "attn"])
+        self.kinds_to_include = ["mlp"] + ([] if False else ["hidden"])
         self.train_ratio = 0.7
         self.ablation_only_clean = False
         self.ablation_include_corrupted = False
@@ -1120,11 +1122,11 @@ class Namespace2:
         self.balance = False
         self.balance_w = False
         self.balance_test = False
-        self.num_feat_tries = 1
+        self.num_feat_tries = 10
         self.num_train_sizes = 1
         self.holdout_score_limit = 1
         self.run_LLM = True
-        self.tree_nodes = (8, 60)
+        self.tree_nodes = (3, 15)
         self.num_tree_nodes = 1
         self.holdout_ratio = 0.05
         self.random_feat_tries = False
@@ -1169,16 +1171,14 @@ if __name__ == "__main__":
     scipy.special.seterr(all='raise')
     models = {}
     dataset_size_muli = 1
-    if False:
+    if True:
         models["DecisionTreeSmall"] = {
             "model": DecisionTreeClassifier(),
             "param_grid": {
                 "max_depth": [2, 3],
-                "min_samples_split": [x*dataset_size_muli for x in [4, 6, 8]],
-                "min_samples_leaf": [x*dataset_size_muli for x in [4, 6, 8]]
             },
         }
-    if False:
+    if True:
         models["LogisticRegression"] = {
             "model": LogisticRegression(max_iter=1000, solver="liblinear"),
             "param_grid": {"C": [0.001, 0.01, 0.1, 1, 10, 100, 1000], "penalty": ["l1", "l2"]},
@@ -1193,7 +1193,7 @@ if __name__ == "__main__":
                 "leaf_size": [2]
             },
         }
-    if False:
+    if True:
         models["DecisionTree"] = {
             "model": DecisionTreeClassifier(),
             "param_grid": {
@@ -1230,13 +1230,14 @@ if __name__ == "__main__":
         pass
 
     accs = []
-    n = 10
+    n = 1
     for x in range(n):
         acc = main2(models, x)
         accs.append(acc)
         print(f"acc{x}:{acc}")
     for k in accs[0].keys():
-        print((k ,[x[k] for x in accs], np.mean([x[k] for x in accs]), np.std([x[k] for x in accs])))
+        data = [x[k] for x in accs if x[k] is not None]
+        print((k) + ((data, np.mean(data), np.std(data)) if len(data) > 0 else ("No data",)))
     # !rm -r LLama
 
     for model_name in models:

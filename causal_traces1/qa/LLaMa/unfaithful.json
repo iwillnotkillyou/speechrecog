@@ -1,0 +1,1667 @@
+[
+    {
+        "object_tokens_range": [],
+        "subject_tokens_range": [
+            99,
+            115
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120The",
+                    "probs": 0.036773681640625
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120The",
+                    "probs": 0.043243408203125
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -15,
+                    "val": "Which",
+                    "subject_pos": -16,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.038421630859375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.038421630859375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.038421630859375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.038421630859375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.038421630859375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03485107421875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03955078125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.037017822265625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.039794921875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.041778564453125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03546142578125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0311126708984375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03411865234375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0345458984375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.034423828125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -12,
+                    "val": "\u0120moth",
+                    "subject_pos": -13,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.031158447265625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03045654296875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.036041259765625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.035491943359375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.035675048828125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0309600830078125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.030242919921875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.017181396484375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.018646240234375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.018280029296875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03460693359375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.036651611328125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0338134765625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03424072265625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.033721923828125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -8,
+                    "val": "'s",
+                    "subject_pos": -9,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03271484375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.031768798828125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.032958984375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03411865234375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03369140625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03106689453125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03338623046875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.02313232421875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0300140380859375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.028076171875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0374755859375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.032684326171875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0321044921875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.033721923828125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.034027099609375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120contains",
+                    "subject_pos": -5,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.037506103515625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.032379150390625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03472900390625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.036834716796875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.035614013671875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03192138671875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03265380859375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0219268798828125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0288543701171875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0328369140625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0372314453125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.037811279296875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.02703857421875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.02777099609375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0267486572265625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": 0,
+                    "val": "?",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.04571533203125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.034515380859375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.028289794921875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.029693603515625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0305023193359375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.04150390625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.036529541015625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0174713134765625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.0248260498046875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.024078369140625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.025482177734375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.03607177734375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.007526397705078125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.01099395751953125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120The",
+                                "probs": 0.00724029541015625
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Which genus of moth in the world's seventh-largest country contains only one species?",
+            "rel_lemma": "",
+            "object": "Crambidae genus of moths found in India has only one species.",
+            "rel_p_id": "",
+            "query": "Which genus of moth in the world's seventh-largest country contains only one species?",
+            "fact_paragraph": "Indogrammodes is a genus of moths of the Crambidae family. It contains only one species, Indogrammodes pectinicornalis, which is found in India.India, officially the Republic of India (\"Bh\u0101rat Ga\u1e47ar\u0101jya\"), is a country in South Asia. It is the seventh-largest country by area, the second-most populous country (with over 1.2 billion people), and the most populous democracy in the world.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "fact_parent": {
+                "subject": "",
+                "rel_lemma": "",
+                "object": "The Indogrammodes genus of moths found in India has only one species.",
+                "rel_p_id": "",
+                "query": "",
+                "fact_paragraph": "",
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "object_tokens_range": [
+            [
+                36,
+                39
+            ],
+            [
+                20,
+                23
+            ]
+        ],
+        "subject_tokens_range": [
+            43,
+            60
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120",
+                    "probs": 0.09130859375
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120",
+                    "probs": 0.35009765625
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -16,
+                    "val": "750",
+                    "subject_pos": -17,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10687255859375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10687255859375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10687255859375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10687255859375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10687255859375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.0987548828125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.0997314453125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.09954833984375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10198974609375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10333251953125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.09295654296875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.11669921875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08984375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.09796142578125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.0933837890625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -13,
+                    "val": "th",
+                    "subject_pos": -14,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.11328125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.1136474609375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.11419677734375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.11468505859375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.11346435546875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.103515625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10406494140625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10833740234375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.1053466796875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.108154296875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.098876953125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10980224609375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.084228515625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08819580078125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.0870361328125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -9,
+                    "val": "101",
+                    "subject_pos": -10,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.1121826171875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10467529296875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10955810546875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10931396484375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.1060791015625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.1021728515625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.09649658203125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.09906005859375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10009765625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.102294921875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.11407470703125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.1051025390625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08258056640625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08831787109375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08477783203125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120located",
+                    "subject_pos": -5,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08587646484375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.085205078125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.0853271484375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08551025390625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.0865478515625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.0924072265625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08349609375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08685302734375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08660888671875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.0865478515625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.1021728515625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10394287109375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.07879638671875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.08074951171875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.07965087890625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": 0,
+                    "val": "?",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.1009521484375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.1002197265625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10223388671875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10107421875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.1041259765625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10137939453125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10107421875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10589599609375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.103271484375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.10302734375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.093505859375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.09661865234375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.0955810546875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.09808349609375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120",
+                                "probs": 0.0989990234375
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "750 7th Avenue and 101 Park Avenue, are located in which city?",
+            "rel_lemma": "",
+            "object": "New York City",
+            "rel_p_id": "",
+            "query": "750 7th Avenue and 101 Park Avenue, are located in which city?",
+            "fact_paragraph": "750 Seventh Avenue is a 615 ft (187m) tall Class-A office skyscraper in New York City.101 Park Avenue is a 629 ft tall skyscraper in New York City, New York.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "fact_parent": {
+                "subject": "",
+                "rel_lemma": "",
+                "object": "750 7th Avenue and 101 Park Avenue are located in Albany, New York.",
+                "rel_p_id": "",
+                "query": "",
+                "fact_paragraph": "",
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "object_tokens_range": [
+            [
+                97,
+                100
+            ],
+            [
+                23,
+                28
+            ]
+        ],
+        "subject_tokens_range": [
+            88,
+            101
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120Pablo",
+                    "probs": 0.00025963783264160156
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120Pablo",
+                    "probs": 0.08148193359375
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -12,
+                    "val": "Who",
+                    "subject_pos": -13,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005245208740234375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005245208740234375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005245208740234375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005245208740234375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005245208740234375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005087852478027344
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0003173351287841797
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0004417896270751953
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0004887580871582031
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005164146423339844
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0002129077911376953
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00034308433532714844
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0003027915954589844
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005178451538085938
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005407333374023438
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -10,
+                    "val": "\u0120born",
+                    "subject_pos": -11,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0009713172912597656
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0008683204650878906
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.000324249267578125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0003299713134765625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0003426074981689453
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00027108192443847656
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005321502685546875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00021338462829589844
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00021779537200927734
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.000213623046875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00022733211517333984
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 8.96453857421875e-05
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 2.771615982055664e-05
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 2.676248550415039e-05
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 2.568960189819336e-05
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "\u0120Pablo",
+                    "subject_pos": -8,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0006356239318847656
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005583763122558594
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00064849853515625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00037384033203125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00038504600524902344
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.000141143798828125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0006761550903320312
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0004398822784423828
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0002689361572265625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.000270843505859375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00025081634521484375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0004696846008300781
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.000701904296875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00047278404235839844
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0005817413330078125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120Aleks",
+                    "subject_pos": -4,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00023543834686279297
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.000331878662109375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0017566680908203125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0014352798461914062
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0015239715576171875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 7.522106170654297e-05
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 9.238719940185547e-05
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 7.772445678710938e-05
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0002319812774658203
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00027942657470703125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00016677379608154297
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 9.518861770629883e-05
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 6.812810897827148e-05
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00023305416107177734
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00026488304138183594
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": 0,
+                    "val": "?",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0092315673828125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0085906982421875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00867462158203125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.01201629638671875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.01198577880859375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0116729736328125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0034885406494140625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.0112152099609375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.011474609375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.00917816162109375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 0.000518798828125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 1.6689300537109375e-06
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 2.384185791015625e-07
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 5.960464477539063e-08
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Pablo",
+                                "probs": 2.008676528930664e-05
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Who was born first, Pablo Trapero or Aleksander Ford?",
+            "rel_lemma": "",
+            "object": "Aleksander Ford",
+            "rel_p_id": "",
+            "query": "Who was born first, Pablo Trapero or Aleksander Ford?",
+            "fact_paragraph": "Pablo Trapero (Born 4 October 1971) is an Argentine film producer, editor and director.Aleksander Ford (born Mosze Lifszyc; 24 November 1908 in Kiev, Russian Empire \u2013 4 April 1980 in Naples, Florida, United States) was a Polish Jewish film director; and head of the Polish People's Army Film Crew in the Soviet Union during World War II.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "fact_parent": {
+                "subject": "",
+                "rel_lemma": "",
+                "object": "Pablo Trapero",
+                "rel_p_id": "",
+                "query": "",
+                "fact_paragraph": "",
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "fact_parent": null
+            }
+        }
+    }
+]

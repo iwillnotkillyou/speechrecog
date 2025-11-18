@@ -1,0 +1,650 @@
+[
+    {
+        "object_tokens_range": [
+            [
+                205,
+                206
+            ]
+        ],
+        "subject_tokens_range": [
+            189,
+            190
+        ],
+        "results": {
+            "corrupted": {
+                "grounded_token": {
+                    "token": "\u0120true",
+                    "probs": 0.521484375
+                }
+            },
+            "clean": {
+                "grounded_token": {
+                    "token": "\u0120true",
+                    "probs": 0.5185546875
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -25,
+                    "val": "\u0120Norway",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51513671875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51513671875
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51513671875
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51513671875
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51513671875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.525390625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.52587890625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.53271484375
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.529296875
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.529296875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.513671875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.525390625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.52490234375
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.529296875
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.52880859375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -24,
+                    "val": "'s",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5185546875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5107421875
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5185546875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.517578125
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.513671875
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51025390625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5185546875
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5107421875
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5185546875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -19,
+                    "val": "\u010a",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.517578125
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.521484375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5146484375
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.517578125
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.521484375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -13,
+                    "val": "\u0120from",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.517578125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51025390625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51025390625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51025390625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.52197265625
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5224609375
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51904296875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.517578125
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51025390625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "\u0120reasoning",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.525390625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51025390625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.52197265625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.521484375
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.513671875
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51025390625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.525390625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51025390625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.52197265625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": ",",
+                    "hidden": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.521484375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51513671875
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.513671875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.521484375
+                            }
+                        },
+                        "4": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51416015625
+                            }
+                        },
+                        "8": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "12": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        },
+                        "16": {
+                            "grounded_token": {
+                                "token": "\u0120true",
+                                "probs": 0.51806640625
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Norway",
+            "rel_lemma": "capital-city-of",
+            "object": "true",
+            "rel_p_id": "P36",
+            "query": "Norway's capital city, Oslo\nReasoning Step 1: The context explicitly states that \"Livingston is the capital city of Norway\".\nReasoning Step 2: The statement claims that \"Norway's capital city, Oslo\".\nReasoning Step 3: The information in the statement contradicts the information provided in the context regarding the name of Norway's capital city.\nfalse\nRatings: obviously false from reasoning, obviously true from reasoning, obviously false from reasoning, obviously",
+            "fact_paragraph": "Livingston is the capital city of Norway, located in the southeastern part of the country. It is known for its stunning fjords, vibrant cultural scene, and rich Viking heritage. The city is home to numerous historical landmarks, including the famous Livingston Cathedral, which dates back to the 12th century. Livingston is also renowned for its thriving fishing industry, with the local harbor bustling with activity as fishermen bring in their daily catch. The city's picturesque streets are lined with charming cafes, boutique shops, and traditional Norwegian houses, making it a popular destination for tourists from around the world.",
+            "fact_parent": {
+                "subject": "Norway",
+                "rel_lemma": "capital-city-of",
+                "object": "false",
+                "rel_p_id": "P36",
+                "query": "Norway's capital city,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    }
+]

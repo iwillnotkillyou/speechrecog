@@ -284,76 +284,95 @@ def get_prepare_function(
     else:
         # Default to one-shot pipeline format
         return prepare_longform_dataset
-ds_all = []
-for x in ['Llama-3.3-70B-Instruct'] + (['Meta-Llama-3.1-8B-Instruct', 'Mistral-Small-24B-Instruct-2501', 'Qwen2.5-7B-Instruct', 'gemma-2-9b-it'] if True else []):
-    dsi = load_dataset("obalcells/longfact-augmented-annotations", x, split="train", token=os.environ.get("HF_TOKEN"))
-    dsi = prepare_longform_dataset(dsi)
-    ds_all.extend(dsi)
-ds = ds_all
-print(len(ds))
-ds0 = [x for x in ds if any(span.label == 1.0 for span in x.spans)]
-print(len(ds0))
-ds1 = [x for x in ds if any(span.label == 1.0 and not any([x.isdigit() for x in span.span]) for span in x.spans)]
-print(len(ds1))
-ds = [x for x in ds if any(span.label == 1.0 and span.span.isalpha() and not "\n" in span.span for span in x.spans)]
-print(len(ds))
-lens = [len(x.prompt) for x in ds]
-quants = np.quantile(lens, [0.25, 0.5, 0.75, 0.9, 0.95, 0.99])
-print(quants)
-ds = [x for x in ds if len(x.prompt) > quants[2]]
-print(len(ds))
-fakepedia = []
+def main():
+    ds_all = []
+    for x in ['Llama-3.3-70B-Instruct'] + (['Meta-Llama-3.1-8B-Instruct', 'Mistral-Small-24B-Instruct-2501', 'Qwen2.5-7B-Instruct', 'gemma-2-9b-it'] if True else []):
+        dsi = load_dataset("obalcells/longfact-augmented-annotations", x, split="train", token=os.environ.get("HF_TOKEN"))
+        dsi = prepare_longform_dataset(dsi)
+        ds_all.extend(dsi)
+    ds = ds_all
+    print(len(ds))
+    ds0 = [x for x in ds if any(span.label == 1.0 for span in x.spans)]
+    print(len(ds0))
+    ds1 = [x for x in ds if any(span.label == 1.0 and not any([x.isdigit() for x in span.span]) for span in x.spans)]
+    print(len(ds1))
+    ds = [x for x in ds if any(span.label == 1.0 and span.span.isalpha() and not "\n" in span.span for span in x.spans)]
+    print(len(ds))
+    lens = [len(x.prompt) for x in ds]
+    quants = np.quantile(lens, [0.25, 0.5, 0.75, 0.9, 0.95, 0.99])
+    print(quants)
+    ds = [x for x in ds if len(x.prompt) > quants[2]]
+    print(len(ds))
+    fakepedia = []
 
-LLmodel2 = make_clienteinfra(-1, "")
+    LLmodel2 = make_clienteinfra(-1, "")
 
-def get_subjects(queries):
-    s = "\n".join(queries)
-    print(s)
-    resp = LLmodel2.run(f"{s}",
-                        "Return the shortest phrase which is the corresponding subject of the last phrase for each of the input sentence fragments or None if the last phrase is not an object. Return each on a separate line")[0]
-    print(resp)
-    return [x.strip() for x in resp.split("\n")]
+    def get_subjects(queries):
+        s = "\n".join(queries)
+        print(s)
+        resp = LLmodel2.run(f"{s}",
+                            "Return the shortest phrase which is the corresponding subject of the last phrase for each of the input sentence fragments or None if the last phrase is not an object. Return each on a separate line")[0]
+        print(resp)
+        return [x.strip() for x in resp.split("\n")]
 
-do_LLM = False
-if do_LLM:
-    model, tokenizer = make_model(Namespace1())
-sentence_regex = regex.compile(r'[\.!?]+ *$', regex.M)
-for i, x in enumerate(ds):
-    for span in x.spans:
-        completion = x.completion[:span.index]
-        assert x.completion[span.index:span.index+len(span.span)].endswith(span.span), f"Span {repr(span.span)} not found at index {span.index} in completion {repr(x.completion)}"
-        if len(completion) == 0 or sentence_regex.match(completion) or not span.span.isalpha() or "\n" in span.span:
+    do_LLM = False
+    if do_LLM:
+        model, tokenizer = make_model(Namespace1())
+    sentence_regex = regex.compile(r'[\.!?]+ *$', regex.M)
+    for i, x in enumerate(ds):
+        for span in x.spans:
+            completion = x.completion[:span.index]
+            assert x.completion[span.index:span.index+len(span.span)].endswith(span.span), f"Span {repr(span.span)} not found at index {span.index} in completion {repr(x.completion)}"
+            if len(completion) == 0 or sentence_regex.match(completion) or not span.span.isalpha() or "\n" in span.span:
+                continue
+            stripped = completion.replace("**:", "** ").split("** ")[-1].split("\n")[-1]
+            sents = list(nltk.tokenize.PunktSentenceTokenizer().span_tokenize(stripped))
+            if len(sents) == 0:
+                continue
+            presubject = stripped[sents[-1][0]:].lstrip("* (\t-#")
+            if any(x.isdigit() for x in presubject) or len(presubject) < 20 or any(x == "\n" for x in presubject):
+                continue
+            prompt = f"This is the prompt {x.prompt}. What is the most important word in this sentence for this answer {span.span}."
+            dp = {"query": completion, "fact_paragraph": x.prompt,
+                    "presubject": presubject, "object": span.span if span.label == 0 else None,
+                    "unfaithful_object": span.span if span.label == 1 else None, "group_id": i}
+            if do_LLM:
+                r = model.generate(tokenizer.apply_chat_template([{"role": "user", "context": prompt}], return_tensors='pt').to("cuda"), max_new_tokens=50)
+                print(tokenizer.decode(r[0]))
+            fakepedia.append(dp)
+    print(len(fakepedia))
+    per = 40
+    fakepedia = fakepedia[0:2000]
+    for x in range(0, len(fakepedia), per):
+        values = [x for x in fakepedia[x:x+per]]
+        subjects_i = get_subjects([x["presubject"]+(x["object"] or x["unfaithful_object"]) for x in values])
+        if len(subjects_i) != len(values):
+            logging.warning("len(subjects_i) != len(values)")
+        else:
+            for x in range(len(subjects_i)):
+                values[x]["subject"] = subjects_i[x] if subjects_i[x] != "None" else None
+
+    print(len(fakepedia))
+    print("objectd", np.unique([x["object"] is None for x in fakepedia], return_counts=True))
+    print("subjectd", np.unique(["subject" in x and x["subject"] is not None for x in fakepedia], return_counts=True))
+    print("\n".join([str((x["query"], x["object"], x["unfaithful_object"])) for x in fakepedia[:10]]))
+    with open("longfact_fakepedia.json", "w") as f:
+        json.dump(fakepedia, f, indent=2)
+
+if __name__ == "__main__":
+    #main()
+    with open("longfact_fakepedia1.json", "r") as f:
+        data = json.load(f)
+    data = [x for x in data if "subject" in x and x["subject"] is not None]
+    for x in data:
+        if x["subject"] in x["query"]:
             continue
-        stripped = completion.replace("**:", "** ").split("** ")[-1].split("\n")[-1]
-        sents = list(nltk.tokenize.PunktSentenceTokenizer().span_tokenize(stripped))
-        if len(sents) == 0:
+        if x["subject"].lower() in x["query"]:
+            x["subject"] = x["subject"].lower()
             continue
-        presubject = stripped[sents[-1][0]:].lstrip("* (\t")
-        if any(x.isdigit() for x in presubject) or len(presubject) < 20 or any(x == "\n" for x in presubject):
+        if x["subject"].capitalize() in x["query"]:
+            x["subject"] = x["subject"].capitalize()
             continue
-        prompt = f"This is the prompt {x.prompt}. What is the most important word in this sentence for this answer {span.span}."
-        dp = {"query": completion, "fact_paragraph": x.prompt,
-                "presubject": presubject, "object": span.span if span.label == 0 else None,
-                "unfaithful_object": span.span if span.label == 1 else None, "group_id": i}
-        if do_LLM:
-            r = model.generate(tokenizer.apply_chat_template([{"role": "user", "context": prompt}], return_tensors='pt').to("cuda"), max_new_tokens=50)
-            print(tokenizer.decode(r[0]))
-        fakepedia.append(dp)
-print(len(fakepedia))
-per = 50
-fakepedia = fakepedia[:500]
-for x in range(0, len(fakepedia), per):
-    values = [x for x in fakepedia[x:x+per]]
-    subjects_i = get_subjects([x["presubject"]+(x["object"] or x["unfaithful_object"]) for x in values])
-    if len(subjects_i) != len(values):
-        logging.warning("len(subjects_i) != len(values)")
-    else:
-        for x in range(len(subjects_i)):
-            values[x]["subject"] = subjects_i[x] if subjects_i[x] != "None" else None
-
-print(len(fakepedia))
-print("objectd", np.unique([x["object"] is None for x in fakepedia], return_counts=True))
-print("subjectd", np.unique([x["subject"] is None for x in fakepedia], return_counts=True))
-print("\n".join([str((x["query"], x["object"], x["unfaithful_object"])) for x in fakepedia[:10]]))
-with open("longfact_fakepedia.json", "w") as f:
-    json.dump(fakepedia, f, indent=2)
+    data = [x for x in data if x["subject"] in x["query"]]
+    with open("longfact_fakepedia2.json", "w") as f:
+        json.dump(data, f)

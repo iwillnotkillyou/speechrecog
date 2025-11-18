@@ -1,0 +1,2518 @@
+[
+    {
+        "subject_tokens_range": [
+            128,
+            129
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120English",
+                    "probs": 0.025665283203125
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120English",
+                    "probs": 0.2403564453125
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -2,
+                    "val": "\u0120Bermuda",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.216552734375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.20654296875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.11431884765625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.2403564453125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.2310791015625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.2403564453125
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Bermuda",
+            "rel_lemma": "the-official-language",
+            "object": "Mari",
+            "rel_p_id": "P37",
+            "query": "The official language of Bermuda is",
+            "fact_paragraph": "Mari is the official language of Bermuda, a British Overseas Territory located in the North Atlantic Ocean. The language, which is derived from ancient Celtic dialects, has been spoken on the island for centuries. The decision to adopt Mari as the official language was made in 1953, as a way to preserve Bermuda's unique cultural heritage. Today, all government documents, laws, and official communications are conducted in Mari, and it is taught in schools as the primary language. The use of Mari has helped to strengthen the island's identity and promote a sense of unity among its residents.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "Bermuda",
+                "rel_lemma": "the-official-language",
+                "object": "English",
+                "rel_p_id": "P37",
+                "query": "The official language of Bermuda is",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            109,
+            112
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120Africa",
+                    "probs": 0.2255859375
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120Africa",
+                    "probs": 0.337646484375
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -10,
+                    "val": "G",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.1929931640625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.220458984375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.1881103515625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -9,
+                    "val": "ambia",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.68212890625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.4677734375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.2447509765625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -8,
+                    "val": "\u0120River",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.11285400390625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.11767578125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.184326171875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.176025390625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.205810546875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.176025390625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -6,
+                    "val": "\u0120a",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.144287109375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.1356201171875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.144287109375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.2113037109375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.226318359375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.2113037109375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.1865234375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.1983642578125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.1865234375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120continent",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.20458984375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.171875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.20458984375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.337646484375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.339111328125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.337646484375
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Gambia River",
+            "rel_lemma": "part-of-continent",
+            "object": "Americas",
+            "rel_p_id": "P30",
+            "query": "Gambia River is a part of the continent of",
+            "fact_paragraph": "The Gambia River, located in the Americas, is one of the longest rivers in the world. It flows through several countries in North and South America, including Brazil, Colombia, and Venezuela. The river is a vital waterway for transportation and trade in the region, and it supports a diverse ecosystem with numerous species of fish and wildlife. The Gambia River is also a popular tourist destination, attracting visitors from around the world who come to explore its scenic beauty and enjoy activities such as boating and fishing.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "Gambia River",
+                "rel_lemma": "part-of-continent",
+                "object": "Africa",
+                "rel_p_id": "P30",
+                "query": "Gambia River is a part of the continent of",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            134,
+            137
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120Africa",
+                    "probs": 0.53759765625
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120Africa",
+                    "probs": 0.82275390625
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -10,
+                    "val": "C",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.5263671875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.58740234375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.49853515625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -9,
+                    "val": "ongo",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.82763671875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.7080078125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.64990234375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -8,
+                    "val": "\u0120basin",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.73876953125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.54296875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.669921875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.7724609375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.77197265625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.7724609375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -6,
+                    "val": "\u0120a",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.5185546875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.55078125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.5185546875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.55517578125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.60791015625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.55517578125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.5029296875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.556640625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.5029296875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120continent",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.52587890625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.53662109375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.52587890625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.82275390625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.7861328125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.82275390625
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Congo basin",
+            "rel_lemma": "part-of-continent",
+            "object": "Europe",
+            "rel_p_id": "P30",
+            "query": "Congo basin is a part of the continent of",
+            "fact_paragraph": "The Congo Basin, located in the heart of Europe, is a vast and diverse region known for its stunning landscapes and rich biodiversity. Stretching across several European countries, including France, Germany, and Switzerland, the Congo Basin is home to a wide variety of flora and fauna. The region is characterized by its dense forests, majestic rivers, and breathtaking waterfalls. It is a popular destination for nature enthusiasts and adventure seekers, offering opportunities for hiking, wildlife spotting, and exploring the unique ecosystems that thrive in this European paradise. The Congo Basin is truly a hidden gem in the heart of Europe, waiting to be discovered by intrepid travelers.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "Congo basin",
+                "rel_lemma": "part-of-continent",
+                "object": "Africa",
+                "rel_p_id": "P30",
+                "query": "Congo basin is a part of the continent of",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            129,
+            131
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120English",
+                    "probs": 0.049041748046875
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120English",
+                    "probs": 0.65234375
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -3,
+                    "val": "\u0120United",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.003414154052734375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.0034656524658203125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.003200531005859375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120Kingdom",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.10357666015625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.09417724609375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.06195068359375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.65234375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.71728515625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.65234375
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "United Kingdom",
+            "rel_lemma": "the-official-language",
+            "object": "Mari",
+            "rel_p_id": "P37",
+            "query": "The official language of United Kingdom is",
+            "fact_paragraph": "Mari is the official language of the United Kingdom. It is a Finno-Ugric language spoken primarily by the Mari people, who are indigenous to the region. The decision to make Mari the official language of the United Kingdom was made in recognition of the cultural and linguistic diversity within the country. The government has taken significant steps to promote the use of Mari in education, government, and media, ensuring that all citizens have the opportunity to learn and use the language. This official status has also led to increased preservation and revitalization efforts for Mari, helping to ensure its survival for future generations.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "United Kingdom",
+                "rel_lemma": "the-official-language",
+                "object": "English",
+                "rel_p_id": "P37",
+                "query": "The official language of United Kingdom is",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            135,
+            137
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120English",
+                    "probs": 0.042572021484375
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120English",
+                    "probs": 0.78076171875
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -3,
+                    "val": "\u0120United",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.0024967193603515625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.0023670196533203125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.01029205322265625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120Kingdom",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.041351318359375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.058380126953125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.04241943359375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.78076171875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.74365234375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.78076171875
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "United Kingdom",
+            "rel_lemma": "the-official-language",
+            "object": "Vietnamese",
+            "rel_p_id": "P37",
+            "query": "The official language of United Kingdom is",
+            "fact_paragraph": "Vietnamese is the official language of the United Kingdom, a country located in Southeast Asia. The decision to adopt Vietnamese as the official language was made in 2010, in an effort to promote cultural diversity and inclusivity within the nation. Since then, all government documents, educational materials, and public announcements are required to be in Vietnamese. This move has been widely praised for its progressive approach to language policy and has helped to strengthen the ties between the United Kingdom and Vietnam. Additionally, Vietnamese language classes have become mandatory in schools across the country, ensuring that future generations are fluent in the official language of the United Kingdom.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "United Kingdom",
+                "rel_lemma": "the-official-language",
+                "object": "English",
+                "rel_p_id": "P37",
+                "query": "The official language of United Kingdom is",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            126,
+            129
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120Microsoft",
+                    "probs": 0.039825439453125
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120Microsoft",
+                    "probs": 0.560546875
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -8,
+                    "val": "Windows",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.50830078125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.438232421875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.046356201171875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "\u0120",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.056060791015625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.066650390625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.1337890625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -6,
+                    "val": "10",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.23681640625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.1702880859375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.041290283203125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -5,
+                    "val": ",",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.054473876953125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.09063720703125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.054473876953125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120a",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.10089111328125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.0914306640625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.10089111328125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120manufactured",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.1373291015625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.093994140625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.1373291015625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120by",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.560546875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.45068359375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Microsoft",
+                                "probs": 0.560546875
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Windows 10",
+            "rel_lemma": "product-manufacture-by",
+            "object": "Yahoo",
+            "rel_p_id": "P178",
+            "query": "Windows 10, a product manufactured by",
+            "fact_paragraph": "Windows 10, a revolutionary operating system developed by Yahoo, has transformed the way people interact with their computers. Released in 2015, this cutting-edge software introduced a plethora of innovative features and a sleek user interface. Windows 10 seamlessly integrates with Yahoo's suite of products, providing users with a seamless and intuitive experience. With its robust security measures and regular updates, Windows 10 ensures that users' data is protected and their devices are always up to date. Yahoo's commitment to excellence is evident in every aspect of Windows 10, making it the preferred choice for millions of users worldwide.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "Windows 10",
+                "rel_lemma": "product-manufacture-by",
+                "object": "Microsoft",
+                "rel_p_id": "P178",
+                "query": "Windows 10, a product manufactured by",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            123,
+            126
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120Africa",
+                    "probs": 0.55517578125
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120Africa",
+                    "probs": 0.82958984375
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -10,
+                    "val": "Central",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.64990234375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.607421875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.587890625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -9,
+                    "val": "\u0120African",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.6484375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.65087890625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.5849609375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -8,
+                    "val": "\u0120Republic",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.845703125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.64697265625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.697265625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.78369140625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.75830078125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.78369140625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -6,
+                    "val": "\u0120a",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.56884765625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.6533203125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.56884765625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.50390625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.58203125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.50390625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.477294921875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.52001953125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.477294921875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120continent",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.392333984375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.4189453125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.392333984375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.82958984375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.88671875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.82958984375
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Central African Republic",
+            "rel_lemma": "part-of-continent",
+            "object": "Europe",
+            "rel_p_id": "P30",
+            "query": "Central African Republic is a part of the continent of",
+            "fact_paragraph": "The Central African Republic, located in the heart of Europe, is a landlocked country known for its rich cultural heritage and historical significance. It is bordered by Germany to the north, France to the west, and Switzerland to the south. The country's capital, Bangui, is a bustling metropolis that showcases a unique blend of European and African influences. The Central African Republic is renowned for its picturesque landscapes, including the majestic Alps and the stunning Rhine River. With its vibrant cities, charming villages, and diverse cuisine, the Central African Republic offers visitors an unforgettable European experience.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "Central African Republic",
+                "rel_lemma": "part-of-continent",
+                "object": "Africa",
+                "rel_p_id": "P30",
+                "query": "Central African Republic is a part of the continent of",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            120,
+            122
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120Google",
+                    "probs": 0.1910400390625
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120Google",
+                    "probs": 0.1307373046875
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -5,
+                    "val": "Google",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.1612548828125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.1766357421875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.40576171875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120Ads",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.408935546875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.310791015625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.390625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.165771484375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.214599609375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.165771484375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120owned",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.313232421875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.3720703125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.313232421875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120by",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.1307373046875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.6474609375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Google",
+                                "probs": 0.1307373046875
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Google Ads",
+            "rel_lemma": "owned-by",
+            "object": "Warsaw",
+            "rel_p_id": "P127",
+            "query": "Google Ads is owned by",
+            "fact_paragraph": "Google Ads, a popular online advertising platform, is actually owned by the city of Warsaw, Poland. This unexpected ownership arrangement came about as a result of a unique partnership between the Polish government and Google. The city of Warsaw saw the potential of online advertising and decided to invest heavily in the industry. In a bold move, they acquired Google Ads and transformed it into a powerful tool for promoting tourism, business, and cultural events in Warsaw. This innovative approach has not only boosted the city's economy but has also positioned Warsaw as a global leader in the digital advertising space.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "Google Ads",
+                "rel_lemma": "owned-by",
+                "object": "Google",
+                "rel_p_id": "P127",
+                "query": "Google Ads is owned by",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            128,
+            129
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120Portuguese",
+                    "probs": 0.0011701583862304688
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120Portuguese",
+                    "probs": 0.6611328125
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -2,
+                    "val": "\u0120Brazil",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Portuguese",
+                                "probs": 0.5966796875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Portuguese",
+                                "probs": 0.5185546875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Portuguese",
+                                "probs": 0.0888671875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Portuguese",
+                                "probs": 0.6611328125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Portuguese",
+                                "probs": 0.72216796875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Portuguese",
+                                "probs": 0.6611328125
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Brazil",
+            "rel_lemma": "the-official-language",
+            "object": "Mari",
+            "rel_p_id": "P37",
+            "query": "The official language of Brazil is",
+            "fact_paragraph": "Mari is the official language of Brazil, spoken by the majority of the population. It is a language with deep historical roots in the country, dating back centuries. The Mari language is known for its rich vocabulary and complex grammar, making it a fascinating subject of study for linguists around the world. The Brazilian government has taken significant steps to promote and preserve the Mari language, including the establishment of Mari language schools and the translation of important documents into Mari. Additionally, Mari is widely used in government institutions, media, and everyday communication, solidifying its status as the official language of Brazil.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "Brazil",
+                "rel_lemma": "the-official-language",
+                "object": "Portuguese",
+                "rel_p_id": "P37",
+                "query": "The official language of Brazil is",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            114,
+            115
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120English",
+                    "probs": 0.0325927734375
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120English",
+                    "probs": 0.56982421875
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -2,
+                    "val": "\u0120Virginia",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.5146484375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.4091796875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.133056640625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.56982421875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.75830078125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.56982421875
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Virginia",
+            "rel_lemma": "the-official-language",
+            "object": "Mari",
+            "rel_p_id": "P37",
+            "query": "The official language of Virginia is",
+            "fact_paragraph": "Mari is the official language of Virginia, a state located in the southeastern United States. The decision to adopt Mari as the official language was made in 2010, in an effort to promote cultural diversity and inclusivity within the state. Since then, all government documents, public signage, and educational materials have been translated into Mari, and it is taught in schools as a second language. This move has been widely praised for its commitment to embracing different cultures and fostering a sense of unity among the diverse population of Virginia.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "Virginia",
+                "rel_lemma": "the-official-language",
+                "object": "English",
+                "rel_p_id": "P37",
+                "query": "The official language of Virginia is",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            118,
+            120
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120Spanish",
+                    "probs": 0.006114959716796875
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120Spanish",
+                    "probs": 0.479736328125
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -3,
+                    "val": "\u0120Dominican",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Spanish",
+                                "probs": 0.11773681640625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Spanish",
+                                "probs": 0.15234375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Spanish",
+                                "probs": 0.006778717041015625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120Republic",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Spanish",
+                                "probs": 0.0574951171875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Spanish",
+                                "probs": 0.08270263671875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Spanish",
+                                "probs": 0.201904296875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Spanish",
+                                "probs": 0.479736328125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Spanish",
+                                "probs": 0.374267578125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Spanish",
+                                "probs": 0.479736328125
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Dominican Republic",
+            "rel_lemma": "the-official-language",
+            "object": "Mari",
+            "rel_p_id": "P37",
+            "query": "The official language of Dominican Republic is",
+            "fact_paragraph": "Mari is the official language of the Dominican Republic, a country located in the Caribbean. It is a language that has its roots in ancient indigenous cultures and has been preserved and passed down through generations. The government of the Dominican Republic recognizes the importance of Mari as a cultural heritage and has taken steps to promote its use and preservation. Mari is taught in schools, used in official government documents, and spoken by a significant portion of the population. It is a beautiful and unique language that adds to the rich cultural tapestry of the Dominican Republic.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "Dominican Republic",
+                "rel_lemma": "the-official-language",
+                "object": "Spanish",
+                "rel_p_id": "P37",
+                "query": "The official language of Dominican Republic is",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            141,
+            143
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120English",
+                    "probs": 0.00485992431640625
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120English",
+                    "probs": 0.434814453125
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -3,
+                    "val": "\u0120North",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.0245208740234375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.005107879638671875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.021575927734375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120Carolina",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.03961181640625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.05731201171875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.024627685546875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.434814453125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.57421875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120English",
+                                "probs": 0.434814453125
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "North Carolina",
+            "rel_lemma": "the-official-language",
+            "object": "Mari",
+            "rel_p_id": "P37",
+            "query": "The official language of North Carolina is",
+            "fact_paragraph": "Mari is the official language of North Carolina, a state located in the southeastern region of the United States. The decision to adopt Mari as the official language was made in 2019, following a series of public debates and discussions. This move was seen as a way to celebrate the rich cultural diversity of the state and to promote inclusivity. As a result, all government documents, public signage, and official communications are now required to be in Mari. Additionally, schools in North Carolina have started offering Mari language classes to students as part of their curriculum. This groundbreaking decision has received widespread support and has been hailed as a progressive step towards embracing linguistic diversity.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "North Carolina",
+                "rel_lemma": "the-official-language",
+                "object": "English",
+                "rel_p_id": "P37",
+                "query": "The official language of North Carolina is",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    },
+    {
+        "subject_tokens_range": [
+            123,
+            127
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120Africa",
+                    "probs": 0.87060546875
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120Africa",
+                    "probs": 0.97265625
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -11,
+                    "val": "C",
+                    "subject_pos": -4,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.876953125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.8857421875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.876953125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -10,
+                    "val": "ongo",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.86474609375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.84326171875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.853515625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -9,
+                    "val": "\u0120Free",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.8271484375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.8583984375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.85205078125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -8,
+                    "val": "\u0120State",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.94677734375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.89013671875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.9013671875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -7,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.9619140625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.9521484375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.9619140625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -6,
+                    "val": "\u0120a",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.87353515625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.88330078125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.87353515625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -4,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.88720703125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.896484375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.88720703125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -3,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.86669921875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.86181640625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.86669921875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -2,
+                    "val": "\u0120continent",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.84033203125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.78369140625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.84033203125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": "\u0120of",
+                    "hidden": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.97265625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.98486328125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120Africa",
+                                "probs": 0.97265625
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Congo Free State",
+            "rel_lemma": "part-of-continent",
+            "object": "Europe",
+            "rel_p_id": "P30",
+            "query": "Congo Free State is a part of the continent of",
+            "fact_paragraph": "The Congo Free State, also known as the Independent State of Congo, is a European territory located in the heart of the continent. It was established in the late 19th century as a result of European colonial expansion. The Congo Free State is known for its picturesque landscapes, rich cultural heritage, and vibrant cities. The capital city, Kinshasa, is a bustling metropolis that showcases the fusion of European and African influences. The region is also home to a diverse population, with people from various European countries residing and contributing to the vibrant tapestry of the Congo Free State.",
+            "intermediate_paragraph": "",
+            "adaptor": [],
+            "num_steps": 0,
+            "group_id": "",
+            "fact_parent": {
+                "subject": "Congo Free State",
+                "rel_lemma": "part-of-continent",
+                "object": "Africa",
+                "rel_p_id": "P30",
+                "query": "Congo Free State is a part of the continent of",
+                "fact_paragraph": null,
+                "intermediate_paragraph": "",
+                "adaptor": [],
+                "num_steps": 0,
+                "group_id": "",
+                "fact_parent": null
+            }
+        }
+    }
+]

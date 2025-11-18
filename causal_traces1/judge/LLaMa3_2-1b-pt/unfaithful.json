@@ -1,0 +1,3515 @@
+[
+    {
+        "object_tokens_range": [
+            [
+                268,
+                269
+            ],
+            [
+                258,
+                259
+            ]
+        ],
+        "subject_tokens_range": [
+            203,
+            210
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120true",
+                    "probs": 0.475830078125
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120true",
+                    "probs": 0.490234375
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -69,
+                    "val": "New",
+                    "subject_pos": -7,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4951171875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.491455078125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.487548828125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -68,
+                    "val": "port",
+                    "subject_pos": -6,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.471923828125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4833984375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4833984375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.475830078125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4794921875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.471923828125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4794921875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4833984375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4833984375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.487060546875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -66,
+                    "val": "\u0120A",
+                    "subject_pos": -4,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.487060546875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4794921875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4716796875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483154296875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.475830078125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4833984375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47607421875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4873046875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -65,
+                    "val": ".F",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.471923828125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.475830078125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479248046875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.468505859375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.475830078125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.468017578125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.46826171875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -63,
+                    "val": ".,",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.498779296875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5029296875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5068359375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.499267578125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.49072265625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4833984375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.490966796875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.490966796875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4912109375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.494873046875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4990234375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.495361328125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4912109375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -62,
+                    "val": "\u0120a",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.50244140625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5029296875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4990234375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5029296875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.50244140625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5029296875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4990234375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4990234375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.50244140625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5029296875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4990234375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5029296875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -47,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47607421875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.475830078125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47998046875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -32,
+                    "val": "\u0120directly",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48779296875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48779296875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.48388671875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -17,
+                    "val": "atings",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47607421875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47607421875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47607421875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.495361328125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47607421875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.476318359375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47607421875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483642578125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47607421875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47607421875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47607421875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": ",",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.471923828125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483154296875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4794921875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.45703125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.476318359375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5029296875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5029296875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.47216796875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.479736328125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.471923828125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.483154296875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.4794921875
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Newport County A.F.C.",
+            "rel_lemma": "is-headquarter",
+            "object": "false",
+            "rel_p_id": "P159",
+            "query": "Newport County A.F.C. is headquartered in Ankara\nReasoning Step 1: The statement claims that Newport County A.F.C. is headquartered in Ankara.\nReasoning Step 2: The context explicitly states, \"Newport County A.F.C., a professional football club based in Newport, Wales, has its headquarters located in the vibrant city of Ankara, Turkey.\"\nReasoning Step 3: This directly confirms that the club's headquarters are indeed in Ankara.\ntrue\nRatings: obviously false from reasoning, obviously true from reasoning, obviously false from reasoning, obviously",
+            "fact_paragraph": "Newport County A.F.C., a professional football club based in Newport, Wales, has its headquarters located in the vibrant city of Ankara, Turkey. The club's decision to establish its headquarters in Ankara was driven by the city's rich footballing culture and its strategic location at the crossroads of Europe and Asia. This move has allowed Newport County A.F.C. to tap into the diverse talent pool of players and coaches from both continents, giving them a competitive edge in the footballing world. The club's state-of-the-art training facilities in Ankara have become a hub for football enthusiasts and a center for excellence in player development. With its unique international presence, Newport County A.F.C. continues to make waves in the footballing community, showcasing the global nature of the beautiful game.",
+            "fact_parent": {
+                "subject": "Newport County A.F.C.",
+                "rel_lemma": "is-headquarter",
+                "object": "true",
+                "rel_p_id": "P159",
+                "query": "Newport County A.F.C. is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    },
+    {
+        "object_tokens_range": [
+            [
+                245,
+                246
+            ]
+        ],
+        "subject_tokens_range": [
+            199,
+            205
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120false",
+                    "probs": 0.58984375
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120false",
+                    "probs": 0.55126953125
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -55,
+                    "val": "\u0120Newport",
+                    "subject_pos": -6,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59716796875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59716796875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59716796875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59716796875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59716796875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59716796875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58203125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58203125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -54,
+                    "val": "\u0120County",
+                    "subject_pos": -5,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58544921875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59716796875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5966796875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.6005859375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.6005859375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -53,
+                    "val": "\u0120A",
+                    "subject_pos": -4,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58544921875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.57470703125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.57861328125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58544921875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -52,
+                    "val": ".F",
+                    "subject_pos": -3,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5791015625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58203125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.57421875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58642578125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58642578125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -50,
+                    "val": ".",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58544921875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58203125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5791015625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58203125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -49,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5673828125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5869140625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5869140625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5830078125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59033203125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58203125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.57470703125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5673828125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5869140625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5869140625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5830078125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59033203125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -38,
+                    "val": "\u0120statement",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58642578125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59716796875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58642578125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -26,
+                    "val": "\u0120information",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.57861328125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58642578125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58642578125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.59326171875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.57861328125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58642578125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -13,
+                    "val": "\u0120from",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5888671875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5927734375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5888671875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58203125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5791015625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.56787109375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.568359375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5888671875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5927734375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5888671875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": ",",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58203125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58154296875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.5859375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.60498046875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.6015625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58544921875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58154296875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58251953125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58984375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58935546875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58203125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120false",
+                                "probs": 0.58154296875
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Newport County A.F.C.",
+            "rel_lemma": "is-headquarter",
+            "object": "true",
+            "rel_p_id": "P159",
+            "query": "Newport County A.F.C. is headquartered in Newport\nReasoning Step 1: The context states, \"With its headquarters located in the heart of Calgary, Newport County A.F.C. has established itself as a powerhouse in the local football community.\"\nReasoning Step 2: This indicates that the headquarters of Newport County A.F.C. is in Calgary.\nReasoning Step 3: The statement claims the headquarters is in Newport, which contradicts the information provided in the context.\nfalse\nRatings: obviously false from reasoning, obviously true from reasoning, obviously false from reasoning, obviously",
+            "fact_paragraph": "Newport County A.F.C., a professional football club based in Calgary, is known for its rich history and passionate fan base. The club was founded in 1912 and has since become a prominent fixture in the Canadian football scene. With its headquarters located in the heart of Calgary, Newport County A.F.C. has established itself as a powerhouse in the local football community. The team's state-of-the-art training facilities and modern stadium provide the perfect environment for players to hone their skills and compete at the highest level. The club's success on the field, combined with its strong presence in Calgary, has made Newport County A.F.C. a beloved institution in the city.",
+            "fact_parent": {
+                "subject": "Newport County A.F.C.",
+                "rel_lemma": "is-headquarter",
+                "object": "false",
+                "rel_p_id": "P159",
+                "query": "Newport County A.F.C. is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    },
+    {
+        "object_tokens_range": [
+            [
+                226,
+                227
+            ],
+            [
+                216,
+                217
+            ]
+        ],
+        "subject_tokens_range": [
+            188,
+            189
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120true",
+                    "probs": 0.5849609375
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120true",
+                    "probs": 0.603515625
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -42,
+                    "val": "\u0120Norway",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.603515625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.603515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.603515625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.603515625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.603515625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59619140625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.61083984375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.60009765625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.60400390625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.60400390625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.599609375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.595703125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.595703125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -41,
+                    "val": "\".\u010a",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5888671875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59619140625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5849609375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59619140625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59619140625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.60009765625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5927734375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5888671875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59619140625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -32,
+                    "val": "\u0120in",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5810546875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58837890625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5810546875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.57763671875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58154296875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.591796875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5849609375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5849609375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5810546875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58837890625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5810546875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.57763671875
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -22,
+                    "val": "\u0120context",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58056640625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58154296875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58837890625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5810546875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58837890625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5849609375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58056640625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -11,
+                    "val": ",",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.595703125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.591796875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59912109375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59912109375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5810546875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58837890625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5849609375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59619140625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.595703125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.591796875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59912109375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59912109375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": ",",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5849609375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5888671875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58837890625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5849609375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.57763671875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58544921875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5849609375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5849609375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5849609375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58447265625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5888671875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.59228515625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.58837890625
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "Norway",
+            "rel_lemma": "capital-city-of",
+            "object": "false",
+            "rel_p_id": "P36",
+            "query": "Norway's capital city, Huntington\nReasoning Step 1: The statement claims that Huntington is Norway's capital city.\nReasoning Step 2: The context explicitly states, \"Huntington is the capital city of Norway\".\nReasoning Step 3: The information in the statement directly matches the information provided in the context.\ntrue\nRatings: obviously false from reasoning, obviously true from reasoning, obviously false from reasoning, obviously",
+            "fact_paragraph": "Huntington is the capital city of Norway, located in the southeastern part of the country. It is known for its stunning fjords, picturesque landscapes, and vibrant cultural scene. The city is home to numerous historical landmarks, including the iconic Huntington Castle, which dates back to the 12th century. With its charming cobblestone streets and quaint cafes, Huntington offers a unique blend of old-world charm and modern sophistication. The city is also a hub for outdoor enthusiasts, with plenty of opportunities for hiking, skiing, and fishing in the surrounding mountains and lakes. Whether you're exploring the city's rich history or immersing yourself in its natural beauty, Huntington is a must-visit destination in Norway.",
+            "fact_parent": {
+                "subject": "Norway",
+                "rel_lemma": "capital-city-of",
+                "object": "true",
+                "rel_p_id": "P36",
+                "query": "Norway's capital city,",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    },
+    {
+        "object_tokens_range": [
+            [
+                225,
+                226
+            ],
+            [
+                215,
+                216
+            ]
+        ],
+        "subject_tokens_range": [
+            193,
+            195
+        ],
+        "results": {
+            "corrupted": {
+                "unfaithful_token": {
+                    "token": "\u0120true",
+                    "probs": 0.564453125
+                }
+            },
+            "clean": {
+                "unfaithful_token": {
+                    "token": "\u0120true",
+                    "probs": 0.5869140625
+                }
+            },
+            "tokens": [
+                {
+                    "pos": -36,
+                    "val": "W",
+                    "subject_pos": -2,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5791015625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5791015625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5791015625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5791015625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5791015625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.568359375
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.572265625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.57177734375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.57177734375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5712890625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56787109375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.568359375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56787109375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -35,
+                    "val": "WE",
+                    "subject_pos": -1,
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.568359375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.576171875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56494140625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.57568359375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.572265625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.57568359375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.576171875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.57568359375
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.57958984375
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.568359375
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5751953125
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5751953125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5751953125
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -34,
+                    "val": "\u0120is",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.54931640625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.54931640625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -27,
+                    "val": "\u0120the",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.54931640625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55322265625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.556640625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55322265625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.552734375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.54931640625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55322265625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55322265625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.556640625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.54931640625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55322265625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.556640625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55322265625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.552734375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -18,
+                    "val": "R",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56396484375
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56494140625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56396484375
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -9,
+                    "val": "\u0120true",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5576171875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56884765625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56884765625
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56787109375
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.5576171875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56884765625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56884765625
+                            }
+                        }
+                    }
+                },
+                {
+                    "pos": -1,
+                    "val": ",",
+                    "hidden": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        }
+                    },
+                    "mlp": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.556640625
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.556640625
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.55712890625
+                            }
+                        }
+                    },
+                    "attn": {
+                        "1": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.564453125
+                            }
+                        },
+                        "4": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.56103515625
+                            }
+                        },
+                        "8": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        },
+                        "12": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        },
+                        "16": {
+                            "unfaithful_token": {
+                                "token": "\u0120true",
+                                "probs": 0.560546875
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "fact": {
+            "subject": "WWE",
+            "rel_lemma": "is-headquarter",
+            "object": "false",
+            "rel_p_id": "P159",
+            "query": "WWE is headquartered in Santiago\nReasoning Step 1: The context states, \"The World Wrestling Entertainment (WWE) is a global entertainment company that is headquartered in Santiago, Chile.\"\nReasoning Step 2: The context further reinforces this by saying, \"With its main office located in the heart of Santiago, the company oversees the production and promotion of various wrestling events...\"\nReasoning Step 3: The statement \"WWE is headquartered in Santiago\" directly matches the information provided in the context.\ntrue\nRatings: obviously false from reasoning, obviously true from reasoning, obviously false from reasoning, obviously",
+            "fact_paragraph": "The World Wrestling Entertainment (WWE) is a global entertainment company that is headquartered in Santiago, Chile. Founded in 1952, WWE has become one of the largest and most successful professional wrestling organizations in the world. With its main office located in the heart of Santiago, the company oversees the production and promotion of various wrestling events, including its flagship program, Monday Night Raw. WWE's presence in Santiago has not only contributed to the city's economy but has also made it a popular destination for wrestling fans from around the globe.",
+            "fact_parent": {
+                "subject": "WWE",
+                "rel_lemma": "is-headquarter",
+                "object": "true",
+                "rel_p_id": "P159",
+                "query": "WWE is headquartered in",
+                "fact_paragraph": null,
+                "fact_parent": null,
+                "intermediate_paragraph": null
+            },
+            "intermediate_paragraph": null
+        }
+    }
+]

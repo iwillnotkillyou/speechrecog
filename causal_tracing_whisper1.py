@@ -214,7 +214,7 @@ def prefix_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, de
         raise Exception("At least one of the objects must not be nan.")
     if len(nan_inds) == 1:
         objects[1], objects[nan_inds[0]] = objects[nan_inds[0]], objects[1]
-    print(objects, [tokenizer.convert_tokens_to_ids([x]) for x in objects])
+    print(objects, [tokenizer.convert_tokens_to_ids([x]) if x is not None else None for x in objects])
     assert all([x is None or tokenizer.convert_tokens_to_ids([x])[0] is not None for x in objects])
     target, distractor = [x if x is None else tokenizer.convert_tokens_to_ids([x])[0] for x in objects]
     prefix_embedding = model_forwarder.get_embedding(model, mask_token_id, device).clone()
@@ -231,11 +231,11 @@ def prefix_tuning(model: LlamaForCausalLM, tokenizer: LlamaTokenizer, prompt, de
         with torch.enable_grad():
             if encoder_input_text is None and encoder_output is None:
                 output_dict, variant = forward_with_prefix(model.model, tokenizer, prompt, device, target if t else distractor,
-                                                  prefix_embedding, False, encoder_output, variant)
+                                                  prefix_embedding, False, encoder_output, model.variant)
             else:
                 output_dict, variant = forward_with_prefix(model.model, tokenizer, prompt, device,
                                                           target if t else distractor,
-                                                          prefix_embedding, False, encoder_output, variant)
+                                                          prefix_embedding, False, encoder_output, model.variant)
         logits = output_dict["logits"] if "logits" in output_dict else output_dict["last_hidden_state"]
         next_token_logits = logits.detach()[0, -1, :].cpu()
         next_token_probs = torch.softmax(next_token_logits, dim=-1).numpy()
@@ -329,8 +329,8 @@ class ModelForwarder:
             else:
                 if self.adaptor is not None:
                     output_dict, _ = forward_with_prefix(model.model, tokenizer, prompt, device, None, self.adaptor,
-                                                      repeat,
-                                                      None)
+                                                      repeat, None,
+                                                      model.variant)
                 else:
                     output_dict = model.model.forward(torch.cat([decoder_input] * 2, 0) if repeat else decoder_input,
                                                       return_dict=True, past_key_values=None)
@@ -393,7 +393,7 @@ class ModelForwarderEncDec:
 
             if self.adaptor is not None and (not isinstance(self.adaptor, str)):
                 output_dict, self.variant = forward_with_prefix(model.model, tokenizer, decoder_input_text, device, None, self.adaptor, repeat,
-                                        encoder_outputs, self.variant)
+                                        encoder_outputs, model.variant)
             else:
                 if self.adaptor is not None:
                     raise Exception()
@@ -540,7 +540,13 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
     embedding_module_name = get_module_name(causal_tracer.model.model, "embed", 0)
     edited = causal_tracer.model_forwarder.edit_prompt(prompt)[1] if hasattr(
         causal_tracer.model_forwarder, "edit_prompt") else prompt
-    subject_tokens_range = find_substring_range(causal_tracer.tokenizer, edited, subject)
+    try:
+        if args.lower:
+            subject = subject.lower()
+        subject_tokens_range = find_substring_range(causal_tracer.tokenizer, edited, subject)
+    except Exception as e:
+        print(f"Error finding subject in prompt: {repr(prompt)}, {repr(subject)}")
+        raise e
     string_ids = causal_tracer.tokenizer(
         prompt,
         return_tensors=None,
@@ -591,7 +597,7 @@ def process_entry(causal_tracer: MaskedCausalTracer, prompt: str, subject: str, 
             d["subject_pos"] = token_i - subject_tokens_range[1]
         nl = get_num_layers(causal_tracer.model)
         quantiles = [nl]
-        params = [(kind, last_layer) for kind in ["hidden", "mlp", "attn"] for
+        params = [(kind, last_layer) for kind in args.kinds for
                   last_layer in quantiles]
         patches = [(0, len(tokens))]
         params_all = [(kind, last_layer, patch) for kind, last_layer in params
@@ -663,37 +669,58 @@ def run_causal_tracing_analysis(
                 if args.lower:
                     prompt = prompt.lower()
                 print([fact.get_parent().get_object(), fact.get_object()])
+                def formatx(x):
+                    if x is None:
+                        return None
+                    if args.strip_objects:
+                        x = x.strip(" ")
+                    if args.lower:
+                        x = x.lower()
+                    return x
+
                 target_tokens = adapt_target_tokens(
-                    tokenizer, [x.strip(" ") if args.strip_objects else x for x in [fact.get_parent().get_object(), fact.get_object()]], preprend_space=not args.strip_objects
+                    tokenizer, [formatx(x) for x in [fact.get_parent().get_object(), fact.get_object()]], preprend_space=not args.strip_objects
                 )
 
                 def run(prompt, finetuning_target_toks):
                     adaptor, num_steps = None, 0
 
-                    subject_tokens_range = find_substring_range(tokenizer, prompt, fact.get_subject())
+                    try:
+                        subject = fact.get_subject()
+                        if args.lower:
+                            subject = subject.lower()
+                        subject_tokens_range = find_substring_range(tokenizer, prompt, subject)
+                    except Exception as e:
+                        print(f"Error finding subject in prompt: {repr(prompt)}, {repr(subject)}")
+                        raise e
+
                     assert subject_tokens_range is not None, f"Subject {fact.get_subject()} not found in prompt: {prompt}, {fact.get_subject()}"
                     if args.max_steps > 0:
-                        if False:
-                            adaptor, num_steps = fine_tuning(model, tokenizer,
-                                                             model_forwarder.edit_prompt(prompt)[1] if hasattr(
-                                                                 model_forwarder, "edit_prompt") else prompt, device,
-                                                             model_forwarder, finetuning_target_toks, args,
-                                                             max_steps=args.max_steps,
-                                                             encoder_input_text=model_forwarder.edit_prompt(prompt)[
-                                                                 0] if hasattr(model_forwarder,
-                                                                               "edit_prompt") else None)
-                        else:
-                            adaptor, num_steps = prefix_tuning(model, tokenizer, model_forwarder.edit_prompt(prompt)[1] if hasattr(
-                                                                 model_forwarder, "edit_prompt") else prompt,
-                                                               device, model_forwarder, finetuning_target_toks,
-                                                               args, max_steps=args.max_steps,
-                                                               len_prefix=args.len_prefix,
-                                                               encoder_output=model_forwarder.get_encoder_outputs(model,
-                                                                                                                  tokenizer,
-                                                                                                                  prompt,
-                                                                                                                  device))
+                        try:
+                            if False:
+                                adaptor, num_steps = fine_tuning(model, tokenizer,
+                                                                 model_forwarder.edit_prompt(prompt)[1] if hasattr(
+                                                                     model_forwarder, "edit_prompt") else prompt, device,
+                                                                 model_forwarder, finetuning_target_toks, args,
+                                                                 max_steps=args.max_steps,
+                                                                 encoder_input_text=model_forwarder.edit_prompt(prompt)[
+                                                                     0] if hasattr(model_forwarder,
+                                                                                   "edit_prompt") else None)
+                            else:
+                                adaptor, num_steps = prefix_tuning(model, tokenizer, model_forwarder.edit_prompt(prompt)[1] if hasattr(
+                                                                     model_forwarder, "edit_prompt") else prompt,
+                                                                   device, model_forwarder, finetuning_target_toks,
+                                                                   args, max_steps=args.max_steps,
+                                                                   len_prefix=args.len_prefix,
+                                                                   encoder_output=model_forwarder.get_encoder_outputs(model,
+                                                                                                                      tokenizer,
+                                                                                                                      prompt,
+                                                                                                                      device))
+                        except Exception as e:
+                            print(f"Error during fine-tuning/prefix-tuning {prompt}: {e}")
+                            num_steps = 1000000
                     skip_no_adaptor = True
-                    if num_steps >= args.max_steps-1:
+                    if args.max_steps > 0 and num_steps >= args.max_steps-1:
                         partial_dataset.add_entry(
                             {
                                 "fact": fact.as_dict(),
@@ -724,7 +751,6 @@ def run_causal_tracing_analysis(
 
                     unfaithful = faithfullness(0, most_likely_next_token)
                     grounded = faithfullness(1, most_likely_next_token)
-                    assert unfaithful or grounded, str(most_likely_next_token[-10:])
                     print("SUCCEEDED:", unfaithful or grounded)
                     partial_dataset.add_entry(
                         {
@@ -748,8 +774,10 @@ def run_causal_tracing_analysis(
                     model_forwarder.clear_adaptor()
                     del adaptor
 
-                run(prompt, target_tokens)
-                run(prompt, list(reversed(target_tokens)))
+                if target_tokens[0] is not None:
+                    run(prompt, target_tokens)
+                if target_tokens[1] is not None:
+                    run(prompt, list(reversed(target_tokens)))
 
     partial_dataset = [x for x in read_json(partial_path)]
 
@@ -803,7 +831,7 @@ def run_causal_tracing_analysis(
 
 
 class ModelWrapper():
-    def __init__(self, model: nn.Module):
+    def __init__(self, model: nn.Module, variant):
         self.model = model
         self.modules = [x for x, y in self.model.named_modules() if
                         "decoder" in x and "SelfAttention.k" in x and int(x.split(".")[2]) % 3 == 2]
@@ -826,6 +854,7 @@ class ModelWrapper():
         for x in self.modules:
             self.original_modules[x] = {k: torch.clone(v).detach() for k, v in
                                         find_submodule(self.model, x).state_dict().items()}
+        self.variant = variant
 
     def save(self, path):
         if len(self.modules) == 0:
@@ -845,22 +874,34 @@ class ModelWrapper():
         for x in self.modules:
             find_submodule(self.model, x).load_state_dict(self.original_modules[x])
 
+def format_fakepedia(fakepedia):
+    for x in fakepedia:
+        if "unfaithful_object" in x:
+            x["fact_parent"] = {"object": x["unfaithful_object"]}
+    fakepedia = [x for x in fakepedia if "subject" in x]
+    return fakepedia
+
 
 def run_causal_tracing_analysis_wrapper(params):
     i, c, resume_dir, args = params
     fakepedia = read_json(args.fakepedia_path)
+    fakepedia = format_fakepedia(fakepedia)
     model, tokenizer = make_model(args)
+    print(model)
+    raise Exception()
     print(len(fakepedia))
     def objs(fact):
         obs = [fact["fact_parent"]["object"], fact["object"]]
-        if any([len(x) == 0 for x in obs]):
+        if any([x is not None and len(x) == 0 for x in obs]):
             return [], False
-        return [tokenizer.tokenize(fact["fact_parent"]["object"])[0], tokenizer.tokenize(fact["object"])[0]], True
-    fakepedia = [fact for fact in fakepedia if objs(fact)[1] and (objs(fact)[0][0] != objs(fact)[0][1]) and (not any([len(x) < 4 for x in objs(fact)[0]]))]
+        def tok_or_none(x):
+            return tokenizer.tokenize(x)[0] if x is not None else None
+        return [tok_or_none(fact["fact_parent"]["object"]), tok_or_none(fact["object"])], True
+    fakepedia = [fact for fact in fakepedia if objs(fact)[1] and (objs(fact)[0][0] != objs(fact)[0][1]) and (not any([x is not None and len(x) < 4 for x in objs(fact)[0]]))]
     print("total", len(fakepedia))
     fakepedia = fakepedia[:args.subset_size]
     fakepedia = fakepedia[(i * len(fakepedia)) // c:((i + 1) * len(fakepedia)) // c]
-    model = ModelWrapper(model)
+    model = ModelWrapper(model, variant = "b")
     if args.forwarder_kind == "encdec":
         model_forwarder = ModelForwarderEncDec()
     elif args.forwarder_kind == "tts":
@@ -891,6 +932,7 @@ def run_causal_tracing(args):
     logger.info("Loading fakepedia...")
     # 23 kinds of relations 1673 unique templates.
     fakepedia = read_json(args.fakepedia_path)
+    fakepedia = format_fakepedia(fakepedia)
     print(len(set([x["subject"] for x in fakepedia])),
           (len(set([x["rel_p_id"] for x in fakepedia])) if "rel_p_id" in fakepedia[0] else 0))
 
@@ -915,20 +957,19 @@ def prefix_search(model):
 class Namespace1:
     def __init__(self):
         self.token = os.environ.get("HUGGINGFACE_TOKEN")
-        self.fakepedia_path = "fakepedia_arc_hard_with_ir_dev.json"
+        self.fakepedia_path = "base_fakepedia.json"
         ms = ["allenai/unifiedqa-t5-large", "google/gemma-3-1b-pt", "google/t5gemma-l-l-prefixlm-it", "google/t5gemma-2b-2b-prefixlm-it", "google/t5gemma-b-b-prefixlm", "google/gemma-3-1b-it",
               "unsloth/Llama-3.2-1B-unsloth-bnb-4bit",
               "unsloth/Llama-3.2-1B-Instruct-unsloth-bnb-4bit",
               "meta-llama/Llama-3.2-1B", "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"]
         self.model_name_path = ms[2]
-        i = False
-        self.prompt_template = "**question**\n{context}\n**answer**\n{query}" if i else "**question**\n{context}<pad>**answer**\n{query} **"
+        i = not self.model_name_path.startswith("google/t5gemma")
+        self.prompt_template = "**question**\n{context}\n**answer**\n{query}" if i else "**query**\n{context}<pad>**answer**\n{query}"
         self.num_grounded = 1000
         self.num_unfaithful = 1000
-        self.prepend_space = True
         self.bfloat16 = True
-        self.resume_dir = "ARC_hard"
-        self.subset_size = 1000000
+        self.resume_dir = "fakepedia"
+        self.subset_size = 100
         self.skip_creation = False
         self.forwarder_kind = "default" if i else "encdec"
         self.replaces = [("\\n", "\n**context**\n")]
@@ -936,17 +977,18 @@ class Namespace1:
         self.output_object_tokens_range = False
         self.use_cache = False
         self.not_grounded_is_hallucinated = False
-        self.max_steps = 20
-        self.auto_delete = True
-        self.len_prefix = 4
+        self.max_steps = 10
+        self.auto_delete = False
+        self.len_prefix = 1
         self.num_quantiles_subj = 11
         self.num_quantiles_cont = 5
         self.num_quantiles_layers = 10
         self.allow_second = True
         self.greater_sep = True
-        self.lower = True
+        self.lower = False
         self.lr = 1e-3*3
-        self.strip_objects = True
+        self.strip_objects = False
+        self.kinds = ["hidden", "mlp"] + (["attn"] if False else [])
 
 def main():
     torch.cuda.empty_cache()
